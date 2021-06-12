@@ -1,13 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-// import Logo from "../logo.svg";
-
+import { Link } from "react-router-dom";
 
 export default class Footer extends React.Component {
   constructor() {
     super();
-    // this.name = "Tsutomu";
   }
   render() {
     return (
@@ -16,11 +13,11 @@ export default class Footer extends React.Component {
           <div className="row">
             <div className="col-12">
               <div className="text-center">
-                <a href="/terms" className="text-muted px-1">利用規約</a>
+                <Link to="/terms" className="text-muted px-1">利用規約</Link>
                 |
-                <a href="/privacy" className="text-muted px-1">プライバシーポリシー</a>
+                <Link to="/privacy" className="text-muted px-1">プライバシーポリシー</Link>
                 |
-                <a href="/contact" className="text-muted px-1">お問い合わせ</a>
+                <Link to="/contact" className="text-muted px-1">お問い合わせ</Link>
               </div>
             </div>
           </div>
