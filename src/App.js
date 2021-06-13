@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import Logo from "./logo.svg";
 import "./App.css";
 
+import "bootstrap/dist/css/bootstrap.min.css"
+
 import Top from "./pages/Top";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
