@@ -29,9 +29,7 @@ const SignUp = () => {
       email: email,
       password: password,
       password_confirmation: password,
-      club_id: 12,
-      confirm_success_url: "http://localhost:3000/"
-    })
+      club_id: 12,    })
     // .then(response => setUser[...user,])
     .catch(error => console.log(error))
   }
