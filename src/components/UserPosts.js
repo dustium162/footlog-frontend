@@ -1,9 +1,9 @@
 import React from "react";
 
 export default class UserPosts extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   render() {
     return (
       <>

@@ -1,9 +1,9 @@
 import React from "react";
 
 export default class Accomplishments extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   render() {
     return (
       <>

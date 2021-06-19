@@ -4,9 +4,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Logo from "../logo.svg";
 
 export default class Header extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   render() {
     return (
       <header>

@@ -8,9 +8,9 @@ import Followers from "../components/Followers"
 import Accomplishments from "../components/Accomplishments"
 
 export default class UserTabs extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   render() {
     return (
       <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">

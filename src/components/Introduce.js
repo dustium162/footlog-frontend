@@ -3,9 +3,9 @@ import React from "react";
 import {Container,Image,Row,Col,Button} from "react-bootstrap"
 
 export default class Introduce extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   render() {
     return (
       <>

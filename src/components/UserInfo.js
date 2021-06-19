@@ -3,9 +3,9 @@ import React from "react";
 import {Container,Image,Row,Col,Button} from "react-bootstrap"
 
 export default class UserInfo extends React.Component {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
   render() {
     return (
       <Container fluid>
