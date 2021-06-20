@@ -4,12 +4,14 @@ import Layout from "../components/Layout";
 import UserInfo from '../components/UserInfo'
 import UserTabs from '../components/UserTabs'
 
+import {Row} from 'react-bootstrap'
+
 export default class MyPage extends React.Component {
   render() {
     return (
       <Layout>
-        <UserInfo />
-        <UserTabs />
+        <Row><UserInfo /></Row>
+        <Row><UserTabs /></Row>
       </Layout>
     );
   }
