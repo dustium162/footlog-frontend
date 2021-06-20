@@ -5,7 +5,10 @@ import {Container,Image,Row,Col,Button,Carousel} from "react-bootstrap"
 const HowtoUse = () => {
   return (
     <Container>
-      <Carousel variant="dark">
+      <Row>
+        <Col></Col>
+        <Col>
+        <Carousel variant="dark">
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -13,7 +16,7 @@ const HowtoUse = () => {
             alt="First slide"
           />
           <Carousel.Caption>
-            <h5>①観戦した試合を見つけて、「記録」ボタンを押します。</h5>
+            <p>①観戦した試合を見つけて、「記録」ボタンを押します。</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -23,10 +26,13 @@ const HowtoUse = () => {
             alt="Second slide"
           />
           <Carousel.Caption>
-            <h5>②あなたの観戦記録が積み重なり、あなただけのジンクスや、メモリアルゴールがわかります。</h5>
+            <p>②あなたの観戦記録が積み重なり、あなただけのジンクスや、メモリアルゴールがわかります。</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+        </Col>
+        <Col></Col>
+      </Row>
     </Container>
   );
 }

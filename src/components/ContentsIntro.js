@@ -5,15 +5,18 @@ import {Container,Image,Row,Col,Button,Carousel} from "react-bootstrap"
 const ContentsIntro = () => {
   return (
     <Container>
-      <Carousel variant="dark">
+      <Row>
+        <Col></Col>
+        <Col>
+        <Carousel variant="dark">
         <Carousel.Item>
           <img
             className="d-block w-100"
             src={`${process.env.PUBLIC_URL}/top1.jpg`}
             alt="First slide"
-          />
+            />
           <Carousel.Caption>
-            <h5>勝率はもちろん</h5>
+            <p>勝率はもちろん</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -21,9 +24,9 @@ const ContentsIntro = () => {
             className="d-block w-100"
             src={`${process.env.PUBLIC_URL}/top2.jpg`}
             alt="Second slide"
-          />
+            />
           <Carousel.Caption>
-            <h5>クラブ別の対戦成績や</h5>
+            <p>クラブ別の対戦成績や</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -31,12 +34,15 @@ const ContentsIntro = () => {
             className="d-block w-100"
             src={`${process.env.PUBLIC_URL}/top3.jpg`}
             alt="Second slide"
-          />
+            />
           <Carousel.Caption>
-            <h5>得失点マップなど...</h5>
+            <p>得失点マップなど...</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+        </Col>
+        <Col></Col>
+      </Row>
     </Container>
   );
 }
