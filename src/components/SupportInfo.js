@@ -11,8 +11,12 @@ const UserInfo = () => {
         </Col>
         <Col>
           <Row><h6>○勝○敗○分</h6></Row>
-          <Row><h6>初観戦：○年</h6></Row>
+          <Row><h6>初観戦:○年</h6></Row>
+          <Row><h6>最近の観戦:○年</h6></Row>
         </Col>
+      </Row>
+      <Row>
+        <Col>このサービスを開発しています！footlogをご利用いただき、ありがとうございます。</Col>
       </Row>
     </Container>
   );
