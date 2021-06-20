@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.box {
+  position: relative;
+}
+
+.user_header {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+#for_user_header {
+  padding: 0px 0px 10px 0px;
+}
+
+.user_icon_and_name {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 75%;
+  left: 15%;
+}
+
+.user_icon {
+  width: 150px;
+  height: 150px;
+}

@@ -8,7 +8,6 @@ export default class MyPage extends React.Component {
   render() {
     return (
       <Layout>
-        MyPage Page!
         <UserInfo />
         <UserTabs />
       </Layout>

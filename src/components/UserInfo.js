@@ -9,20 +9,20 @@ export default class UserInfo extends React.Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col>
-            <Image src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} fluid />
+        <Row className="box">
+          <Col id="for_user_header">
+            <Image className="user_header" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} fluid />
+            <div className="user_icon_and_name">
+              <Image className="user_icon" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
+              <h5>user_name</h5>
+            </div>
           </Col>
         </Row>
-        <Row>
-          <Col xs={5}>
-            <Image src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
-          </Col>
-        </Row>
-        <h5>user_name</h5>
-        <Button>
-          <h5>user_imfo_edit</h5>
-        </Button>
+        <Col className="text-right">
+          <Button className="pull-right">
+            プロフィール編集
+          </Button>
+        </Col>
         <h5>support_info</h5>
         <h5>bio</h5>
       </Container>

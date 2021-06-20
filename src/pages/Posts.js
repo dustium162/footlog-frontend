@@ -1,6 +1,8 @@
 import React from 'react';
 import Layout from "../components/Layout";
 
+import Match from "../components/Match"
+
 export default class Posts extends React.Component {
   constructor(){
     super()
@@ -9,7 +11,7 @@ export default class Posts extends React.Component {
       character: {},
     }
   }
-    
+
   componentDidMount(){
     this.setState({
       loading: true
@@ -33,6 +35,7 @@ export default class Posts extends React.Component {
       <Layout>
         <div>Posts Page!</div>
         <div>{displayText}</div>
+        <Match />
       </Layout>
     );
   }
