@@ -10,7 +10,7 @@ const UserInfo = () => {
           <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle /></Row>
           <Row><h5>user_name</h5></Row>
         </Container>
-        <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} fluid/></Row>
+        <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/top3.jpg`} fluid/></Row>
         <Row>
           {/* <Col></Col>
           <Col><SupportInfo /></Col> */}

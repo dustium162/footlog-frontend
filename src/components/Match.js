@@ -5,18 +5,10 @@ import MatchInfo from "./MatchInfo"
 const Match = () => {
   return (
     <Container>
-      <div>
-        <MatchInfo />
-        <Button>
-          見ていない
-        </Button>
-        <Button>
-          オンラインで見た
-        </Button>
-        <Button>
-          スタジアムで見た
-        </Button>
-      </div>
+      <MatchInfo />
+      <Button>見ていない</Button>
+      <Button>オンラインで見た</Button>
+      <Button>スタジアムで見た</Button>
     </Container>
   )
 }

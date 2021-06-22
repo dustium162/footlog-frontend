@@ -1,14 +1,13 @@
 import React from "react";
 
-export default class UserPosts extends React.Component {
-  // constructor() {
-  //   super();
-  // }
-  render() {
-    return (
-      <>
+import {Container,Image,Row,Col,Button} from "react-bootstrap"
+
+const UserPosts = () => {
+  return (
+    <Container>
       投稿のリスト
-      </>
-    );
-  }
+    </Container >
+  );
 }
+
+export default UserPosts;
