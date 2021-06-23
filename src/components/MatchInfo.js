@@ -11,6 +11,7 @@ const MatchInfo = () => {
           <Card.Header className="bg-danger">
             <Row>
               <Col className="text-light">Home</Col>
+              <Col className="text-light">2006</Col>
               <Col className="text-light">J1第34節</Col>
             </Row>
           </Card.Header>
@@ -26,16 +27,33 @@ const MatchInfo = () => {
             <Card.Text>
               <Row>
                 <Col>Home</Col>
-                <Col>観客数61214人</Col>
+                <Col>観客数62241人</Col>
               </Row>
               <Row>
                 <Col></Col>
                 <Col><h1>3 - 2</h1></Col>
                 <Col></Col>
               </Row>
-              <Button>見ていない</Button>
-              <Button>オンラインで見た</Button>
-              <Button>スタジアムで見た</Button>
+              <Row>
+                <Col>
+                  <Button variant="link">
+                      <Image className="emblem" src={`${process.env.PUBLIC_URL}/stadium.png`} roundedCircle />
+                  </Button>
+                  <p>現地</p>
+                </Col>
+                <Col>
+                  <Button variant="link">
+                      <Image className="emblem" src={`${process.env.PUBLIC_URL}/monitor.png`} roundedCircle />
+                  </Button>
+                  <p>オンライン</p>
+                </Col>
+                <Col>
+                  <Button variant="link">
+                      <Image className="emblem" src={`${process.env.PUBLIC_URL}/pass.png`} roundedCircle />
+                  </Button>
+                  <p>観ていない</p>
+                </Col>
+              </Row>
             </Card.Text>
           </Card.Body>
         </Card>
