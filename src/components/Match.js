@@ -6,9 +6,6 @@ const Match = () => {
   return (
     <Container>
       <MatchInfo />
-      <Button>見ていない</Button>
-      <Button>オンラインで見た</Button>
-      <Button>スタジアムで見た</Button>
     </Container>
   )
 }
