@@ -67,9 +67,10 @@
   margin: 10px;
 }
 
-/* .text-center{
-  float: center;
-} */
+.button_link{
+  text-decoration: none;
+  font-size: 13px;
+}
 
 .emblem {
   width: 30px;

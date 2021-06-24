@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import {Row,Col} from "react-bootstrap"
 
 import MatchInfo from "../components/MatchInfo"
+import MatchInfo2 from "../components/MatchInfo2"
 
 export default class Posts extends React.Component {
   constructor(){
@@ -39,6 +40,7 @@ export default class Posts extends React.Component {
         <div>{displayText}</div>
         <Row xs={1} md={2} className="g-4">
           <Col><MatchInfo /></Col>
+          {/* <Col><MatchInfo2 /></Col> */}
         </Row>
       </Layout>
     );
