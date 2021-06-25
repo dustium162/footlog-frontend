@@ -7,14 +7,13 @@ import UserTabs from '../components/UserTabs'
 
 import {Row} from 'react-bootstrap'
 
-export default class MyPage extends React.Component {
-  render() {
-    return (
-      <Layout>
-        <Row><UserInfo /></Row>
-        <Row><SupportInfo /></Row>
-        <Row><UserTabs /></Row>
-      </Layout>
-    );
-  }
+const MyPage = () => {
+  return (
+    <Layout>
+      <Row><UserInfo /></Row>
+      <Row><SupportInfo /></Row>
+      <Row><UserTabs /></Row>
+    </Layout>
+  )
 }
+export default MyPage;

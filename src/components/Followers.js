@@ -1,14 +1,10 @@
 import React from "react";
 
-export default class Followers extends React.Component {
-  // constructor() {
-  //   super();
-  // }
-  render() {
-    return (
+const Followers = () => {
+  return (
       <>
       フォロワーのリスト
       </>
-    );
-  }
+  )
 }
+export default Followers;

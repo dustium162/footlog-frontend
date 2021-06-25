@@ -2,12 +2,8 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default class Footer extends React.Component {
-  // constructor() {
-  //   super();
-  // }
-  render() {
-    return (
+const Footer = () => {
+  return (
       <footer className="bg-light">
         <Container className="py-3">
           <div className="row">
@@ -30,6 +26,6 @@ export default class Footer extends React.Component {
           </div>
         </Container>
       </footer>
-    );
-  }
+  )
 }
+export default Footer;
