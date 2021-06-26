@@ -1,4 +1,6 @@
 import React from 'react';
+
+import {Image,Container} from "react-bootstrap"
 import Layout from "../components/Layout";
 
 import UserInfo from '../components/UserInfo'

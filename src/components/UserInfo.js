@@ -5,7 +5,7 @@ import {Container,Image,Row,Col,Button} from "react-bootstrap"
 const UserInfo = () => {
   return (
     <Container className="user_info" fluid>
-      <Row>
+      <Row className="nx-0 px-0">
         <Container className="icon_and_name">
           <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle /></Row>
           <Row><h5>user_name</h5></Row>

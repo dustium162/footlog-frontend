@@ -51,6 +51,7 @@
 .icon_and_name {
   width: 150px;
   height: 150px;
+  /* position: relative; */
   position: absolute;
   top: 310px;
   left: 14%;

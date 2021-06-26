@@ -1,35 +1,32 @@
-import React, {useState} from "react"
+import React,{useState} from "react"
 
-import {Container,Image,Row,Col,Card,Button,Modal} from "react-bootstrap"
-import PostButtons from "./PostButtons";
+import {Container,Row,Col,Card,Button,Image,Modal} from "react-bootstrap"
 
-
-const MatchInfo = () => {
+const PostInfo = () => {
   const [show,setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   return (
-    <div>
+    <Container>
       <Card>
-        <Card.Header className="bg-danger">
+        <Card.Header className="bg-info">
           <Row>
-            <Col className="text-light">Home</Col>
-            <Col className="text-light">2006</Col>
-            <Col className="text-light">J1第34節</Col>
+            <Col className="text-light">Away</Col>
+            <Col className="text-light">2021</Col>
+            <Col className="text-light">J1第19節</Col>
           </Row>
         </Card.Header>
         <Card.Body>
           <Card.Title>
             <Row>
-              <Col>ガンバ大阪戦</Col>
+              <Col>柏レイソル戦</Col>
             </Row>
           </Card.Title>
           <Card.Text>
             <Row>
               <Col></Col>
-              <Col><p>観客数62241人</p></Col>
+              <Col><p>観客数3263人</p></Col>
             </Row>
             <Row>
               <Col>
@@ -45,17 +42,18 @@ const MatchInfo = () => {
             </Row>
           </Card.Text>
         </Card.Body>
-        <Card.Footer><PostButtons /></Card.Footer>
+        <Card.Footer>
+          <h6>評価：★★★★☆</h6>
+          <h6>(MVPや同伴者も載せたいが投稿ロジック的に...)</h6>
+        </Card.Footer>
       </Card>
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>試合詳細</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>ここに試合詳細情報を表示</Modal.Body>
-      <Modal.Footer><PostButtons /></Modal.Footer>
-    </Modal>
-    </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>試合詳細</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>ここに試合詳細情報を表示</Modal.Body>
+      </Modal>
+    </Container>
   )
 }
-
-export default MatchInfo;
+export default PostInfo;
