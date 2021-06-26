@@ -34,6 +34,9 @@ const Header = () => {
               <LinkContainer to="/sign_in">
                 <Nav.Link>ログイン</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/admin/main">
+                <Nav.Link>管理者ページへ</Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
