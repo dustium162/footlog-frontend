@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Container,Image,Row,Col,Button} from "react-bootstrap"
+import {Container,Image,Row,Button} from "react-bootstrap"
 
 import HowtoUse from "./HowtoUse"
 import ContentsIntro from "./ContentsIntro"

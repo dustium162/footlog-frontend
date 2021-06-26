@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import {Row,Col} from "react-bootstrap"
 
 import MatchInfo from "../components/MatchInfo"
-import MatchInfo2 from "../components/MatchInfo2"
+// import MatchInfo2 from "../components/MatchInfo2"
 
 export default class Posts extends React.Component {
   constructor(){

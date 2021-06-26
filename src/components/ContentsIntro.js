@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Container,Image,Row,Col,Button,Carousel} from "react-bootstrap"
+import {Container,Row,Col,Carousel} from "react-bootstrap"
 
 const ContentsIntro = () => {
   return (

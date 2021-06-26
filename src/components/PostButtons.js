@@ -1,7 +1,6 @@
 import React from "react"
 
-import {Container,Image,Row,Col,Card,Button,Modal} from "react-bootstrap"
-
+import {Image,Row,Col,Button} from "react-bootstrap"
 
 const PostButtons = () => {
   return (

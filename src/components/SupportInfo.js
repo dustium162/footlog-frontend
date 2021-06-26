@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Container,Image,Row,Col,Button} from "react-bootstrap"
+import {Container,Image,Row,Col} from "react-bootstrap"
 
 const UserInfo = () => {
   return (
