@@ -3,10 +3,10 @@ import Layout from "../../components/Layout";
 
 import axios from "axios"
 
-import {Row,Col,Form} from "react-bootstrap"
+import {Row,Col,Form,Button} from "react-bootstrap"
 
 
-const AddMatch = () => {
+const MatchNew = () => {
   const [teams,setTeams] = useState([])
   const [stadia,setStadia] = useState([])
   const [titles,setTitle] = useState([])
@@ -78,8 +78,9 @@ const AddMatch = () => {
             <option>5</option>
           </Form.Control>
         </Form.Group> */}
+        <Button>試合情報作成</Button>
       </Form>
     </Layout>
   )
 }
-export default AddMatch;
+export default MatchNew;

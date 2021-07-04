@@ -19,7 +19,8 @@ import Contact from "./pages/Contact";
 
 // 管理者用 書く場所が正しいかは不明なので要相談(20210626浅)
 import AdminMain from "./pages/admin/AdminMain"
-import AddMatch from "./pages/admin/AddMatch"
+import MatchNew from "./pages/admin/MatchNew"
+import MatchEdit from "./pages/admin/MatchEdit"
 import AddTeam from "./pages/admin/AddTeam"
 import AddStadium from "./pages/admin/AddStadium"
 import AddInformation from "./pages/admin/AddInformation"
@@ -42,7 +43,8 @@ function App() {
 
           {/* 管理者用 書く場所が正しいかは不明なので要相談(20210626浅) */}
           <Route path="/admin/main" component={AdminMain}/>
-          <Route path="/admin/add_match" component={AddMatch}/>
+          <Route path="/admin/match/new" component={MatchNew}/>
+          <Route path="/admin/match/edit" component={MatchEdit}/>
           <Route path="/admin/add_team" component={AddTeam}/>
           <Route path="/admin/add_stadium" component={AddStadium}/>
           <Route path="/admin/add_information" component={AddInformation}/>

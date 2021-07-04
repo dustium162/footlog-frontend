@@ -10,8 +10,11 @@ const AdminMain = () => {
   return (
     <Layout>
       <Container>
-        <LinkContainer to="/admin/add_match">
-          <Nav.Link>試合情報の追加</Nav.Link>
+        <LinkContainer to="/admin/match/new">
+          <Nav.Link>試合情報の新規作成</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/admin/match/edit">
+          <Nav.Link>試合情報の投稿</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/admin/add_team">
           <Nav.Link>チーム情報の追加</Nav.Link>
