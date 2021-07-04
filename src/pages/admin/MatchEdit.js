@@ -13,6 +13,21 @@ const MatchEdit = () => {
   const [away_team,setAwayTeam] = useState("")
   const [stadium,setStadium] = useState("")
 
+  const [home_score,setHomeScore] = useState(0)
+  const [away_score,setAwayScore] = useState(0)
+  const [mobilization,setMobilization] = useState(0)
+
+  const handleHomeScore = (e) => {
+    setHomeScore(e.target.value)
+  }
+  const handleAwayScore = (e) => {
+    setAwayScore(e.target.value)
+  }
+  const handleMobilization = (e) => {
+    setMobilization(e.target.value)
+  }
+
+
   useEffect(() => {
     // テスト用のためidを1に固定中
     axios.get("http://localhost:3000/v1/matches/1/edit")
@@ -26,6 +41,16 @@ const MatchEdit = () => {
       })
       .catch(error => console.log(error))
   },[])
+
+  const publishMatch = () => {
+    axios.patch("http://localhost:3000/v1/matches/1",{
+      home_score: home_score,
+      away_score: away_score,
+      mobilization: mobilization
+    })
+    .catch(error => console.log(error))
+  }
+
   return (
     <Layout>
       <Form>
@@ -37,7 +62,7 @@ const MatchEdit = () => {
         </Row>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>ホームの得点を入力</Form.Label>
-          <Form.Control as="select">
+          <Form.Control as="select" value={home_score} onChange={handleHomeScore}>
             <option>0</option>
             <option>1</option>
             <option>2</option>
@@ -46,7 +71,7 @@ const MatchEdit = () => {
           <Form.Label>ホームの得点者を入力</Form.Label>
             <Form.Control></Form.Control>
           <Form.Label>アウェイの得点を入力</Form.Label>
-          <Form.Control as="select">
+          <Form.Control as="select" value={away_score} onChange={handleAwayScore}>
             <option>0</option>
             <option>1</option>
             <option>2</option>
@@ -55,10 +80,10 @@ const MatchEdit = () => {
           <Form.Label>アウェイの得点者を入力</Form.Label>
             <Form.Control></Form.Control>
         <Form.Label>動員数を入力</Form.Label>
-        <Form.Control type="integer" />
+          <Form.Control type="integer" value={mobilization} onChange={handleMobilization} />
         </Form.Group>
       </Form>
-      <Button>試合情報投稿</Button>
+      <Button onClick={publishMatch}>試合情報投稿</Button>
     </Layout>
   )
 }
