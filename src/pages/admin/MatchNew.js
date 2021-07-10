@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 
 import axios from "axios"
 
-import {Form,Button} from "react-bootstrap"
+import {Row,Form,Button} from "react-bootstrap"
 
 
 const MatchNew = () => {
@@ -36,9 +36,10 @@ const MatchNew = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/v1/matches/new")
       .then( response => {
-        // console.log(response.data.data)
+        console.log(response.data.data)
         console.log(response.data.data["teams"])
         console.log(response.data.data["stadia"])
+        console.log(response.data.data)
         setTitles(response.data.data["titles"])
         setTeams(response.data.data["teams"])
         setStadia(response.data.data["stadia"])
@@ -62,31 +63,50 @@ const MatchNew = () => {
     <Layout>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          {/* <Form.Label>大会</Form.Label>
+          <Form.Label>大会</Form.Label>
           <Form.Control as="select" value={title} onChange={handleTitle}>
             <option>大会を選択</option>
             <option>{titles[0]}</option>
             <option>{titles[1]}</option>
             <option>{titles[2]}</option>
             <option>{titles[3]}</option>
-          </Form.Control> */}
+          </Form.Control>
           <Form.Label>試合日程</Form.Label>
           <Form.Control type = "date" />
           <Form.Label>ホームチーム</Form.Label>
-          <Form.Control as="select" value={home_team} onChange={handleHomeTeam}>
+          <Form.Control as="select" onChange={handleHomeTeam}>
+          {
+            Object.keys(teams).forEach(function (key) {
+              console.log(key + "は" + teams[key] + "と鳴いた！");
+              // <option value={key}>{teams[key]}</option>
+              <p value={key}>{teams[key]}</p>
+            })
+          }
             <option>ホームチームを選択</option>
-            <option>{teams[0]}</option>
-            <option>{teams[1]}</option>
-            <option>{teams[2]}</option>
-            <option>{teams[3]}</option>
+            <option>{teams[4]}</option>
+            <option>{teams[5]}</option>
+            <option>{teams[6]}</option>
+            <option>{teams[7]}</option>
+            <option>{teams[8]}</option>
+            <option>{teams[9]}</option>
+            <option>{teams[10]}</option>
+            <option>{teams[11]}</option>
+            <option>{teams[12]}</option>
+            <option>{teams[13]}</option>
           </Form.Control>
           <Form.Label>アウェイチーム</Form.Label>
           <Form.Control as="select" value={away_team} onChange={handleAwayTeam}>
             <option>アウェイチームを選択</option>
-            <option>{teams[0]}</option>
-            <option>{teams[1]}</option>
-            <option>{teams[2]}</option>
-            <option>{teams[3]}</option>
+            <option>{teams[4]}</option>
+            <option>{teams[5]}</option>
+            <option>{teams[6]}</option>
+            <option>{teams[7]}</option>
+            <option>{teams[8]}</option>
+            <option>{teams[9]}</option>
+            <option>{teams[10]}</option>
+            <option>{teams[11]}</option>
+            <option>{teams[12]}</option>
+            <option>{teams[13]}</option>
           </Form.Control>
           <Form.Label>スタジアム</Form.Label>
           <Form.Control as="select" value={stadium} onChange={handleStadium}>

@@ -26,7 +26,7 @@ const MatchInfo = () => {
               <Col>ガンバ大阪戦</Col>
             </Row>
           </Card.Title>
-          <Card.Text>
+          {/* <Card.Text> */}
             <Row>
               <Col></Col>
               <Col><p>観客数62241人</p></Col>
@@ -43,7 +43,7 @@ const MatchInfo = () => {
                 </Button>
               </Col>
             </Row>
-          </Card.Text>
+          {/* </Card.Text> */}
         </Card.Body>
         <Card.Footer><PostButtons /></Card.Footer>
       </Card>

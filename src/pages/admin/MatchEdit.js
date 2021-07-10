@@ -14,7 +14,11 @@ const MatchEdit = () => {
   const [stadium,setStadium] = useState("")
 
   const [home_score,setHomeScore] = useState(0)
+  const [home_score_players,setHomeScorePlayers] = useState([])
+  const [home_red_players,setHomeRedPlayers] = useState([])
   const [away_score,setAwayScore] = useState(0)
+  const [away_score_players,setAwayScorePlayers] = useState([])
+  const [away_red_players,setAwayRedPlayers] = useState([])
   const [mobilization,setMobilization] = useState(0)
 
   const handleHomeScore = (e) => {
@@ -29,7 +33,6 @@ const MatchEdit = () => {
 
 
   useEffect(() => {
-    // テスト用のためidを1に固定中
     axios.get("http://localhost:3000/v1/matches/1/edit")
       .then( response => {
         console.log(response.data.data)
@@ -45,7 +48,11 @@ const MatchEdit = () => {
   const publishMatch = () => {
     axios.patch("http://localhost:3000/v1/matches/1",{
       home_score: home_score,
+      home_score_players: home_score_players,
+      home_red_players: home_red_players,
       away_score: away_score,
+      away_score_players: away_score_players,
+      away_red_players: away_red_players,
       mobilization: mobilization
     })
     .catch(error => console.log(error))
