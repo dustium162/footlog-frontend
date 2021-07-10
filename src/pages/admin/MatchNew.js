@@ -3,12 +3,12 @@ import Layout from "../../components/Layout";
 
 import axios from "axios"
 
-import {Row,Col,Form,Button} from "react-bootstrap"
+import {Form,Button} from "react-bootstrap"
 
 
 const MatchNew = () => {
-  const [teams,setTeams] = useState([])
-  const [stadia,setStadia] = useState([])
+  const [teams,setTeams] = useState({})
+  const [stadia,setStadia] = useState({})
   const [titles,setTitles] = useState([])
 
   const [home_team,setHomeTeam] = useState("")
@@ -36,7 +36,9 @@ const MatchNew = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/v1/matches/new")
       .then( response => {
-        console.log(response.data.data)
+        // console.log(response.data.data)
+        console.log(response.data.data["teams"])
+        console.log(response.data.data["stadia"])
         setTitles(response.data.data["titles"])
         setTeams(response.data.data["teams"])
         setStadia(response.data.data["stadia"])
@@ -60,14 +62,14 @@ const MatchNew = () => {
     <Layout>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>大会</Form.Label>
+          {/* <Form.Label>大会</Form.Label>
           <Form.Control as="select" value={title} onChange={handleTitle}>
             <option>大会を選択</option>
             <option>{titles[0]}</option>
             <option>{titles[1]}</option>
             <option>{titles[2]}</option>
             <option>{titles[3]}</option>
-          </Form.Control>
+          </Form.Control> */}
           <Form.Label>試合日程</Form.Label>
           <Form.Control type = "date" />
           <Form.Label>ホームチーム</Form.Label>
