@@ -19,6 +19,9 @@ const AdminMain = () => {
         <LinkContainer to="/admin/add_team">
           <Nav.Link>チーム情報の追加</Nav.Link>
         </LinkContainer>
+        <LinkContainer to="/admin/add_title">
+          <Nav.Link>タイトル情報の追加</Nav.Link>
+        </LinkContainer>
         <LinkContainer to="/admin/add_stadium">
           <Nav.Link>スタジアム情報の追加</Nav.Link>
         </LinkContainer>

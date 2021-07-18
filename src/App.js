@@ -22,6 +22,7 @@ import AdminMain from "./pages/admin/AdminMain"
 import MatchNew from "./pages/admin/MatchNew"
 import MatchEdit from "./pages/admin/MatchEdit"
 import AddTeam from "./pages/admin/AddTeam"
+import AddTitle from "./pages/admin/AddTitle"
 import AddStadium from "./pages/admin/AddStadium"
 import AddInformation from "./pages/admin/AddInformation"
 import AddTerm from "./pages/admin/AddTerm"
@@ -46,6 +47,7 @@ function App() {
           <Route path="/admin/match/new" component={MatchNew}/>
           <Route path="/admin/match/edit" component={MatchEdit}/>
           <Route path="/admin/add_team" component={AddTeam}/>
+          <Route path="/admin/add_title" component={AddTitle}/>
           <Route path="/admin/add_stadium" component={AddStadium}/>
           <Route path="/admin/add_information" component={AddInformation}/>
           <Route path="/admin/add_term" component={AddTerm}/>
