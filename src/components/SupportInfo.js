@@ -1,6 +1,7 @@
 import React from "react";
 
 import {Container,Image,Row,Col} from "react-bootstrap"
+import WatchHeatMap from "./WatchHeatMap";
 
 const UserInfo = () => {
   return (
@@ -15,6 +16,7 @@ const UserInfo = () => {
           <Row><h6>最近の観戦:○年</h6></Row>
         </Col>
       </Row>
+      {/* <WatchHeatMap /> */}
       <Row>
         <Col>このサービスを開発しています！footlogをご利用いただき、ありがとうございます。</Col>
       </Row>

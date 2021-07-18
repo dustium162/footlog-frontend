@@ -1,28 +1,18 @@
 import React from "react"
 
-import {Image,Row,Col,Button} from "react-bootstrap"
+import {Row,Col} from "react-bootstrap"
 
-const PostButtons = () => {
+import Stadium from "./buttons/Stadium"
+import Online from "./buttons/Online"
+import Omit from "./buttons/Omit"
+
+const PostButtons = (match_id) => {
   return (
       <Row>
-        <Col>
-          <Button variant="link text-secondary button_link">
-            <Image className="emblem" src={`${process.env.PUBLIC_URL}/pass.png`} roundedCircle />
-            <p>観ていない</p>
-          </Button>
-        </Col>
-        <Col>
-          <Button variant="link text-secondary button_link">
-            <Image className="emblem" src={`${process.env.PUBLIC_URL}/monitor.png`} roundedCircle />
-            <p>オンライン</p>
-          </Button>
-        </Col>
-        <Col>
-          <Button variant="link text-secondary button_link">
-            <Image className="emblem" src={`${process.env.PUBLIC_URL}/stadium.png`} roundedCircle />
-            <p>現地観戦！</p>
-          </Button>
-        </Col>
+        {/* {match_id.match_id} */}
+        <Col><Omit match_id={match_id}/></Col>
+        <Col><Online match_id={match_id}/></Col>
+        <Col><Stadium match_id={match_id}/></Col>
        </Row>
   )
 }

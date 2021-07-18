@@ -81,3 +81,26 @@
 .home_tag {
   background-color: orangered;
 }
+
+
+.box {
+  margin       : auto;
+  width        : 100%;
+  height       : 100px;
+  /* background   : #c3c3c3; */
+}
+
+ul{
+  display:flex;
+  flex-wrap:wrap;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+li{
+  width:2%;
+  margin:1%;
+  height:16px;
+  margin: 0.5%;
+  background: green;
+}
