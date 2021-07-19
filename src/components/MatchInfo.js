@@ -8,13 +8,12 @@ const MatchInfo = (match) => {
   const [show,setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log(match)
   return (
     <div>
       <Card>
         <Card.Header className="bg-danger">
           <Row>
-            <Col className="text-light">Home</Col>
+            <Col className="text-light">{match.match.home_or_away}</Col>
             <Col className="text-light">{match.match.date}</Col>
             <Col className="text-light">{match.match.title}</Col>
           </Row>
@@ -22,7 +21,7 @@ const MatchInfo = (match) => {
         <Card.Body>
           <Card.Title>
             <Row>
-              <Col>ガンバ大阪戦</Col>
+              <Col>{match.match.home_team.name}</Col>
             </Row>
           </Card.Title>
           {/* <Card.Text> */}
@@ -30,7 +29,7 @@ const MatchInfo = (match) => {
               <Col>
                   <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
               </Col>
-              <Col><h1>{match.match.home_score} - {match.match.away_score}</h1></Col>
+              <Col><h1>{String(match.match.home_score)} - {String(match.match.away_score)}</h1></Col>
               <Col>
                 <Button variant="link text-secondary button_link" onClick={handleShow}>
                   <Image className="emblem" src={`${process.env.PUBLIC_URL}/question.png`} roundedCircle />
