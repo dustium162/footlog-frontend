@@ -27,7 +27,7 @@ const MatchInfo = (match) => {
           {/* <Card.Text> */}
             <Row>
               <Col>
-                  <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
+                <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
               </Col>
               <Col><h1>{String(match.match.home_score)} - {String(match.match.away_score)}</h1></Col>
               <Col>

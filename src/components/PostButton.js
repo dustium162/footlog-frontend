@@ -7,10 +7,9 @@ const PostButton = (match_id) => {
   const createPost = () => {
     axios.post("http://localhost:3000/v1/posts",{
       match_id: match_id.match_id,
-      // user_id: user_id,
+      user_id: localStorage.getItem("currentUser").id,
       post_type: match_id.post_type,
     })
-    // .then(response => setUser[...user,])
     .catch(error => console.log(error))
   }
   return (
