@@ -7,14 +7,14 @@ import Follows from "../components/Follows"
 import Followers from "../components/Followers"
 import Accomplishments from "../components/Accomplishments"
 
-const UserTabs = () => {
+const UserTabs = ({posts_info}) => {
   return (
     <Container>
       <Row>
         <Col>
         <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
           <Tab eventKey="posts" title="観戦記録">
-            <UserPosts />
+            <UserPosts posts_info={posts_info}/>
           </Tab>
           <Tab eventKey="follow" title="フォロー">
             <Follows />

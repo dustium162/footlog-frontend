@@ -3,7 +3,7 @@ import React from "react";
 import {Container,Image,Row,Col} from "react-bootstrap"
 import WatchHeatMap from "./WatchHeatMap";
 
-const UserInfo = () => {
+const SupportInfo = ({support_info}) => {
   return (
     <Container fluid>
       <Row>
@@ -11,16 +11,13 @@ const UserInfo = () => {
           <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
         </Col>
         <Col>
-          <Row><h6>○勝○敗○分</h6></Row>
-          <Row><h6>初観戦:○年</h6></Row>
-          <Row><h6>最近の観戦:○年</h6></Row>
+          <Row><h6>{`${support_info.win}勝${support_info.lose}敗${support_info.draw}分`}</h6></Row>
+          <Row><h6>{`初観戦:${support_info.first_match}`}</h6></Row>
+          <Row><h6>{`最近の観戦:${support_info.latest_match}`}</h6></Row>
         </Col>
       </Row>
       {/* <WatchHeatMap /> */}
-      <Row>
-        <Col>このサービスを開発しています！footlogをご利用いただき、ありがとうございます。</Col>
-      </Row>
     </Container>
   );
 }
-export default UserInfo;
+export default SupportInfo;

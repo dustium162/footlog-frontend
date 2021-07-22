@@ -3,14 +3,15 @@ import React from "react";
 import {Row,Col} from "react-bootstrap"
 import PostInfo from "./PostInfo";
 
-const UserPosts = () => {
+const UserPosts = ({posts_info}) => {
+  console.log(posts_info)
   return (
     <Row xs={1} md={2} className="g-2">
-      {/* <Col><MatchInfo /></Col> */}
-      <Col><PostInfo /></Col>
-      <Col><PostInfo /></Col>
-      <Col><PostInfo /></Col>
-      <Col><PostInfo /></Col>
+      {posts_info.map(post_info => {
+        return (
+          <Col><PostInfo post_info={post_info}/></Col>
+        )
+      })}
     </Row>
   );
 }

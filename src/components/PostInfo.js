@@ -2,7 +2,8 @@ import React,{useState} from "react"
 
 import {Container,Row,Col,Card,Button,Image,Modal} from "react-bootstrap"
 
-const PostInfo = () => {
+const PostInfo = ({post_info}) => {
+  console.log(post_info)
   const [show,setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -12,30 +13,30 @@ const PostInfo = () => {
       <Card>
         <Card.Header className="bg-info">
           <Row>
-            <Col className="text-light">Away</Col>
-            <Col className="text-light">2021</Col>
-            <Col className="text-light">J1第19節</Col>
+            <Col className="text-light">{post_info.home_or_away_or_neutral}</Col>
+            <Col className="text-light">{post_info.date_time}</Col>
+            <Col className="text-light">{post_info.title}</Col>
           </Row>
         </Card.Header>
         <Card.Body>
           <Card.Title>
             <Row>
-              <Col>柏レイソル戦</Col>
+            <Col>{post_info.opponent_name}戦</Col>
             </Row>
           </Card.Title>
           <Card.Text>
             <Row>
               <Col></Col>
-              <Col><p>観客数3263人</p></Col>
+              <Col><p>観客数{post_info.mobilization}人</p></Col>
             </Row>
             <Row>
               <Col>
                   <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
               </Col>
-              <Col><h1>3 - 2</h1></Col>
+              <Col><h1>{post_info.home_score} - {post_info.away_score}</h1></Col>
               <Col>
                 <Button variant="link text-secondary button_link" onClick={handleShow}>
-                  <Image className="emblem" src={`${process.env.PUBLIC_URL}/question.png`} roundedCircle />
+                  <Image className="emblem" src={`${process.env.PUBLIC_URL}/info.png`} roundedCircle />
                   <p>試合詳細</p>
                 </Button>
               </Col>

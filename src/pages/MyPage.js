@@ -23,11 +23,51 @@ const MyPage = () => {
     .then(data => { setInfo(data)})
   }
   ,[])
+  const hash = {
+    user: {
+      name: "dustium162",
+      icon: "my_page_header.jpeg",
+      header: "top3.jpg",
+      biography: "よろしくおねがいします。"
+    },
+    support_info: {
+      club_id: 12,
+      win: 10,
+      lose: 5,
+      draw: 3,
+      first_match: "2013-03-24",
+      latest_match: "2021-05-11",
+    },
+    posts_info: [
+      {
+        post_id: 1,
+        title :"明治安田生命J1リーグ",
+        home_or_away_or_neutral: "Home",
+        date_time: "2021-03-01",
+        opponent_name: "柏レイソル",
+        opponent_emblem: "emblem.png",
+        home_score: 3,
+        away_score: 2,
+        mobilization: 3263,
+      },
+      {
+        post_id: 2,
+        title :"明治安田生命J1リーグ",
+        home_or_away_or_neutral: "Away",
+        date_time: "2021-03-12",
+        opponent_name: "鹿島アントラーズ",
+        opponent_emblem: "emblem.png",
+        home_score: 1,
+        away_score: 0,
+        mobilization: 9999,
+      }
+    ]
+  }
   return (
     <Layout>
-      <Row><UserInfo /></Row>
-      <Row><SupportInfo /></Row>
-      <Row><UserTabs /></Row>
+      <Row><UserInfo user={hash.user}/></Row>
+      <Row><SupportInfo support_info={hash.support_info}/></Row>
+      <Row><UserTabs posts_info={hash.posts_info}/></Row>
     </Layout>
   )
 }
