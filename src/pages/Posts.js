@@ -15,7 +15,7 @@ const Posts = () => {
       }
     })
     // apiのJsonの形式を検討する必要あり（2021-07-19 浦郷）
-      .then(response => response.data.data )
+      .then(response => response.data )
       .then(data => { setMatches(data) })
     }
   ,[])
