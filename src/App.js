@@ -20,13 +20,14 @@ import Contact from "./pages/Contact";
 // 管理者用 書く場所が正しいかは不明なので要相談(20210626浅)
 import AdminMain from "./pages/admin/AdminMain"
 import MatchNew from "./pages/admin/MatchNew"
-import MatchEdit from "./pages/admin/MatchEdit"
+import MatchEdit from "./pages/admin/UnpublishedPosts"
 import AddTeam from "./pages/admin/AddTeam"
 import AddTitle from "./pages/admin/AddTitle"
 import AddStadium from "./pages/admin/AddStadium"
 import AddInformation from "./pages/admin/AddInformation"
 import AddTerm from "./pages/admin/AddTerm"
 import AddPrivacy from "./pages/admin/AddPrivacy"
+import UnpublishedPosts from "./pages/admin/UnpublishedPosts";
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
           {/* 管理者用 書く場所が正しいかは不明なので要相談(20210626浅) */}
           <Route path="/admin/main" component={AdminMain}/>
           <Route path="/admin/match/new" component={MatchNew}/>
-          <Route path="/admin/match/edit" component={MatchEdit}/>
+          <Route path="/admin/match/edit" component={UnpublishedPosts}/>
           <Route path="/admin/add_team" component={AddTeam}/>
           <Route path="/admin/add_title" component={AddTitle}/>
           <Route path="/admin/add_stadium" component={AddStadium}/>

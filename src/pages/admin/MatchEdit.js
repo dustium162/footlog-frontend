@@ -3,15 +3,10 @@ import Layout from "../../components/Layout";
 
 import axios from "axios"
 
-import {Row,Col,Form,Button} from "react-bootstrap"
+import {Row,Col,Form,Button,Card} from "react-bootstrap"
 
 
-const MatchEdit = () => {
-  const [title,setTitle] = useState("")
-  const [date_time,setDate] = useState("")
-  const [home_team,setHomeTeam] = useState("")
-  const [away_team,setAwayTeam] = useState("")
-  const [stadium,setStadium] = useState("")
+const MatchEdit = ({match}) => {
 
   const [home_score,setHomeScore] = useState(0)
   const [home_score_players,setHomeScorePlayers] = useState([])
@@ -31,20 +26,6 @@ const MatchEdit = () => {
     setMobilization(e.target.value)
   }
 
-
-  useEffect(() => {
-    axios.get("http://localhost:3000/v1/matches/1/edit")
-      .then( response => {
-        console.log(response.data.data)
-        setTitle(response.data.data["title"])
-        setDate(response.data.data["date_time"])
-        setHomeTeam(response.data.data["home_team"])
-        setAwayTeam(response.data.data["away_team"])
-        setStadium(response.data.data["stadium"])
-      })
-      .catch(error => console.log(error))
-  },[])
-
   const publishMatch = () => {
     axios.patch("http://localhost:3000/v1/matches/1",{
       home_score: home_score,
@@ -59,13 +40,14 @@ const MatchEdit = () => {
   }
 
   return (
-    <Layout>
+    <Card>
       <Form>
         <Row>
-          <h1>{title}</h1>
-          <h1>{date_time}</h1>
-          <h1>{home_team} (Home) VS {away_team} (Away)</h1>
-          <h1>@{stadium}</h1>
+          <h1>{match.title}</h1>
+          <h1>{match.date_time}</h1>
+          <h3>{match.home_team} (Home) VS {match.away_team} (Away)</h3>
+          <h3>{match.home_score} - {match.away_score}</h3>
+          <h1>@{match.stadium}</h1>
         </Row>
         <Row>
           <Form.Group controlId="exampleForm.ControlSelect1">
@@ -101,7 +83,7 @@ const MatchEdit = () => {
         </Row>
       </Form>
       <Button onClick={publishMatch}>試合情報投稿</Button>
-    </Layout>
+    </Card>
   )
 }
 export default MatchEdit;
