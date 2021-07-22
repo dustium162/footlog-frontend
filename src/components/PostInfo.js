@@ -3,7 +3,6 @@ import React,{useState} from "react"
 import {Container,Row,Col,Card,Button,Image,Modal} from "react-bootstrap"
 
 const PostInfo = ({post_info}) => {
-  console.log(post_info)
   const [show,setShow] = useState(false);
 
   const handleClose = () => setShow(false);
