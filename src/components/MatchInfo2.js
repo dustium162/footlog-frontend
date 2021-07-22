@@ -1,7 +1,7 @@
 // import React, {useState} from "react"
 
 // import {Container,Image,Row,Col,Card,Button,Offcanvas} from "react-bootstrap"
-// import PostButtons from "./PostButtons";
+// import PostButton from "./PostButton";
 
 
 // const MatchInfo2 = () => {
@@ -47,7 +47,7 @@
 //               </Row>
 //             </Card.Text>
 //           </Card.Body>
-//           <Card.Footer><PostButtons /></Card.Footer>
+//           <Card.Footer><PostButton /></Card.Footer>
 //         </Card>
 //       </Col>
 //       <Offcanvas show={show} onHide={handleClose}>

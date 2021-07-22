@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
 import {Image,Row,Col,Card,Button,Modal} from "react-bootstrap"
-import PostButtons from "./PostButtons";
+import PostButton from "./PostButton";
 
 
 const MatchInfo = (match) => {
@@ -43,14 +43,26 @@ const MatchInfo = (match) => {
             </Row>
           {/* </Card.Text> */}
         </Card.Body>
-        <Card.Footer><PostButtons match_id={match.match_id}/></Card.Footer>
+        <Card.Footer>
+          <Row>
+            <Col><PostButton match_id={match.match_id} img_src="pass" msg="観ていない"/></Col>
+            <Col><PostButton match_id={match.match_id} img_src="monitor" msg="オンライン"/></Col>
+            <Col><PostButton match_id={match.match_id} img_src="stadium" msg="現地観戦"/></Col>
+          </Row>
+        </Card.Footer>
       </Card>
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>試合詳細</Modal.Title>
       </Modal.Header>
       <Modal.Body>ここに試合詳細情報を表示</Modal.Body>
-      <Modal.Footer><PostButtons /></Modal.Footer>
+      <Modal.Footer>
+        <Row>
+          <Col><PostButton match_id={match.match_id} img_src="pass" msg="観ていない"/></Col>
+          <Col><PostButton match_id={match.match_id} img_src="monitor" msg="オンライン"/></Col>
+          <Col><PostButton match_id={match.match_id} img_src="stadium" msg="現地観戦"/></Col>
+        </Row>
+      </Modal.Footer>
     </Modal>
     </div>
   )
