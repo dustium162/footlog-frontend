@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, Redirect} from 'react';
 import Layout from "../components/Layout";
 
 import axios from 'axios'
@@ -18,19 +18,34 @@ const SignIn = () => {
     setPassword(e.target.value)
   }
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+  }
+
   const createNewUser = () => {
     axios.post("http://localhost:3000/v1/auth/sign_in",{
       email: email,
       password: password,
     })
     //レスポンスの一部をローカルストレージに保存するコードが必要
-    // .then(response => setUser[...user,])
+    .then(res => {
+      if (res.status === 200) {
+        localStorage.setItem('uid', res.headers.uid)
+        localStorage.setItem('access-token', res.headers['access-token'])
+        localStorage.setItem('client', res.headers.client)
+        localStorage.setItem('currentUser', JSON.stringify(res.data.data))
+        console.log('200');
+        return (<Redirect to='/my_page' />)
+      } else {
+        console.log('500');
+      }
+    })
     .catch(error => console.log(error))
   }
   return (
     <Layout>
       <Container>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>メールアドレス</Form.Label>
             <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
