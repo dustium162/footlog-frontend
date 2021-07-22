@@ -9,7 +9,7 @@ import {Row,Form,Button} from "react-bootstrap"
 const MatchNew = () => {
   const [teams,setTeams] = useState({})
   const [stadia,setStadia] = useState({})
-  const [titles,setTitles] = useState([])
+  const [titles,setTitles] = useState({})
 
   const [home_team,setHomeTeam] = useState("")
   const [away_team,setAwayTeam] = useState("")
@@ -36,13 +36,9 @@ const MatchNew = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/v1/matches/new")
       .then( response => {
-        console.log(response.data.data)
-        console.log(response.data.data["teams"])
-        console.log(response.data.data["stadia"])
-        console.log(response.data.data)
-        setTitles(response.data.data["titles"])
-        setTeams(response.data.data["teams"])
-        setStadia(response.data.data["stadia"])
+        setTitles(response.data["titles"])
+        setTeams(response.data["teams"])
+        setStadia(response.data["stadia"])
       })
       .catch(error => console.log(error))
   },[])
@@ -59,6 +55,42 @@ const MatchNew = () => {
     .catch(error => console.log(error))
   }
 
+  const hash = {
+    titles: [
+      {title_id:1, name:"りーぐせんその１"},
+      {title_id:2, name:"りーぐせんその２"},
+      {title_id:3, name:"すごい大会"},
+      {title_id:4, name:"しょぼい大会"},
+    ],
+    teams: {
+      //sign_upと同じ感じで(20210722浅見)
+      j1: [
+        {team_id: 1, name: "北海道コンサドーレ札幌"},
+        {team_id: 2, name: "ベガルタ仙台"},
+        {team_id: 3, name: "浦和レッズ"},
+      ],
+      j2: [
+        {team_id: 1, name: "北海道コンサドーレ札幌"},
+        {team_id: 2, name: "ベガルタ仙台"},
+        {team_id: 3, name: "浦和レッズ"},
+      ],
+      j3: [
+        {team_id: 1, name: "北海道コンサドーレ札幌"},
+        {team_id: 2, name: "ベガルタ仙台"},
+        {team_id: 3, name: "浦和レッズ"},
+      ],
+      // Jリーグチーム以外(20210722浅見)
+      others: [
+        {team_id: 1, name: "北海道コンサドーレ札幌"},
+        {team_id: 2, name: "ベガルタ仙台"},
+        {team_id: 3, name: "浦和レッズ"},
+      ],
+    },
+    stadia: [
+
+    ]
+  }
+
   return (
     <Layout>
       <Form>
@@ -66,55 +98,54 @@ const MatchNew = () => {
           <Form.Label>大会</Form.Label>
           <Form.Control as="select" value={title} onChange={handleTitle}>
             <option>大会を選択</option>
-            <option>{titles[0]}</option>
-            <option>{titles[1]}</option>
-            <option>{titles[2]}</option>
-            <option>{titles[3]}</option>
+            {
+              Object.keys(titles).map(title_id => {
+                return <option>{titles[title_id]}</option>
+              })
+            }
           </Form.Control>
           <Form.Label>試合日程</Form.Label>
           <Form.Control type = "date" />
+          <div key="inline-radio" className="mb-3">
+            <Form.Check inline label="J1" type="radio" name="home_div"/>
+            <Form.Check inline label="J2" type="radio" name="home_div"/>
+            <Form.Check inline label="J3" type="radio" name="home_div"/>
+            <Form.Check inline label="Other" type="radio" name="home_div"/>
+          </div>
           <Form.Label>ホームチーム</Form.Label>
+          {/* ラジオボタンで選択したものに応じてリストの中身を変えたい。(20210722浅見) */}
           <Form.Control as="select" onChange={handleHomeTeam}>
-          {
-            Object.keys(teams).forEach(function (key) {
-              console.log(key + "は" + teams[key] + "と鳴いた！");
-              // <option value={key}>{teams[key]}</option>
-              <p value={key}>{teams[key]}</p>
-            })
-          }
             <option>ホームチームを選択</option>
-            <option>{teams[4]}</option>
-            <option>{teams[5]}</option>
-            <option>{teams[6]}</option>
-            <option>{teams[7]}</option>
-            <option>{teams[8]}</option>
-            <option>{teams[9]}</option>
-            <option>{teams[10]}</option>
-            <option>{teams[11]}</option>
-            <option>{teams[12]}</option>
-            <option>{teams[13]}</option>
+            {
+              Object.keys(teams).map(team_id => {
+                return <option value={team_id}>{teams[team_id]}</option>
+              })
+            }
           </Form.Control>
+          <div key="inline-radio" className="mb-3">
+            <Form.Check inline label="J1" type="radio" name="away_div"/>
+            <Form.Check inline label="J2" type="radio" name="away_div"/>
+            <Form.Check inline label="J3" type="radio" name="away_div"/>
+            <Form.Check inline label="Other" type="radio" name="away_div"/>
+          </div>
           <Form.Label>アウェイチーム</Form.Label>
+            {/* ラジオボタンで選択したものに応じてリストの中身を変えたい。(20210722浅見) */}
           <Form.Control as="select" value={away_team} onChange={handleAwayTeam}>
             <option>アウェイチームを選択</option>
-            <option>{teams[4]}</option>
-            <option>{teams[5]}</option>
-            <option>{teams[6]}</option>
-            <option>{teams[7]}</option>
-            <option>{teams[8]}</option>
-            <option>{teams[9]}</option>
-            <option>{teams[10]}</option>
-            <option>{teams[11]}</option>
-            <option>{teams[12]}</option>
-            <option>{teams[13]}</option>
+            {
+              Object.keys(teams).map(team_id => {
+                return <option value={team_id}>{teams[team_id]}</option>
+              })
+            }
           </Form.Control>
           <Form.Label>スタジアム</Form.Label>
           <Form.Control as="select" value={stadium} onChange={handleStadium}>
             <option>スタジアムを入力</option>
-            <option>{stadia[0]}</option>
-            <option>{stadia[1]}</option>
-            <option>{stadia[2]}</option>
-            <option>{stadia[3]}</option>
+            {
+              Object.keys(stadia).map(stadium_id => {
+                return <option value={stadium_id}>{stadia[stadium_id]}</option>
+              })
+            }
           </Form.Control>
           <div key={`custom-checkbox`} className="mb-3">
             <Form.Check
