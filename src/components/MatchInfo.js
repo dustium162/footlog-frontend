@@ -13,7 +13,7 @@ const MatchInfo = (match) => {
       <Card>
         <Card.Header className="bg-danger">
           <Row>
-            <Col className="text-light">{match.match.home_or_away}</Col>
+            <Col className="text-light">{match.match.home_or_away_or_neutral}</Col>
             <Col className="text-light">{match.match.date}</Col>
             <Col className="text-light">{match.match.title}</Col>
           </Row>
@@ -21,7 +21,7 @@ const MatchInfo = (match) => {
         <Card.Body>
           <Card.Title>
             <Row>
-              <Col>{match.match.home_team.name}</Col>
+              <Col>{match.match.opponent_name}</Col>
             </Row>
           </Card.Title>
           {/* <Card.Text> */}
@@ -45,10 +45,10 @@ const MatchInfo = (match) => {
         </Card.Body>
         <Card.Footer>
           <Row>
-            <Col><PostButton match_id={match.match_id} img_src="forget" msg="覚えていない" post_type="4" /></Col>
-            <Col><PostButton match_id={match.match_id} img_src="pass" msg="観ていない" post_type="3" /></Col>
-            <Col><PostButton match_id={match.match_id} img_src="monitor" msg="オンライン" post_type="2" /></Col>
-            <Col><PostButton match_id={match.match_id} img_src="stadium" msg="現地観戦" post_type="1" /></Col>
+            <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" /></Col>
+            <Col><PostButton match_id={match.id} img_src="pass" msg="観ていない" post_type="3" /></Col>
+            <Col><PostButton match_id={match.id} img_src="monitor" msg="オンライン" post_type="2" /></Col>
+            <Col><PostButton match_id={match.id} img_src="stadium" msg="現地観戦" post_type="1" /></Col>
           </Row>
         </Card.Footer>
       </Card>
@@ -59,10 +59,10 @@ const MatchInfo = (match) => {
       <Modal.Body>ここに試合詳細情報を表示</Modal.Body>
       <Modal.Footer>
         <Row>
-          <Col><PostButton match_id={match.match_id} img_src="forget" msg="覚えていない" post_type="4" /></Col>
-          <Col><PostButton match_id={match.match_id} img_src="pass" msg="観ていない" post_type="3" /></Col>
-          <Col><PostButton match_id={match.match_id} img_src="monitor" msg="オンライン" post_type="2" /></Col>
-          <Col><PostButton match_id={match.match_id} img_src="stadium" msg="現地観戦" post_type="1" /></Col>
+          <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" /></Col>
+          <Col><PostButton match_id={match.id} img_src="pass" msg="観ていない" post_type="3" /></Col>
+          <Col><PostButton match_id={match.id} img_src="monitor" msg="オンライン" post_type="2" /></Col>
+          <Col><PostButton match_id={match.id} img_src="stadium" msg="現地観戦" post_type="1" /></Col>
         </Row>
       </Modal.Footer>
     </Modal>
