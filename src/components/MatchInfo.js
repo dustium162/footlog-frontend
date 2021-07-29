@@ -4,7 +4,7 @@ import {Image,Row,Col,Card,Button,Modal} from "react-bootstrap"
 import PostButton from "./PostButton";
 
 
-const MatchInfo = (match) => {
+const MatchInfo = ({match}) => {
   const [show,setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -13,9 +13,9 @@ const MatchInfo = (match) => {
       <Card>
         <Card.Header className="bg-danger">
           <Row>
-            <Col className="text-light">{match.match.home_or_away_or_neutral}</Col>
-            <Col className="text-light">{match.match.date}</Col>
-            <Col className="text-light">{match.match.title}</Col>
+            <Col className="text-light">{match.home_or_away}</Col>
+            <Col className="text-light">{match.date}</Col>
+            <Col className="text-light">{match.title}</Col>
           </Row>
         </Card.Header>
         <Card.Body>
@@ -29,7 +29,7 @@ const MatchInfo = (match) => {
               <Col>
                 <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
               </Col>
-              <Col><h1>{String(match.match.home_score)} - {String(match.match.away_score)}</h1></Col>
+              <Col><h1>{String(match.home_score)} - {String(match.away_score)}</h1></Col>
               <Col>
                 <Button variant="link text-secondary button_link" onClick={handleShow}>
                   <Image className="emblem" src={`${process.env.PUBLIC_URL}/info.png`} roundedCircle />
@@ -38,8 +38,35 @@ const MatchInfo = (match) => {
               </Col>
             </Row>
             <Row>
+              <p>得点者</p>
+              <Col>
+                {match.home_team.goal_players.map(player => (
+                  <Row>{player.name}： {player.time}'</Row>
+                  ))}
+              </Col>
+              <Col>
+                {match.away_team.goal_players.map(player => (
+                  <Row>{player.name}： {player.time}'</Row>
+                  ))}
+              </Col>
+            </Row>
+            <Row>
+              <p>退場者</p>
+              <Col>
+                {match.home_team.red_players.map(player => (
+                  <Row>{player.name}： {player.time}'</Row>
+                  ))}
+              </Col>
+              <Col>
+                {match.away_team.red_players.map(player => (
+                  <Row>{player.name}： {player.time}'</Row>
+                  ))}
+              </Col>
+            </Row>
+            <Row>
               <Col></Col>
-              <Col><p>観客数：{match.match.mobilization}人</p></Col>
+              <Col></Col>
+              <Col><p>観客数：{match.mobilization}人</p></Col>
             </Row>
           {/* </Card.Text> */}
         </Card.Body>
@@ -56,7 +83,32 @@ const MatchInfo = (match) => {
       <Modal.Header closeButton>
         <Modal.Title>試合詳細</Modal.Title>
       </Modal.Header>
-      <Modal.Body>ここに試合詳細情報を表示</Modal.Body>
+      <Modal.Body>
+        <Row>
+          <Col>
+            {match.home_team.goal_players.map(player => (
+              <Row>{player.name}： {player.time}'</Row>
+            ))}
+          </Col>
+          <Col>
+            {match.away_team.goal_players.map(player => (
+              <Row>{player.name}： {player.time}'</Row>
+            ))}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {match.home_team.red_players.map(player => (
+              <Row>{player.name}： {player.time}'</Row>
+            ))}
+          </Col>
+          <Col>
+            {match.away_team.red_players.map(player => (
+              <Row>{player.name}： {player.time}'</Row>
+            ))}
+          </Col>
+        </Row>
+      </Modal.Body>
       <Modal.Footer>
         <Row>
           <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" /></Col>
