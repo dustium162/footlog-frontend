@@ -21,11 +21,10 @@ const Posts = () => {
   ,[])
   return (
     <Layout>
-      <div>Posts Page!</div>
       <Row xs={1} md={2} className="g-4">
-        {Object.keys(matches).map(match_id => (
+        {matches.map(match => (
           <Col>
-            <MatchInfo match={matches[match_id]} match_id={match_id}/>
+            <MatchInfo match={match}/>
           </Col>
         ))}
       </Row>

@@ -5,6 +5,7 @@ import axios from "axios"
 
 import UserInfo from '../components/UserInfo'
 import SupportInfo from "../components/SupportInfo"
+import ClubMatchResults from '../components/ClubMatchResults'
 import UserTabs from '../components/UserTabs'
 
 import {Row} from 'react-bootstrap'
@@ -61,12 +62,29 @@ const MyPage = () => {
         away_score: 0,
         mobilization: 9999,
       }
+    ],
+    club_match_result_for_user: [
+    {
+      opponent_name: "鹿島アントラーズ",
+      image: "kashima",
+      win: 99,
+      lose: 0,
+      draw: 1,
+    },
+    {
+      opponent_name: "ガンバ大阪",
+      image: "gamba",
+      win: 49,
+      lose: 49,
+      draw: 10,
+    },
     ]
   }
   return (
     <Layout>
       <Row><UserInfo user={hash.user}/></Row>
       <Row><SupportInfo support_info={hash.support_info}/></Row>
+      <Row><ClubMatchResults/></Row>
       <Row><UserTabs posts_info={hash.posts_info}/></Row>
     </Layout>
   )
