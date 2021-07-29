@@ -12,8 +12,9 @@ import {Row} from 'react-bootstrap'
 
 const MyPage = () => {
   const [info,setInfo] = useState({})
+  const userId = JSON.parse(localStorage.getItem('currentUser')).id
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/" ,{
+    axios.get(`http://localhost:3000/v1/users/${userId}` ,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
@@ -21,7 +22,8 @@ const MyPage = () => {
       }
     })
     .then(response => response.data)
-    .then(data => { setInfo(data)})
+    .then(data => { setInfo(data);
+                    console.log(data); })
   }
   ,[])
   const hash = {

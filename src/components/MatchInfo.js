@@ -21,7 +21,7 @@ const MatchInfo = ({match}) => {
         <Card.Body>
           <Card.Title>
             <Row>
-              <Col>{match.home_team.name}</Col>
+              <Col>{match.match.opponent_name}</Col>
             </Row>
           </Card.Title>
           {/* <Card.Text> */}
