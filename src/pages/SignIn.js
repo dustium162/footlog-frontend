@@ -1,6 +1,6 @@
 import {React, Redirect} from 'react';
 import Layout from "../components/Layout";
-
+import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 
 import {useState} from "react"
@@ -10,7 +10,7 @@ import {Form,Button,Container} from "react-bootstrap"
 const SignIn = () => {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-
+  const history = useHistory();
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
@@ -35,7 +35,7 @@ const SignIn = () => {
         localStorage.setItem('client', res.headers.client)
         localStorage.setItem('currentUser', JSON.stringify(res.data.data))
         console.log('200');
-        return (<Redirect to='/my_page' />)
+        history.push('/my_page')
       } else {
         console.log('500');
       }
