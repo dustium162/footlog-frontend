@@ -1,4 +1,4 @@
-import {React, Redirect} from 'react';
+import {React} from 'react';
 import Layout from "../components/Layout";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'

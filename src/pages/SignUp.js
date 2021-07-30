@@ -1,49 +1,31 @@
 import React,{useState,useEffect} from 'react';
 import Layout from "../components/Layout";
-
 import axios from 'axios'
+import { useHistory } from 'react-router-dom';
 
 import {Form,Button, Container} from "react-bootstrap"
 
 const SignUp = () => {
-
-  // const [teams,setTeams] = useState({})
-
-  const [name,setName] = useState("")
+  const [name, setName] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+  const [league, setLeague] = useState("1")
+  const [league_list, setLeagueList] = useState([])
   const [club_id,setClubId] = useState(0)
-  // const [password_confirmation,setPasswordConfirmation] = useState("")
+  const [agree, setAgree] = useState(false)
 
-  // useEffect(() =>{
-  //   axios.get("http://localhost:3000/v1/hogehoge")
-  //   .then( response => {
-  //     console.log(response.data.data)
-  //     setTeams(response.data.data)
-  //   })
-  //   .catch(error => console.log(error))
-  // }
-  // ,[])
-
-  const teams = {
-    // divisionは、最新シーズンのもので判断。
-    // Jリーグチームかつis_validがtrueのもののみを拾ってきたい。(20210722浅見)
-    j1: [
-      {club_id: 1, name:"北海道コンサドーレ札幌"},
-      {club_id: 2, name:"ベガルタ仙台"},
-      {club_id: 3, name:"浦和レッズ"}
-    ],
-    j2: [
-      {club_id: 1, name:"北海道コンサドーレ札幌"},
-      {club_id: 2, name:"ベガルタ仙台"},
-      {club_id: 3, name:"浦和レッズ"}
-    ],
-    j3: [
-      {club_id: 1, name:"北海道コンサドーレ札幌"},
-      {club_id: 2, name:"ベガルタ仙台"},
-      {club_id: 3, name:"浦和レッズ"}
-    ],
-  }
+  useEffect(() => {
+    axios.get(`http://localhost:3000/v1/division_seasons/${league}`)
+    .then(response => response.data)
+    .then(res => {
+      const aryLeaguList = [];
+      res.map(data => {
+        aryLeaguList.push(data);
+      });
+      setLeagueList(aryLeaguList);
+      setClubId(aryLeaguList[0].club_id);
+    });
+  }, [league])
 
   const handleNameChange = (e) => {
     setName(e.target.value)
@@ -54,13 +36,22 @@ const SignUp = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
   }
+  const handleLeague = (e) => {
+    setLeague(e.target.value);
+  }
   const handleClubId = (e) => {
     setClubId(e.target.value)
   }
+
   //確認用パスワードとの一致はフロントでやってしまう？(20210722浅見)
   // const handlePasswordConfirmationChange = (e) => {
   //   setPassword(e.target.value)
   // }
+  const history = useHistory();
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+  }
 
   const createNewUser = () => {
     axios.post("http://localhost:3000/v1/auth",{
@@ -69,7 +60,17 @@ const SignUp = () => {
       password: password,
       password_confirmation: password,
       // password_confirmation: password_confirmation,
-      club_id: club_id,
+      confirm_success_url: "footlog.com",
+      club_id: "2" 
+    }).then(res => {
+      if(res.status == 200){
+        history.push('/')      
+        console.log('200');
+      } else if(res.status == 500){
+    console.log(club_id);
+    console.log(club_id);
+        console.log('500');
+      }
     })
     .catch(error => console.log(error))
   }
@@ -77,7 +78,7 @@ const SignUp = () => {
   return (
     <Layout>
       <Container>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formName">
             <Form.Label>ユーザー名</Form.Label>
             <Form.Control value={name} placeholder="ユーザー名を入力してください" onChange={handleNameChange}/>
@@ -90,24 +91,55 @@ const SignUp = () => {
             <Form.Label>パスワード</Form.Label>
             <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
           </Form.Group>
-          <div key="inline-radio" className="mb-3">
-            <Form.Check inline label="J1" type="radio"/>
-            <Form.Check inline label="J2" type="radio"/>
-            <Form.Check inline label="J3" type="radio"/>
-          </div>
-            <select onChange={handleClubId}>
-              {teams.j1.map(d => {
+          <Form.Group className="mb-3" controlId="forLeague">
+            <Form.Check
+              inline
+              label="Ｊ１"
+              name="group1"
+              type="radio"
+              id="inline-radio-J1"
+              value="1"
+              onChange={handleLeague}
+              checked={league === "1"}
+              defaultChecked
+            />
+            <Form.Check
+              inline
+              label="Ｊ２"
+              name="group1"
+              type="radio"
+              id="inline-radio-J2"
+              value="2"
+              onChange={handleLeague}
+              checked={league === "2"}
+            />
+            <Form.Check
+              inline
+              label="Ｊ３"
+              name="group1"
+              type="radio"
+              id="inline-radio-J3"
+              value="3"
+              onChange={handleLeague}
+              checked={league === "3"}
+            />
+          </Form.Group>
+          <Form.Group controlId="formClub">
+            <Form.Label>応援しているクラブ</Form.Label>
+            <Form.Control as="select" onChange={handleClubId}>
+              {league_list.map(d => {
                 return <option value={d.club_id}>{d.name}</option>
               })
               }
-            </select>
-          {/* </Form.Select> */}
+            </Form.Control>
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="利用規約に同意する" />
           </Form.Group>
           <Button variant="primary" type="submit" onClick={createNewUser}>
             Submit
           </Button>
+          <div>{club_id}</div>
         </Form>
       </Container>
     </Layout>
