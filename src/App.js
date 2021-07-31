@@ -8,6 +8,8 @@ import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+
 import Top from "./pages/Top";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";

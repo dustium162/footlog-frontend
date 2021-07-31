@@ -9,6 +9,7 @@ const SignUp = () => {
   const [name, setName] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+  const [isRevealPassword,setIsRevealPassword] = useState(false)
   const [league, setLeague] = useState("1")
   const [league_list, setLeagueList] = useState([])
   const [club_id,setClubId] = useState(0)
@@ -43,6 +44,14 @@ const SignUp = () => {
     setClubId(e.target.value)
   }
 
+  const handleAgree = () => {
+    setAgree(!agree);
+  }
+
+  const togglePassword = () => {
+    setIsRevealPassword(state => !state);
+  }
+
   //確認用パスワードとの一致はフロントでやってしまう？(20210722浅見)
   // const handlePasswordConfirmationChange = (e) => {
   //   setPassword(e.target.value)
@@ -61,7 +70,7 @@ const SignUp = () => {
       password_confirmation: password,
       // password_confirmation: password_confirmation,
       confirm_success_url: "footlog.com",
-      club_id: "2" 
+      club_id: club_id
     }).then(res => {
       if(res.status == 200){
         history.push('/');     
@@ -87,7 +96,10 @@ const SignUp = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>パスワード</Form.Label>
-            <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
+            <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
+            <span onClick={togglePassword} role="presentation" className="PasswordReveal">
+            {isRevealPassword ? (<i className="fas fa-eye" />) : (<i className="fas fa-eye-slash" />)}
+            </span>
           </Form.Group>
           <Form.Group className="mb-3" controlId="forLeague">
             <Form.Check
@@ -131,13 +143,12 @@ const SignUp = () => {
               }
             </Form.Control>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="利用規約に同意する" />
+          <Form.Group className="mb-3" controlId="formBasicCheckbox" onChange={handleAgree}>
+            <Form.Check type="checkbox" label="利用規約に同意する"/>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={createNewUser}>
+          <Button variant="primary" type="submit" onClick={createNewUser} disabled={!agree || !name || !email || !password}>
             Submit
           </Button>
-          <div>{club_id}</div>
         </Form>
       </Container>
     </Layout>
