@@ -1,9 +1,38 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import Logo from "../logo.svg";
 
 const Header = () => {
+  
+  const history = useHistory();
+  
+  const handleSignOut = () => {
+    axios.delete("http://localhost:3000/v1/auth/sign_out",{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    })
+    //レスポンスの一部をローカルストレージに保存するコードが必要
+    .then(res => {
+      if (res.status === 200) {
+        localStorage.removeItem('uid');
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('client');
+        localStorage.removeItem('currentUser')
+        console.log('200');
+        history.push('/sign_in')
+      } else {
+        console.log('500');
+      }
+    })
+    .catch(error => console.log(error))
+  }
+
   return (
     <header>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="py-1">
@@ -40,7 +69,10 @@ const Header = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar >
+      </Navbar>
+      <button onClick={handleSignOut}>
+        サインアウト
+      </button >
     </header>
   )
 }

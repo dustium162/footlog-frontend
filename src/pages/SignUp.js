@@ -64,11 +64,9 @@ const SignUp = () => {
       club_id: "2" 
     }).then(res => {
       if(res.status == 200){
-        history.push('/')      
+        history.push('/');     
         console.log('200');
       } else if(res.status == 500){
-    console.log(club_id);
-    console.log(club_id);
         console.log('500');
       }
     })
