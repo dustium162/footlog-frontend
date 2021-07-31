@@ -13,7 +13,7 @@ const MatchInfo = ({match}) => {
       <Card>
         <Card.Header className="bg-danger">
           <Row>
-            <Col className="text-light">{match.home_or_away}</Col>
+            <Col className="text-light">{match.home_or_away_or_neutral}</Col>
             <Col className="text-light">{match.date}</Col>
             <Col className="text-light">{match.title}</Col>
           </Row>
@@ -21,7 +21,7 @@ const MatchInfo = ({match}) => {
         <Card.Body>
           <Card.Title>
             <Row>
-              <Col>{match.match.opponent_name}</Col>
+              <Col>VS {match.opponent_name}</Col>
             </Row>
           </Card.Title>
           {/* <Card.Text> */}
