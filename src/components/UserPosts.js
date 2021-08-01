@@ -4,15 +4,17 @@ import {Row,Col} from "react-bootstrap"
 import PostInfo from "./PostInfo";
 
 const UserPosts = ({posts_info}) => {
+  console.log(posts_info)
   return (
     <Row xs={1} md={2} className="g-2">
-      {posts_info.map(post_info => {
-        return (
-          <Col><PostInfo post_info={post_info}/></Col>
-        )
-      })}
+      {Object.keys(posts_info).map(post_id => (
+        <Col key={post_id}>
+          <PostInfo post_info={posts_info[post_id]}/>
+        </Col>
+      ))}
     </Row>
   );
-}
+}  
 
 export default UserPosts;
+
