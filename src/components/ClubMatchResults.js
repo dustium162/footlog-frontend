@@ -18,7 +18,7 @@ const ClubMatchResults = () => {
   return (
     <Row xs={1} md={2} className="g-4">
       {club_match_results.map(club_match_result => (
-        <Col>
+        <Col key={club_match_result.opponent_name}>
           <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
           {club_match_result.opponent_name}：{club_match_result.win}勝{club_match_result.lose}敗{club_match_result.draw}分
         </Col>
