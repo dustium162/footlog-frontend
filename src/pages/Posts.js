@@ -44,22 +44,22 @@ const Posts = () => {
       .then(data => { setMatches(data); console.log(matches) })
     }
   ,[])
+
+    const removeCard = () => {
+    }
+
   return (
     <Layout>
-        <Row xs={1} md={2} className="g-4">
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
+        <Row xs={1} md={2} className="g-4">
           {matches.map(match => (
-            <Col>
-              <MatchInfo match={match}/>
+            <Col key={match.id}>
+              {match.id}
+              <MatchInfo match={match} onClick={removeCard}/>
             </Col>
           ))}
-          {/* {Object.keys(matches).map(match_id => (
-            <Col key={match_id}>
-            <MatchInfo match={matches[match_id]} match_id={match_id}/>
-            </Col>
-          ))} */}
-      </InfiniteScroll>
         </Row>
+      </InfiniteScroll>
     </Layout>
   )
 }

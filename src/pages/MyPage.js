@@ -22,8 +22,7 @@ const MyPage = () => {
       }
     })
     .then(response => response.data)
-    .then(data => { setInfo(data);
-                    console.log(data); })
+    .then(data => setInfo(data))
   }
   ,[])
   const hash = {
@@ -41,32 +40,32 @@ const MyPage = () => {
       first_match: "2013-03-24",
       latest_match: "2021-05-11",
     },
-    posts_info: {
-        1: {
-          post_id: 1,
-          title :"明治安田生命J1リーグ",
-          home_or_away_or_neutral: "Home",
-          date_time: "2021-03-01",
-          opponent_name: "柏レイソル",
-          opponent_emblem: "emblem.png",
-          home_score: 3,
-          away_score: 2,
-          mobilization: 3263,
-        },
-        2: {
-          post_id: 2,
-          title :"明治安田生命J1リーグ",
-          home_or_away_or_neutral: "Away",
-          date_time: "2021-03-12",
-          opponent_name: "鹿島アントラーズ",
-          opponent_emblem: "emblem.png",
-          home_score: 1,
-          away_score: 0,
-          mobilization: 9999,
-        },
-      },
-    club_match_result_for_user: [
+    posts_info: [
     {
+      post_id: 1,
+      title :"明治安田生命J1リーグ",
+      home_or_away_or_neutral: "Home",
+      date_time: "2021-03-01",
+      opponent_name: "柏レイソル",
+      opponent_emblem: "emblem.png",
+      home_score: 3,
+      away_score: 2,
+      mobilization: 3263,
+    },
+    {
+      post_id: 2,
+      title :"明治安田生命J1リーグ",
+      home_or_away_or_neutral: "Away",
+      date_time: "2021-03-12",
+      opponent_name: "鹿島アントラーズ",
+      opponent_emblem: "emblem.png",
+      home_score: 1,
+      away_score: 0,
+      mobilization: 9999,
+    },
+  ],
+    club_match_result_for_user: [
+      {
       opponent_name: "鹿島アントラーズ",
       image: "kashima",
       win: 99,

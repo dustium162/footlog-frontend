@@ -8,10 +8,15 @@ const MatchInfo = ({match}) => {
   const [show,setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const colors = {
+    "Home" : "danger",
+    "Away" : "secondary",
+    "Neutral" : "info"
+  }
   return (
     <div>
       <Card>
-        <Card.Header className="bg-danger">
+        <Card.Header className={`bg-${colors[match.home_or_away_or_neutral]}`}>
           <Row>
             <Col className="text-light">{match.home_or_away_or_neutral}</Col>
             <Col className="text-light">{match.date}</Col>

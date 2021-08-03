@@ -1,16 +1,27 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 import {Container,Image,Row,Col,Button} from "react-bootstrap"
 
 const UserInfo = ({user}) => {
+  const [icon,setIcon] = useState("")
+  const [name,setName] = useState("")
+  const [header,setHeader] = useState("")
+  const [biography,setBiography] = useState("")
+
+  useEffect(() => {
+    setIcon(user.icon)
+    setName(user.name)
+    setHeader(user.header)
+    setBiography(user.biography)
+  })
   return (
     <Container className="user_info" fluid>
       <Row className="nx-0 px-0">
         <Container className="icon_and_name">
-          <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/${user.icon}`} roundedCircle /></Row>
-          <Row><h5>{user.name}</h5></Row>
+          <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/${icon}`} roundedCircle /></Row>
+          <Row><h5>{name}</h5></Row>
         </Container>
-        <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/${user.header}`} fluid/></Row>
+        <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/${header}`} fluid/></Row>
         <Row>
           {/* <Col></Col>
           <Col><SupportInfo /></Col> */}
@@ -19,7 +30,7 @@ const UserInfo = ({user}) => {
       </Row>
       <Row>
         <Col></Col>
-        <Col>{user.biography}</Col>
+        <Col>{biography}</Col>
       </Row>
     </Container>
   );

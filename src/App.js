@@ -30,6 +30,7 @@ import AddInformation from "./pages/admin/AddInformation"
 import AddTerm from "./pages/admin/AddTerm"
 import AddPrivacy from "./pages/admin/AddPrivacy"
 import UnpublishedPosts from "./pages/admin/UnpublishedPosts";
+import UserEdit from "./pages/UserEdit";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/terms" component={Terms}/>
           <Route path="/privacy" component={Privacy}/>
           <Route path="/contact" component={Contact}/>
+          <Route path="/user/edit" component={UserEdit}/>
 
           {/* 管理者用 書く場所が正しいかは不明なので要相談(20210626浅) */}
           <Route path="/admin/main" component={AdminMain}/>
