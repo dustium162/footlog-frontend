@@ -77,10 +77,10 @@ const MatchInfo = ({match}) => {
         </Card.Body>
         <Card.Footer>
           <Row>
-            <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" /></Col>
-            <Col><PostButton match_id={match.id} img_src="pass" msg="観ていない" post_type="3" /></Col>
-            <Col><PostButton match_id={match.id} img_src="monitor" msg="オンライン" post_type="2" /></Col>
-            <Col><PostButton match_id={match.id} img_src="stadium" msg="現地観戦" post_type="1" /></Col>
+            <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" is_post="true" /></Col>
+            <Col><PostButton match_id={match.id} img_src="pass" msg="観ていない" post_type="3" is_post="true" /></Col>
+            <Col><PostButton match_id={match.id} img_src="monitor" msg="オンライン" post_type="2" is_post="true" /></Col>
+            <Col><PostButton match_id={match.id} img_src="stadium" msg="現地観戦" post_type="1" is_post="true" /></Col>
           </Row>
         </Card.Footer>
       </Card>

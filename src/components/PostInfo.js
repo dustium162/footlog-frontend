@@ -2,6 +2,8 @@ import React,{useState} from "react"
 
 import {Container,Row,Col,Card,Button,Image,Modal} from "react-bootstrap"
 
+import PostEditButton from "./PostEditButton"
+
 const PostInfo = ({post_info}) => {
   const [show,setShow] = useState(false);
 
@@ -43,8 +45,9 @@ const PostInfo = ({post_info}) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer>
-          <h6>評価：★★★★☆</h6>
-          <h6>(MVPや同伴者も載せたいが投稿ロジック的に...)</h6>
+        <Row>
+          <Col><PostEditButton post_info={post_info} img_src="post_edit" msg="編集"/></Col>
+        </Row>
         </Card.Footer>
       </Card>
       <Modal show={show} onHide={handleClose}>
