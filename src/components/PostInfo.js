@@ -6,9 +6,13 @@ import PostEditButton from "./PostEditButton"
 
 const PostInfo = ({post_info}) => {
   const [show,setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [editShow,setEditShow] = useState(false);
+  const handleEditShow = () => setEditShow(true);
+  const handleEditClose = () => setEditShow(false);
+
   return (
     <Container>
       <Card>
@@ -46,7 +50,23 @@ const PostInfo = ({post_info}) => {
         </Card.Body>
         <Card.Footer>
         <Row>
-          <Col><PostEditButton post_info={post_info} img_src="post_edit" msg="編集"/></Col>
+          <Button variant="link text-secondary button_link" type="submit" onClick={handleEditShow}>
+            <Image className="emblem" src={`${process.env.PUBLIC_URL}/post_edit.png`} />
+            <p>投稿の編集</p>
+          </Button>
+          <Modal show={editShow} onHide={handleEditClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>投稿の編集</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <Row>
+              <Col><PostEditButton post_id ={post_info.post_id} img_src="forget" msg="覚えていない" post_type="4"/></Col>
+              <Col><PostEditButton post_id ={post_info.post_id} img_src="pass" msg="観ていない" post_type="3"/></Col>
+              <Col><PostEditButton post_id ={post_info.post_id} img_src="monitor" msg="オンライン" post_type="2"/></Col>
+              <Col><PostEditButton post_id ={post_info.post_id} img_src="stadium" msg="現地観戦" post_type="1"/></Col>
+            </Row>
+            </Modal.Body>
+          </Modal>
         </Row>
         </Card.Footer>
       </Card>
