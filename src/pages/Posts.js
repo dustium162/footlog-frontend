@@ -4,14 +4,16 @@ import InfiniteScroll from "react-infinite-scroller"
 
 import Layout from "../components/Layout";
 import axios from "axios"
-import {Row,Col} from "react-bootstrap"
+import {Row,Col,Spinner} from "react-bootstrap"
 import MatchInfo from "../components/MatchInfo"
+import PostGuideModal from "../components/PostGuideModal"
 const Posts = () => {
   const [matches,setMatches] = useState([])
   // const [loading,setLoading] = useState(false)
-
   const [hasMore,setHasMore] = useState(true)
 
+  const [modalShow, setModalShow] = useState(false);
+  
   const loadMore = async (page) => {
 
     const response = await axios(`http://localhost:3000/v1/matches?page=${page}`, {
@@ -29,8 +31,7 @@ const Posts = () => {
     setMatches([...matches,...data])
   }
 
-  const loader = <div className="loader" key={0}>Loading ...</div>
-
+  const loader =  <Spinner animation="border" variant="danger" />
   useEffect(() => {
     axios.get("http://localhost:3000/v1/matches", {
       headers: {
@@ -60,6 +61,10 @@ const Posts = () => {
           ))}
         </Row>
       </InfiniteScroll>
+      <PostGuideModal 
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </Layout>
   )
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React,{useState,useEffect} from "react";
 
 import {Container,Image,Row,Col,Button} from "react-bootstrap"
@@ -23,9 +24,9 @@ const UserInfo = ({user}) => {
         </Container>
         <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/${header}`} fluid/></Row>
         <Row>
-          {/* <Col></Col>
-          <Col><SupportInfo /></Col> */}
-          <Col><Button className="right" variant="outline-secondary">プロフィール編集</Button></Col>
+          <Col></Col>
+          <Col></Col>
+          <Col><Link to="/" className="btn btn-right btn btn-outline-secondary">プロフィール編集</Link></Col>
         </Row>
       </Row>
       <Row>
