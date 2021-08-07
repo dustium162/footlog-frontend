@@ -63,6 +63,7 @@ const Header = () => {
               <LinkContainer to="/sign_in">
                 <Nav.Link>ログイン</Nav.Link>
               </LinkContainer>
+              <a href="#" className="nav-link" onClick={handleSignOut}>サインアウト</a>
               <LinkContainer to="/admin/main">
                 <Nav.Link>管理者ページへ</Nav.Link>
               </LinkContainer>
@@ -70,9 +71,6 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <button onClick={handleSignOut}>
-        サインアウト
-      </button >
     </header>
   )
 }

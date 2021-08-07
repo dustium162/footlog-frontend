@@ -52,7 +52,7 @@ const Posts = () => {
   return (
     <Layout>
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={2} className="g-4 mx-0">
           {matches.map(match => (
             <Col key={match.id}>
               {match.id}

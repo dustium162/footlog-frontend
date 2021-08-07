@@ -5,6 +5,13 @@ import { useHistory } from 'react-router-dom';
 
 import {Form,Button, Container} from "react-bootstrap"
 
+// import {config, dom, library} from '@fortawesome/fontawesome-svg-core';
+
+// library.add(faEye, faEyeSlash);
+// dom.i2svg();
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
+
 const SignUp = () => {
   const [name, setName] = useState("")
   const [email,setEmail] = useState("")
@@ -98,7 +105,7 @@ const SignUp = () => {
             <Form.Label>パスワード</Form.Label>
             <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
             <span onClick={togglePassword} role="presentation" className="PasswordReveal">
-            {isRevealPassword ? (<i className="fas fa-eye" />) : (<i className="fas fa-eye-slash" />)}
+            {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
             </span>
           </Form.Group>
           <Form.Group className="mb-3" controlId="forLeague">
