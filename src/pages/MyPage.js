@@ -11,6 +11,7 @@ import UserTabs from '../components/UserTabs'
 import {Row} from 'react-bootstrap'
 
 const MyPage = () => {
+  // const [loading, setLoading] = useState(true);
   const [info,setInfo] = useState({})
   const userId = JSON.parse(localStorage.getItem('currentUser')).id
   useEffect(() => {
@@ -22,71 +23,20 @@ const MyPage = () => {
       }
     })
     .then(response => response.data)
-    .then(data => setInfo(data))
+    .then(data => {
+      setInfo(data);
+      // setLoading(false);
+    })
   }
   ,[])
-  const hash = {
-    user: {
-      name: "dustium162",
-      icon: "my_page_header.jpeg",
-      header: "top3.jpg",
-      biography: "よろしくおねがいします。"
-    },
-    support_info: {
-      club_id: 12,
-      win: 10,
-      lose: 5,
-      draw: 3,
-      first_match: "2013-03-24",
-      latest_match: "2021-05-11",
-    },
-    posts_info: [
-    {
-      post_id: 1,
-      title :"明治安田生命J1リーグ",
-      home_or_away_or_neutral: "Home",
-      date_time: "2021-03-01",
-      opponent_name: "柏レイソル",
-      opponent_emblem: "emblem.png",
-      home_score: 3,
-      away_score: 2,
-      mobilization: 3263,
-    },
-    {
-      post_id: 2,
-      title :"明治安田生命J1リーグ",
-      home_or_away_or_neutral: "Away",
-      date_time: "2021-03-12",
-      opponent_name: "鹿島アントラーズ",
-      opponent_emblem: "emblem.png",
-      home_score: 1,
-      away_score: 0,
-      mobilization: 9999,
-    },
-  ],
-    club_match_result_for_user: [
-      {
-      opponent_name: "鹿島アントラーズ",
-      image: "kashima",
-      win: 99,
-      lose: 0,
-      draw: 1,
-    },
-    {
-      opponent_name: "ガンバ大阪",
-      image: "gamba",
-      win: 49,
-      lose: 49,
-      draw: 10,
-    },
-    ]
-  }
+
   return (
     <Layout>
-      <Row><UserInfo user={hash.user}/></Row>
-      <Row><SupportInfo support_info={hash.support_info}/></Row>
+      {info.user ? <Row><UserInfo user={info.user}/></Row> : <Row>Loading...</Row>}
+      {info.support_info ? <Row><SupportInfo support_info={info.support_info}/></Row> : <Row>Loading...</Row>}
       <Row><ClubMatchResults/></Row>
-      <Row><UserTabs posts_info={hash.posts_info}/></Row>
+      {info.post_info ? <Row><UserTabs posts_info={info.posts_info}/></Row> : <Row>Loading...</Row>
+      }
     </Layout>
   )
 }
