@@ -26,7 +26,7 @@ const UserInfo = ({user}) => {
         <Row>
           <Col></Col>
           <Col></Col>
-          <Col><Link to="/" className="btn btn-right btn btn-outline-secondary">プロフィール編集</Link></Col>
+          <Col><Link to="/user/edit" className="btn btn-right btn btn-outline-secondary">プロフィール編集</Link></Col>
         </Row>
       </Row>
       <Row>

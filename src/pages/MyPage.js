@@ -35,8 +35,7 @@ const MyPage = () => {
       {info.user ? <Row><UserInfo user={info.user}/></Row> : <Row>Loading...</Row>}
       {info.support_info ? <Row><SupportInfo support_info={info.support_info}/></Row> : <Row>Loading...</Row>}
       <Row><ClubMatchResults/></Row>
-      {info.post_info ? <Row><UserTabs posts_info={info.posts_info}/></Row> : <Row>Loading...</Row>
-      }
+      {info.posts_info ? <Row><UserTabs posts_info={info.posts_info}/></Row>: <Row>Loading...</Row>}
     </Layout>
   )
 }
