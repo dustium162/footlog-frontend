@@ -41,13 +41,14 @@ const Posts = () => {
       }
     })
     // apiのJsonの形式を検討する必要あり（2021-07-19 浦郷）
-      .then(response => response.data )
-      .then(data => { setMatches(data); console.log(matches) })
+    .then(response => response.data )
+    .then(data => { setMatches(data); console.log(matches) })
     }
   ,[])
 
-    const removeCard = () => {
-    }
+  const removeCard = () => {
+
+  }
 
   return (
     <Layout>
@@ -56,7 +57,7 @@ const Posts = () => {
           {matches.map(match => (
             <Col key={match.id}>
               {match.id}
-              <MatchInfo match={match} onClick={removeCard}/>
+              <MatchInfo match={match} />
             </Col>
           ))}
         </Row>
