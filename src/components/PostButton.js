@@ -3,13 +3,16 @@ import React from "react"
 import {Button,Image} from "react-bootstrap"
 import axios from "axios"
 
-const PostButton = (match_id) => {
+const PostButton = ({match_team_property_id, img_src, msg, post_type, setDisplay}) => {
+  // console.log(match_id);
+  // console.log(post_type);
+  console.log(setDisplay);
   const createPost = () => {
       axios.post("http://localhost:3000/v1/posts",
       {
-        match_id: match_id.match_id,
+        match_team_property_id: match_team_property_id,
         user_id: JSON.parse(localStorage.currentUser).id,
-        post_type: match_id.post_type,
+        post_type: post_type,
       },
       {
         headers: {
@@ -19,12 +22,17 @@ const PostButton = (match_id) => {
         }
       },
       )
+      .then(response => response.data)
+      .then(data => {
+        setDisplay("none");
+        // setLoading(false);
+      })
       .catch(error => console.log(error))
   }
   return (
     <Button variant="link text-secondary button_link" type="submit" onClick={createPost}>
-      <Image className="emblem" src={`${process.env.PUBLIC_URL}/${match_id.img_src}.png`} roundedCircle />
-      <p>{match_id.msg}</p>
+      <Image className="emblem" src={`${process.env.PUBLIC_URL}/${img_src}.png`} roundedCircle />
+      <p>{msg}</p>
     </Button>
   )
 }

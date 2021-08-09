@@ -1,3 +1,4 @@
+import { faBorderNone } from "@fortawesome/free-solid-svg-icons";
 import React, {useState} from "react"
 
 import {Image,Row,Col,Card,Button,Modal} from "react-bootstrap"
@@ -13,8 +14,10 @@ const MatchInfo = ({match}) => {
     "Away" : "secondary",
     "Neutral" : "info"
   }
+  const [display, setDisplay] = useState("block");
+  const handleDisplay = () => setDisplay(false);
   return (
-    <div>
+    <div style={{display: display}}>
       <Card>
         <Card.Header className={`bg-${colors[match.home_or_away_or_neutral]}`}>
           <Row>
@@ -77,10 +80,10 @@ const MatchInfo = ({match}) => {
         </Card.Body>
         <Card.Footer>
           <Row>
-            <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" is_post="true" /></Col>
-            <Col><PostButton match_id={match.id} img_src="pass" msg="観ていない" post_type="3" is_post="true" /></Col>
-            <Col><PostButton match_id={match.id} img_src="monitor" msg="オンライン" post_type="2" is_post="true" /></Col>
-            <Col><PostButton match_id={match.id} img_src="stadium" msg="現地観戦" post_type="1" is_post="true" /></Col>
+            <Col><PostButton match_team_property_id={match.match_team_property_id} img_src="forget" msg="覚えていない" post_type="4" is_post="true" setDisplay={setDisplay} /></Col>
+            <Col><PostButton match_team_property_id={match.match_team_property_id} img_src="pass" msg="観ていない" post_type="3" is_post="true" setDisplay={setDisplay} /></Col>
+            <Col><PostButton match_team_property_id={match.match_team_property_id} img_src="monitor" msg="オンライン" post_type="2" is_post="true" setDisplay={setDisplay} /></Col>
+            <Col><PostButton match_team_property_id={match.match_team_property_id} img_src="stadium" msg="現地観戦" post_type="1" is_post="true" setDisplay={setDisplay} /></Col>
           </Row>
         </Card.Footer>
       </Card>
@@ -116,7 +119,7 @@ const MatchInfo = ({match}) => {
       </Modal.Body>
       <Modal.Footer>
         <Row>
-          <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" /></Col>
+          <Col><PostButton match_id={match.id} img_src="forget" msg="覚えていない" post_type="4" setDisplay={setDisplay} /></Col>
           <Col><PostButton match_id={match.id} img_src="pass" msg="観ていない" post_type="3" /></Col>
           <Col><PostButton match_id={match.id} img_src="monitor" msg="オンライン" post_type="2" /></Col>
           <Col><PostButton match_id={match.id} img_src="stadium" msg="現地観戦" post_type="1" /></Col>
