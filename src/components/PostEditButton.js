@@ -17,6 +17,7 @@ const PostEditButton = (post_info) => {
       },
     })
     .catch(error => console.log(error))
+  }
   return (
     <Button variant="link text-secondary button_link" type="submit" onClick={editPost}>
       <Image className="emblem" src={`${process.env.PUBLIC_URL}/${post_info.img_src}.png`} roundedCircle />
