@@ -31,7 +31,7 @@ const PostInfo = ({post_info}) => {
           </Card.Title>
           <Card.Text>
             <Row>
-              <Col></Col>
+              <Col>post_type：{post_info.post_type}</Col>
               <Col><p>観客数{post_info.mobilization}人</p></Col>
             </Row>
             <Row>
