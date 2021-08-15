@@ -76,11 +76,10 @@ const SignUp = () => {
       password: password,
       password_confirmation: password,
       // password_confirmation: password_confirmation,
-      confirm_success_url: "footlog.com",
       club_id: club_id
     }).then(res => {
       if(res.status == 200){
-        history.push('/');     
+        history.push('/my_page');     
         console.log('200');
       } else if(res.status == 500){
         console.log('500');

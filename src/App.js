@@ -32,12 +32,15 @@ import AddPrivacy from "./pages/admin/AddPrivacy"
 import UnpublishedPosts from "./pages/admin/UnpublishedPosts";
 import UserEdit from "./pages/UserEdit";
 
+import InformRenewal from "./pages/InformRenewal"
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={Top}/>
+          <Route exact path="/" component={InformRenewal} />
+          <Route exact path="/top" component={Top}/>
           <Route path="/sign_in" component={SignIn}/>
           <Route path="/sign_up" component={SignUp}/>
           <Route path="/my_page" component={MyPage}/>

@@ -15,7 +15,6 @@ const MatchInfo = ({match}) => {
     "Neutral" : "info"
   }
   const [display, setDisplay] = useState("block");
-  const handleDisplay = () => setDisplay(false);
   return (
     <div style={{display: display}}>
       <Card>
