@@ -1,4 +1,5 @@
-import {Row,Col,Image} from "react-bootstrap"
+import {Row,Col,Image, Card} from "react-bootstrap"
+
 const club_match_results = [
   {
     club_id: 1,
@@ -28,4 +29,28 @@ const ClubMatchResults = () => {
     </Row>
   )
 }
-export default ClubMatchResults;
+
+const ClubMatchResultsCards = () => {
+  return (
+    <Row>
+    {club_match_results.map(club_match_result => (
+      <Card style={{ width: '18rem' }}>
+        <Card.Header>
+          {club_match_result.opponent_name}
+        </Card.Header>
+        <Card.Body>
+          <Card.Text>
+            Win:{club_match_result.win}
+          </Card.Text>
+          <Card.Text>
+            Lose:{club_match_result.lose}
+          </Card.Text>
+          <Card.Text>
+            Draw:{club_match_result.draw}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    ))}
+    </Row>)}
+
+export default ClubMatchResultsCards;
