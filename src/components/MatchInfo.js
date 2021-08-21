@@ -16,7 +16,7 @@ const MatchInfo = ({match}) => {
   }
   const [display, setDisplay] = useState("block");
   return (
-    <div style={{display: display}}>
+    <Col style={{display: display}}>
       <Card>
         <Card.Header className={`bg-${colors[match.home_or_away_or_neutral]}`}>
           <Row>
@@ -125,7 +125,7 @@ const MatchInfo = ({match}) => {
         </Row>
       </Modal.Footer>
     </Modal>
-    </div>
+    </Col>
   )
 }
 

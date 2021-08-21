@@ -55,10 +55,7 @@ const Posts = () => {
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
         <Row xs={1} md={2} className="g-4 mx-0">
           {matches.map(match => (
-            <Col key={match.id}>
-              {match.id}
-              <MatchInfo match={match} />
-            </Col>
+            <MatchInfo match={match} />
           ))}
         </Row>
       </InfiniteScroll>
