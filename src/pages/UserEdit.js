@@ -14,7 +14,7 @@ const UserEdit = () => {
   const [biography,setBiography] = useState("")
 
   const updateUser = () => {
-    axios.patch(`http://localhost:3000/v1/auth`,
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}auth`,
     {
       // 変更に応じたリクエストボディを記載
     },
@@ -29,7 +29,7 @@ const UserEdit = () => {
   }
 
   const deleteUser = () => {
-    axios.delete(`http://localhost:3000/v1/auth`,{
+    axios.delete(`${process.env.REACT_APP_API_ENDPOINT}auth`,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
@@ -38,7 +38,7 @@ const UserEdit = () => {
     })
   }
   useEffect(() => {
-    axios.get(`http://localhost:3000/v1/users/${userId}` ,{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}users/${userId}` ,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
