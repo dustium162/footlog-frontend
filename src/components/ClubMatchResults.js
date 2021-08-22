@@ -4,7 +4,7 @@ const club_match_results = [
   {
     club_id: 1,
     opponent_name: "鹿島アントラーズ",
-    win: 99,
+    win: 5,
     lose: 0,
     draw: 1,
   },
@@ -47,6 +47,12 @@ const ClubMatchResultsCards = () => {
           </Card.Text>
           <Card.Text>
             Draw:{club_match_result.draw}
+          </Card.Text>
+          <Card.Text>
+            Total:{club_match_result.win + club_match_result.lose + club_match_result.draw}
+          </Card.Text>
+          <Card.Text>
+            Winrate:{Math.round(club_match_result.win / (club_match_result.win + club_match_result.lose + club_match_result.draw) * 1000) / 10}%
           </Card.Text>
         </Card.Body>
       </Card>
