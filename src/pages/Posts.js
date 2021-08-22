@@ -13,10 +13,10 @@ const Posts = () => {
   const [hasMore,setHasMore] = useState(true)
 
   const [modalShow, setModalShow] = useState(false);
-  
+
   const loadMore = async (page) => {
 
-    const response = await axios(`http://localhost:3000/v1/matches?page=${page}`, {
+    const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}matches?page=${page}`, {
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
@@ -33,7 +33,7 @@ const Posts = () => {
 
   const loader =  <Spinner animation="border" variant="danger" />
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/matches", {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}matches`, {
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
@@ -59,7 +59,7 @@ const Posts = () => {
           ))}
         </Row>
       </InfiniteScroll>
-      <PostGuideModal 
+      <PostGuideModal
         show={modalShow}
         onHide={() => setModalShow(false)}
       />

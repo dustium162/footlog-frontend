@@ -70,7 +70,7 @@ const SignUp = () => {
   }
 
   const createNewUser = () => {
-    axios.post("http://localhost:3000/v1/auth",{
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}auth`,{
       name: name,
       email: email,
       password: password,
@@ -79,7 +79,7 @@ const SignUp = () => {
       club_id: club_id
     }).then(res => {
       if(res.status == 200){
-        history.push('/my_page');     
+        history.push('/top');
         console.log('200');
       } else if(res.status == 500){
         console.log('500');
