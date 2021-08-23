@@ -51,19 +51,26 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <LinkContainer to="/my_page">
-                <Nav.Link>マイページ</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/posts">
-                <Nav.Link>試合一覧</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/sign_up">
-                <Nav.Link>新規登録</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/sign_in">
-                <Nav.Link>ログイン</Nav.Link>
-              </LinkContainer>
-              <a href="#" className="nav-link" onClick={handleSignOut}>サインアウト</a>
+              { localStorage.getItem('access-token') == null ? (
+                <div>
+                  <LinkContainer to="/sign_up">
+                    <Nav.Link>新規登録</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/sign_in">
+                    <Nav.Link>ログイン</Nav.Link>
+                  </LinkContainer>
+                </div>
+              ) : (
+                <div>
+                  <LinkContainer to="/my_page">
+                    <Nav.Link>マイページ</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/posts">
+                    <Nav.Link>試合一覧</Nav.Link>
+                  </LinkContainer>
+                  <a href="#" className="nav-link" onClick={handleSignOut}>サインアウト</a>
+                </div>
+              ) }
               <LinkContainer to="/admin/main">
                 <Nav.Link>管理者ページへ</Nav.Link>
               </LinkContainer>
