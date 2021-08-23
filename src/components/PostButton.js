@@ -8,7 +8,7 @@ const PostButton = ({match_team_property_id, img_src, msg, post_type, setDisplay
   // console.log(post_type);
   console.log(setDisplay);
   const createPost = () => {
-      axios.post(`${process.env.REACT_APP_API_ENDPOINT}posts`,
+      axios.post(`${process.env.REACT_APP_API_ENDPOINT}/posts`,
       {
         match_team_property_id: match_team_property_id,
         user_id: JSON.parse(localStorage.currentUser).id,

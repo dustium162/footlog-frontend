@@ -23,15 +23,15 @@ const SignUp = () => {
   const [agree, setAgree] = useState(false)
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/v1/division_seasons/${league}`)
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/division_seasons/${league}`)
     .then(response => response.data)
     .then(res => {
-      const aryLeaguList = [];
+      const aryLeagueList = [];
       res.map(data => {
-        aryLeaguList.push(data);
+        aryLeagueList.push(data);
       });
-      setLeagueList(aryLeaguList);
-      setClubId(aryLeaguList[0].club_id);
+      setLeagueList(aryLeagueList);
+      setClubId(aryLeagueList[0].club_id);
     });
   }, [league])
 
@@ -70,7 +70,7 @@ const SignUp = () => {
   }
 
   const createNewUser = () => {
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}auth`,{
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth`,{
       name: name,
       email: email,
       password: password,

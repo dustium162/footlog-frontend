@@ -15,7 +15,7 @@ const MyPage = () => {
   const [info,setInfo] = useState({})
   const userId = JSON.parse(localStorage.getItem('currentUser')).id
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}users/${userId}` ,{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}` ,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
