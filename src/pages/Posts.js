@@ -16,7 +16,7 @@ const Posts = () => {
 
   const loadMore = async (page) => {
 
-    const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}matches?page=${page}`, {
+    const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/matches?page=${page}`, {
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),

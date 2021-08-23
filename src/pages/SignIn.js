@@ -23,7 +23,7 @@ const SignIn = () => {
   }
 
   const createNewUser = () => {
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}auth/sign_in`,{
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_in`,{
       email: email,
       password: password,
     })
