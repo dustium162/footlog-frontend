@@ -46,10 +46,6 @@ const Posts = () => {
     }
   ,[])
 
-  const removeCard = () => {
-
-  }
-
   return (
     <Layout>
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>

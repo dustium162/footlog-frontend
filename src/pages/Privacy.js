@@ -1,9 +1,16 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import Layout from "../components/Layout";
+import axios from "axios"
 
 const Privacy = () => {
+  const [privacies,setPrivacies] = useState("")
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/terms`)
+    .then(response => response.data)
+    .then(data => setPrivacies(data))
+  },[])
   return (
-    <Layout>Privacy Page!</Layout>
+    <Layout>{privacies.text}</Layout>
   )
 }
 export default Privacy;
