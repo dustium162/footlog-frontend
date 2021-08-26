@@ -16,6 +16,7 @@ const UserInfo = ({user}) => {
     setBiography(user.biography)
   })
   return (
+
     <Container className="user_info" fluid>
       <Row className="nx-0 px-0">
         <Container className="icon_and_name">
