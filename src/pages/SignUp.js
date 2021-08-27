@@ -153,7 +153,7 @@ const SignUp = () => {
             <Form.Check type="checkbox" label="利用規約に同意する"/>
           </Form.Group>
           <Button variant="primary" type="submit" onClick={createNewUser} disabled={!agree || !name || !email || !password}>
-            Submit
+            登録する
           </Button>
         </Form>
       </Container>

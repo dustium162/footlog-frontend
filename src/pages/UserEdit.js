@@ -13,28 +13,28 @@ const UserEdit = () => {
   const [info,setInfo] = useState({})
   const [name,setName] = useState("")
   const [email,setEmail] = useState("")
-  const [icon,setIcon] = useState("")
-  const [header,setHeader] = useState("")
+  const [image,setImage] = useState("")
+  const [header_image,setHeaderImage] = useState("")
   const [biography,setBiography] = useState("")
 
-  const processIcon = (e) => {
-    const iconFile = e.target.files[0];
-    const iconUrl = URL.createObjectURL(iconFile);
-    setIcon(iconUrl);
+  const processImage = (e) => {
+    const imageFile = e.target.files[0];
+    const imageUrl = URL.createObjectURL(imageFile);
+    setImage(imageUrl);
   }
 
-  const processHeader = (e) => {
-    const headerFile = e.target.files[0];
-    const headerUrl = URL.createObjectURL(headerFile);
-    setHeader(headerUrl);
+  const processHeaderImage = (e) => {
+    const headerImageFile = e.target.files[0];
+    const headerImageUrl = URL.createObjectURL(headerImageFile);
+    setHeaderImage(headerImageUrl);
   }
 
   const updateUser = () => {
     const data = new FormData();
     data.append('name', name);
     data.append('email', email);
-    data.append('icon', icon);
-    data.append('header', header);
+    data.append('image', image);
+    data.append('header_image', header_image);
     data.append('biography', biography);
     axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}`,
       data,
@@ -83,8 +83,8 @@ const UserEdit = () => {
       setInfo(data);
       setName(data.user.name);
       setEmail(data.user.email);
-      // setIcon(data.user.icon);
-      // setHeader(data.user.header);
+      // setImage(data.user.image);
+      // setHeaderImage(data.user.header_image);
       setBiography(data.user.biography);
     })
   },[])
@@ -110,15 +110,15 @@ const UserEdit = () => {
             <Form.Label>パスワード</Form.Label>
             <Form.Control value="●●●●●●●●●●●" disabled="disabled" />
           </Form.Group>
-          <Form.Group controlId="formFile" className="mb-3" controlId="formIcon">
+          <Form.Group controlId="formFile" className="mb-3" controlId="formImage">
             <Form.Label>アイコン画像</Form.Label>
-            <Image src={icon} rounded />
-            <Form.File accept="image/*" onChange={processIcon} />
+            <Image src={image} rounded />
+            <Form.File accept="image/*" onChange={processImage} />
           </Form.Group>
-          <Form.Group controlId="formFile" className="mb-3" controlId="formHeader">
+          <Form.Group controlId="formFile" className="mb-3" controlId="formHeaderImage">
             <Form.Label>ヘッダー画像</Form.Label>
-            <Image src={header} rounded />
-            <Form.File accept="image/*" onChange={processHeader} />
+            <Image src={header_image} rounded />
+            <Form.File accept="image/*" onChange={processHeaderImage} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBiography">
             <Form.Label>自己紹介</Form.Label>
