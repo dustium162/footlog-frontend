@@ -30,6 +30,7 @@ import AddInformation from "./pages/admin/AddInformation"
 import AddTerm from "./pages/admin/AddTerm"
 import AddPrivacy from "./pages/admin/AddPrivacy"
 import UnpublishedPosts from "./pages/admin/UnpublishedPosts";
+import ContactIndex from "./pages/admin/ContactIndex";
 import UserEdit from "./pages/UserEdit";
 
 import InformRenewal from "./pages/InformRenewal"
@@ -60,6 +61,7 @@ function App() {
           <Route path="/admin/add_information" component={AddInformation}/>
           <Route path="/admin/add_term" component={AddTerm}/>
           <Route path="/admin/add_privacy" component={AddPrivacy}/>
+          <Route path="/admin/contacts" component={ContactIndex}/>
         </Switch>
       </Router>
     </div>
