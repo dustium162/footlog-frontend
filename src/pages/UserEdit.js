@@ -3,7 +3,24 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import axios from "axios"
 import { useEffect, useState } from "react";
-import {Row,Col,Button,FormControl,InputGroup, Form, Container, Image} from "react-bootstrap"
+import {Row,Col,Button,FormControl,InputGroup, Form, Container, Image} from "react-bootstrap";
+import Resizer from "react-image-file-resizer";
+
+const resizeFile = (file, height, width) =>
+new Promise((resolve) => {
+  Resizer.imageFileResizer(
+    file,
+    height,
+    width,
+    "JPEG",
+    80,
+    0,
+    (uri) => {
+      resolve(uri);
+    },
+    "base64"
+  );
+});
 
 const UserEdit = () => {
 
@@ -17,16 +34,38 @@ const UserEdit = () => {
   const [header_image,setHeaderImage] = useState("")
   const [biography,setBiography] = useState("")
 
-  const processImage = (e) => {
-    const imageFile = e.target.files[0];
-    const imageUrl = URL.createObjectURL(imageFile);
-    setImage(imageUrl);
+  const processImage = async (e) => {
+    const imageFile = await resizeFile(e.target.files[0], 100, 100);
+    setImage(imageFile);
+    // const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`);
+    // const s3DirectPost = await res.json();
+    // const imageFile = await resizeFile(e.target.files[0], 100, 100);
+    // const fields = S3DirectPost.fields;
+    // const formData = new FormData()
+    // for (let key in fields) {
+    //   formData.append(key, fields[key])
+    // }
+    // formData.append('file', imageFile);
+    // const ret = await axios.post(S3DirectPost.url,
+    //   {
+    //     formData
+    //   },
+    //   {
+    //     headers: {
+    //       uid: localStorage.getItem('uid'),
+    //       'access-token': localStorage.getItem('access-token'),
+    //       client: localStorage.getItem('client')
+    //     }
+    //   }
+    // )
+    // const matchedObject = ret.data.match(/<Location>(.*?)<\/Location>/)
+    // const s3Url = unescape(matchedObject[1])
+    // setImage(s3Url);
   }
 
-  const processHeaderImage = (e) => {
-    const headerImageFile = e.target.files[0];
-    const headerImageUrl = URL.createObjectURL(headerImageFile);
-    setHeaderImage(headerImageUrl);
+  const processHeaderImage = async (e) => {
+    const headerImageFile = await resizeFile(e.target.files[0], 400, 400);
+    setHeaderImage(headerImageFile);
   }
 
   const updateUser = () => {
@@ -36,7 +75,7 @@ const UserEdit = () => {
     data.append('image', image);
     data.append('header_image', header_image);
     data.append('biography', biography);
-    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}`,
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/auth`,
       data,
       {
         headers: {
@@ -48,6 +87,10 @@ const UserEdit = () => {
       }
     ).then(res => {
       if(res.status == 200){
+        localStorage.setItem('uid', res.headers.uid);
+        localStorage.setItem('access-token', res.headers['access-token']);
+        localStorage.setItem('client', res.headers.client);
+        localStorage.setItem('currentUser', JSON.stringify(res.data.data));
         history.push('/my_page');
         console.log('200');
       } else if(res.status == 500){
@@ -109,6 +152,7 @@ const UserEdit = () => {
           <Form.Group className="mb-3" controlId="formPassword">
             <Form.Label>パスワード</Form.Label>
             <Form.Control value="●●●●●●●●●●●" disabled="disabled" />
+            <Link to="/user/password/edit">パスワードを変更する</Link>
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3" controlId="formImage">
             <Form.Label>アイコン画像</Form.Label>
@@ -128,6 +172,9 @@ const UserEdit = () => {
             更新する
           </Button>
         </Form>
+        <Button variant="danger" onClick={deleteUser}>
+          ユーザーを削除する
+        </Button>
       </Container>
     </Layout>
   )
