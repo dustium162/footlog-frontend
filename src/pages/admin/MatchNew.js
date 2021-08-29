@@ -117,9 +117,10 @@ const MatchNew = () => {
             <Form.Check inline label="J3" type="radio" name="home_div"/>
             <Form.Check inline label="Other" type="radio" name="home_div"/>
           </div>
-          <Form.Label>ホームチームを選択</Form.Label>
+          <Form.Label>ホームチーム</Form.Label>
           {/* ラジオボタンで選択したものに応じてリストの中身を変えたい。(20210722浅見) */}
           <Form.Control as="select" onChange={handleHomeTeamId}>
+            <option>ホームチームを選択</option>
             {teams.j1 ? teams.j1.map(team => {
               return <option value={team.id}>{team.name}</option>
             }) : <option></option>}
@@ -133,13 +134,14 @@ const MatchNew = () => {
           <Form.Label>アウェイチーム</Form.Label>
             {/* ラジオボタンで選択したものに応じてリストの中身を変えたい。(20210722浅見) */}
           <Form.Control as="select" onChange={handleAwayTeamId}>
+            <option>アウェイチームを選択</option>
               {teams.j2 ? teams.j2.map(team => {
                 return <option value={team.id}>{team.name}</option>
               }) : <option></option>}
           </Form.Control>
           <Form.Label>スタジアム</Form.Label>
           <Form.Control as="select" value={stadium_id} onChange={handleStadiumId}>
-            <option>スタジアムを入力</option>
+            <option>スタジアムを選択</option>
             {stadia ? stadia.map(stadium => {
               return <option value={stadium.id}>{stadium.name}</option>
             }) : <option></option>}
@@ -155,7 +157,7 @@ const MatchNew = () => {
               />
           </div>
         </Form.Group>
-        <Button type="submit" onClick={createNewMatch} disabled={!title_id || !home_team_id || !away_team_id || !date_time || stadium_id }>試合情報作成</Button>
+        <Button type="submit" onClick={createNewMatch} disabled={!title_id || !home_team_id || !away_team_id || !date_time || !stadium_id }>試合情報作成</Button>
       </Form>
       </Layout>
       )
