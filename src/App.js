@@ -30,7 +30,9 @@ import AddInformation from "./pages/admin/AddInformation"
 import AddTerm from "./pages/admin/AddTerm"
 import AddPrivacy from "./pages/admin/AddPrivacy"
 import UnpublishedPosts from "./pages/admin/UnpublishedPosts";
+import ContactIndex from "./pages/admin/ContactIndex";
 import UserEdit from "./pages/UserEdit";
+import PasswordEdit from "./pages/PasswordEdit";
 
 import InformRenewal from "./pages/InformRenewal"
 
@@ -49,6 +51,7 @@ function App() {
           <Route path="/privacy" component={Privacy}/>
           <Route path="/contact" component={Contact}/>
           <Route path="/user/edit" component={UserEdit}/>
+          <Route path="/user/password/edit" component={PasswordEdit}/>
 
           {/* 管理者用 書く場所が正しいかは不明なので要相談(20210626浅) */}
           <Route path="/admin/main" component={AdminMain}/>
@@ -60,6 +63,7 @@ function App() {
           <Route path="/admin/add_information" component={AddInformation}/>
           <Route path="/admin/add_term" component={AddTerm}/>
           <Route path="/admin/add_privacy" component={AddPrivacy}/>
+          <Route path="/admin/contacts" component={ContactIndex}/>
         </Switch>
       </Router>
     </div>

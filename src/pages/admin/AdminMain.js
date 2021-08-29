@@ -34,6 +34,9 @@ const AdminMain = () => {
         <LinkContainer to="/admin/add_privacy">
           <Nav.Link>プライバシーポリシーの追加</Nav.Link>
         </LinkContainer>
+        <LinkContainer to="/admin/contacts">
+          <Nav.Link>お問い合わせの確認</Nav.Link>
+        </LinkContainer>
       </Container>
     </Layout>
   )

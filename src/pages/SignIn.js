@@ -22,7 +22,7 @@ const SignIn = () => {
     e.preventDefault();
   }
 
-  const createNewUser = () => {
+  const login = () => {
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_in`,{
       email: email,
       password: password,
@@ -54,7 +54,7 @@ const SignIn = () => {
             <Form.Label>パスワード</Form.Label>
             <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={createNewUser}>
+          <Button variant="primary" type="submit" onClick={login}>
             ログイン
           </Button>
         </Form>

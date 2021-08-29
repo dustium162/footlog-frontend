@@ -4,15 +4,15 @@ import React,{useState,useEffect} from "react";
 import {Container,Image,Row,Col,Button} from "react-bootstrap"
 
 const UserInfo = ({user}) => {
-  const [icon,setIcon] = useState("")
+  const [image,setImage] = useState("")
   const [name,setName] = useState("")
-  const [header,setHeader] = useState("")
+  const [header_image,setHeaderImage] = useState("")
   const [biography,setBiography] = useState("")
 
   useEffect(() => {
-    setIcon(user.icon)
+    setImage(user.image)
     setName(user.name)
-    setHeader(user.header)
+    setHeaderImage(user.header_image)
     setBiography(user.biography)
   })
   return (
@@ -20,10 +20,10 @@ const UserInfo = ({user}) => {
     <Container className="user_info" fluid>
       <Row className="nx-0 px-0">
         <Container className="icon_and_name">
-          <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/${icon}`} roundedCircle /></Row>
+          <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/${image}`} roundedCircle /></Row>
           <Row><h5>{name}</h5></Row>
         </Container>
-        <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/${header}`} fluid/></Row>
+        <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/${header_image}`} fluid/></Row>
         <Row>
           <Col></Col>
           <Col></Col>
