@@ -35,32 +35,31 @@ const UserEdit = () => {
   const [biography,setBiography] = useState("")
 
   const processImage = async (e) => {
-    const imageFile = await resizeFile(e.target.files[0], 100, 100);
-    setImage(imageFile);
-    // const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`);
-    // const s3DirectPost = await res.json();
     // const imageFile = await resizeFile(e.target.files[0], 100, 100);
-    // const fields = S3DirectPost.fields;
-    // const formData = new FormData()
-    // for (let key in fields) {
-    //   formData.append(key, fields[key])
-    // }
-    // formData.append('file', imageFile);
-    // const ret = await axios.post(S3DirectPost.url,
-    //   {
-    //     formData
-    //   },
-    //   {
-    //     headers: {
-    //       uid: localStorage.getItem('uid'),
-    //       'access-token': localStorage.getItem('access-token'),
-    //       client: localStorage.getItem('client')
-    //     }
-    //   }
-    // )
-    // const matchedObject = ret.data.match(/<Location>(.*?)<\/Location>/)
-    // const s3Url = unescape(matchedObject[1])
-    // setImage(s3Url);
+    // setImage(imageFile);
+    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`);
+    const s3DirectPost = await res.data;
+    const imageFile = await resizeFile(e.target.files[0], 100, 100);
+    const fields = s3DirectPost.fields;
+    const formData = new FormData()
+    for (let key in fields) {
+      formData.append(key, fields[key])
+    }
+    formData.append('file', imageFile);
+    const ret = await axios.post(s3DirectPost.url,
+      {
+        formData
+      },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+    )
+    console.log(ret.data);
+    const matchedObject = ret.data.match(/<Location>(.*?)<\/Location>/)
+    const s3Url = unescape(matchedObject[1])
+    setImage(s3Url);
   }
 
   const processHeaderImage = async (e) => {
