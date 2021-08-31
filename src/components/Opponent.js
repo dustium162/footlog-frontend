@@ -1,4 +1,4 @@
-import {Row,Card, Container, Col} from "react-bootstrap"
+import {Row, Card, Container} from "react-bootstrap"
 
 const club_match_results = [
   {
