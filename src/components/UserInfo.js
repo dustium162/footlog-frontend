@@ -32,7 +32,13 @@ const UserInfo = ({user}) => {
       </Row>
       <Row>
         <Col></Col>
-        <Col>{biography}</Col>
+        <Col>
+          {
+            biography.split('\n').map((str, index) => (
+              <React.Fragment key={index}>{str}<br /></React.Fragment>
+            ))
+          }
+        </Col>
       </Row>
     </Container>
   );

@@ -3,14 +3,20 @@ import Layout from "../components/Layout";
 import axios from "axios"
 
 const Privacy = () => {
-  const [privacies,setPrivacies] = useState("")
+  const [privacy,setPrivacy] = useState("")
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies`)
     .then(response => response.data)
-    .then(data => setPrivacies(data))
+    .then(data => setPrivacy(data.text))
   },[])
   return (
-    <Layout>{privacies.text}</Layout>
+    <Layout>
+      {
+        privacy.split('\n').map((str, index) => (
+          <React.Fragment key={index}>{str}<br /></React.Fragment>
+        ))
+      }
+    </Layout>
   )
 }
 export default Privacy;
