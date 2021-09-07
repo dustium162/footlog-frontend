@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Row, Carousel, Container } from "react-bootstrap"
+import { Carousel, Container, Modal } from "react-bootstrap"
 import Opponent from "./Opponent"
+import OpponentDetail from "./OpponentDetail";
 
 const club_match_results = [
     {
@@ -178,24 +179,43 @@ const club_match_results = [
 function ClubMatchResults() {
     const [index, setIndex] = useState(0);
 
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     }
 
     return (
-            <Carousel xs={1} md={2}
+        <Container>
+            <Carousel
                 activeIndex={index}
                 onSelect={handleSelect}
                 slide={false}
+                interval={null}
                 indicators={false}
                 prevIcon={<span aria-hidden="false" className="carousel-control-prev-icon" />}
                 nextIcon={<span aria-hidden="false" className="carousel-control-next-icon" />}
             >
-                <Carousel.Item>
-                    {club_match_results.map(club_match_result => (
-                        <Opponent club_match_result={club_match_result} />))}
-                </Carousel.Item>
+                {club_match_results.map(club_match_result => (
+                    <Carousel.Item variant="link text-secondary button_link" onClick={handleShow}>
+                        <Opponent club_match_result={club_match_result} />
+                    </Carousel.Item>)
+                )
+                }
             </Carousel>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton></Modal.Header>
+                {club_match_results.map(club_match_result => (
+                    <Modal.Body>
+                        <OpponentDetail club_match_result={club_match_result} />
+                    </Modal.Body>
+                )
+                )
+                }
+            </Modal>
+        </Container>
     );
 }
 
