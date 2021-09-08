@@ -8,15 +8,12 @@ import MatchEdit from "./MatchEdit";
 import Layout from "../../components/Layout";
 
 const UnpublishedPosts = () => {
+  const [matches,setMatches] = useState([])
+
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/matches/1/edit")
+    axios.get("http://localhost:3000/v1/matches/publish")
       .then( response => {
-        // console.log(response.data)
-        // setTitle(response.data["title"])
-        // setDate(response.data["date_time"])
-        // setHomeTeam(response.data["home_team"])
-        // setAwayTeam(response.data["away_team"])
-        // setStadium(response.data["stadium"])
+        setMatches(response.data)
       })
       .catch(error => console.log(error))
   },[])
@@ -53,12 +50,11 @@ const UnpublishedPosts = () => {
       stadium: "南極スタジアム"
     },
   ]
-  console.log(array)
   return (
     <Layout>
 
     <Row xs={1} md={2} className="g-2">
-      {array.map(match => {
+      {matches.map(match => {
         return (
           <Col><MatchEdit match={match}/></Col>
           )
