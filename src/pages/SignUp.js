@@ -91,23 +91,24 @@ const SignUp = () => {
   return (
     <Layout>
       <Container>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formName">
-            <Form.Label>ユーザー名</Form.Label>
+            <Form.Label className="mb-0">ユーザー名</Form.Label>
             <Form.Control value={name} placeholder="ユーザー名を入力してください" onChange={handleNameChange}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>メールアドレス</Form.Label>
+            <Form.Label className="mb-0">メールアドレス</Form.Label>
             <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>パスワード</Form.Label>
+            <Form.Label className="mb-0">パスワード</Form.Label>
             <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
             <span onClick={togglePassword} role="presentation" className="PasswordReveal">
             {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
             </span>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="forLeague">
+          <Form.Group className="mb-3" controlId="formClub">
+            <Form.Label className="d-block mb-0">応援しているクラブ</Form.Label>
             <Form.Check
               inline
               label="Ｊ１"
@@ -139,9 +140,6 @@ const SignUp = () => {
               onChange={handleLeague}
               checked={league === "3"}
             />
-          </Form.Group>
-          <Form.Group controlId="formClub">
-            <Form.Label>応援しているクラブ</Form.Label>
             <Form.Control as="select" onChange={handleClubId}>
               {league_list.map(d => {
                 return <option value={d.club_id}>{d.name}</option>
@@ -152,9 +150,11 @@ const SignUp = () => {
           <Form.Group className="mb-3" controlId="formBasicCheckbox" onChange={handleAgree}>
             <Form.Check type="checkbox" label="利用規約に同意する"/>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={createNewUser} disabled={!agree || !name || !email || !password}>
-            登録する
-          </Button>
+          <Form.Group className="text-end">
+            <Button variant="dark" type="submit" onClick={createNewUser} disabled={!agree || !name || !email || !password}>
+              登録する
+            </Button>
+          </Form.Group>
         </Form>
       </Container>
     </Layout>

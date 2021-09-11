@@ -45,7 +45,7 @@ const SignIn = () => {
   return (
     <Layout>
       <Container>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>メールアドレス</Form.Label>
             <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
@@ -54,9 +54,11 @@ const SignIn = () => {
             <Form.Label>パスワード</Form.Label>
             <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={login}>
-            ログイン
-          </Button>
+          <Form.Group className="text-end">
+            <Button variant="dark" type="submit" onClick={login}>
+              ログイン
+            </Button>
+          </Form.Group>
         </Form>
       </Container>
     </Layout>
