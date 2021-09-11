@@ -61,10 +61,10 @@ const Header = () => {
             { localStorage.getItem('access-token') == null ? (
               <>
                 <LinkContainer to="/sign_up" className="me-3">
-                  <Nav.Link className="btn btn-dark rounded-pill text-white px-3">新規登録</Nav.Link>
+                  <Nav.Link className="btn btn-dark rounded-pill text-white px-3 py-1">新規登録</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/sign_in" className="me-3">
-                  <Nav.Link className="btn btn-secondary rounded-pill text-light px-3">ログイン</Nav.Link>
+                  <Nav.Link className="btn btn-secondary rounded-pill text-light px-3 py-1">ログイン</Nav.Link>
                 </LinkContainer>
               </>
             ) : (
