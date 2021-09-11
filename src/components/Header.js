@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import axios from 'axios';
-import { useHistory} from 'react-router-dom';
+import { useHistory, Link} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import Logo from "../logo-copy.png";
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -47,13 +47,15 @@ const Header = () => {
       <Navbar bg="white" variant="light">
         <Container>
           <Navbar.Brand>
-            <img
-              src={Logo}
-              width="35"
-              height="35"
-              alt="React Bootstrap logo"
-            />
-            <h1 class="h3 d-inline ms-1">footlog</h1>
+            <Link to="/top" className="text-decoration-none text-dark">
+              <img
+                src={Logo}
+                width="35"
+                height="35"
+                alt="React Bootstrap logo"
+              />
+              <h1 class="h3 d-inline ms-1">footlog</h1>
+            </Link>
           </Navbar.Brand>
           <Nav className="mr-auto">
             { localStorage.getItem('access-token') == null ? (
