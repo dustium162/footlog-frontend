@@ -19,7 +19,7 @@ const Header = () => {
   const history = useHistory();
 
   const handleSignOut = () => {
-    axios.delete("http://localhost:3000/v1/auth/sign_out",{
+    axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_out`,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
