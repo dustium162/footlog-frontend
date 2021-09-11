@@ -44,7 +44,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="white" variant="light">
+      <Navbar bg="white" variant="light" className="border-bottom p-0">
         <Container>
           <Navbar.Brand>
             <Link to="/top" className="text-decoration-none text-dark">
@@ -82,12 +82,12 @@ const Header = () => {
                 </LinkContainer>
                 <LinkContainer to="/posts" className="me-3">
                   <Nav.Link>
-                    <div  className="btn btn-secondary rounded-circle py-2 px-2" width="40" height="40" style={{width: "42px"}}>
+                    <div className="btn btn-secondary rounded-circle py-2 px-2" width="40" height="40" style={{width: "42px"}}>
                       <FontAwesomeIcon className="fa-fw text-white" icon={faEdit}></FontAwesomeIcon>
                     </div>
                   </Nav.Link>
                 </LinkContainer>
-                <a href="#" onClick={handleSignOut} className="nav-link">
+                <a href="javascript:void(0)" onClick={handleSignOut} className="nav-link">
                   <div  className="btn btn-secondary rounded-circle py-2 px-2" width="40" height="40" style={{width: "42px"}}>
                     <FontAwesomeIcon className="fa-fw text-white" icon={faSignOutAlt}></FontAwesomeIcon>
                   </div>
