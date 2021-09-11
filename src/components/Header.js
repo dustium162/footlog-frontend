@@ -83,7 +83,7 @@ const Header = () => {
                 <LinkContainer to="/posts" className="me-3">
                   <Nav.Link>
                     <div  className="btn btn-secondary rounded-circle py-2 px-2" width="40" height="40" style={{width: "42px"}}>
-                      <FontAwesomeIcon className="fa-fw text-white" icon={faEdit} width="40" height="40"></FontAwesomeIcon>
+                      <FontAwesomeIcon className="fa-fw text-white" icon={faEdit}></FontAwesomeIcon>
                     </div>
                   </Nav.Link>
                 </LinkContainer>
