@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-12">
               <div className="text-center">
-                <div class="row">
+                <div className="row">
                   <Link to="/terms" className="text-muted col-lg-3 col-6 px-1">利用規約</Link>
                   <Link to="/privacy" className="text-muted col-lg-3 col-6 px-1">プライバシーポリシー</Link>
                   <Link to="/contact" className="text-muted col-lg-3 col-6 px-1">お問い合わせ</Link>

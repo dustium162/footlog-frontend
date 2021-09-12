@@ -54,17 +54,17 @@ const Header = () => {
                 height="35"
                 alt="React Bootstrap logo"
               />
-              <h1 class="h3 d-inline ms-1">footlog</h1>
+              <h1 className="h3 d-inline ms-1">footlog</h1>
             </Link>
           </Navbar.Brand>
           <Nav className="mr-auto">
             { localStorage.getItem('access-token') == null ? (
               <>
-                <LinkContainer to="/sign_up" className="me-3">
+                <LinkContainer to="/sign_up" className="me-2">
                   <Nav.Link className="btn btn-dark rounded-pill text-white px-3 py-1">新規登録</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/sign_in" className="me-3">
-                  <Nav.Link className="btn btn-secondary rounded-pill text-light px-3 py-1">ログイン</Nav.Link>
+                <LinkContainer to="/sign_in" className="ms-2">
+                  <Nav.Link className="btn btn-secondary rounded-pill text-white px-3 py-1">ログイン</Nav.Link>
                 </LinkContainer>
               </>
             ) : (

@@ -18,9 +18,11 @@ const SignUp = () => {
   const [password,setPassword] = useState("")
   const [isRevealPassword,setIsRevealPassword] = useState(false)
   const [league, setLeague] = useState("1")
-  const [league_list, setLeagueList] = useState([])
-  const [club_id,setClubId] = useState(0)
+  const [leagueList, setLeagueList] = useState([])
+  const [clubId,setClubId] = useState(0)
   const [agree, setAgree] = useState(false)
+  const [isSubmitDisable, setIsSubmitDisable] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/division_seasons/${league}`)
@@ -35,20 +37,24 @@ const SignUp = () => {
     });
   }, [league])
 
+  useEffect(() => {
+    name && email && password && clubId && agree ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
+  }, [name, email, password, clubId, agree])
+
   const handleNameChange = (e) => {
-    setName(e.target.value)
+    setName(e.target.value);
   }
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
+    setPassword(e.target.value);
   }
   const handleLeague = (e) => {
     setLeague(e.target.value);
   }
   const handleClubId = (e) => {
-    setClubId(e.target.value)
+    setClubId(e.target.value);
   }
 
   const handleAgree = () => {
@@ -76,7 +82,7 @@ const SignUp = () => {
       password: password,
       password_confirmation: password,
       // password_confirmation: password_confirmation,
-      club_id: club_id
+      club_id: clubId
     }).then(res => {
       if(res.status == 200){
         history.push('/top');
@@ -85,12 +91,21 @@ const SignUp = () => {
         console.log('500');
       }
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error);
+      // メールアドレスが既に登録されている場合に返される422なのか要確認（2021ｰ09-12 浦郷）
+      if(error.response.status == 422) {
+        setErrorMessage('入力されたメールアドレスは既に登録されている可能性があります。メールアドスを変更して、再度、登録してください。');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。')
+      }
+    })
   }
 
   return (
     <Layout>
       <Container>
+        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formName">
             <Form.Label className="mb-0">ユーザー名</Form.Label>
@@ -118,7 +133,6 @@ const SignUp = () => {
               value="1"
               onChange={handleLeague}
               checked={league === "1"}
-              defaultChecked
             />
             <Form.Check
               inline
@@ -141,17 +155,17 @@ const SignUp = () => {
               checked={league === "3"}
             />
             <Form.Control as="select" onChange={handleClubId}>
-              {league_list.map(d => {
-                return <option value={d.club_id}>{d.name}</option>
+              {leagueList.map(d => {
+                return <option key={d.club_id} value={d.club_id}>{d.name}</option>
               })
               }
             </Form.Control>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox" onChange={handleAgree}>
-            <Form.Check type="checkbox" label="利用規約に同意する"/>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="利用規約に同意する" onChange={handleAgree} />
           </Form.Group>
           <Form.Group className="text-end">
-            <Button variant="dark" type="submit" onClick={createNewUser} disabled={!agree || !name || !email || !password}>
+            <Button variant="dark" type="submit" onClick={createNewUser} disabled={isSubmitDisable}>
               登録する
             </Button>
           </Form.Group>
