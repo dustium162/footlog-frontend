@@ -3,14 +3,17 @@ import Layout from "../components/Layout";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 import {Form,Button,Container} from "react-bootstrap"
 
 const SignIn = () => {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const history = useHistory();
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
@@ -21,6 +24,10 @@ const SignIn = () => {
   const handleSubmit = (e) =>{
     e.preventDefault();
   }
+
+  useEffect(() => {
+    email && password ? setIsSubmitDisable(false) : setIsSubmitDisable(true)
+  }, [email, password])
 
   const login = () => {
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_in`,{
@@ -36,16 +43,29 @@ const SignIn = () => {
         localStorage.setItem('currentUser', JSON.stringify(res.data.data))
         console.log('200');
         history.push('/my_page')
+      }
+      // } else {
+      //   console.log(res.status);
+      //   if (res.status == 401) {
+      //     setErrorMessage('メールアドレスもしくはパスワードが異なります。');
+      //   }
+      // }
+    })
+    .catch(error => {
+      console.log(error);
+      // 401はthenで受け取るように修正予定（2021ｰ09-12 浦郷）
+      if(error.response.status == 401) {
+        setErrorMessage('メールアドレスもしくはパスワードが異なります。');
       } else {
-        console.log('500');
+        setErrorMessage('サーバーエラーが発生しました。')
       }
     })
-    .catch(error => console.log(error))
   }
   return (
     <Layout>
       <Container>
-        <Form onSubmit={handleSubmit}>
+        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+        <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>メールアドレス</Form.Label>
             <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
@@ -54,9 +74,11 @@ const SignIn = () => {
             <Form.Label>パスワード</Form.Label>
             <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={login}>
-            ログイン
-          </Button>
+          <Form.Group className="text-end">
+            <Button variant="dark" type="submit" onClick={login} disabled={isSubmitDisable}>
+              ログイン
+            </Button>
+          </Form.Group>
         </Form>
       </Container>
     </Layout>
