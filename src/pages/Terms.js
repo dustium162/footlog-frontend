@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import {Container} from 'react-bootstrap';
 import Layout from "../components/Layout";
 import axios from "axios"
 
@@ -11,11 +12,14 @@ const Terms = () => {
   },[])
   return (
     <Layout>
-      {
-        term.split('\n').map((str, index) => (
-          <React.Fragment key={index}>{str}<br /></React.Fragment>
-        ))
-      }
+      <Container>
+        <h2 className="h3">利用規約</h2>
+        {
+          term.split('\n').map((str, index) => (
+            <React.Fragment key={index}>{str}<br /></React.Fragment>
+          ))
+        }
+        </Container>
     </Layout>
   )
 }
