@@ -136,7 +136,7 @@ const UserEdit = () => {
     <Layout>
       {/* {JSON.stringify(info.user)} */}
       <Container>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formName">
             <Form.Label>ユーザー名</Form.Label>
             <Form.Control value={name} onChange={(e) => setName(e.target.value)} />
@@ -156,25 +156,29 @@ const UserEdit = () => {
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3" controlId="formImage">
             <Form.Label>アイコン画像</Form.Label>
+            <Form.Control type="file" accept="image/*" onChange={processImage} />
             <Image src={image} rounded />
-            <Form.File accept="image/*" onChange={processImage} />
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3" controlId="formHeaderImage">
             <Form.Label>ヘッダー画像</Form.Label>
+            <Form.Control type="file" accept="image/*" onChange={processHeaderImage} />
             <Image src={header_image} rounded />
-            <Form.File accept="image/*" onChange={processHeaderImage} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBiography">
             <Form.Label>自己紹介</Form.Label>
             <Form.Control as="textarea" value={biography} onChange={(e) => setBiography(e.target.value)} style={{ height: '100px' }} />
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={updateUser} disabled={!name || !email || !biography}>
-            更新する
-          </Button>
+          <Form.Group className="text-end">
+            <Button variant="primary" type="submit" onClick={updateUser} disabled={!name || !email || !biography}>
+              更新する
+            </Button>
+          </Form.Group>
         </Form>
-        <Button variant="danger" onClick={deleteUser}>
-          ユーザーを削除する
-        </Button>
+        <Form.Group className="text-start my-3">
+          <Button variant="link" onClick={deleteUser}>
+            footlogを退会する方はこちら
+          </Button>
+        </Form.Group>
       </Container>
     </Layout>
   )
