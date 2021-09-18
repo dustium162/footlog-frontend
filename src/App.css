@@ -80,6 +80,13 @@
   /* background   : #c3c3c3; */
 }
 
+.carousel-control-prev-icon {
+    background-color: gray;
+}
+.carousel-control-next-icon {
+    background-color: gray;
+}
+
 /* ul{
   display:flex;
   flex-wrap:wrap;
