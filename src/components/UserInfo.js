@@ -28,14 +28,28 @@ const UserInfo = ({user}) => {
       <div className="text-center" style={{backgroundImage: `url(${HeaderIcon}`, height: "200px", maxWidth: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover"}}>
         <Image className="user-icon border border-white border-2" src={icon} style={{marginTop: "5.75rem"}} roundedCircle />
       </div>
-      <div className="mt-4 text-center">
-        <div class="h4">{name}</div>
-      </div>
-      <div className="text-end pe-4" style={{marginTop: "-2.5rem", marginBottom: "2.5rem"}}>
-        <Link to="/user/edit" className="btn btn-secondary rounded-circle py-2 px-2" width="40" height="40" style={{width: "42px"}}>
-          <FontAwesomeIcon className="fa-fw text-white" icon={faCog}></FontAwesomeIcon>
-        </Link>
-      </div>
+      <Container>
+        <div className="mt-4 text-center">
+          <div class="h4">{name}</div>
+        </div>
+        <div className="text-end" style={{marginTop: "-2.5rem", marginBottom: "2.5rem"}}>
+          <Link to="/user/edit" className="btn btn-secondary rounded-pill py-2 px-2">
+            <span style={{marginLeft:"2px", marginRight:"2px"}}>
+              <FontAwesomeIcon className="fa-fw text-white" icon={faCog}></FontAwesomeIcon>
+            </span>
+            <span className="d-none d-md-inline small">ユーザー情報を編集する</span>
+          </Link>
+        </div>
+        <div className="border rounded rounded-3 bg-light mb-5 px-3 py-1">
+          <div>
+            {
+              user.biography.split('\n').map((str, index) => (
+                <React.Fragment key={index}>{str}<br /></React.Fragment>
+              ))
+            }
+          </div>
+        </div>
+      </Container>
       {/* <Row className="nx-0 px-0">
         <Container className="icon_and_name">
           <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/${image}`} roundedCircle /></Row>
