@@ -1,3 +1,4 @@
+// rm -rf分
 import React,{useState,useEffect} from 'react';
 
 import InfiniteScroll from "react-infinite-scroller"
@@ -7,12 +8,14 @@ import axios from "axios"
 import {Row,Col,Spinner} from "react-bootstrap"
 import MatchInfo from "../components/MatchInfo"
 import PostGuideModal from "../components/PostGuideModal"
+
+import {TransitionMotion,spring} from "react-motion"
+
 const Posts = () => {
   const [matches,setMatches] = useState([])
-  // const [loading,setLoading] = useState(false)
   const [hasMore,setHasMore] = useState(true)
 
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false)
 
   const loadMore = async (page) => {
 
@@ -42,18 +45,43 @@ const Posts = () => {
     })
     // apiのJsonの形式を検討する必要あり（2021-07-19 浦郷）
     .then(response => response.data )
-    .then(data => { setMatches(data); console.log(matches) })
+    .then(data => setMatches(data))
     }
   ,[])
+
+  const willLeave = () => {
+    return {height: spring(0)}
+  }
+
+  const onClickPost = (match_id) => {
+    const arr = []
+    matches.map(match => {
+      if (match.match_id != match_id) {
+        arr.push(match)
+      }
+    })
+    setMatches(arr)
+  }
 
   return (
     <Layout>
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
-        <Row xs={1} md={2} className="g-4 mx-0">
-          {matches.map(match => (
-            <MatchInfo match={match} />
-          ))}
-        </Row>
+        <TransitionMotion
+          styles={
+            matches.map((match,id) => (
+                {key: match.match_id, data:{...match,id},style:{height: spring(700)}} //styleを指定する必要あり。
+              ))
+            }
+          willLeave={willLeave}
+        >
+          {interpolatingStyles => 
+            <>
+            {interpolatingStyles.map(interpolatingStyle => {
+              return <MatchInfo match={interpolatingStyle} onClickPost={onClickPost}/>
+            })}
+            </>
+          }
+        </TransitionMotion>
       </InfiniteScroll>
       <PostGuideModal
         show={modalShow}

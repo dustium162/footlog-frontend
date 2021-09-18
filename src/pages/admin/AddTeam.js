@@ -21,15 +21,18 @@ const AddStadium = () => {
         <Col>club_id</Col>
         <Col>team_id</Col>
         <Col>team_name</Col>
+        <Col>color_and_abbreviate</Col>
       </Row>
-      {Object.keys(teams).map(title_type_id => (
+      {Object.keys(teams).map(club_id => (
         <Row>
         <Col>
-          {Object.keys(teams[title_type_id]).map(title_id => (
+          {Object.keys(teams[club_id]).map(team_id => (
             <Row>
-              <Col>{title_type_id}</Col>
-              <Col>{teams[title_type_id][title_id][0]}</Col>
-              <Col>{teams[title_type_id][title_id][1]}</Col>
+              <Col>{club_id}</Col>
+              <Col>{teams[club_id][team_id][0]}</Col>
+              <Col>{teams[club_id][team_id][1]}</Col>
+              <Col style={{backgroundColor:`rgba(${teams[club_id][team_id][3][0]},${teams[club_id][team_id][3][1]},${teams[club_id][team_id][3][2]},0.33)`,color:`rgba(${teams[club_id][team_id][3][0]},${teams[club_id][team_id][3][1]},${teams[club_id][team_id][3][2]},1)`}}>{teams[club_id][team_id][2]}</Col>
+              <Col style={{backgroundColor:`rgba(${teams[club_id][team_id][3][0]},${teams[club_id][team_id][3][1]},${teams[club_id][team_id][3][2]},1`}}>{teams[club_id][team_id][2]}</Col>
             </Row>
           ))}
         </Col>
