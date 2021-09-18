@@ -86,14 +86,20 @@ const Header = () => {
                 </LinkContainer>
                 <LinkContainer to="/posts" className="me-3">
                   <Nav.Link>
-                    <div className="btn btn-secondary rounded-circle py-2 px-2" width="40" height="40" style={{width: "42px"}}>
-                      <FontAwesomeIcon className="fa-fw text-white" icon={faEdit}></FontAwesomeIcon>
+                    <div className="btn btn-secondary rounded-pill  py-2 px-2">
+                      <span style={{marginLeft:"2px", marginRight:"2px"}}>
+                        <FontAwesomeIcon className="fa-fw text-white" icon={faEdit}></FontAwesomeIcon>
+                      </span>
+                      <span className="d-none d-md-inline small">観戦記録をつくる</span>
                     </div>
                   </Nav.Link>
                 </LinkContainer>
                 <a href="javascript:void(0)" onClick={handleSignOut} className="nav-link">
-                  <div  className="btn btn-secondary rounded-circle py-2 px-2" width="40" height="40" style={{width: "42px"}}>
-                    <FontAwesomeIcon className="fa-fw text-white" icon={faSignOutAlt}></FontAwesomeIcon>
+                  <div  className="btn btn-secondary rounded-pill py-2 px-2">
+                    <span style={{marginLeft:"2px", marginRight:"2px"}}>
+                      <FontAwesomeIcon className="fa-fw text-white" icon={faSignOutAlt}></FontAwesomeIcon>
+                    </span>
+                    <span className="d-none d-md-inline small">ログアウト</span>
                   </div>
                 </a>
               </>
