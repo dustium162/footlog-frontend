@@ -6,11 +6,14 @@ import axios from "axios"
 import {Row,Col} from "react-bootstrap"
 
 const AddStadium = () => {
+  const getRgba = (colorCode, transparency) => {
+    const aryColorCode = colorCode.replace('#', '').match(/.{2}/g);
+    return `rgba(${parseInt(aryColorCode[0], 16)}, ${parseInt(aryColorCode[1], 16)}, ${parseInt(aryColorCode[2], 16)}, ${transparency})`;
+  }
   const [teams,setTeams] = useState({})
   useEffect(() => {
     axios.get("http://localhost:3000/v1/teams/")
       .then( response => {
-        console.log(response.data.data)
         setTeams(response.data.data)
       })
       .catch(error => console.log(error))
@@ -31,8 +34,8 @@ const AddStadium = () => {
               <Col>{club_id}</Col>
               <Col>{teams[club_id][team_id][0]}</Col>
               <Col>{teams[club_id][team_id][1]}</Col>
-              <Col style={{backgroundColor:`rgba(${teams[club_id][team_id][3][0]},${teams[club_id][team_id][3][1]},${teams[club_id][team_id][3][2]},0.33)`,color:`rgba(${teams[club_id][team_id][3][0]},${teams[club_id][team_id][3][1]},${teams[club_id][team_id][3][2]},1)`}}>{teams[club_id][team_id][2]}</Col>
-              <Col style={{backgroundColor:`rgba(${teams[club_id][team_id][3][0]},${teams[club_id][team_id][3][1]},${teams[club_id][team_id][3][2]},1`}}>{teams[club_id][team_id][2]}</Col>
+              <Col style={{backgroundColor:`${getRgba(teams[club_id][team_id][3], 0.33)}`,color:`${getRgba(teams[club_id][team_id][3], 1)}`}}>{teams[club_id][team_id][2]}</Col>
+              <Col style={{backgroundColor:`${getRgba(teams[club_id][team_id][3], 1)}`}}>{teams[club_id][team_id][2]}</Col>
             </Row>
           ))}
         </Col>

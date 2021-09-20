@@ -5,7 +5,7 @@ import { useHistory, Link} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import Logo from "../logo-copy.png";
 // import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEdit, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus, faSignInAlt, faEdit, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "../icon-sample.jpeg";
 
@@ -60,20 +60,30 @@ const Header = () => {
           <Nav className="mr-auto">
             { localStorage.getItem('access-token') == null ? (
               <>
-                <LinkContainer to="/sign_up" className="me-2">
-                  <Nav.Link className="btn btn-dark rounded-pill text-white px-2 py-1">
-                    <span className="small">新規登録</span>
+                <LinkContainer to="/sign_up" className="ms-3">
+                  <Nav.Link>
+                    <div className="btn btn-dark rounded-pill py-2 px-2">
+                      <span style={{marginLeft:"2px", marginRight:"2px"}}>
+                        <FontAwesomeIcon className="fa-fw text-white" icon={faUserPlus}></FontAwesomeIcon>
+                      </span>
+                      <span className="d-none d-md-inline small">新規登録</span>
+                    </div>
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/sign_in" className="ms-2">
-                  <Nav.Link className="btn btn-secondary rounded-pill text-white px-2 py-1">
-                    <span className="small">ログイン</span>
+                <LinkContainer to="/sign_in" className="ms-3">
+                  <Nav.Link>
+                    <div className="btn btn-secondary rounded-pill py-2 px-2">
+                      <span style={{marginLeft:"2px", marginRight:"2px"}}>
+                        <FontAwesomeIcon className="fa-fw text-white" icon={faSignInAlt}></FontAwesomeIcon>
+                      </span>
+                      <span className="d-none d-md-inline small">ログイン</span>
+                    </div>
                   </Nav.Link>
                 </LinkContainer>
               </>
             ) : (
               <>
-                <LinkContainer to="/my_page" className="me-3">
+                <LinkContainer to="/my_page" className="ms-3">
                   <Nav.Link>
                     <img
                       src={icon}
@@ -84,9 +94,9 @@ const Header = () => {
                     />
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/posts" className="me-3">
+                <LinkContainer to="/posts" className="ms-3">
                   <Nav.Link>
-                    <div className="btn btn-secondary rounded-pill  py-2 px-2">
+                    <div className="btn btn-secondary rounded-pill py-2 px-2">
                       <span style={{marginLeft:"2px", marginRight:"2px"}}>
                         <FontAwesomeIcon className="fa-fw text-white" icon={faEdit}></FontAwesomeIcon>
                       </span>
@@ -94,7 +104,7 @@ const Header = () => {
                     </div>
                   </Nav.Link>
                 </LinkContainer>
-                <a href="javascript:void(0)" onClick={handleSignOut} className="nav-link">
+                <a href="javascript:void(0)" onClick={handleSignOut} className="nav-link ms-3">
                   <div  className="btn btn-secondary rounded-pill py-2 px-2">
                     <span style={{marginLeft:"2px", marginRight:"2px"}}>
                       <FontAwesomeIcon className="fa-fw text-white" icon={faSignOutAlt}></FontAwesomeIcon>

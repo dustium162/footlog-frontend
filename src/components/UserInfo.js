@@ -3,7 +3,7 @@ import React,{useState,useEffect} from "react";
 
 import {Container,Image,Row,Col,Button} from "react-bootstrap";
 
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -35,7 +35,7 @@ const UserInfo = ({user}) => {
         <div className="text-end" style={{marginTop: "-2.5rem", marginBottom: "2.5rem"}}>
           <Link to="/user/edit" className="btn btn-secondary rounded-pill py-2 px-2">
             <span style={{marginLeft:"2px", marginRight:"2px"}}>
-              <FontAwesomeIcon className="fa-fw text-white" icon={faCog}></FontAwesomeIcon>
+              <FontAwesomeIcon className="fa-fw text-white" icon={faUserCog}></FontAwesomeIcon>
             </span>
             <span className="d-none d-md-inline small">ユーザー情報を編集する</span>
           </Link>
