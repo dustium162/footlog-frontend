@@ -1,4 +1,3 @@
-import { faBorderNone } from "@fortawesome/free-solid-svg-icons";
 import React, {useState} from "react"
 
 import {Image,Row,Col,Card,Button,Modal} from "react-bootstrap"

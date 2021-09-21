@@ -192,7 +192,7 @@ function ClubMatchResults() {
         indicators={false}
       >
         {club_match_results.map(club_match_result => (
-          <Carousel.Item>
+          <Carousel.Item key={club_match_result.club_id}>
             <Opponent club_match_result={club_match_result} />
           </Carousel.Item>)
         )

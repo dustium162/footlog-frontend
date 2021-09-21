@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import axios from "axios"
 import { useEffect, useState } from "react";
-import {Row,Col,Button,FormControl,InputGroup, Form, Container, Image} from "react-bootstrap";
+import {Button, Form, Container, Image} from "react-bootstrap";
 import Resizer from "react-image-file-resizer";
 
 const resizeFile = (file, height, width) =>
@@ -86,14 +86,14 @@ const UserEdit = () => {
         },
       }
     ).then(res => {
-      if(res.status == 200){
+      if(res.status === 200){
         localStorage.setItem('uid', res.headers.uid);
         localStorage.setItem('access-token', res.headers['access-token']);
         localStorage.setItem('client', res.headers.client);
         localStorage.setItem('currentUser', JSON.stringify(res.data.data));
         history.push('/my_page');
         console.log('200');
-      } else if(res.status == 500){
+      } else if(res.status === 500){
         console.log('500');
       }
     }).catch(error => console.log(error))

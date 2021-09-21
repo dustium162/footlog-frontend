@@ -1,4 +1,3 @@
-import {Row,Col} from "react-bootstrap"
 const WatchHeatMap = () => {
   return (
       <div className="box">

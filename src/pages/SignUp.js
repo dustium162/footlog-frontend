@@ -84,17 +84,17 @@ const SignUp = () => {
       // password_confirmation: password_confirmation,
       club_id: clubId
     }).then(res => {
-      if(res.status == 200){
+      if(res.status === 200){
         history.push('/top');
         console.log('200');
-      } else if(res.status == 500){
+      } else if(res.status === 500){
         console.log('500');
       }
     })
     .catch(error => {
       console.log(error);
       // メールアドレスが既に登録されている場合に返される422なのか要確認（2021ｰ09-12 浦郷）
-      if(error.response.status == 422) {
+      if(error.response.status === 422) {
         setErrorMessage('入力されたメールアドレスは既に登録されている可能性があります。メールアドスを変更して、再度、登録してください。');
       } else {
         setErrorMessage('サーバーエラーが発生しました。')

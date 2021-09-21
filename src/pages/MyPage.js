@@ -4,12 +4,12 @@ import Layout from "../components/Layout";
 import axios from "axios"
 
 import UserInfo from '../components/UserInfo'
-import SupportInfo from "../components/SupportInfo"
+// import SupportInfo from "../components/SupportInfo"
 import ClubMatchResults from '../components/ClubMatchResults'
-import UserTabs from '../components/UserTabs'
+// import UserTabs from '../components/UserTabs'
 import MatchResults from '../components/MatchResults'
 
-import {Container, Row,Col} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 
 const MyPage = () => {
   // const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ const MyPage = () => {
       <p>観戦数</p>
       <MatchResults />
       </Container>
-      {/* <Row><ClubMatchResults/></Row> */}
+      <ClubMatchResults/>
       {/* {info.posts_info ? <Row><UserTabs posts_info={info.posts_info}/></Row>: <Row>Loading...</Row>} */}
     </Layout>
   )

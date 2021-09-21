@@ -1,8 +1,8 @@
 import Layout from "../components/Layout";
 import { useHistory } from 'react-router-dom';
 import axios from "axios"
-import { useEffect, useState } from "react";
-import {Row,Col,Button,FormControl,InputGroup, Form, Container, Image} from "react-bootstrap";
+import { useState } from "react";
+import {Button,Form, Container} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
 
@@ -41,10 +41,10 @@ const PasswordEdit = () => {
         },
       }
     ).then(res => {
-      if(res.status == 200){
+      if(res.status === 200){
         history.push('/my_page');
         console.log('200');
-      } else if(res.status == 500){
+      } else if(res.status === 500){
         console.log('500');
       }
     }).catch(error => console.log(error))

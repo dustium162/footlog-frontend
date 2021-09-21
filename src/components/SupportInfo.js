@@ -17,7 +17,7 @@ const SupportInfo = ({support_info}) => {
           <Row><h6>{`最近の観戦:${support_info.latest_match}`}</h6></Row>
         </Col>
       </Row>
-      {/* <WatchHeatMap /> */}
+      <WatchHeatMap />
     </Container>
   );
 }

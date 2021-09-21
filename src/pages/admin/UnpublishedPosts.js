@@ -18,38 +18,6 @@ const UnpublishedPosts = () => {
       .catch(error => console.log(error))
   },[])
 
-  const array = [
-    {
-      match_id: 1,
-      title: "リーグ戦",
-      date_time: "2020-09-22",
-      home_team: "浦和レッズ",
-      away_team: "鹿島アントラーズ",
-      home_score: 2,
-      away_score: 1,
-      stadium: "浦和駒場スタジアム"
-    },
-    {
-      match_id: 1,
-      title: "カップ戦",
-      date_time: "2020-09-22",
-      home_team: "浦和レッズ",
-      away_team: "アルビレックス新潟",
-      home_score: 2,
-      away_score: 1,
-      stadium: "空き地"
-    },
-    {
-      match_id: 1,
-      title: "しょぼいリーグ",
-      date_time: "2020-09-22",
-      home_team: "浦和レッズ",
-      away_team: "富良野ユナイテッド",
-      home_score: 2,
-      away_score: 1,
-      stadium: "南極スタジアム"
-    },
-  ]
   return (
     <Layout>
 

@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroller"
 
 import Layout from "../components/Layout";
 import axios from "axios"
-import {Row,Col,Spinner} from "react-bootstrap"
+import {Spinner} from "react-bootstrap"
 import MatchInfo from "../components/MatchInfo"
 import PostGuideModal from "../components/PostGuideModal"
 
@@ -56,7 +56,7 @@ const Posts = () => {
   const onClickPost = (match_id) => {
     const arr = []
     matches.map(match => {
-      if (match.match_id != match_id) {
+      if (match.match_id !== match_id) {
         arr.push(match)
       }
     })

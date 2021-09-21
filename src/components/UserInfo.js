@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React,{useState,useEffect} from "react";
 
-import {Container,Image,Row,Col,Button} from "react-bootstrap";
+import {Container,Image} from "react-bootstrap";
 
 import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +21,7 @@ const UserInfo = ({user}) => {
     setName(user.name)
     setHeaderImage(user.header_image)
     setBiography(user.biography)
-  })
+  },[])
   return (
 
     <>
@@ -52,28 +52,6 @@ const UserInfo = ({user}) => {
         </div>
         }
       </Container>
-      {/* <Row className="nx-0 px-0">
-        <Container className="icon_and_name">
-          <Row><Image className="my_icon" src={`${process.env.PUBLIC_URL}/${image}`} roundedCircle /></Row>
-          <Row><h5>{name}</h5></Row>
-        </Container>
-        <Row><Image className="my_header" src={`${process.env.PUBLIC_URL}/${header_image}`} fluid/></Row>
-        <Row>
-          <Col></Col>
-          <Col></Col>
-          <Col><Link to="/user/edit" className="btn btn-right btn btn-outline-secondary">プロフィール編集</Link></Col>
-        </Row>
-      </Row>
-      <Row>
-        <Col></Col>
-        <Col>
-          {
-            biography.split('\n').map((str, index) => (
-              <React.Fragment key={index}>{str}<br /></React.Fragment>
-            ))
-          }
-        </Col>
-      </Row> */}
     </>
   );
 }

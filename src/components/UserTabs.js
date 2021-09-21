@@ -16,12 +16,12 @@ const UserTabs = ({posts_info}) => {
           <Tab eventKey="posts" title="観戦記録">
             <UserPosts posts_info={posts_info}/>
           </Tab>
-          {/* <Tab eventKey="follow" title="フォロー">
+          <Tab eventKey="follow" title="フォロー">
             <Follows />
           </Tab>
           <Tab eventKey="followers" title="フォロワー">
             <Followers />
-          </Tab> */}
+          </Tab>
           <Tab eventKey="accomplishments" title="実績">
             <Accomplishments />
           </Tab>

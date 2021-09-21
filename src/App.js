@@ -8,8 +8,6 @@ import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-
 import Top from "./pages/Top";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -22,7 +20,6 @@ import Contact from "./pages/Contact";
 // 管理者用 書く場所が正しいかは不明なので要相談(20210626浅)
 import AdminMain from "./pages/admin/AdminMain"
 import MatchNew from "./pages/admin/MatchNew"
-import MatchEdit from "./pages/admin/UnpublishedPosts"
 import AddTeam from "./pages/admin/AddTeam"
 import AddTitle from "./pages/admin/AddTitle"
 import AddStadium from "./pages/admin/AddStadium"
