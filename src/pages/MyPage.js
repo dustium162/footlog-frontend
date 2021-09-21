@@ -7,8 +7,9 @@ import UserInfo from '../components/UserInfo'
 import SupportInfo from "../components/SupportInfo"
 import ClubMatchResults from '../components/ClubMatchResults'
 import UserTabs from '../components/UserTabs'
+import MatchResults from '../components/MatchResults'
 
-import {Row} from 'react-bootstrap'
+import {Container, Row,Col} from 'react-bootstrap'
 
 const MyPage = () => {
   // const [loading, setLoading] = useState(true);
@@ -34,7 +35,11 @@ const MyPage = () => {
     <Layout>
       {info.user ? <UserInfo user={info.user} /> : <>Loading...</>}
       {/* {info.support_info ? <Row><SupportInfo support_info={info.support_info}/></Row> : <Row>Loading...</Row>} */}
-      <Row><ClubMatchResults/></Row>
+      <Container>
+      <p>観戦数</p>
+      <MatchResults />
+      </Container>
+      {/* <Row><ClubMatchResults/></Row> */}
       {/* {info.posts_info ? <Row><UserTabs posts_info={info.posts_info}/></Row>: <Row>Loading...</Row>} */}
     </Layout>
   )

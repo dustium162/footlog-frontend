@@ -40,15 +40,17 @@ const UserInfo = ({user}) => {
             <span className="d-none d-md-inline small">ユーザー情報を編集する</span>
           </Link>
         </div>
+        { user.biography && 
         <div className="border rounded rounded-3 bg-light mb-5 px-3 py-1">
           <div>
-            {
+            { 
               user.biography.split('\n').map((str, index) => (
                 <React.Fragment key={index}>{str}<br /></React.Fragment>
-              ))
+                ))
             }
           </div>
         </div>
+        }
       </Container>
       {/* <Row className="nx-0 px-0">
         <Container className="icon_and_name">
