@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HeaderIcon from '../header-icon-sample.jpg';
 import icon from "../icon-sample.jpeg";
 
+// import TeamLabel from "./TeamLabel"
+
 const UserInfo = ({user}) => {
   const [image,setImage] = useState("")
   const [name,setName] = useState("")
