@@ -33,14 +33,14 @@ const MyPage = () => {
 
   return (
     <Layout>
-      {info.user ? <UserInfo user={info.user} /> : <>Loading...</>}
-      {/* {info.support_info ? <Row><SupportInfo support_info={info.support_info}/></Row> : <Row>Loading...</Row>} */}
+      {info.user && info.team && info.support_info ? <UserInfo user={info.user} team={info.team} support_info={info.support_info}/> : <>Loading...</>}
       <Container>
-      <p>観戦数</p>
-      <MatchResults />
+        {/* ユーザーのメイン情報と、ユーザーの詳細情報(いずれも仮称)の2つのコンポーネントに分ける。以下はすべて詳細情報に含める。 (20210923浅見)*/}
+        <p>観戦数</p>
+        <MatchResults />
+        <ClubMatchResults/>
+        {/* {info.posts_info ? <Row><UserTabs posts_info={info.posts_info}/></Row>: <Row>Loading...</Row>} */}
       </Container>
-      <ClubMatchResults/>
-      {/* {info.posts_info ? <Row><UserTabs posts_info={info.posts_info}/></Row>: <Row>Loading...</Row>} */}
     </Layout>
   )
 }

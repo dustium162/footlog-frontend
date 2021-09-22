@@ -10,9 +10,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HeaderIcon from '../header-icon-sample.jpg';
 import icon from "../icon-sample.jpeg";
 
-// import TeamLabel from "./TeamLabel"
+import TeamLabel from "./TeamLabel"
 
-const UserInfo = ({user}) => {
+const UserInfo = ({user,team,support_info}) => {
   const [image,setImage] = useState("")
   const [name,setName] = useState("")
   const [header_image,setHeaderImage] = useState("")
@@ -25,7 +25,6 @@ const UserInfo = ({user}) => {
     setBiography(user.biography)
   },[])
   return (
-
     <>
       <div className="text-center" style={{backgroundImage: `url(${HeaderIcon}`, height: "200px", maxWidth: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover"}}>
         <Image className="user-icon border border-white border-2" src={icon} style={{marginTop: "5.75rem"}} roundedCircle />
@@ -52,6 +51,13 @@ const UserInfo = ({user}) => {
             }
           </div>
         </div>
+        }
+        <TeamLabel team={team} />
+        {support_info.first_match &&
+          <>
+            <h6>{`初観戦:${support_info.first_match}`}</h6>
+            <h6>{`最近の観戦:${support_info.latest_match}`}</h6>
+          </>
         }
       </Container>
     </>
