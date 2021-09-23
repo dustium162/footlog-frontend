@@ -14,7 +14,7 @@ const MatchInfo = ({match,onClickPost}) => {
     "Neutral" : "info"
   }
   return (
-    <div key={String(match.key)} style={{height: `${match.style.height}%`,display: 'inline-block',verticalAlign: 'top'}}>
+    <div key={String(match.key)} style={{height: `${match.style.height}px`}}>
       <Card>
         <Card.Header className={`bg-${colors[match.data.home_or_away_or_neutral]}`}>
           <Row>
