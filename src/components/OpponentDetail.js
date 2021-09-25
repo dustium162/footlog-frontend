@@ -3,79 +3,58 @@ import { Card, Row, Col } from "react-bootstrap"
 
 const OpponentDetail = ({ club_match_result }) => {
   return (
-    <Card>
-      <Card.Header>
-        {club_match_result.opponent_name}
-      </Card.Header>
-      <Card.Body>
-        <Row>
-          <Col>
-            <h6>ホーム&アウェイ</h6>
-            <Card.Text>
-              勝利数:{club_match_result.win}
-            </Card.Text>
-            <Card.Text>
-              敗戦数:{club_match_result.lose}
-            </Card.Text>
-            <Card.Text>
-              引き分け数:{club_match_result.draw}
-            </Card.Text>
-            <Card.Text>
-              総試合数:{club_match_result.total_match_num}
-            </Card.Text>
-            <Card.Text>
-              勝率:{club_match_result.winning_rate}
-            </Card.Text>
-          </Col>
-          <Col>
-            <h6>ホーム</h6>
-            <Card.Text>
-              勝利数:{club_match_result.detail.home_result.win}
-            </Card.Text>
-            <Card.Text>
-              敗戦数:{club_match_result.detail.home_result.lose}
-            </Card.Text>
-            <Card.Text>
-              引き分け数:{club_match_result.detail.home_result.draw}
-            </Card.Text>
-            <Card.Text>
-              総試合数:{club_match_result.detail.home_result.total_match_num}
-            </Card.Text>
-            <Card.Text>
-              勝率:{club_match_result.detail.home_result.winning_rate}
-            </Card.Text>
-            <Card.Text>
-              不敗率:{club_match_result.detail.home_result.invincibility_rate}
-            </Card.Text>
-          </Col>
-          <Col>
-            <h6>アウェイ</h6>
-            {club_match_result.detail.away_result &&
-              <div>
-                <Card.Text>
-                  勝利数:{club_match_result.detail.away_result.win}
-                </Card.Text>
-                <Card.Text>
-                  敗戦数:{club_match_result.detail.away_result.lose}
-                </Card.Text>
-                <Card.Text>
-                  引き分け数:{club_match_result.detail.away_result.draw}
-                </Card.Text>
-                <Card.Text>
-                  総試合数:{club_match_result.detail.away_result.total_match_num}
-                </Card.Text>
-                <Card.Text>
-                  勝率:{club_match_result.detail.away_result.winning_rate}
-                </Card.Text>
-                <Card.Text>
-                  不敗率:{club_match_result.detail.away_result.invincibility_rate}
-                </Card.Text>
-              </div>
-            }
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
+    <>
+      <Row className="align-items-end ms-1">
+        <Col xs={12} className="text-start" style={{marginBottom: "-2rem"}}>
+          <span style={{fontSize: "1.3rem"}}>ホーム＆アウェイ</span>
+        </Col>
+        <Col xs={7} className="text-end">
+          <div>
+            <span style={{fontSize: "5rem",Color: "tomato"}} >{club_match_result.win + club_match_result.lose + club_match_result.draw}</span><span>戦</span>
+          </div>
+          <div style={{marginTop: "-1rem"}}>勝率：<span style={{fontSize: "2rem"}}>{Math.round(parseFloat(club_match_result.win)/(club_match_result.win + club_match_result.lose + club_match_result.draw)*100000)/1000}</span><span style={{fontSize: "0.75rem"}}>%</span></div>
+        </Col>
+        <Col xs={4} className="text-start" style={{marginLeft: "1.25rem"}}>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.win}</span>勝</div>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.lose}</span>敗</div>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.draw}</span>分</div>
+        </Col>
+      </Row>
+      <hr />
+      <Row className="align-items-end ms-1">
+        <Col xs={12} className="text-start" style={{marginBottom: "-2rem"}}>
+          <span style={{fontSize: "1.3rem"}}>ホーム</span>
+        </Col>
+        <Col xs={7} className="text-end">
+          <div>
+            <span style={{fontSize: "5rem",Color: "tomato"}} >{club_match_result.detail.home_result.win + club_match_result.detail.home_result.lose + club_match_result.detail.home_result.draw}</span><span>戦</span>
+          </div>
+          <div style={{marginTop: "-1rem"}}>勝率：<span style={{fontSize: "2rem"}}>{Math.round(parseFloat(club_match_result.detail.home_result.win)/(club_match_result.detail.home_result.win + club_match_result.detail.home_result.lose + club_match_result.detail.home_result.draw)*100000)/1000}</span><span style={{fontSize: "0.75rem"}}>%</span></div>
+        </Col>
+        <Col xs={4} className="text-start" style={{marginLeft: "1.25rem"}}>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.detail.home_result.win}</span>勝</div>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.detail.home_result.lose}</span>敗</div>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.detail.home_result.draw}</span>分</div>
+        </Col>
+      </Row>
+      <hr />
+      <Row className="align-items-end ms-1">
+        <Col xs={12} className="text-start" style={{marginBottom: "-2rem"}}>
+          <span style={{fontSize: "1.3rem"}}>アウェイ</span>
+        </Col>
+        <Col xs={7} className="text-end">
+          <div>
+            <span style={{fontSize: "5rem",Color: "tomato"}} >{club_match_result.detail.away_result.win + club_match_result.detail.away_result.lose + club_match_result.detail.away_result.draw}</span><span>戦</span>
+          </div>
+          <div style={{marginTop: "-1rem"}}>勝率：<span style={{fontSize: "2rem"}}>{Math.round(parseFloat(club_match_result.detail.away_result.win)/(club_match_result.detail.away_result.win + club_match_result.detail.away_result.lose + club_match_result.detail.away_result.draw)*100000)/1000}</span><span style={{fontSize: "0.75rem"}}>%</span></div>
+        </Col>
+        <Col xs={4} className="text-start" style={{marginLeft: "1.25rem"}}>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.detail.away_result.win}</span>勝</div>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.detail.away_result.lose}</span>敗</div>
+          <div className="pt-2"><span style={{fontSize: "2rem"}}>{club_match_result.detail.away_result.draw}</span>分</div>
+        </Col>
+      </Row>
+    </>
   )
 }
 

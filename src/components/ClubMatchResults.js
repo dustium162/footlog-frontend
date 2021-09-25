@@ -183,11 +183,12 @@ function ClubMatchResults() {
   }
 
   return (
-    <Container>
+    <>
+      <h3 className="h5">クラブ別対戦成績</h3>
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
-        slide={false}
+        slide={true}
         interval={null}
         indicators={false}
       >
@@ -195,10 +196,9 @@ function ClubMatchResults() {
           <Carousel.Item key={club_match_result.club_id}>
             <Opponent club_match_result={club_match_result} />
           </Carousel.Item>)
-        )
-        }
+        )}
       </Carousel>
-    </Container>
+    </>
   );
 }
 

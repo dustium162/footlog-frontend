@@ -6,7 +6,7 @@ import axios from "axios"
 import UserInfo from '../components/UserInfo'
 // import SupportInfo from "../components/SupportInfo"
 import ClubMatchResults from '../components/ClubMatchResults'
-// import UserTabs from '../components/UserTabs'
+import UserPostTabs from '../components/UserPostTabs'
 import MatchResults from '../components/MatchResults'
 
 import {Container} from 'react-bootstrap'
@@ -35,11 +35,16 @@ const MyPage = () => {
     <Layout>
       {info.user && info.team && info.support_info ? <UserInfo user={info.user} team={info.team} support_info={info.support_info}/> : <>Loading...</>}
       <Container>
-        {/* ユーザーのメイン情報と、ユーザーの詳細情報(いずれも仮称)の2つのコンポーネントに分ける。以下はすべて詳細情報に含める。 (20210923浅見)*/}
-        <p>観戦数</p>
-        <MatchResults />
-        <ClubMatchResults/>
-        {/* {info.posts_info ? <Row><UserTabs posts_info={info.posts_info}/></Row>: <Row>Loading...</Row>} */}
+        <div className="my-4">
+          <MatchResults />
+        </div>
+        <div className="mx-5">
+          <hr />
+        </div>
+        <div className="my-4">
+          <ClubMatchResults/>
+        </div>
+        {info.posts_info && <UserPostTabs posts_info={info.posts_info}/>}
       </Container>
     </Layout>
   )

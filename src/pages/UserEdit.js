@@ -46,11 +46,11 @@ const UserEdit = () => {
       formData.append(key, fields[key])
     }
     formData.append('file', imageFile);
-    console.log(s3DirectPost.url);
-    const ret = await axios.put(s3DirectPost.url,
-      {
-        formData
-      },
+    console.log(s3DirectPost);
+    console.log(...formData.entries());
+    const ret = await axios.put(
+      s3DirectPost.url,
+      formData,
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
