@@ -34,20 +34,25 @@ const MyPage = () => {
   return (
     <Layout>
       {info.user && info.team && info.support_info ? <UserInfo user={info.user} team={info.team} support_info={info.support_info}/> : <>Loading...</>}
-      {info.stats && 
-      <Container>
-        <div className="my-4">
-          <MatchResults matchResults={info.stats.match_results} />
-        </div>
-        <div className="mx-5">
-          <hr />
-        </div>
-        <div className="my-4">
-          <ClubMatchResults clubMatchResults={info.stats.club_match_results}/>
-        </div>
-        {info.posts_info && <UserPostTabs posts_info={info.posts_info}/>}
-      </Container>
-      }
+        <Container>
+          {info.stats &&
+            <>
+            <div className="my-4">
+              <MatchResults matchResults={info.stats.match_results} />
+            </div>
+            <div className="mx-5">
+              <hr />
+            </div>
+            <div className="my-4">
+              <ClubMatchResults clubMatchResults={info.stats.club_match_results}/>
+            </div>
+            <UserPostTabs />
+            </>
+          }
+          {/* {info.posts &&
+            <UserPostTabs posts={info.posts}/>
+          } */}
+        </Container>
     </Layout>
   )
 }
