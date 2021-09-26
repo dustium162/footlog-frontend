@@ -37,14 +37,13 @@ const MyPage = () => {
       {info.stats && 
       <Container>
         <div className="my-4">
-          {/* {JSON.stringify(info.stats)} */}
           <MatchResults matchResults={info.stats.match_results} />
         </div>
         <div className="mx-5">
           <hr />
         </div>
         <div className="my-4">
-          {/* <ClubMatchResults/> */}
+          <ClubMatchResults clubMatchResults={info.stats.club_match_results}/>
         </div>
         {info.posts_info && <UserPostTabs posts_info={info.posts_info}/>}
       </Container>

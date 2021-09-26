@@ -175,7 +175,7 @@ const club_match_results = [
   },
 ]
 
-function ClubMatchResults() {
+function ClubMatchResults({clubMatchResults}) {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -192,9 +192,10 @@ function ClubMatchResults() {
         interval={null}
         indicators={false}
       >
-        {club_match_results.map(club_match_result => (
-          <Carousel.Item key={club_match_result.club_id}>
-            <Opponent club_match_result={club_match_result} />
+        {/* {clubMatchResults.map(club_match_result => ( */}
+        {clubMatchResults.map(clubMatchResult => (
+          <Carousel.Item key={clubMatchResult.team.club_id}>
+            <Opponent clubMatchResult={clubMatchResult} />
           </Carousel.Item>)
         )}
       </Carousel>
