@@ -23,7 +23,12 @@ const Opponent = ({ clubMatchResult }) => {
               <div>
                 <span style={{fontSize: "5rem",Color: "tomato"}} >{clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw}</span><span>戦</span>
               </div>
-              <div style={{marginTop: "-1rem"}}>勝率：<span style={{fontSize: "2rem"}}>{Math.round(parseFloat(clubMatchResult.total.win)/(clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw)*100000)/1000}</span><span style={{fontSize: "0.75rem"}}>%</span></div>
+              <div style={{marginTop: "-1rem"}}>勝率：
+                <span style={{fontSize: "2rem"}}>
+                  {clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw === 0 ? Math.round(parseFloat(clubMatchResult.total.win)/(clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw)*100000)/1000 : 0}
+                </span>
+                <span style={{fontSize: "0.75rem"}}>%</span>
+                </div>
             </Col>
             <Col xs={4} className="text-start" style={{marginLeft: "1.25rem"}}>
               <div className="pt-2"><span style={{fontSize: "2rem"}}>{clubMatchResult.total.win}</span>勝</div>
@@ -35,8 +40,8 @@ const Opponent = ({ clubMatchResult }) => {
       </Card>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="bg-light">
-          <Emblem className="me-1" height="25" width="25" fill="#E6002C" style={{verticalAlign: "middle"}} />
-          <span style={{verticalAlign: "middle"}}>{clubMatchResult.opponent_name}</span>
+          <Emblem className="me-1" height="25" width="25" fill={`${clubMatchResult.team.color_code}`} style={{verticalAlign: "middle"}} />
+          <span style={{verticalAlign: "middle"}}>{clubMatchResult.team.name}</span>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleClose}></button>
         </Modal.Header>
         <Modal.Body>

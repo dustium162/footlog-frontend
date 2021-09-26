@@ -1,4 +1,3 @@
-// rm -rf分
 import React,{useState,useEffect} from 'react';
 
 import InfiniteScroll from "react-infinite-scroller"
@@ -36,7 +35,7 @@ const Posts = () => {
 
   const loader =  <Spinner animation="border" variant="danger" />
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}matches`, {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`, {
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),

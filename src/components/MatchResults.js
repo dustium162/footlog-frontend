@@ -1,30 +1,6 @@
 import React, { useState } from "react";
 import { Carousel, Row, Col} from "react-bootstrap"
 
-const match_results = [
-  {
-    "id"  : 1,
-    "type" : "",
-    "win" : 4,
-    "lose" : 4,
-    "draw" : 4,
-  },
-  {
-    "id"  : 2,
-    "type" : "ホーム",
-    "win" : 88,
-    "lose" : 60,
-    "draw" : 32,
-  },
-  {
-    "id"  : 3,
-    "type" : "アウェイ",
-    "win" : 20,
-    "lose" : 17,
-    "draw" : 12,
-  }
-]
-
 const MatchResults = ({matchResults}) => {
   const [index, setIndex] = useState(0);
 
@@ -43,7 +19,7 @@ const MatchResults = ({matchResults}) => {
         indicators={false}
         >
         {matchResults.map((matchResult,id) => (
-          <Carousel.Item key={matchResult.id}>
+          <Carousel.Item key={id}>
             <Row className="align-items-end ms-1">
               <Col xs={12} className="text-center" style={{paddingRight: "9rem",marginBottom: "-2rem"}}>
                 <span style={{fontSize: "1.3rem"}}>{matchResult.type}通算</span>
@@ -60,7 +36,8 @@ const MatchResults = ({matchResults}) => {
                 <div className="pt-2"><span style={{fontSize: "2rem"}}>{matchResult.draw}</span>分</div>
               </Col>
             </Row>
-          </Carousel.Item>)
+          </Carousel.Item>
+          )
         )
       }
       </Carousel>
