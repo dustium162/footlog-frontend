@@ -25,7 +25,7 @@ const Opponent = ({ clubMatchResult }) => {
               </div>
               <div style={{marginTop: "-1rem"}}>勝率：
                 <span style={{fontSize: "2rem"}}>
-                  {clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw === 0 ? Math.round(parseFloat(clubMatchResult.total.win)/(clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw)*100000)/1000 : 0}
+                  {Math.round(parseFloat(clubMatchResult.total.win)/(clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw)*100000)/1000}
                 </span>
                 <span style={{fontSize: "0.75rem"}}>%</span>
                 </div>
