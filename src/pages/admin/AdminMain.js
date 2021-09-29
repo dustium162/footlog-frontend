@@ -17,7 +17,10 @@ const AdminMain = () => {
           <Nav.Link>試合情報の投稿</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/admin/add_team">
-          <Nav.Link>チーム情報の追加</Nav.Link>
+          <Nav.Link>Teamの追加</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/admin/add_club">
+          <Nav.Link>Clubの追加</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/admin/add_title">
           <Nav.Link>タイトル情報の追加</Nav.Link>

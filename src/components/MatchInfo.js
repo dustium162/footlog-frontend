@@ -53,7 +53,7 @@ const MatchInfo = ({match,onClickPost}) => {
               <Col>
                 {match.data.away_team.goal_players &&
                 match.data.away_team.goal_players.map(player => (
-                  <Row>{player.name}： {player.time}'</Row>
+                  <Row>{player.time}' ：{player.name} </Row>
                   ))}
               </Col>
             </Row>
@@ -66,7 +66,7 @@ const MatchInfo = ({match,onClickPost}) => {
               </Col>
               <Col>
                 {match.data.away_team.red_players.map(player => (
-                  <Row>{player.name}： {player.time}'</Row>
+                  <Row>{player.time}' ： {player.name}</Row>
                   ))}
               </Col>
             </Row>
@@ -99,7 +99,7 @@ const MatchInfo = ({match,onClickPost}) => {
           </Col>
           <Col>
             {match.data.away_team.goal_players.map(player => (
-              <Row>{player.name}： {player.time}'</Row>
+              <Row>{player.time}'：{player.name} </Row>
             ))}
           </Col>
         </Row>
@@ -111,7 +111,7 @@ const MatchInfo = ({match,onClickPost}) => {
           </Col>
           <Col>
             {match.data.away_team.red_players.map(player => (
-              <Row>{player.name}： {player.time}'</Row>
+              <Row>{player.time}'： {player.name}</Row>
             ))}
           </Col>
         </Row>

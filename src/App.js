@@ -21,6 +21,7 @@ import Contact from "./pages/Contact";
 import AdminMain from "./pages/admin/AdminMain"
 import MatchNew from "./pages/admin/MatchNew"
 import AddTeam from "./pages/admin/AddTeam"
+import AddClub from "./pages/admin/AddClub"
 import AddTitle from "./pages/admin/AddTitle"
 import AddStadium from "./pages/admin/AddStadium"
 import AddInformation from "./pages/admin/AddInformation"
@@ -55,6 +56,7 @@ function App() {
           <Route path="/admin/match/new" component={MatchNew}/>
           <Route path="/admin/match/edit" component={UnpublishedPosts}/>
           <Route path="/admin/add_team" component={AddTeam}/>
+          <Route path="/admin/add_club" component={AddClub}/>
           <Route path="/admin/add_title" component={AddTitle}/>
           <Route path="/admin/add_stadium" component={AddStadium}/>
           <Route path="/admin/add_information" component={AddInformation}/>

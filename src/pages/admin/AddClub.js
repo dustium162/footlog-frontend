@@ -7,20 +7,26 @@ import {Form,Button,Row,Col} from "react-bootstrap"
 
 import TeamLabel from "../../components/TeamLabel"
 
-const AddTeam = () => {
+const AddClub = () => {
 
   const [name,setName] = useState("")
-  const [clubId,setClubId] = useState(0)
   const [abbreviation,setAbbreviation] = useState("")
   const [colorCode,setColorCode] = useState("")
   const [isTextBlack,setIsTextBlack] = useState(false)
+
+  const [prefCode,setPrefCode] = useState(0)
+  const [serialCode,setSerialCode] = useState(0)
 
   const handleNameChange = (e) => {
     setName(e.target.value)
   }
 
-  const handleClubIdChange = (e) => {
-    setClubId(e.target.value)
+  const handlePrefCodeChange = (e) => {
+    setPrefCode(e.target.value)
+  }
+
+  const handleSerialCodeChange = (e) => {
+    setSerialCode(e.target.value)
   }
 
   const handleAbbreviationChange = (e) => {
@@ -35,14 +41,15 @@ const AddTeam = () => {
     setIsTextBlack(e.target.value)
   }
 
-  const createTeam = () => {
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/teams`,
+  const createClub = () => {
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/clubs`,
     {
-      club_id: clubId,
       name: name,
       abbreviation: abbreviation,
       color_code: colorCode,
-      is_text_black: isTextBlack
+      is_text_black: isTextBlack,
+      pref_code: prefCode,
+      serial_code: serialCode,
     },
     {
       headers: {
@@ -58,19 +65,21 @@ const AddTeam = () => {
 
   const [teams,setTeams] = useState({})
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/teams")
-      .then( response => {
-        setTeams(response.data.data)
-      })
+    axios.get("http://localhost:3000/v1/teams/")
+      .then( response => setTeams(response.data.data))
       .catch(error => console.log(error))
   },[])
   return (
     <Layout>
         {/* <Form onSubmit={handleSubmit} className="my-3"> */}
         <Form className="my-3">
-          <Form.Group className="mb-3" controlId="formClubId">
-            <Form.Label>clubId</Form.Label>
-            <Form.Control value={clubId} placeholder="clubIdを入力してください" onChange={handleClubIdChange} />
+          <Form.Group className="mb-3" controlId="formPrefCode">
+            <Form.Label>PrefCode</Form.Label>
+            <Form.Control value={prefCode} placeholder="都道府県コードを入力してください" onChange={handlePrefCodeChange} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formSerialCode">
+            <Form.Label>SerialCode</Form.Label>
+            <Form.Control value={serialCode} placeholder="TeamIdを入力してください" onChange={handleSerialCodeChange} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formTeamName">
             <Form.Label>チーム名</Form.Label>
@@ -96,8 +105,8 @@ const AddTeam = () => {
             </div>
           <Form.Group className="text-end">
             {/* <Button variant="dark" type="submit" onClick={createTeam} disabled={isSubmitDisable}> */}
-            <Button variant="dark" type="submit" onClick={createTeam} >
-              ログイン
+            <Button variant="dark" type="submit" onClick={createClub} >
+              作成
             </Button>
           </Form.Group>
         </Form>
@@ -128,4 +137,4 @@ const AddTeam = () => {
     </Layout>
   )
 }
-export default AddTeam;
+export default AddClub;
