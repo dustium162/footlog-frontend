@@ -3,8 +3,7 @@ import React from "react"
 import {Button,Image} from "react-bootstrap"
 import axios from "axios"
 
-const PostButton = ({match_team_property_id, match_id,img_src, msg, post_type, setDisplay,onClickPost}) => {
-  console.log(setDisplay);
+const PostButton = ({match_team_property_id, match_id,img_src, msg, post_type,onClickPost}) => {
   const createPost = () => {
       axios.post(`${process.env.REACT_APP_API_ENDPOINT}/posts`,
       {

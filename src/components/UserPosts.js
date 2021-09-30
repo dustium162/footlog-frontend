@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import InfiniteScroll from "react-infinite-scroller"
 import {Row,Col, Spinner} from "react-bootstrap"
 import axios from "axios"
-import PostInfo from "./PostInfo";
+import PostCard from "./PostCard";
 
 const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
 
@@ -25,7 +25,7 @@ const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
       <Row xs={1} md={2} className="g-2">
         {posts.map(post => (
           <Col key={post.id}>
-            <PostInfo post_info={post}/>
+            <PostCard post={post}/>
           </Col>
         ))}
       </Row>

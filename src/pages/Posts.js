@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroller"
 import Layout from "../components/Layout";
 import axios from "axios"
 import {Spinner} from "react-bootstrap"
-import MatchInfo from "../components/MatchInfo"
+import MatchCard from "../components/MatchCard"
 import PostGuideModal from "../components/PostGuideModal"
 
 import {TransitionMotion,spring} from "react-motion"
@@ -76,7 +76,7 @@ const Posts = () => {
           {interpolatingStyles =>
             <>
             {interpolatingStyles.map(interpolatingStyle => {
-              return <MatchInfo match={interpolatingStyle} onClickPost={onClickPost}/>
+              return <MatchCard match={interpolatingStyle} onClickPost={onClickPost}/>
             })}
             </>
           }
