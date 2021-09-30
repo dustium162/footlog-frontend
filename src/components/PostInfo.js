@@ -1,4 +1,5 @@
 import React,{useState} from "react"
+import {ReactComponent as Emblem} from '../emblem.svg';
 
 import {Container,Row,Col,Card,Button,Image,Modal} from "react-bootstrap"
 
@@ -36,7 +37,7 @@ const PostInfo = ({post_info}) => {
             </Row>
             <Row>
               <Col>
-                  <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
+                <Emblem className="me-1" height="25" width="25" fill={`${post_info.opponent_color_code}`} style={{verticalAlign: "middle"}} />
               </Col>
               <Col><h1>{post_info.home_score} - {post_info.away_score}</h1></Col>
               <Col>

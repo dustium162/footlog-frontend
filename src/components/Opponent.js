@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Card, Container, Modal, Row, Col } from "react-bootstrap"
+import { Card, Modal, Row, Col } from "react-bootstrap"
 import OpponentDetail from "./OpponentDetail";
 import {ReactComponent as Emblem} from '../emblem.svg';
 
@@ -13,7 +13,6 @@ const Opponent = ({ clubMatchResult }) => {
     <>
       <Card variant="link text-secondary button_link" onClick={handleShow} show={show}>
         <Card.Header className="align-items-end text-start">
-          {/* <img src={Emblem} width="25" height="25" alt="エンブレム" className="me-1" style={{verticalAlign: "middle"}} style={{fill: "#E6002C"}} /> */}
           <Emblem className="me-1" height="25" width="25" fill={`${clubMatchResult.team.color_code}`} style={{verticalAlign: "middle"}} />
           <span style={{fontSize: "1.3rem"}} style={{verticalAlign: "middle"}}>{clubMatchResult.team.name}</span>
         </Card.Header>

@@ -2,7 +2,7 @@ import React, {useState} from "react"
 
 import {Image,Row,Col,Card,Button,Modal} from "react-bootstrap"
 import PostButton from "./PostButton";
-
+import {ReactComponent as Emblem} from '../emblem.svg';
 
 const MatchInfo = ({match,onClickPost}) => {
   const [show,setShow] = useState(false);
@@ -17,6 +17,7 @@ const MatchInfo = ({match,onClickPost}) => {
     <div key={String(match.key)} style={{height: `${match.style.height}px`}}>
       <Card>
         <Card.Header className={`bg-${colors[match.data.home_or_away_or_neutral]}`}>
+        {/* <Card.Header style={{backgroundColor:match.data.color_code, color: match.data.is_text_black ? "gray" : "red" }}> */}
           <Row>
             <Col className="text-light">{match.data.home_or_away_or_neutral}</Col>
             <Col className="text-light">{match.data.date}</Col>
@@ -32,7 +33,7 @@ const MatchInfo = ({match,onClickPost}) => {
           {/* <Card.Text> */}
             <Row>
               <Col>
-                <Image className="emblem" src={`${process.env.PUBLIC_URL}/my_page_header.jpeg`} roundedCircle />
+                <Emblem className="me-1" height="25" width="25" fill={`${match.data.opponent_color_code}`} style={{verticalAlign: "middle"}} />
               </Col>
               <Col><h1>{String(match.data.home_score)} - {String(match.data.away_score)}</h1></Col>
               <Col>
