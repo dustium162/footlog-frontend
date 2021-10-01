@@ -22,13 +22,9 @@ const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
   ,[])
   return (
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={1}>
-      <Row xs={1} md={2} className="g-2">
         {posts.map(post => (
-          <Col key={post.id}>
             <PostCard post={post}/>
-          </Col>
         ))}
-      </Row>
     </InfiniteScroll>
   );
 }  

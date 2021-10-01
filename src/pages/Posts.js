@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroller"
 
 import Layout from "../components/Layout";
 import axios from "axios"
-import {Spinner} from "react-bootstrap"
+import {Container, Spinner} from "react-bootstrap"
 import MatchCard from "../components/MatchCard"
 import PostGuideModal from "../components/PostGuideModal"
 
@@ -64,28 +64,27 @@ const Posts = () => {
 
   return (
     <Layout>
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
-        <TransitionMotion
-          styles={
-            matches.map((match,id) => (
+      <Container>
+        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
+          <TransitionMotion
+            styles={
+              matches.map((match,id) => (
                 {key: match.match_id, data:{...match,id},style:{height: 700}} //styleを指定する必要あり。
-              ))
+                ))
+              }
+              willLeave={willLeave}
+              >
+            {interpolatingStyles =>
+              <>
+              {interpolatingStyles.map(interpolatingStyle => {
+                return <MatchCard match={interpolatingStyle} onClickPost={onClickPost}/>
+              })}
+              </>
             }
-          willLeave={willLeave}
-        >
-          {interpolatingStyles =>
-            <>
-            {interpolatingStyles.map(interpolatingStyle => {
-              return <MatchCard match={interpolatingStyle} onClickPost={onClickPost}/>
-            })}
-            </>
-          }
-        </TransitionMotion>
-      </InfiniteScroll>
-      <PostGuideModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+          </TransitionMotion>
+        </InfiniteScroll>
+        <PostGuideModal show={modalShow} onHide={() => setModalShow(false)} />
+      </Container>
     </Layout>
   )
 }
