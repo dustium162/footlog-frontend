@@ -3,7 +3,7 @@ import React from "react"
 import {Button,Image} from "react-bootstrap"
 import axios from "axios"
 
-const PostButton = ({match_team_property_id, match_id,img_src, msg, post_type,onClickPost}) => {
+const PostButton = ({match_team_property_id, match_id,img_src, msg, post_type,onClickPost,handleClose}) => {
   const createPost = () => {
       axios.post(`${process.env.REACT_APP_API_ENDPOINT}/posts`,
       {
@@ -21,6 +21,7 @@ const PostButton = ({match_team_property_id, match_id,img_src, msg, post_type,on
       )
       .then(response => response.data)
       .then(data => { onClickPost(match_id) })
+      .then(data => handleClose())
       .catch(error => console.log(error))
   }
   return (

@@ -4,11 +4,11 @@ import {ReactComponent as Emblem} from '../emblem.svg';
 const MatchCard = ({match,handleShow}) => {
   return (
     <>
-      <Card.Header style={{backgroundColor:match.color_code, color: match.is_text_black ? "gray" : "red" }}>
+      <Card.Header style={{backgroundColor:match.color_code, color: match.is_text_black ? "black" : "white" }}>
         <Row>
-          <Col className="text-light">{match.home_or_away_or_neutral}</Col>
-          <Col className="text-light">{match.date}</Col>
-          <Col className="text-light">{match.title}</Col>
+          <Col>{match.home_or_away_or_neutral}</Col>
+          <Col>{match.date}</Col>
+          <Col>{match.title}</Col>
         </Row>
       </Card.Header>
       <Card.Body>

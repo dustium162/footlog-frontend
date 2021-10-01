@@ -35,10 +35,10 @@ const MatchCard = ({match,onClickPost}) => {
         </Modal.Body>
         <Modal.Footer>
           <Row>
-            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="forget" msg="覚えていない" post_type="4" onClickPost={onClickPost}/></Col>
-            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="pass" msg="観ていない" post_type="3" onClickPost={onClickPost}/></Col>
-            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="monitor" msg="オンライン" post_type="2" onClickPost={onClickPost}/></Col>
-            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="stadium" msg="現地観戦" post_type="1" onClickPost={onClickPost}/></Col>
+            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="forget" msg="覚えていない" post_type="4" onClickPost={onClickPost} handleClose={handleClose} /></Col>
+            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="pass" msg="観ていない" post_type="3" onClickPost={onClickPost} handleClose={handleClose} /></Col>
+            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="monitor" msg="オンライン" post_type="2" onClickPost={onClickPost} handleClose={handleClose} /></Col>
+            <Col><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="stadium" msg="現地観戦" post_type="1" onClickPost={onClickPost} handleClose={handleClose} /></Col>
           </Row>
         </Modal.Footer>
       </Modal>
