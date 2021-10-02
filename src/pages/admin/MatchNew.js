@@ -54,7 +54,7 @@ const MatchNew = () => {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/matches/new")
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/new`)
       .then( response => {
         console.log(response.data)
         setTitles(response.data.titles)
@@ -67,7 +67,7 @@ const MatchNew = () => {
   },[])
 
   const createNewMatch = () => {
-    axios.post("http://localhost:3000/v1/matches",{
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/matches`,{
       title_id: title_id,
       home_team_id: home_team_id,
       away_team_id: away_team_id,
@@ -94,7 +94,7 @@ const MatchNew = () => {
             <Form.Control type = "date" value={date_time} onChange={handleDateTime}/>
 
             <Form.Label>ホームチーム</Form.Label>
-            <div key="inline-radio" className="mb-3">
+            <div key="home_teams" className="mb-3">
               <Form.Check inline label="J1" type="radio" name="home_div" id="home_j1" value="j1" onChange={handleHomeTeamType} checked />
               <Form.Check inline label="J2" type="radio" name="home_div" id="home_j2" value="j2" onChange={handleHomeTeamType} />
               <Form.Check inline label="J3" type="radio" name="home_div" id="home_j3" value="j3" onChange={handleHomeTeamType} />
@@ -103,11 +103,11 @@ const MatchNew = () => {
             <Select options={home_teams_list} placeholder="ホームチームを選択" onChange={handleHomeTeam} isClearable />
 
             <Form.Label>アウェイチーム</Form.Label>
-            <div key="inline-radio" className="mb-3">
-              <Form.Check inline label="J1" type="radio" name="away_div" id="away_j1" onChange={handleAwayTeamType} checked />
-              <Form.Check inline label="J2" type="radio" name="away_div" id="away_j2" onChange={handleAwayTeamType} />
-              <Form.Check inline label="J3" type="radio" name="away_div" id="away_j3" onChange={handleAwayTeamType} />
-              <Form.Check inline label="Other" type="radio" name="away_div" id="away_other" onChange={handleAwayTeamType} />
+            <div key="away_teams" className="mb-3">
+              <Form.Check inline label="J1" type="radio" name="away_div" id="away_j1" value="j1" onChange={handleAwayTeamType} checked />
+              <Form.Check inline label="J2" type="radio" name="away_div" id="away_j2" value="j2" onChange={handleAwayTeamType} />
+              <Form.Check inline label="J3" type="radio" name="away_div" id="away_j3" value="j3" onChange={handleAwayTeamType} />
+              <Form.Check inline label="Other" type="radio" name="away_div" id="away_other" value="other" onChange={handleAwayTeamType} />
             </div>
             <Select options={away_teams_list} placeholder="アウェイチームを選択" onChange={handleAwayTeam} isClearable />
 
