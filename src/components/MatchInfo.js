@@ -1,66 +1,94 @@
-import {Image,Row,Col,Card,Button} from "react-bootstrap"
+import {Image,Row,Col,Card,Button, Container} from "react-bootstrap"
 import {ReactComponent as Emblem} from '../emblem.svg';
 
 const MatchCard = ({match,handleShow}) => {
   return (
     <>
-      <Card.Header style={{backgroundColor:match.color_code, color: match.is_text_black ? "black" : "white" }}>
+      <Card.Header className="text-center" style={{backgroundColor:match.color_code, color: match.is_text_black ? "black" : "white" }}>
         <Row>
-          <Col>{match.home_or_away_or_neutral}</Col>
-          <Col>{match.date}</Col>
-          <Col>{match.title}</Col>
+          <Col xs={3} className="d-flex justify-content-center align-items-center">{match.home_or_away_or_neutral}</Col>
+          <Col xs={6} className="d-flex justify-content-center align-items-center small">{match.date}</Col>
+          {/* <Col xs={3} className="small">{match.title}</Col> */}
+          <Col xs={3} className="d-flex justify-content-center align-items-center small">ナビスコ</Col>
         </Row>
       </Card.Header>
-      <Card.Body>
+      <Card.Body className="text-center">
         <Card.Title>
-          <Row>
-            <Col>VS {match.opponent_name}</Col>
+          <Row className="justify-content-center">
+            <Col className="align-items-end">
+              <Emblem className="me-1" height="25" width="25" fill={`${match.opponent_color_code}`} style={{verticalAlign: "middle"}} />
+              <span style={{verticalAlign: "middle"}}>{match.opponent_name}</span>
+              <span className="ms-1" style={{verticalAlign: "middle"}}>戦</span>
+            </Col>
           </Row>
         </Card.Title>
         <Row>
-          <Col>
-            <Emblem className="me-1" height="25" width="25" fill={`${match.opponent_color_code}`} style={{verticalAlign: "middle"}} />
+          <Col xs={3} />
+          <Col xs={6} className="h1">
+            <Row>
+              <Col xs={5} className="d-flex justify-content-end align-items-center" style={{fontSize: "1.8rem", verticalAlign: "middle"}}>{String(match.home_score)}</Col>
+              <Col xs={2} className="d-flex justify-content-center align-items-center" style={{verticalAlign: "middle"}}>-</Col>
+              <Col xs={5} className="d-flex justify-content-start align-items-center" style={{fontSize: "3rem", verticalAlign: "middle"}}>{String(match.away_score)}</Col>
+            </Row>
           </Col>
-          <Col><h1>{String(match.home_score)} - {String(match.away_score)}</h1></Col>
-          <Col>
+          <Col xs={3}>
             <Button variant="link text-secondary button_link" onClick={handleShow}>
               <Image className="emblem" src={`${process.env.PUBLIC_URL}/info.png`} roundedCircle />
-              <p>試合詳細</p>
+              <span>詳細</span>
             </Button>
           </Col>
         </Row>
-        <Row>
-          <p>得点者</p>
-          <Col>
-            {match.home_team.goal_players &&
-            match.home_team.goal_players.map(player => (
-              <Row>{player.name}： {player.time}'</Row>
-              ))}
+        <Row className="text-secondary" style={{fontSize: "0.75rem", height: "7rem"}}>
+          <Col className="text-end ps-1">
+            {match.home_team.goal_players && match.home_team.goal_players.map(player => (
+              <div>
+                <span>{player.name}</span>
+                <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
+              </div>
+            ))}
+              <div>
+                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
+                <span>浅見浅見</span>
+              </div>
+              <div>
+                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
+                <span>浅見浅見</span>
+              </div>
+              <div>
+                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
+                <span>浅見浅見</span>
+              </div>
+              <div>…</div>
           </Col>
-          <Col>
-            {match.away_team.goal_players &&
-            match.away_team.goal_players.map(player => (
-              <Row>{player.time}' ：{player.name} </Row>
+          <Col className="text-start pe-1">
+            {match.away_team.goal_players && match.away_team.goal_players.map(player => (
+              <div>
+                <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
+                <span>{player.name}</span>
+              </div>
               ))}
+              <div>
+                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
+                <span>浅見浅見</span>
+              </div>
+              <div>
+                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
+                <span>浅見浅見</span>
+              </div>
+              <div>
+                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
+                <span>浅見浅見</span>
+              </div>
+              <div>…</div>
           </Col>
         </Row>
-        <Row>
-          <p>退場者</p>
-          <Col>
-            {match.home_team.red_players.map(player => (
-              <Row>{player.name}： {player.time}'</Row>
-              ))}
+        <Row className="text-end">
+          <Col xs={12}>
+            <span className="text-muted small">＠青森県総合運動公園陸上競技場</span>
           </Col>
-          <Col>
-            {match.away_team.red_players.map(player => (
-              <Row>{player.time}' ： {player.name}</Row>
-              ))}
+          <Col xs={12}>
+            <span className="text-muted small">観客数：{match.mobilization}人</span>
           </Col>
-        </Row>
-        <Row>
-          <Col></Col>
-          <Col></Col>
-          <Col><p>観客数：{match.mobilization}人</p></Col>
         </Row>
       </Card.Body>
     </>

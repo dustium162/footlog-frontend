@@ -18,7 +18,7 @@ new Promise((resolve) => {
     (uri) => {
       resolve(uri);
     },
-    "base64"
+    "file"
   );
 });
 
@@ -36,10 +36,11 @@ const UserEdit = () => {
 
   const processImage = async (e) => {
     // const imageFile = await resizeFile(e.target.files[0], 100, 100);
-    // setImage(imageFile);
-    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`);
+    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`, {params: {filename: e.target.files[0].name}});
     const s3DirectPost = await res.data;
     const imageFile = await resizeFile(e.target.files[0], 100, 100);
+
+    // const imageFile = e.target.files[0];
     const fields = s3DirectPost.fields;
     const formData = new FormData()
     for (let key in fields) {
@@ -48,19 +49,35 @@ const UserEdit = () => {
     formData.append('file', imageFile);
     console.log(s3DirectPost);
     console.log(...formData.entries());
-    const ret = await axios.put(
+    const ret = await axios.post(
       s3DirectPost.url,
       formData,
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'accept': 'image/*'
+          // 'accept': 'multipart/form-data'
         }
       }
     )
+    // const headers = {
+    //   'accept': 'multipart/form-data'
+    // };
+    // fetch(s3DirectPost.url,
+    //   {
+    //     method: 'POST',
+    //     headers,
+    //     body: formData,
+    //     mode: 'cors'
+    //   }).then((res) => {
+    //   console.log('fetch');
+    //   console.log(res);
+    // });
     console.log(ret.data);
-    const matchedObject = ret.data.match(/<Location>(.*?)<\/Location>/)
-    const s3Url = unescape(matchedObject[1])
-    setImage(s3Url);
+    const matchedObject = ret.data.match(/<Location>(.*?)<\/Location>/);
+    const s3Url = unescape(matchedObject[1]);
+    console.log(s3Url);
+    setImage(imageFile);
+    // setImage(s3Url);
   }
 
   const processHeaderImage = async (e) => {
