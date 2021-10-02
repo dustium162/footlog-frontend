@@ -4,7 +4,7 @@ import {Image,Row,Col,Card,Modal,Button} from "react-bootstrap"
 import PostButton from "./PostButton";
 import MatchInfo from "./MatchInfo"
 import {ReactComponent as Emblem} from '../emblem.svg';
-
+import MatchDetailModal from "./MatchDetailModal"
 
 const MatchCard = ({match,onClickPost}) => {
   const [show,setShow] = useState(false);
@@ -23,10 +23,11 @@ const MatchCard = ({match,onClickPost}) => {
           </Row>
         </Card.Footer>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header>
+          <MatchDetailModal match={match.data} onHide={handleClose} />
+          {/* <Modal.Header>
             <Modal.Title>
               <span xs={6} className="small me-3">{match.data.date}</span>
-              {/* <Col xs={3} className="small">{match.data.title}</Col> */}
+              <Col xs={3} className="small">{match.data.title}</Col>
               <span xs={3} className="small">ナビスコ</span>
             </Modal.Title>
             <button type="button" class="btn-close" aria-label="Close" onClick={handleClose}></button>
@@ -117,7 +118,7 @@ const MatchCard = ({match,onClickPost}) => {
                 <span className="text-muted small">観客数：{match.data.mobilization}人</span>
               </Col>
             </Row>
-          </Modal.Body>
+          </Modal.Body> */}
           <Modal.Footer className="d-block text-center">
             <Row>
               <Col className="px-0"><PostButton match_team_property_id={match.data.match_team_property_id} match_id={match.data.match_id} img_src="stadium" msg="現地観戦" post_type="1" onClickPost={onClickPost} handleClose={handleClose} /></Col>
