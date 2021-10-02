@@ -23,7 +23,6 @@ const MatchCard = ({match,handleShow}) => {
         <Row>
           <Col xs={3} className="d-flex justify-content-center align-items-center">{match.home_or_away_or_neutral}</Col>
           <Col xs={6} className="d-flex justify-content-center align-items-center small">{match.date}</Col>
-          {/* <Col xs={3} className="small">{match.title}</Col> */}
           <Col xs={3} className="d-flex justify-content-center align-items-center small">ナビスコ</Col>
         </Row>
       </Card.Header>
@@ -41,9 +40,9 @@ const MatchCard = ({match,handleShow}) => {
           <Col xs={3} />
           <Col xs={6} className="h1">
             <Row>
-              <Col xs={5} className="d-flex justify-content-end align-items-center" style={{fontSize: "1.8rem", verticalAlign: "middle"}}>{String(match.home_score)}</Col>
+              <Col xs={5} className="d-flex justify-content-end align-items-center" style={{fontSize: match.is_home ? "3rem": "1.8rem", verticalAlign: "middle"}}>{String(match.home_score)}</Col>
               <Col xs={2} className="d-flex justify-content-center align-items-center" style={{verticalAlign: "middle"}}>-</Col>
-              <Col xs={5} className="d-flex justify-content-start align-items-center" style={{fontSize: "3rem", verticalAlign: "middle"}}>{String(match.away_score)}</Col>
+              <Col xs={5} className="d-flex justify-content-start align-items-center" style={{fontSize: match.is_home ? "1.8rem" : "3rem", verticalAlign: "middle"}}>{String(match.away_score)}</Col>
             </Row>
           </Col>
           <Col xs={3}>
