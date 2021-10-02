@@ -2,9 +2,24 @@ import {Image,Row,Col,Card,Button, Container} from "react-bootstrap"
 import {ReactComponent as Emblem} from '../emblem.svg';
 
 const MatchCard = ({match,handleShow}) => {
+  const headerStyle = (match) => {
+    let backgroundColor;
+    let textColor;
+    if(match.home_or_away_or_neutral === 'Home') {
+      backgroundColor = match.color_code;
+      textColor = match.is_text_black ? 'black' : 'white';
+    } else if(match.home_or_away_or_neutral === 'Away') {
+      backgroundColor = '#6c757d';
+      textColor = 'white';
+    } else {
+      backgroundColor = '#f8f9fa';
+      textColor = 'black';
+    }
+    return {backgroundColor: backgroundColor, color: textColor}
+  }
   return (
     <>
-      <Card.Header className="text-center" style={{backgroundColor:match.color_code, color: match.is_text_black ? "black" : "white" }}>
+      <Card.Header className="text-center" style={headerStyle(match)}>
         <Row>
           <Col xs={3} className="d-flex justify-content-center align-items-center">{match.home_or_away_or_neutral}</Col>
           <Col xs={6} className="d-flex justify-content-center align-items-center small">{match.date}</Col>
@@ -34,7 +49,7 @@ const MatchCard = ({match,handleShow}) => {
           <Col xs={3}>
             <Button variant="link text-secondary button_link" onClick={handleShow}>
               <Image className="emblem" src={`${process.env.PUBLIC_URL}/info.png`} roundedCircle />
-              <span>詳細</span>
+              <div>詳細</div>
             </Button>
           </Col>
         </Row>

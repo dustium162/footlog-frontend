@@ -33,7 +33,7 @@ const Posts = () => {
     setMatches([...matches,...data])
   }
 
-  const loader =  <Spinner animation="border" variant="danger" />
+  const loader =  <Spinner animation="border" variant="secondary" />
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`, {
       headers: {
@@ -66,7 +66,7 @@ const Posts = () => {
     <Layout>
       <Container>
         <div className="mt-4">
-          <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
+          <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} className="text-center">
             <TransitionMotion
               styles={
                 matches.map((match,id) => (
