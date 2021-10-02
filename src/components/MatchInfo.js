@@ -40,51 +40,33 @@ const MatchCard = ({match,handleShow}) => {
         </Row>
         <Row className="text-secondary" style={{fontSize: "0.75rem", height: "7rem"}}>
           <Col className="text-end ps-1">
-            {match.home_team.goal_players && match.home_team.goal_players.map(player => (
-              <div>
-                <span>{player.name}</span>
-                <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
-              </div>
-            ))}
-              <div>
-                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
-                <span>浅見浅見</span>
-              </div>
-              <div>
-                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
-                <span>浅見浅見</span>
-              </div>
-              <div>
-                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
-                <span>浅見浅見</span>
-              </div>
-              <div>…</div>
+            {match.home_team.goal_players && match.home_team.goal_players.map((player,id) => (
+                id <= 5 && (id !== 5 ?
+                <div>
+                  <span>{player.name}</span>
+                  <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
+                </div>
+                :
+                <div>…</div>
+                )
+                ))}
           </Col>
           <Col className="text-start pe-1">
-            {match.away_team.goal_players && match.away_team.goal_players.map(player => (
-              <div>
+            {match.away_team.goal_players && match.away_team.goal_players.map((player,id) => (
+                id <= 5 && (id !== 5 ?
+                <div>
                 <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
                 <span>{player.name}</span>
-              </div>
-              ))}
-              <div>
-                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
-                <span>浅見浅見</span>
-              </div>
-              <div>
-                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
-                <span>浅見浅見</span>
-              </div>
-              <div>
-                <span className="d-inline-block" style={{width: "3rem"}}>95'</span>
-                <span>浅見浅見</span>
-              </div>
-              <div>…</div>
+                </div>
+                :
+                <div>…</div>
+                )
+                ))}
           </Col>
         </Row>
         <Row className="text-end">
           <Col xs={12}>
-            <span className="text-muted small">＠青森県総合運動公園陸上競技場</span>
+            <span className="text-muted small">＠ {match.stadium_name}</span>
           </Col>
           <Col xs={12}>
             <span className="text-muted small">観客数：{match.mobilization}人</span>
