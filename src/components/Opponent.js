@@ -20,7 +20,7 @@ const Opponent = ({ clubMatchResult }) => {
           <Row>
             <Col xs={7} className="text-end">
               <div>
-                <span style={{fontSize: "5rem",Color: "tomato"}} >{clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw}</span><span>戦</span>
+                <span style={{fontSize: "5rem"}}>{clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw}</span><span>戦</span>
               </div>
               <div style={{marginTop: "-1rem"}}>勝率：
                 <span style={{fontSize: "2rem"}}>
@@ -57,7 +57,7 @@ export default Opponent;
 //   {
 //     club_id: 1,
 //     opponent_name: "鹿島アントラーズ",
-//     
+//
 //   },
 //   {
 //     type: "",

@@ -25,9 +25,9 @@ const PostButton = ({match_team_property_id, match_id,img_src, msg, post_type,on
       .catch(error => console.log(error))
   }
   return (
-    <Button variant="link text-secondary button_link" type="submit" onClick={createPost}>
+    <Button variant="link text-secondary button_link" className="px-0" type="submit" onClick={createPost}>
       <Image className="emblem" src={`${process.env.PUBLIC_URL}/${img_src}.png`} roundedCircle />
-      <p>{msg}</p>
+      <div className="small">{msg}</div>
     </Button>
   )
 }

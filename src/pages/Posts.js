@@ -65,25 +65,30 @@ const Posts = () => {
   return (
     <Layout>
       <Container>
-        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
-          <TransitionMotion
-            styles={
-              matches.map((match,id) => (
-                {key: match.match_id, data:{...match,id},style:{height: 700}} //styleを指定する必要あり。
-                ))
+        <div className="mt-4">
+          <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader}>
+            <TransitionMotion
+              styles={
+                matches.map((match,id) => (
+                  {key: match.match_id, data:{...match,id},style:{height: 430}} //styleを指定する必要あり。
+                  ))
+                }
+                willLeave={willLeave}
+                >
+              {interpolatingStyles =>
+                <>
+                {interpolatingStyles.map(interpolatingStyle => {
+                  return (
+                    <MatchCard match={interpolatingStyle} onClickPost={onClickPost}/>
+                    // console.log(interpolatingStyle)
+                  )
+                })}
+                </>
               }
-              willLeave={willLeave}
-              >
-            {interpolatingStyles =>
-              <>
-              {interpolatingStyles.map(interpolatingStyle => {
-                return <MatchCard match={interpolatingStyle} onClickPost={onClickPost}/>
-              })}
-              </>
-            }
-          </TransitionMotion>
-        </InfiniteScroll>
-        <PostGuideModal show={modalShow} onHide={() => setModalShow(false)} />
+            </TransitionMotion>
+          </InfiniteScroll>
+          <PostGuideModal show={modalShow} onHide={() => setModalShow(false)} />
+        </div>
       </Container>
     </Layout>
   )

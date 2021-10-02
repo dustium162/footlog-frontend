@@ -35,12 +35,9 @@ const UserEdit = () => {
   const [biography,setBiography] = useState("")
 
   const processImage = async (e) => {
-    // const imageFile = await resizeFile(e.target.files[0], 100, 100);
     const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`, {params: {filename: e.target.files[0].name}});
     const s3DirectPost = await res.data;
     const imageFile = await resizeFile(e.target.files[0], 100, 100);
-
-    // const imageFile = e.target.files[0];
     const fields = s3DirectPost.fields;
     const formData = new FormData()
     for (let key in fields) {
@@ -55,34 +52,42 @@ const UserEdit = () => {
       {
         headers: {
           'accept': 'image/*'
-          // 'accept': 'multipart/form-data'
         }
       }
     )
-    // const headers = {
-    //   'accept': 'multipart/form-data'
-    // };
-    // fetch(s3DirectPost.url,
-    //   {
-    //     method: 'POST',
-    //     headers,
-    //     body: formData,
-    //     mode: 'cors'
-    //   }).then((res) => {
-    //   console.log('fetch');
-    //   console.log(res);
-    // });
-    console.log(ret.data);
     const matchedObject = ret.data.match(/<Location>(.*?)<\/Location>/);
     const s3Url = unescape(matchedObject[1]);
-    console.log(s3Url);
-    setImage(imageFile);
-    // setImage(s3Url);
+    setImage(s3Url);
   }
 
   const processHeaderImage = async (e) => {
+    const file = e.target.files[0].name;
+    const fileType = file.split('.').pop();
+    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`, {params: {filename: `${userId}_header_image.${fileType}`}});
+    const s3DirectPost = await res.data;
     const headerImageFile = await resizeFile(e.target.files[0], 400, 400);
-    setHeaderImage(headerImageFile);
+    const fields = s3DirectPost.fields;
+    const formData = new FormData()
+    for (let key in fields) {
+      formData.append(key, fields[key])
+    }
+    formData.append('file', headerImageFile);
+    console.log(s3DirectPost);
+    console.log(...formData.entries());
+    const ret = await axios.post(
+      s3DirectPost.url,
+      formData,
+      {
+        headers: {
+          'accept': 'image/*'
+        }
+      }
+    )
+    console.log(ret.data)
+    const matchedObject = ret.data.match(/<Location>(.*?)<\/Location>/);
+    const s3Url = unescape(matchedObject[1]);
+    console.log(s3Url)
+    setHeaderImage(s3Url);
   }
 
   const updateUser = () => {
@@ -174,12 +179,12 @@ const UserEdit = () => {
           <Form.Group controlId="formFile" className="mb-3" controlId="formImage">
             <Form.Label>アイコン画像</Form.Label>
             <Form.Control type="file" accept="image/*" onChange={processImage} />
-            <Image src={image} rounded />
+            <Image src={image} className="d-block mx-auto" rounded />
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3" controlId="formHeaderImage">
             <Form.Label>ヘッダー画像</Form.Label>
             <Form.Control type="file" accept="image/*" onChange={processHeaderImage} />
-            <Image src={header_image} rounded />
+            <Image src={header_image} className="d-block mx-auto" style={{maxWidth: "100%"}} rounded />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBiography">
             <Form.Label>自己紹介</Form.Label>

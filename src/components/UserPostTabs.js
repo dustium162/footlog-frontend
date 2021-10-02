@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 
 import {Tabs,Tab} from "react-bootstrap"
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import axios from "axios"
 import UserPosts from "./UserPosts"
 
@@ -27,8 +28,8 @@ const UserPostTabs = () => {
     }
     setOnsitePosts([...onsitePosts,...data])
   }
-  
-  
+
+
   const [onlinePosts,setOnlinePosts] = useState([])
   const [hasMoreOnlinePosts,setHasMoreOnlinePosts] = useState(true)
   const loadMoreOnlinePosts = async (page) => {
@@ -46,7 +47,7 @@ const UserPostTabs = () => {
     }
     setOnlinePosts([...onlinePosts,...data])
   }
-  
+
   const [forgetPosts,setForgetPosts] = useState([])
   const [hasMoreForgetPosts,setHasMoreForgetPosts] = useState(true)
   const loadMoreForgetPosts = async (page) => {
@@ -64,7 +65,7 @@ const UserPostTabs = () => {
     }
     setForgetPosts([...forgetPosts,...data])
   }
-  
+
   const [notWatchingPosts,setNotWatchingPosts] = useState([])
   const [hasMoreNotWatchingPosts,setHasMoreNotWatchingPosts] = useState(true)
   const loadMoreNotWatchingPosts = async (page) => {
@@ -84,23 +85,23 @@ const UserPostTabs = () => {
   }
 
   return (
-    <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+    <Tabs defaultActiveKey="onsite" id="uncontrolled-tab-example">
       <Tab eventKey="onsite" title="現地観戦">
         <UserPosts posts={onsitePosts} postType={1} setPosts={setOnsitePosts} hasMore={hasMoreOnsitePosts} setHasMore={setHasMoreOnsitePosts} loadMore={loadMoreOnsitePosts}/>
       </Tab>
-      <Tab eventKey="online" title="オンライン観戦">
+      <Tab eventKey="online" title="オンライン" ClassName="small">
         <UserPosts posts={onlinePosts} postType={2} setPosts={setOnlinePosts} hasMore={hasMoreOnlinePosts} setHasMore={setHasMoreOnlinePosts} loadMore={loadMoreOnlinePosts}/>
       </Tab>
       <Tab eventKey="forget" title="忘れた">
         <UserPosts posts={forgetPosts} postType={3} setPosts={setForgetPosts} hasMore={hasMoreForgetPosts} setHasMore={setHasMoreForgetPosts} loadMore={loadMoreForgetPosts}/>
       </Tab>
-      <Tab eventKey="not_watching" title="観戦していない">
+      <Tab eventKey="notWatching" title="観てない">
         <UserPosts posts={notWatchingPosts} postType={4} setPosts={setNotWatchingPosts} hasMore={hasMoreNotWatchingPosts} setHasMore={setHasMoreNotWatchingPosts} loadMore={loadMoreNotWatchingPosts}/>
       </Tab>
       {/* <Tab eventKey="accomplishments" title="実績">
         <Accomplishments />
       </Tab> */}
-    </Tabs>
+  </Tabs>
     );
 }
 export default UserPostTabs;

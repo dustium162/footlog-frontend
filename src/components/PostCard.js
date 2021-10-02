@@ -27,7 +27,7 @@ const PostCard = ({post}) => {
           </Modal.Header>
           <Modal.Body>
           <Row>
-            <Col><PostEditButton post_id ={post.id} img_src="forget" msg="覚えていない" post_type="4"/></Col>
+            <Col><PostEditButton post_id ={post.id} img_src="forget" msg="忘れた" post_type="4"/></Col>
             <Col><PostEditButton post_id ={post.id} img_src="pass" msg="観ていない" post_type="3"/></Col>
             <Col><PostEditButton post_id ={post.id} img_src="monitor" msg="オンライン" post_type="2"/></Col>
             <Col><PostEditButton post_id ={post.id} img_src="stadium" msg="現地観戦" post_type="1"/></Col>
@@ -37,8 +37,9 @@ const PostCard = ({post}) => {
       </Row>
       </Card.Footer>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>試合詳細</Modal.Title>
+          <button type="button" class="btn-close" aria-label="Close" onClick={handleClose}></button>
         </Modal.Header>
         <Modal.Body>ここに試合詳細情報を表示</Modal.Body>
       </Modal>
