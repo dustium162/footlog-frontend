@@ -62,6 +62,8 @@ const MatchNew = () => {
         setStadia(response.data.stadia)
         setHomeTeamsList(response.data.teams['j1'])
         setAwayTeamsList(response.data.teams['j1'])
+        document.getElementById('home_j1').checked = true;
+        document.getElementById('away_j1').checked = true;
       })
       .catch(error => console.log(error))
   },[])
@@ -95,7 +97,7 @@ const MatchNew = () => {
 
             <Form.Label>ホームチーム</Form.Label>
             <div key="home_teams" className="mb-3">
-              <Form.Check inline label="J1" type="radio" name="home_div" id="home_j1" value="j1" onChange={handleHomeTeamType} checked />
+              <Form.Check inline label="J1" type="radio" name="home_div" id="home_j1" value="j1" onChange={handleHomeTeamType} />
               <Form.Check inline label="J2" type="radio" name="home_div" id="home_j2" value="j2" onChange={handleHomeTeamType} />
               <Form.Check inline label="J3" type="radio" name="home_div" id="home_j3" value="j3" onChange={handleHomeTeamType} />
               <Form.Check inline label="Other" type="radio" name="home_div" id="home_other" value="other" onChange={handleHomeTeamType} />
@@ -104,7 +106,7 @@ const MatchNew = () => {
 
             <Form.Label>アウェイチーム</Form.Label>
             <div key="away_teams" className="mb-3">
-              <Form.Check inline label="J1" type="radio" name="away_div" id="away_j1" value="j1" onChange={handleAwayTeamType} checked />
+              <Form.Check inline label="J1" type="radio" name="away_div" id="away_j1" value="j1" onChange={handleAwayTeamType} />
               <Form.Check inline label="J2" type="radio" name="away_div" id="away_j2" value="j2" onChange={handleAwayTeamType} />
               <Form.Check inline label="J3" type="radio" name="away_div" id="away_j3" value="j3" onChange={handleAwayTeamType} />
               <Form.Check inline label="Other" type="radio" name="away_div" id="away_other" value="other" onChange={handleAwayTeamType} />
