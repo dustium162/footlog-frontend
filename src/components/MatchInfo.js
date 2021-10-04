@@ -46,36 +46,32 @@ const MatchCard = ({match,handleShow}) => {
             </Row>
           </Col>
           <Col xs={3}>
-            <Button variant="link text-secondary button_link" onClick={handleShow}>
+            {match.home_team.red_players.length + match.away_team.red_players.length !== 0  &&
+              <Button variant="link text-secondary button_link" onClick={handleShow}>
               <Image className="emblem" src={`${process.env.PUBLIC_URL}/info.png`} roundedCircle />
               <div>詳細</div>
             </Button>
+            }
           </Col>
         </Row>
         <Row className="text-secondary" style={{fontSize: "0.75rem", height: "7rem"}}>
-          <Col className="text-end ps-1">
+          <Col className="text-end ps-1" style={{height: "100px", overflow:"auto"}}>
             {match.home_team.goal_players && match.home_team.goal_players.map((player,id) => (
-                id <= 5 && (id !== 5 ?
-                <div>
-                  <span>{player.name}</span>
-                  <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
-                </div>
-                :
-                <div>…</div>
-                )
-                ))}
+              <div>
+                <span>{player.name} ({player.time}')</span>
+                {/* <span>{player.name}</span>
+                <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
+              </div>
+            ))}
           </Col>
-          <Col className="text-start pe-1">
+          <Col className="text-start pe-1" style={{height: "100px", overflow:"auto"}}>
             {match.away_team.goal_players && match.away_team.goal_players.map((player,id) => (
-                id <= 5 && (id !== 5 ?
-                <div>
-                <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
-                <span>{player.name}</span>
-                </div>
-                :
-                <div>…</div>
-                )
-                ))}
+              <div>
+                <span>{player.name} ({player.time}')</span>
+                {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
+                <span>{player.name}</span> */}
+              </div>
+            ))}
           </Col>
         </Row>
         <Row className="text-end">
