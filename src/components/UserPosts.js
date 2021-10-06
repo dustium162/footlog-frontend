@@ -22,9 +22,13 @@ const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
   ,[])
   return (
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={1}>
-        {posts.map(post => (
-            <PostCard post={post}/>
-        ))}
+      {posts.length !== 0 ?
+        posts.map(post => (
+          <PostCard post={post}/>
+          ))
+          :
+          <div>この区分の観戦記録はありません</div>
+      }
     </InfiniteScroll>
   );
 }  

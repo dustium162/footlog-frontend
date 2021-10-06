@@ -28,10 +28,10 @@ const PostCard = ({post}) => {
           </Modal.Header>
           <Modal.Body>
           <Row>
-            <Col><PostEditButton post_id ={post.id} img_src="forget" msg="忘れた" post_type="4"/></Col>
-            <Col><PostEditButton post_id ={post.id} img_src="pass" msg="観ていない" post_type="3"/></Col>
-            <Col><PostEditButton post_id ={post.id} img_src="monitor" msg="オンライン" post_type="2"/></Col>
-            <Col><PostEditButton post_id ={post.id} img_src="stadium" msg="現地観戦" post_type="1"/></Col>
+            {post.post_type !== 1 && <Col><PostEditButton post_id ={post.id} img_src="stadium" msg="現地観戦" post_type="1"/></Col>}
+            {post.post_type !== 2 && <Col><PostEditButton post_id ={post.id} img_src="monitor" msg="オンライン" post_type="2"/></Col>}
+            {post.post_type !== 3 && <Col><PostEditButton post_id ={post.id} img_src="pass" msg="観ていない" post_type="3"/></Col>}
+            {post.post_type !== 4 && <Col><PostEditButton post_id ={post.id} img_src="forget" msg="忘れた" post_type="4"/></Col>}
           </Row>
           </Modal.Body>
         </Modal>

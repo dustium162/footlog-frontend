@@ -77,10 +77,10 @@ const UserPostTabs = () => {
     });
     const data = response.data
     if (data.length < 1) {
-      setHasMoreOnlinePosts(false);
+      setHasMoreNotWatchingPosts(false);
       return;
     }
-    setOnlinePosts([...onlinePosts,...data])
+    setOnlinePosts([...notWatchingPosts,...data])
   }
 
   return (
@@ -107,10 +107,10 @@ const UserPostTabs = () => {
           <UserPosts posts={onlinePosts} postType={2} setPosts={setOnlinePosts} hasMore={hasMoreOnlinePosts} setHasMore={setHasMoreOnlinePosts} loadMore={loadMoreOnlinePosts}/>
         </Tab.Pane>
         <Tab.Pane eventKey="notWatching" className="py-3">
-          <UserPosts posts={notWatchingPosts} postType={4} setPosts={setNotWatchingPosts} hasMore={hasMoreNotWatchingPosts} setHasMore={setHasMoreNotWatchingPosts} loadMore={loadMoreNotWatchingPosts}/>
+          <UserPosts posts={notWatchingPosts} postType={3} setPosts={setNotWatchingPosts} hasMore={hasMoreNotWatchingPosts} setHasMore={setHasMoreNotWatchingPosts} loadMore={loadMoreNotWatchingPosts}/>
         </Tab.Pane>
         <Tab.Pane eventKey="forget" className="py-3">
-          <UserPosts posts={forgetPosts} postType={3} setPosts={setForgetPosts} hasMore={hasMoreForgetPosts} setHasMore={setHasMoreForgetPosts} loadMore={loadMoreForgetPosts}/>
+          <UserPosts posts={forgetPosts} postType={4} setPosts={setForgetPosts} hasMore={hasMoreForgetPosts} setHasMore={setHasMoreForgetPosts} loadMore={loadMoreForgetPosts}/>
         </Tab.Pane>
       </Tab.Content>
     </Tab.Container>
