@@ -9,7 +9,7 @@ import ClubMatchResults from '../components/ClubMatchResults'
 import UserPostTabs from '../components/UserPostTabs'
 import MatchResults from '../components/MatchResults'
 
-import {Container} from 'react-bootstrap'
+import {Container,Button} from 'react-bootstrap'
 
 const MyPage = () => {
   // const [loading, setLoading] = useState(true);
@@ -37,6 +37,11 @@ const MyPage = () => {
         <Container>
           {info.stats &&
             <>
+            <div>
+              まだ観戦記録がありません。<br />
+              下のボタンから観戦記録を作成しましょう！<br />
+              <Button>観戦記録を作る</Button>
+            </div>
             <div className="my-4">
               <MatchResults matchResults={info.stats.match_results} />
             </div>

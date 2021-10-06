@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 
 import axios from "axios"
 
-import {Row,Col} from "react-bootstrap"
+import {Form,Button,Row,Col} from "react-bootstrap"
 
 
 const AddTitle = () => {
@@ -16,8 +16,70 @@ const AddTitle = () => {
       })
       .catch(error => console.log(error))
   },[])
+  
+  const [name,setName] = useState("")
+  const [titleTypeId, setTitleTypeId] = useState(0)
+  const [isNewTitleType,setIsNewTitleType] = useState(false)
+
+  const handleNameChange = (e) => {
+    setName(e.target.value)
+  }
+
+  const handleTitleTypeIdChange = (e) => {
+    setTitleTypeId(e.target.value)
+  }
+
+  const handleIsNewTitleTypeChange = (e) => {
+    setIsNewTitleType(e.target.value)
+  }
+
+  const createTitle = () => {
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/titles`,
+    {
+      title_type_id: titleTypeId,
+      name: name,
+      is_new_title_type: isNewTitleType
+    },
+    {
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    },
+    )
+    .catch(error => console.log(error))
+
+  }
+
   return (
     <Layout>
+      <Form className="my-3">
+        <Form.Group className="mb-3" controlId="formSerialCode">
+          <Form.Label>titleTypeID</Form.Label>
+          <Form.Control value={titleTypeId} placeholder="titleTypeIdを入力してください" onChange={handleTitleTypeIdChange} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formTeamName">
+          <Form.Label>タイトル名</Form.Label>
+          <Form.Control value={name} placeholder="タイトル名を入力してください" onChange={handleNameChange}/>
+        </Form.Group>
+        <div key={`custom-checkbox`} className="mb-3">
+              <Form.Check
+                custom
+                type={"checkbox"}
+                value={isNewTitleType}
+                id={`custom-checkbox`}
+                label={`新しいTitleType？`}
+                onChange={handleIsNewTitleTypeChange}
+                />
+            </div>
+        <Form.Group className="text-end">
+          {/* <Button variant="dark" type="submit" onClick={createTeam} disabled={isSubmitDisable}> */}
+          <Button variant="dark" type="submit" onClick={createTitle} >
+            作成
+          </Button>
+        </Form.Group>
+      </Form>
       <Row>
         <Col>title_type_id</Col>
         <Col>title_id</Col>

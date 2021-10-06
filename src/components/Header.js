@@ -86,7 +86,7 @@ const Header = () => {
                 <LinkContainer to="/my_page" className="ms-3">
                   <Nav.Link>
                     <img
-                      src={icon}
+                      src={`${process.env.PUBLIC_URL}/default-user-image.png`}
                       width="40"
                       height="40"
                       alt="React Bootstrap logo"

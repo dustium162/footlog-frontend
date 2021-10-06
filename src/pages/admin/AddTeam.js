@@ -97,7 +97,7 @@ const AddTeam = () => {
           <Form.Group className="text-end">
             {/* <Button variant="dark" type="submit" onClick={createTeam} disabled={isSubmitDisable}> */}
             <Button variant="dark" type="submit" onClick={createTeam} >
-              ログイン
+              作成
             </Button>
           </Form.Group>
         </Form>

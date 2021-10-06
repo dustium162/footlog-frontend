@@ -10,7 +10,7 @@ const MatchResults = ({matchResults}) => {
 
   return (
     <>
-      <h3 className="h5">観戦数</h3>
+      <h3 className="h5">現地観戦数</h3>
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}

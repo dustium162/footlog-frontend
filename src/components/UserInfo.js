@@ -6,16 +6,12 @@ import {Container,Image} from "react-bootstrap";
 import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-import HeaderIcon from '../header-icon-sample.jpg';
-import icon from "../icon-sample.jpeg";
-
 import TeamLabel from "./TeamLabel"
 
 const UserInfo = ({user,team,support_info}) => {
   const [image,setImage] = useState("")
   const [name,setName] = useState("")
-  const [header_image,setHeaderImage] = useState("")
+  const [headerImage,setHeaderImage] = useState("")
   const [biography,setBiography] = useState("")
 
   useEffect(() => {
@@ -26,8 +22,8 @@ const UserInfo = ({user,team,support_info}) => {
   },[])
   return (
     <>
-      <div className="text-center" style={{backgroundImage: `url(${HeaderIcon}`, height: "200px", maxWidth: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover"}}>
-        <Image className="user-icon border border-white border-2" src={icon} style={{marginTop: "6.5rem"}} roundedCircle />
+      <div className="text-center" style={{backgroundImage: `url(${headerImage ? headerImage : `${process.env.PUBLIC_URL}/default-header-image2.jpg`}`, height: "200px", maxWidth: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover"}}>
+        <Image className="user-icon border border-white border-2" src={image ? image : `${process.env.PUBLIC_URL}/default-user-image.png`} style={{marginTop: "6.5rem"}} roundedCircle />
       </div>
       <Container>
         <div className="text-center" style={{marginTop: "2.5rem"}}>
@@ -55,12 +51,12 @@ const UserInfo = ({user,team,support_info}) => {
           </div>
         </div>
         }
-        {support_info.first_match &&
+        {/* {support_info.first_match &&
           <>
             <h6>{`初観戦:${support_info.first_match}`}</h6>
             <h6>{`最近の観戦:${support_info.latest_match}`}</h6>
           </>
-        }
+        } */}
       </Container>
     </>
   );
