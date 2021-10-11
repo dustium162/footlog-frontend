@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroller"
 import {Row,Col, Spinner} from "react-bootstrap"
 import axios from "axios"
 import PostCard from "./PostCard";
+import {TransitionMotion,spring} from "react-motion"
 
 const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
 
@@ -20,15 +21,45 @@ const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
     .then(data => setPosts(data))
     }
   ,[])
+
+  const willLeave = () => {
+    return {height: spring(0)}
+  }
+
+  const onClickEdit = (post_id) => {
+    const arr = []
+    posts.map(post => {
+      if (post.id !== post_id) {
+        arr.push(post)
+      }
+    })
+    setPosts(arr)
+  } 
+
   return (
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={1}>
-      {posts.length !== 0 ?
-        posts.map(post => (
-          <PostCard post={post}/>
+      <TransitionMotion
+        styles={
+          posts.map(post => (
+            {key: post.id, data: post,style:{height: post.match.height}}
           ))
-          :
-          <div>この区分の観戦記録はありません</div>
-      }
+        }
+        willLeave={willLeave}
+      >
+        {interpolatingStyles =>
+          <>
+            {interpolatingStyles.length !== 0 ?
+              interpolatingStyles.map(interpolatingStyle => {
+                return (
+                  <PostCard post={interpolatingStyle} onClickEdit={onClickEdit}/>
+                )
+              })
+            :
+            <div>この区分の観戦記録はありません</div>
+            }
+          </>
+        }
+      </TransitionMotion>
     </InfiniteScroll>
   );
 }  

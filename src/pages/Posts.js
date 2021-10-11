@@ -70,7 +70,8 @@ const Posts = () => {
             <TransitionMotion
               styles={
                 matches.map((match,id) => (
-                  {key: match.match_id, data:{...match,id},style:{height: 430}} //styleを指定する必要あり。
+                  {key: match.match_id, data:{...match,id},style:{height: match.height}}
+                  // {key: match.match_id, data:{...match,id},style:{height: 430}} //styleを指定する必要あり。
                   ))
                 }
                 willLeave={willLeave}
