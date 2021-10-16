@@ -31,6 +31,7 @@ import UnpublishedPosts from "./pages/admin/UnpublishedPosts";
 import ContactIndex from "./pages/admin/ContactIndex";
 import UserEdit from "./pages/UserEdit";
 import PasswordEdit from "./pages/PasswordEdit";
+import PasswordForget from "./pages/PasswordForget";
 
 import InformRenewal from "./pages/InformRenewal"
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/contact" component={Contact}/>
           <Route path="/user/edit" component={UserEdit}/>
           <Route path="/user/password/edit" component={PasswordEdit}/>
+          <Route path="/user/password/forget" component={PasswordForget} />
 
           {/* 管理者用 書く場所が正しいかは不明なので要相談(20210626浅) */}
           <Route path="/admin/main" component={AdminMain}/>

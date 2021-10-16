@@ -14,7 +14,7 @@ const PostCard = ({post,onClickEdit}) => {
   const handleEditClose = () => setEditShow(false);
 
   return (
-    <div key={String(post.key)} style={{height: `${post.style.height}px`}}>
+    <div key={String(post.key)} style={{height: `${post.style.height}px`,overflow:'hidden'}}>
       <Card>
         {post.style.height}
         <MatchInfo match={post.data.match} handleShow={handleShow}/>

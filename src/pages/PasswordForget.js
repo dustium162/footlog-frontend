@@ -9,7 +9,6 @@ import {Form,Button,Container} from "react-bootstrap"
 
 const SignIn = () => {
   const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const history = useHistory();
@@ -17,32 +16,25 @@ const SignIn = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
 
   const handleSubmit = (e) =>{
     e.preventDefault();
   }
 
   useEffect(() => {
-    email && password ? setIsSubmitDisable(false) : setIsSubmitDisable(true)
-  }, [email, password])
+    email ? setIsSubmitDisable(false) : setIsSubmitDisable(true)
+  }, [email])
 
-  const login = () => {
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_in`,{
+  const resetPassword = () => {
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/password`,{
       email: email,
-      password: password,
+      redirect_url: "https://footlog.net/top"
     })
     //レスポンスの一部をローカルストレージに保存するコードが必要
     .then(res => {
       if (res.status === 200) {
-        localStorage.setItem('uid', res.headers.uid)
-        localStorage.setItem('access-token', res.headers['access-token'])
-        localStorage.setItem('client', res.headers.client)
-        localStorage.setItem('currentUser', JSON.stringify(res.data.data))
         console.log('200');
-        history.push('/my_page')
+        history.push('/top')
       }
       // } else {
       //   console.log(res.status);
@@ -55,7 +47,7 @@ const SignIn = () => {
       console.log(error);
       // 401はthenで受け取るように修正予定（2021ｰ09-12 浦郷）
       if(error.response.status === 401) {
-        setErrorMessage('メールアドレスもしくはパスワードが異なります。');
+        setErrorMessage('メールアドレスが登録されていません。');
       } else {
         setErrorMessage('サーバーエラーが発生しました。')
       }
@@ -70,14 +62,9 @@ const SignIn = () => {
             <Form.Label>メールアドレス</Form.Label>
             <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>パスワード</Form.Label>
-            <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
-          </Form.Group>
-          <Link to="/user/password/forget">パスワードを忘れた方はこちら</Link>
           <Form.Group className="text-end">
-            <Button variant="dark" type="submit" onClick={login} disabled={isSubmitDisable}>
-              ログイン
+            <Button variant="dark" type="submit" onClick={resetPassword} disabled={isSubmitDisable}>
+              再設定用リンクの送付
             </Button>
           </Form.Group>
         </Form>
