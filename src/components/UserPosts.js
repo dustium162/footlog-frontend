@@ -34,7 +34,7 @@ const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
       }
     })
     setPosts(arr)
-  } 
+  }
 
   return (
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={1}>
@@ -55,14 +55,16 @@ const UserPosts = ({posts,postType,setPosts,hasMore,loadMore}) => {
                 )
               })
             :
-            <div>この区分の観戦記録はありません</div>
+            <div className="my-2 text-center bg-light rounded border py-3">
+              この区分の観戦記録はありません
+            </div>
             }
           </>
         }
       </TransitionMotion>
     </InfiniteScroll>
   );
-}  
+}
 
 export default UserPosts;
 

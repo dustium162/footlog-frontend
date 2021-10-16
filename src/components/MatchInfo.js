@@ -55,24 +55,24 @@ const MatchCard = ({match,handleShow}) => {
           <div className="text-center h5 text-secondary">
             得点者
           </div>
-      <Row className="text-secondary" style={{fontSize: "0.75rem"}}>
-        <Col className="text-start ps-1" style={{height: "70px", overflow:"auto"}}>
-          {match.home_team.goal_players && match.home_team.goal_players.map((player) => (
-            <div>
-              <span>{player.name} ({player.time}')</span>
-              {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
-            </div>
-          ))}
-        </Col>
-        <Col className="text-start ps-1" style={{height: "70px", overflow:"auto"}}>
-          {match.away_team.goal_players && match.away_team.goal_players.map((player) => (
-            <div>
-              {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
-              <span>{player.name} ({player.time}')</span>
-            </div>
-          ))}
-        </Col>
-      </Row>
+          <Row className="text-secondary" style={{fontSize: "0.75rem"}}>
+            <Col className="text-start px-3" style={{height: "70px", overflow:"auto"}}>
+              {match.home_team.goal_players && match.home_team.goal_players.map((player) => (
+                <div>
+                  <span>{player.name} ({player.time}')</span>
+                  {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
+                </div>
+              ))}
+            </Col>
+            <Col className="text-start ps-1" style={{height: "70px", overflow:"auto"}}>
+              {match.away_team.goal_players && match.away_team.goal_players.map((player) => (
+                <div>
+                  {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
+                  <span>{player.name} ({player.time}')</span>
+                </div>
+              ))}
+            </Col>
+          </Row>
         </>
       )}
       {(match.home_team.red_players.length > 0 || match.away_team.red_players.length > 0) && (
@@ -84,7 +84,7 @@ const MatchCard = ({match,handleShow}) => {
             退場者
           </div>
           <Row className="text-secondary" style={{fontSize: "0.75rem"}}>
-            <Col className="text-end ps-1" style={{height: "30px", overflow:"auto"}}>
+            <Col className="text-end px-3" style={{height: "30px", overflow:"auto"}}>
               {match.home_team.red_players && match.home_team.red_players.map((player) => (
                 <div>
                   <span>{player.name} ({player.time}')</span>
