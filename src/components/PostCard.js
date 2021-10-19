@@ -16,7 +16,6 @@ const PostCard = ({post,onClickEdit}) => {
   return (
     <div key={String(post.key)} style={{height: `${post.style.height}px`,overflow:'hidden'}}>
       <Card>
-        {post.style.height}
         <MatchInfo match={post.data.match} handleShow={handleShow}/>
         <Card.Footer>
         <Row>

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import axios from 'axios';
 import { useHistory, Link} from 'react-router-dom';
@@ -15,7 +15,7 @@ import icon from "../icon-sample.jpeg";
 // );
 
 const Header = () => {
-
+  const [icon,setIcon] = useState("")
   const history = useHistory();
 
   const handleSignOut = () => {
@@ -42,6 +42,7 @@ const Header = () => {
     .catch(error => console.log(error))
   }
 
+  
   return (
     <header>
       <Navbar bg="white" variant="light" className="border-bottom p-0">

@@ -36,7 +36,6 @@ const MyPage = () => {
     <Layout>
       {info.user && info.team && info.support_info ? <UserInfo user={info.user} team={info.team} support_info={info.support_info}/> : <>Loading...</>}
         <Container>
-          {console.log(info.stats)}
           {info.stats && ( (info.stats.match_results[0].win + info.stats.match_results[0].lose + info.stats.match_results[0].draw) === 0 ?
             <div className="my-4 text-center bg-light rounded border py-3">
               まだ現地観戦記録がありません。<br />
@@ -54,12 +53,9 @@ const MyPage = () => {
               <div className="my-4">
                 <ClubMatchResults clubMatchResults={info.stats.club_match_results}/>
               </div>
-              <UserPostTabs />
             </>
           )}
-          {/* {info.posts &&
-            <UserPostTabs posts={info.posts}/>
-          } */}
+          <UserPostTabs/>
         </Container>
     </Layout>
   )
