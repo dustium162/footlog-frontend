@@ -7,7 +7,7 @@ const MatchDetaliModal = ({match,onHide}) => {
     <Modal.Header>
       <Modal.Title>
         <span xs={6} className="small me-3">{match.date}</span>
-        <span xs={3} className="small">{match.title}</span>
+        <span xs={3} className="small">{match.title} 戦</span>
       </Modal.Title>
       <button type="button" class="btn-close" aria-label="Close" onClick={onHide}></button>
     </Modal.Header>

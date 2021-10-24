@@ -14,7 +14,7 @@ const Opponent = ({ clubMatchResult }) => {
       <Card variant="link text-secondary button_link" onClick={handleShow} show={show}>
         <Card.Header className="align-items-end text-start">
           <Emblem className="me-1" height="25" width="25" fill={`${clubMatchResult.team.color_code}`} style={{verticalAlign: "middle"}} />
-          <span style={{fontSize: "1.3rem"}} style={{verticalAlign: "middle"}}>{clubMatchResult.team.name}</span>
+          <span style={{fontSize: "1.3rem"}} style={{verticalAlign: "middle"}}>{clubMatchResult.team.name} 戦</span>
         </Card.Header>
         <Card.Body className="py-2">
           <Row>
@@ -40,7 +40,7 @@ const Opponent = ({ clubMatchResult }) => {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="bg-light">
           <Emblem className="me-1" height="25" width="25" fill={`${clubMatchResult.team.color_code}`} style={{verticalAlign: "middle"}} />
-          <span style={{verticalAlign: "middle"}}>{clubMatchResult.team.name}</span>
+          <span style={{verticalAlign: "middle"}}>{clubMatchResult.team.name} 戦</span>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleClose}></button>
         </Modal.Header>
         <Modal.Body>

@@ -88,6 +88,7 @@ const Header = () => {
                   <Nav.Link>
                     <img
                       src={`${process.env.PUBLIC_URL}/default-user-image.png`}
+                      // src={`${process.env.PUBLIC_URL}/IMG_1064.JPG`}
                       width="40"
                       height="40"
                       alt="React Bootstrap logo"

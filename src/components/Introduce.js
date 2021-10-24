@@ -33,6 +33,20 @@ const Introduce = () => {
             </Link>
           </Col>
         </Row>
+        <div>
+          <Image  src={`${process.env.PUBLIC_URL}/top_demo_image_posts.png`} style={{height: "400px"}} />
+          試合をどう観戦したかを記録します
+        </div>
+        <div>
+          <Image src={`${process.env.PUBLIC_URL}/top_demo_image_my_page.png`} style={{height: "400px"}} />
+          現地での観戦数や戦績をカウントします
+        </div>
+        <div>
+          <Image src={`${process.env.PUBLIC_URL}/top_demo_image_club_match_result.png`} style={{height: "400px"}}/>
+          対戦相手ごとの成績を見ることもできます
+        </div>
+        <Image  src={`${process.env.PUBLIC_URL}/top_demo_image_titles.png`} style={{height: "400px"}}></Image>
+        ACLや天皇杯の記録にも対応しています
         <Row><HowtoUse /></Row>
         <h2>例えば...</h2>
         <Row><ContentsIntro /></Row>
