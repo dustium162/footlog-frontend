@@ -114,23 +114,6 @@ const UserPostTabs = () => {
         </Tab.Pane>
       </Tab.Content>
     </Tab.Container>
-  //   <Tabs defaultActiveKey="onsite" id="uncontrolled-tab-example">
-  //     <Tab eventKey="onsite" title="現地観戦">
-  //       <UserPosts posts={onsitePosts} postType={1} setPosts={setOnsitePosts} hasMore={hasMoreOnsitePosts} setHasMore={setHasMoreOnsitePosts} loadMore={loadMoreOnsitePosts}/>
-  //     </Tab>
-  //     <Tab eventKey="online" title="オンライン" ClassName="small">
-  //       <UserPosts posts={onlinePosts} postType={2} setPosts={setOnlinePosts} hasMore={hasMoreOnlinePosts} setHasMore={setHasMoreOnlinePosts} loadMore={loadMoreOnlinePosts}/>
-  //     </Tab>
-  //     <Tab eventKey="forget" title="忘れた">
-  //       <UserPosts posts={forgetPosts} postType={3} setPosts={setForgetPosts} hasMore={hasMoreForgetPosts} setHasMore={setHasMoreForgetPosts} loadMore={loadMoreForgetPosts}/>
-  //     </Tab>
-  //     <Tab eventKey="notWatching" title="観てない">
-  //       <UserPosts posts={notWatchingPosts} postType={4} setPosts={setNotWatchingPosts} hasMore={hasMoreNotWatchingPosts} setHasMore={setHasMoreNotWatchingPosts} loadMore={loadMoreNotWatchingPosts}/>
-  //     </Tab>
-  //     {/* <Tab eventKey="accomplishments" title="実績">
-  //       <Accomplishments />
-  //     </Tab> */}
-  // </Tabs>
     );
 }
 export default UserPostTabs;
