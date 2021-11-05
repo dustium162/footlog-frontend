@@ -9,20 +9,36 @@ import NewUserPosts from "./NewUserPosts"
 // import Accomplishments from "./Accomplishments"
 
 const NewUserPostTabs = () => {
-  const [postType,setPostType] = useState(1)
-  const [displayNone,setDisplayNone] = useState([false,false,false,false])
+  const [postType,setPostType] = useState(1);
+  const [onsiteSelected, setOnsiteSelected] = useState(true);
+  const [onlineSelected, setOnlineSelected] = useState(false);
+  const [notWatchingSelected, setNotWatchingSelected] = useState(false);
+  const [forgetSelected, setForgetSelected] = useState(false);
+
   const handlePostType = (postType) => {
-    setPostType(postType)
-    if (postType === 1) {
-      setDisplayNone([false,true,true,true])
-    } else if (postType === 2) {
-      setDisplayNone([true,false,true,true])
-    } else if (postType === 3) {
-      setDisplayNone([true,true,false,true])
-    } else if (postType === 4) {
-      setDisplayNone([true,true,true,false])
+    setPostType(postType);
+    if(postType === 1) {
+      setOnsiteSelected(true);
+      setOnlineSelected(false);
+      setNotWatchingSelected(false);
+      setForgetSelected(false);
+    } else if(postType === 2) {
+      setOnsiteSelected(false);
+      setOnlineSelected(true);
+      setNotWatchingSelected(false);
+      setForgetSelected(false);
+    } else if(postType === 3) {
+      setOnsiteSelected(false);
+      setOnlineSelected(false);
+      setNotWatchingSelected(true);
+      setForgetSelected(false);
+    } else if(postType === 4) {
+      setOnsiteSelected(false);
+      setOnlineSelected(false);
+      setNotWatchingSelected(false);
+      setForgetSelected(true);
     }
-  }
+  };
 
   // const [matchType,setMatchType] = useState("onsite")
   return (
@@ -45,16 +61,16 @@ const NewUserPostTabs = () => {
       </Nav>
       <Tab.Content>
         <Tab.Pane eventKey="onsite" className="py-3">
-          <NewUserPosts postType={postType} displayNone={displayNone[0]}/>
+          <NewUserPosts postType={1} isSelected={onsiteSelected} />
         </Tab.Pane>
         <Tab.Pane eventKey="online" className="py-3">
-          <NewUserPosts postType={postType} displayNone={displayNone[1]}/>
+          <NewUserPosts postType={2} isSelected={onlineSelected} />
         </Tab.Pane>
         <Tab.Pane eventKey="notWatching" className="py-3">
-          <NewUserPosts postType={postType} displayNone={displayNone[2]}/>
+          <NewUserPosts postType={3} isSelected={notWatchingSelected} />
         </Tab.Pane>
         <Tab.Pane eventKey="forget" className="py-3">
-          <NewUserPosts postType={postType} displayNone={displayNone[3]}/>
+          <NewUserPosts postType={4} isSelected={forgetSelected} />
         </Tab.Pane>
       </Tab.Content>
     </Tab.Container>

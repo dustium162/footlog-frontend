@@ -5,9 +5,9 @@ import axios from "axios"
 import PostCard from "./PostCard";
 import {TransitionMotion,spring} from "react-motion"
 
-const NewUserPosts = ({postType,displayNone}) => {
+const NewUserPosts = ({postType, isSelected}) => {
+  // console.log(String(postType) + String(isSelected));
   const [posts,setPosts] = useState([])
-  console.log(postType)
   const [hasMore,setHasMore] = useState(true)
   const loadMore = async (page) => {
     const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/posts/index/${postType}?page=${page}`, {
@@ -38,7 +38,7 @@ const NewUserPosts = ({postType,displayNone}) => {
     .then(response => response.data)
     .then(data => setPosts(data))
     }
-  ,[postType])
+  ,[isSelected])
 
   const willLeave = () => {
     return {height: spring(0)}
@@ -53,43 +53,39 @@ const NewUserPosts = ({postType,displayNone}) => {
     })
     setPosts(arr)
   }
-  const foo = (displayNone) => {
-    if (displayNone) {
-      return "none"
-    } else {
-      return "block"
-    }
-  }
-  return (
-    <div style={{display: foo(displayNone)}}>
-    <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={1}>
-      <TransitionMotion
-        styles={
-          posts.map(post => (
-            {key: post.id, data: post,style:{height: post.match.height}}
-            ))
-          }
-          willLeave={willLeave}
-          >
-        {interpolatingStyles =>
-          <>
-            {interpolatingStyles.length !== 0 ?
-              interpolatingStyles.map(interpolatingStyle => {
-                return (
-                  <PostCard post={interpolatingStyle} onClickEdit={onClickEdit}/>
+
+  if(isSelected){
+    return (
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={1}>
+        <TransitionMotion
+          styles={
+            posts.map(post => (
+              {key: post.id, data: post,style:{height: post.match.height}}
+              ))
+            }
+            willLeave={willLeave}
+            >
+          {interpolatingStyles =>
+            <>
+              {interpolatingStyles.length !== 0 ?
+                interpolatingStyles.map(interpolatingStyle => {
+                  return (
+                    <PostCard post={interpolatingStyle} onClickEdit={onClickEdit}/>
                   )
                 })
                 :
                 <div className="my-2 text-center bg-light rounded border py-3">
-              この区分の観戦記録はありません
-            </div>
-            }
-          </>
-        }
-      </TransitionMotion>
-    </InfiniteScroll>
-    </div>
-  );
+                  この区分の観戦記録はありません
+                </div>
+              }
+            </>
+          }
+        </TransitionMotion>
+      </InfiniteScroll>
+    );  
+  } else {
+    return '';
+  }
 }
 
 export default NewUserPosts;
