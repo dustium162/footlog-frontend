@@ -21,7 +21,7 @@ const Introduce = () => {
         </div>
       </div>
       <Container className="my-2">
-        <Row className="text-center">
+        <Row className="text-center mb-3">
           <Col>
           <Link to="sign_up" className="btn btn-dark rounded-pill py-2 px-2">
             <span className="mx-2">新規登録</span>
@@ -33,8 +33,8 @@ const Introduce = () => {
             </Link>
           </Col>
         </Row>
-        <h2 style={{textAlign:"center"}}>footlogの使い方</h2>
-        <Card>
+        <h1 style={{textAlign:"center"}} className="mb-3">footlogの使い方</h1>
+        <Card className="mb-3">
           <Card.Header>
             観戦記録の作成
           </Card.Header>
@@ -45,7 +45,7 @@ const Introduce = () => {
           </Card.Body>
           <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_match_card.png`} />
         </Card>
-        <Card>
+        <Card className="mb-3">
           <Card.Header>
             観戦数のカウント
           </Card.Header>
@@ -56,7 +56,7 @@ const Introduce = () => {
           </Card.Body>
           <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_match_result.png`} />
         </Card>
-        <Card>
+        <Card className="mb-3">
           <Card.Header>
             クラブ別対戦成績
           </Card.Header>
@@ -67,7 +67,7 @@ const Introduce = () => {
           </Card.Body>
           <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_club_match_result_component.png`} />
         </Card>
-        <Card>
+        <Card className="mb-3">
           <Card.Header>
             各種大会への対応
           </Card.Header>
