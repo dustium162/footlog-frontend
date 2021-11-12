@@ -191,7 +191,7 @@ const UserEdit = () => {
             <Form.Control as="textarea" value={biography} onChange={(e) => setBiography(e.target.value)} style={{ height: '100px' }} />
           </Form.Group>
           <Form.Group className="text-end">
-            <Button variant="primary" type="submit" className="mx-1" onClick={updateUser} disabled={!name || !email || !biography}>
+            <Button variant="primary" type="submit" className="mx-1" onClick={updateUser} disabled={!name || !email}>
               更新する
             </Button>
             <Link className="btn btn-outline-secondary mx-1" to="/my_page">キャンセル</Link>

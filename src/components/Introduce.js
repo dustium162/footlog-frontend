@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 
-import {Container,Image,Row,Col, Button} from "react-bootstrap"
+import {Container,Image,Row,Col,Card,Button} from "react-bootstrap"
 
 import HowtoUse from "./HowtoUse"
 import ContentsIntro from "./ContentsIntro"
@@ -33,23 +33,51 @@ const Introduce = () => {
             </Link>
           </Col>
         </Row>
-        <div>
-          <Image  src={`${process.env.PUBLIC_URL}/top_demo_image_posts.png`} style={{height: "400px"}} />
-          試合をどう観戦したかを記録します
-        </div>
-        <div>
-          <Image src={`${process.env.PUBLIC_URL}/top_demo_image_my_page.png`} style={{height: "400px"}} />
-          現地での観戦数や戦績をカウントします
-        </div>
-        <div>
-          <Image src={`${process.env.PUBLIC_URL}/top_demo_image_club_match_result.png`} style={{height: "400px"}}/>
-          対戦相手ごとの成績を見ることもできます
-        </div>
-        <Image  src={`${process.env.PUBLIC_URL}/top_demo_image_titles.png`} style={{height: "400px"}}></Image>
-        ACLや天皇杯の記録にも対応しています
-        <Row><HowtoUse /></Row>
-        <h2>例えば...</h2>
-        <Row><ContentsIntro /></Row>
+        <h2 style={{textAlign:"center"}}>footlogの使い方</h2>
+        <Card>
+          <Card.Header>
+            観戦記録の作成
+          </Card.Header>
+          <Card.Body>
+            <Card.Text style={{textAlign:"center"}}>
+              試合をどう観戦したかを記録します
+            </Card.Text>
+          </Card.Body>
+          <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_match_card.png`} />
+        </Card>
+        <Card>
+          <Card.Header>
+            観戦数のカウント
+          </Card.Header>
+          <Card.Body>
+            <Card.Text style={{textAlign:"center"}}>
+              現地での観戦数や戦績がカウントされます
+            </Card.Text>
+          </Card.Body>
+          <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_match_result.png`} />
+        </Card>
+        <Card>
+          <Card.Header>
+            クラブ別対戦成績
+          </Card.Header>
+          <Card.Body>
+            <Card.Text style={{textAlign:"center"}}>
+              対戦相手ごとの戦績を見ることもできます
+            </Card.Text>
+          </Card.Body>
+          <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_club_match_result_component.png`} />
+        </Card>
+        <Card>
+          <Card.Header>
+            各種大会への対応
+          </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              ACLや天皇杯の記録にも対応しています
+            </Card.Text>
+          </Card.Body>
+          <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_acl.png`} />
+        </Card>
         <Row className="text-center">
           <Col>
           <Link to="sign_up" className="btn btn-dark rounded-pill py-2 px-2">
