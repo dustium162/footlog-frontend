@@ -37,7 +37,7 @@ import InformRenewal from "./pages/InformRenewal"
 
 function App() {
   return (
-    <div className="App">
+    <div className="App footer-fixed">
       <Router>
         <Switch>
           <Route exact path="/" component={InformRenewal} />

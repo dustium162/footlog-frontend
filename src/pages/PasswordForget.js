@@ -11,6 +11,7 @@ const SignIn = () => {
   const [email,setEmail] = useState("")
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
+  const [sendButtonLabel, setSendButtonLabel] = useState('再設定用リンクの送付');
   const history = useHistory();
 
   const handleEmailChange = (e) => {
@@ -26,6 +27,8 @@ const SignIn = () => {
   }, [email])
 
   const resetPassword = () => {
+    setIsSubmitDisable(true);
+    setSendButtonLabel('送信中...');
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/password`,{
       email: email,
       redirect_url: "https://footlog.net/top"
@@ -48,8 +51,12 @@ const SignIn = () => {
       // 401はthenで受け取るように修正予定（2021ｰ09-12 浦郷）
       if(error.response.status === 401) {
         setErrorMessage('メールアドレスが登録されていません。');
+        setIsSubmitDisable(false);
+        setSendButtonLabel('再設定用リンクの送付');
       } else {
-        setErrorMessage('サーバーエラーが発生しました。')
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSendButtonLabel('再設定用リンクの送付');
       }
     })
   }
@@ -64,7 +71,7 @@ const SignIn = () => {
           </Form.Group>
           <Form.Group className="text-end">
             <Button variant="dark" type="submit" onClick={resetPassword} disabled={isSubmitDisable}>
-              再設定用リンクの送付
+              {sendButtonLabel}
             </Button>
           </Form.Group>
         </Form>
