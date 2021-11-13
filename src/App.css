@@ -18,6 +18,16 @@ footer {
   height: 90px;
 }
 
+.footer-text {
+  text-decoration: none;
+  color: #6C757D;
+}
+
+
+.footer-text:hover {
+  color: #343A40;
+}
+
 
 .user-icon {
   width: 130px;

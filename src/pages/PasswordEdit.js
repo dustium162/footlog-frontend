@@ -88,7 +88,7 @@ const PasswordEdit = () => {
       {/* {JSON.stringify(info.user)} */}
       <Container>
         <Form onSubmit={handleSubmit}　className="my-3">
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>パスワード</Form.Label>
             <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
             <span onClick={togglePassword} role="presentation" className="PasswordReveal">
