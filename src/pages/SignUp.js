@@ -22,6 +22,7 @@ const SignUp = () => {
   const [clubId,setClubId] = useState(0)
   const [agree, setAgree] = useState(false)
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
+  const [signUpButtonLabel, setSignUpButtonLabel] = useState('登録する')
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -76,6 +77,8 @@ const SignUp = () => {
   }
 
   const createNewUser = () => {
+    setIsSubmitDisable(true);
+    setSignUpButtonLabel('登録中...')
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth`,{
       name: name,
       email: email,
@@ -89,6 +92,8 @@ const SignUp = () => {
         console.log('200');
       } else if(res.status === 500){
         console.log('500');
+        setIsSubmitDisable(false);
+        setSignUpButtonLabel('登録する');
       }
     })
     .catch(error => {
@@ -99,6 +104,8 @@ const SignUp = () => {
       } else {
         setErrorMessage('サーバーエラーが発生しました。')
       }
+      setIsSubmitDisable(false);
+      setSignUpButtonLabel('登録する');
     })
   }
 
@@ -166,7 +173,7 @@ const SignUp = () => {
           </Form.Group>
           <Form.Group className="text-end">
             <Button variant="dark" type="submit" onClick={createNewUser} disabled={isSubmitDisable}>
-              登録する
+              {signUpButtonLabel}
             </Button>
           </Form.Group>
         </Form>

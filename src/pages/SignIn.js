@@ -12,6 +12,7 @@ const SignIn = () => {
   const [password,setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
+  const [signInButtonLabel, setSignInButtonLabel] = useState('ログイン')
   const history = useHistory();
 
   const handleEmailChange = (e) => {
@@ -30,6 +31,8 @@ const SignIn = () => {
   }, [email, password])
 
   const login = () => {
+    setIsSubmitDisable(true);
+    setSignInButtonLabel('ログイン中...')
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_in`,{
       email: email,
       password: password,
@@ -59,6 +62,8 @@ const SignIn = () => {
       } else {
         setErrorMessage('サーバーエラーが発生しました。')
       }
+      setIsSubmitDisable(false);
+      setSignInButtonLabel('ログイン');
     })
   }
   return (
@@ -77,7 +82,7 @@ const SignIn = () => {
           <Link to="/user/password/forget">パスワードを忘れた方はこちら</Link>
           <Form.Group className="text-end">
             <Button variant="dark" type="submit" onClick={login} disabled={isSubmitDisable}>
-              ログイン
+              {signInButtonLabel}
             </Button>
           </Form.Group>
         </Form>

@@ -33,6 +33,8 @@ const UserEdit = () => {
   const [image,setImage] = useState("")
   const [header_image,setHeaderImage] = useState("")
   const [biography,setBiography] = useState("")
+  const [isSubmitDisable, setIsSubmitDisable] = useState(false);
+  const [updateButtonLabel, setUpdateButtonLabel] = useState('更新する');
 
   const processImage = async (e) => {
     const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`, {params: {filename: e.target.files[0].name}});
@@ -91,6 +93,8 @@ const UserEdit = () => {
   }
 
   const updateUser = () => {
+    setIsSubmitDisable(true);
+    setUpdateButtonLabel('更新中...');
     const data = new FormData();
     data.append('name', name);
     data.append('email', email);
@@ -117,8 +121,14 @@ const UserEdit = () => {
         console.log('200');
       } else if(res.status === 500){
         console.log('500');
+        setIsSubmitDisable(false);
+        setUpdateButtonLabel('更新する');
       }
-    }).catch(error => console.log(error))
+    }).catch(error => {
+      console.log(error);
+      setIsSubmitDisable(false);
+      setUpdateButtonLabel('更新する');
+    })
   }
 
   const deleteUser = () => {
@@ -152,7 +162,11 @@ const UserEdit = () => {
       // setHeaderImage(data.user.header_image);
       setBiography(data.user.biography);
     })
-  },[])
+  },[]);
+
+  useEffect(() => {
+    name && email ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
+  }, [name, email]);
 
   return (
     <Layout>
@@ -191,7 +205,7 @@ const UserEdit = () => {
             <Form.Control as="textarea" value={biography} onChange={(e) => setBiography(e.target.value)} style={{ height: '100px' }} />
           </Form.Group>
           <Form.Group className="text-end">
-            <Button variant="primary" type="submit" className="mx-1" onClick={updateUser} disabled={!name || !email}>
+            <Button variant="dark" type="submit" className="mx-1" onClick={updateUser} disabled={!name || !email}>
               更新する
             </Button>
             <Link className="btn btn-outline-secondary mx-1" to="/my_page">キャンセル</Link>

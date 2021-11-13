@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import axios from 'axios';
 import { useHistory, Link} from 'react-router-dom';
@@ -17,8 +17,12 @@ import icon from "../icon-sample.jpeg";
 const Header = () => {
   const [icon,setIcon] = useState("")
   const history = useHistory();
+  const [pointerEvents, setPointerEvents] = useState('auto');
+  const [signOutButtonLabel, setSignOutButtonLabel] = useState('ログアウト');
 
   const handleSignOut = () => {
+    setPointerEvents('none');
+    setSignOutButtonLabel('ログアウト中...');
     axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_out`,{
       headers: {
         uid: localStorage.getItem('uid'),
@@ -32,14 +36,20 @@ const Header = () => {
         localStorage.removeItem('uid');
         localStorage.removeItem('access-token');
         localStorage.removeItem('client');
-        localStorage.removeItem('currentUser')
+        localStorage.removeItem('currentUser');
         console.log('200');
         history.push('/sign_in')
       } else {
         console.log('500');
+        setPointerEvents('auto');
+        setSignOutButtonLabel('ログアウト');
       }
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error);
+      setPointerEvents('auto');
+      setSignOutButtonLabel('ログアウト');
+    })
   }
 
   
@@ -106,12 +116,12 @@ const Header = () => {
                     </div>
                   </Nav.Link>
                 </LinkContainer>
-                <a href="javascript:void(0)" onClick={handleSignOut} className="nav-link ms-3">
-                  <div  className="btn btn-secondary rounded-pill py-2 px-2">
+                <a href="javascript:void(0)" onClick={handleSignOut} className="nav-link ms-3" style={{pointerEvents: pointerEvents}}>
+                  <div className="btn btn-secondary rounded-pill py-2 px-2">
                     <span style={{marginLeft:"2px", marginRight:"2px"}}>
                       <FontAwesomeIcon className="fa-fw text-white" icon={faSignOutAlt}></FontAwesomeIcon>
                     </span>
-                    <span className="d-none d-md-inline small">ログアウト</span>
+                    <span className="d-none d-md-inline small">{signOutButtonLabel}</span>
                   </div>
                 </a>
               </>
