@@ -22,10 +22,25 @@ const UserInfo = ({user,team,support_info}) => {
   },[])
   return (
     <>
-      <div className="text-center" style={{backgroundImage: `url(${headerImage ? headerImage : `${process.env.PUBLIC_URL}/default-header-image2.jpg`}`, height: "200px", maxWidth: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover"}}>
-        <Image className="user-icon border border-white border-2" src={image ? image : `${process.env.PUBLIC_URL}/default-user-image.png`} style={{marginTop: "6.5rem"}} roundedCircle />
+      <div style={{backgroundImage: `url(${headerImage ? headerImage : `${process.env.PUBLIC_URL}/default-header-image2.jpg`}`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
+        <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
+          <div style={{paddingTop: "calc(450 / 1000 * 50%)",paddingBottom: "calc(450 / 1000 * 50%)"}}>
+          </div>
+
+        </div>
       </div>
-      <Container>
+      <div className="text-center">
+        <Image className="user-icon border border-white border-2" src={image ? image : `${process.env.PUBLIC_URL}/default-user-image.png`} style={{marginTop: "-5.5rem"}} roundedCircle />
+      </div>
+      {/* <div style={{backgroundImage: `url(${headerImage ? headerImage : `${process.env.PUBLIC_URL}/default-header-image2.jpg`}`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover"}}>
+        <div className="text-center py-2" style={{height: "100%", width:"100%"}}>
+          <Image className="user-icon border border-white border-2" src={image ? image : `${process.env.PUBLIC_URL}/default-user-image.png`} style={{marginTop: "6.5rem"}} roundedCircle />
+        </div>
+      </div> */}
+      {/* <div className="text-center" style={{backgroundImage: `url(${headerImage ? headerImage : `${process.env.PUBLIC_URL}/default-header-image2.jpg`}`, height: "200px", maxWidth: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover"}}>
+        <Image className="user-icon border border-white border-2" src={image ? image : `${process.env.PUBLIC_URL}/default-user-image.png`} style={{marginTop: "6.5rem"}} roundedCircle />
+      </div> */}
+      <Container style={{marginTop: "-2.5rem"}}>
         <div className="text-center" style={{marginTop: "2.5rem"}}>
           <div class="h4">{name}</div>
         </div>

@@ -29,11 +29,12 @@ const PostCard = ({post,onClickEdit}) => {
           <MatchDetaliModal match={post.data.match} show={show} onHide={handleClose}/>
         </Modal>
         <Modal show={editShow} onHide={handleEditClose}>
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>投稿の編集</Modal.Title>
+            <button type="button" class="btn-close" aria-label="Close" onClick={handleEditClose}></button>
           </Modal.Header>
           <Modal.Body>
-          <Row>
+          <Row className="text-center">
             {post.data.post_type !== 1 && <Col><PostEditButton post_id ={post.data.id} img_src="stadium" msg="現地観戦" post_type="1" onClickEdit={onClickEdit} handleEditClose={handleEditClose}/></Col>}
             {post.data.post_type !== 2 && <Col><PostEditButton post_id ={post.data.id} img_src="monitor" msg="オンライン" post_type="2" onClickEdit={onClickEdit} handleEditClose={handleEditClose}/></Col>}
             {post.data.post_type !== 3 && <Col><PostEditButton post_id ={post.data.id} img_src="pass" msg="観ていない" post_type="3" onClickEdit={onClickEdit} handleEditClose={handleEditClose}/></Col>}
