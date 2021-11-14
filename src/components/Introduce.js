@@ -28,7 +28,7 @@ const Introduce = () => {
           </Link>
           </Col>
           <Col>
-            <Link to="/sign_up" className="btn btn-secondary rounded-pill py-2 px-2">
+            <Link to="/sign_in" className="btn btn-secondary rounded-pill py-2 px-2">
               <span className="mx-2">ログイン</span>
             </Link>
           </Col>

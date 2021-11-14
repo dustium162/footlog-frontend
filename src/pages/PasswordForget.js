@@ -38,6 +38,7 @@ const SignIn = () => {
       if (res.status === 200) {
         console.log('200');
         history.push('/top')
+        console.log(res);
       }
       // } else {
       //   console.log(res.status);
