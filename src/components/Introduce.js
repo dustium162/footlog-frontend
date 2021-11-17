@@ -36,52 +36,52 @@ const Introduce = () => {
         <h1 style={{textAlign:"center"}} className="mb-3">footlogでできること</h1>
         <Row style={{display: "flex", flexWrap: "wrap"}}>
           <Col xs={12} md={3} className="mb-3">
-            <Card className="mx-2 h-100">
+            <Card className="mx-1 h-100">
               <Card.Header className="h5 bg-dark text-white">
                 ① 観戦記録の作成
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{textAlign:"center"}}>
-                  <u>試合をどう観戦したかを記録できます</u>
+                  <u>試合をどう観戦したかを記録します</u>
                 </Card.Text>
                 <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_posts.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
           <Col xs={12} md={3} className="mb-3">
-            <Card className="mx-2 h-100">
+            <Card className="mx-1 h-100">
               <Card.Header className="h5 bg-dark text-white">
                 ② 観戦数のカウント
               </Card.Header>
               <Card.Body>
                 <Card.Text>
-                  現地での観戦数や戦績がカウントされます
+                  現地観戦数や戦績をカウントします
                 </Card.Text>
                 <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_my_page.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
           <Col xs={12} md={3} className="mb-3">
-            <Card className="mx-2 h-100">
+            <Card className="mx-1 h-100">
               <Card.Header className="h5 bg-dark text-white">
                 ③ クラブ別対戦成績
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{textAlign:"center"}}>
-                  対戦相手ごとの戦績を見ることもできます
+                  相手別の戦績を見ることもできます
                 </Card.Text>
                 <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_club_match_result.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
           <Col xs={12} md={3} className="mb-3">
-            <Card className="mx-2 h-100">
+            <Card className="mx-1 h-100">
               <Card.Header className="h5 bg-dark text-white">
                 ④ 各種大会への対応
               </Card.Header>
               <Card.Body>
                 <Card.Text>
-                  ACLや天皇杯の記録にも対応しています
+                  ACLや天皇杯にも対応しています
                 </Card.Text>
                 <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_titles.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>

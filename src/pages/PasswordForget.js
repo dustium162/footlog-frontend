@@ -7,7 +7,7 @@ import {useState, useEffect} from "react"
 
 import {Form,Button,Container} from "react-bootstrap"
 
-const SignIn = () => {
+const PasswordForget = () => {
   const [email,setEmail] = useState("")
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
@@ -31,7 +31,8 @@ const SignIn = () => {
     setSendButtonLabel('送信中...');
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/password`,{
       email: email,
-      redirect_url: "https://footlog.net/top"
+      redirect_url: `http://localhost:3001/user/password/edit`
+      // redirect_url: "https://footlog.net/top"
     })
     //レスポンスの一部をローカルストレージに保存するコードが必要
     .then(res => {
@@ -80,4 +81,4 @@ const SignIn = () => {
     </Layout>
   );
 }
-export default SignIn;
+export default PasswordForget;
