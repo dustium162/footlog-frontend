@@ -46,6 +46,7 @@ const Header = () => {
         localStorage.removeItem('access-token');
         localStorage.removeItem('client');
         localStorage.removeItem('currentUser');
+        history.push('/sign_in');
 
         setPointerEvents('auto');
         setSignOutButtonLabel('ログアウト');
@@ -58,6 +59,7 @@ const Header = () => {
       localStorage.removeItem('access-token');
       localStorage.removeItem('client');
       localStorage.removeItem('currentUser');
+      history.push('/sign_in');
 
       setPointerEvents('auto');
       setSignOutButtonLabel('ログアウト');

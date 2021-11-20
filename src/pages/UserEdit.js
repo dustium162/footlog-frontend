@@ -37,7 +37,7 @@ const UserEdit = () => {
   const [updateButtonLabel, setUpdateButtonLabel] = useState('更新する');
 
   const processImage = async (e) => {
-    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`, {params: {filename: e.target.files[0].name}});
+    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/1`, {params: {filename: e.target.files[0].name}});
     const s3DirectPost = await res.data;
     const imageFile = await resizeFile(e.target.files[0], 100, 100);
     const fields = s3DirectPost.fields;
@@ -65,7 +65,7 @@ const UserEdit = () => {
   const processHeaderImage = async (e) => {
     const file = e.target.files[0].name;
     const fileType = file.split('.').pop();
-    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post`, {params: {filename: `${userId}_header_image.${fileType}`}});
+    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/2`, {params: {filename: `${userId}_header_image.${fileType}`}});
     const s3DirectPost = await res.data;
     const headerImageFile = await resizeFile(e.target.files[0], 400, 400);
     const fields = s3DirectPost.fields;
