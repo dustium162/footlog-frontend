@@ -41,12 +41,24 @@ const Header = () => {
         history.push('/sign_in')
       } else {
         console.log('500');
+
+        localStorage.removeItem('uid');
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('client');
+        localStorage.removeItem('currentUser');
+
         setPointerEvents('auto');
         setSignOutButtonLabel('ログアウト');
       }
     })
     .catch(error => {
       console.log(error);
+
+      localStorage.removeItem('uid');
+      localStorage.removeItem('access-token');
+      localStorage.removeItem('client');
+      localStorage.removeItem('currentUser');
+
       setPointerEvents('auto');
       setSignOutButtonLabel('ログアウト');
     })

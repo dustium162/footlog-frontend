@@ -31,7 +31,7 @@ const PasswordForget = () => {
     setSendButtonLabel('送信中...');
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/password`,{
       email: email,
-      redirect_url: `http://localhost:3001/user/password/edit`
+      redirect_url: `http://localhost:3001/user/password/reset`
       // redirect_url: "https://footlog.net/top"
     })
     //レスポンスの一部をローカルストレージに保存するコードが必要
