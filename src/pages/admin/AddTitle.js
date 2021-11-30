@@ -11,8 +11,7 @@ const AddTitle = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/v1/titles/")
       .then( response => {
-        console.log(response.data.data)
-        setTitles(response.data.data)
+        setTitles(response.data)
       })
       .catch(error => console.log(error))
   },[])

@@ -10,8 +10,7 @@ const AddStadium = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/v1/stadia/")
       .then( response => {
-        console.log(response.data.data)
-        setStadia(response.data.data)
+        setStadia(response.data)
       })
       .catch(error => console.log(error))
   },[])

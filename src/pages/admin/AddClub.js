@@ -66,7 +66,7 @@ const AddClub = () => {
   const [teams,setTeams] = useState({})
   useEffect(() => {
     axios.get("http://localhost:3000/v1/teams/")
-      .then( response => setTeams(response.data.data))
+      .then( response => setTeams(response.data))
       .catch(error => console.log(error))
   },[])
   return (

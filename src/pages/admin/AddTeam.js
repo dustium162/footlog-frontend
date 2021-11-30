@@ -60,7 +60,7 @@ const AddTeam = () => {
   useEffect(() => {
     axios.get("http://localhost:3000/v1/teams")
       .then( response => {
-        setTeams(response.data.data)
+        setTeams(response.data)
       })
       .catch(error => console.log(error))
   },[])
