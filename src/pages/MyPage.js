@@ -10,6 +10,7 @@ import ClubMatchResults from '../components/ClubMatchResults'
 // import UserPostTabs from '../components/UserPostTabs'
 import NewUserPostTabs from '../components/NewUserPostTabs'
 import MatchResults from '../components/MatchResults'
+import UserStats from '../components/UserStats'
 
 import {Container,Button} from 'react-bootstrap'
 
@@ -64,7 +65,6 @@ const MyPage = () => {
     .then(response => response.data)
     .then(data => {
       setInfo(data);
-      // setLoading(false);
     })
   }
   ,[])
@@ -73,25 +73,7 @@ const MyPage = () => {
     <Layout>
       {info.user && info.team && info.support_info ? <UserInfo user={info.user} team={info.team} support_info={info.support_info}/> : <>Loading...</>}
         <Container>
-          {info.stats && ( (info.stats.match_results[0].win + info.stats.match_results[0].lose + info.stats.match_results[0].draw) === 0 ?
-            <div className="my-4 text-center bg-light rounded border py-3">
-              まだ現地観戦記録がありません。<br />
-              下のボタンから観戦記録を作成しましょう！<br />
-              <Link to="/posts" className="btn btn-secondary mt-3">観戦記録を作る</Link>
-            </div>
-            :
-            <>
-              <div className="my-4">
-                <MatchResults matchResults={info.stats.match_results} />
-              </div>
-              <div className="mx-5">
-                <hr />
-              </div>
-              <div className="my-4">
-                <ClubMatchResults clubMatchResults={info.stats.club_match_results}/>
-              </div>
-            </>
-          )}
+          <UserStats userId={userId}/>
           <div className="mt-5">
             <NewUserPostTabs/>
           </div>
