@@ -71,13 +71,13 @@ const MyPage = () => {
 
   return (
     <Layout>
-      {info.user && info.team && info.support_info ? <UserInfo user={info.user} team={info.team} support_info={info.support_info}/> : <>Loading...</>}
-        <Container>
-          <UserStats userId={userId}/>
-          <div className="mt-5">
-            <NewUserPostTabs/>
-          </div>
-        </Container>
+      <UserInfo />
+      <Container>
+        <UserStats userId={userId}/>
+        <div className="mt-5">
+          <NewUserPostTabs/>
+        </div>
+      </Container>
     </Layout>
   )
 }
