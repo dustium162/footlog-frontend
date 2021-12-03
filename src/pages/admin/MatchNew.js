@@ -19,12 +19,16 @@ const MatchNew = () => {
   const [home_teams_list, setHomeTeamsList] = useState([])
   const [away_teams_list, setAwayTeamsList] = useState([])
 
-  const handleTitleId = (e) => {
-    setTitleId(e.target.value)
+  const handleTitle = (e) => {
+    if (e) {
+      setTitleId(e.value)
+    }
   }
+
   const handleDateTime = (e) => {
     setDateTime(e.target.value)
   }
+
   const handleStadium = (e) => {
     if(e) {
       setStadiumId(e.value)
@@ -32,7 +36,7 @@ const MatchNew = () => {
     console.log(stadium_id)
   }
   const handleNeutral = (e) => {
-    setNeutral(e.target.value)
+    setNeutral(!is_neutral)
   }
 
   const handleHomeTeam = (e) => {
@@ -86,12 +90,7 @@ const MatchNew = () => {
         <Form>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>大会</Form.Label>
-            <Form.Control as="select" value={title_id} onChange={handleTitleId}>
-              <option>大会を選択</option>
-              {titles ? titles.map(title => {
-                return <option value={title.value}>{title.label}</option>
-              }) : <div></div>}
-            </Form.Control>
+            <Select options={titles} placeholder="大会を選択" onChange={handleTitle} isClearable />
             <Form.Label>試合日程</Form.Label>
             <Form.Control type = "date" value={date_time} onChange={handleDateTime}/>
 

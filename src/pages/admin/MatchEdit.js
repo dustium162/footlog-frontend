@@ -54,11 +54,11 @@ const MatchEdit = ({match}) => {
       mobilization: mobilization
     },
     {
-          headers: {
-            uid: localStorage.getItem('uid'),
-            'access-token': localStorage.getItem('access-token'),
-            client: localStorage.getItem('client')
-          }
+    headers: {
+      uid: localStorage.getItem('uid'),
+      'access-token': localStorage.getItem('access-token'),
+      client: localStorage.getItem('client')
+      }
     })
     .catch(error => console.log(error))
   }
@@ -68,17 +68,19 @@ const MatchEdit = ({match}) => {
       <Form>
         <Row>
           <h5>{match.title}</h5>
-          <h5>{match.id}</h5>
+          <h5>match_id: {match.id}</h5>
           <h6>{match.date_time}</h6>
           <h6>{match.home_team} (Home) VS {match.away_team} (Away)</h6>
           <h6>@{match.stadium}</h6>
+          {match.is_neutral && <h6>中立地</h6>}
         </Row>
         <Row>
           <Col>入力形式：選手名,時間;選手名,時間;選手名,時間;</Col>
         </Row>
         <Row><Col>選手名と時間のペアをセミコロンで区切る</Col></Row>
-        <Row><Col>選手名と時間はコロンで区切る</Col></Row>
-        <Row><Col>オウンゴールは”オウンゴール”と入力すること</Col></Row>
+        <Row><Col>選手名と時間はカンマで区切る</Col></Row>
+        <Row><Col>オウンゴールの場合ははオウンゴールと入力すること</Col></Row>
+        <Row><Col>ロスタイムは例えば93分の得点の場合は90+3とする</Col></Row>
         <Row>
           <Form.Group as={Col}>
             <Form.Label>ホーム得点</Form.Label>
