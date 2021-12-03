@@ -109,22 +109,22 @@ const AddTeam = () => {
         <Col>pref_code</Col>
         <Col>serial_code</Col>
       </Row>
-      {Object.keys(teams).map(club_id => (
-        <Row>
-        <Col>
-          {Object.keys(teams[club_id]).map(team_id => (
-            <Row>
-              <Col>{club_id}</Col>
-              <Col>{teams[club_id][team_id].id}</Col>
-              <Col>{teams[club_id][team_id].name}</Col>
-              <Col><TeamLabel team={teams[club_id][team_id]} /></Col>
-              <Col>{teams[club_id][team_id].pref_code}</Col>
-              <Col>{teams[club_id][team_id].serial_code}</Col>
-            </Row>
-          ))}
-        </Col>
-        </Row>
+      <Row>
+        {Object.keys(teams).map(id => (
+          Object.keys(teams[id]).map(club_id => (
+            Object.keys(teams[id][club_id]).map(team_id => (
+              <Row>
+                <Col>{club_id}</Col>
+                <Col>{teams[id][club_id][team_id].id}</Col>
+                <Col>{teams[id][club_id][team_id].name}</Col>
+                <Col><TeamLabel team={teams[id][club_id][team_id]} /></Col>
+                <Col>{teams[id][club_id][team_id].pref_code}</Col>
+                <Col>{teams[id][club_id][team_id].serial_code}</Col>
+              </Row>
+            ))
+          ))
         ))}
+      </Row>
     </Layout>
   )
 }

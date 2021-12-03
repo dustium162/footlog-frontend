@@ -84,17 +84,20 @@ const AddTitle = () => {
         <Col>title_id</Col>
         <Col>title_name</Col>
       </Row>
-      {Object.keys(titles).map(title_type_id => (
+      {/* {titles.map((title_type) => ( */}
+      {Object.keys(titles).map(id => (
         <Row>
-        <Col>
-          {Object.keys(titles[title_type_id]).map(title_id => (
-            <Row>
-              <Col>{title_type_id}</Col>
-              <Col>{titles[title_type_id][title_id][0]}</Col>
-              <Col>{titles[title_type_id][title_id][1]}</Col>
-            </Row>
-          ))}
-        </Col>
+          <Col>
+            {Object.keys(titles[id]).map((title_type_id) => (
+              Object.keys(titles[id][title_type_id]).map((title_id) => (
+                <Row>
+                  <Col>{title_type_id}</Col>
+                  <Col>{titles[id][title_type_id][title_id].value}</Col>
+                  <Col>{titles[id][title_type_id][title_id].label}</Col>
+                </Row>
+              ))
+            ))}
+          </Col>
         </Row>
         ))}
     </Layout>
