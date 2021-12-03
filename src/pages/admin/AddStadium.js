@@ -81,19 +81,18 @@ const AddStadium = () => {
         <Col>stadium_id</Col>
         <Col>stadium_name</Col>
       </Row>
-      {Object.keys(stadia).map(stadium_type_id => (
-        <Row>
-        <Col>
-          {Object.keys(stadia[stadium_type_id]).map(stadium_id => (
+      {Object.keys(stadia).map(id => (
+        Object.keys(stadia[id]).map(stadium_type_id => (
+          Object.keys(stadia[id][stadium_type_id]).map(stadium_id => (
             <Row>
               <Col>{stadium_type_id}</Col>
-              <Col>{stadia[stadium_type_id][stadium_id][0]}</Col>
-              <Col>{stadia[stadium_type_id][stadium_id][1]}</Col>
+              <Col>{stadia[id][stadium_type_id][stadium_id].value}</Col>
+              <Col>{stadia[id][stadium_type_id][stadium_id].label}</Col>
             </Row>
-          ))}
-        </Col>
-        </Row>
-        ))}
+            ))
+          ))
+        ))
+      }
     </Layout>
   )
 }
