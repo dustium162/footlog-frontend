@@ -33,7 +33,7 @@ const UserInfo = () => {
   },[])
   return (
     <>
-      <div style={{backgroundImage: `url(${headerImage ? headerImage : `${process.env.PUBLIC_URL}/default-header-image2.jpg`}`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
+      <div style={{backgroundImage: `url(${headerImage}`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
         <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
           <div style={{paddingTop: "calc(450 / 1000 * 50%)",paddingBottom: "calc(450 / 1000 * 50%)"}}>
           </div>
@@ -41,7 +41,7 @@ const UserInfo = () => {
         </div>
       </div>
       <div className="text-center">
-        <Image className="user-icon border border-white border-2" src={image ? image : `${process.env.PUBLIC_URL}/default-user-image.png`} style={{marginTop: "-5.5rem"}} roundedCircle />
+        <Image className="user-icon border border-white border-2" src={image} style={{marginTop: "-5.5rem"}} roundedCircle />
       </div>
       <Container style={{marginTop: "-2.5rem"}}>
         <div className="text-center" style={{marginTop: "2.5rem"}}>
