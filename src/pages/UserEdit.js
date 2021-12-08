@@ -158,8 +158,8 @@ const UserEdit = () => {
       setInfo(data);
       setName(data.user.name);
       setEmail(data.user.email);
-      // setImage(data.user.image);
-      // setHeaderImage(data.user.header_image);
+      setImage(data.user.image);
+      setHeaderImage(data.user.header_image);
       setBiography(data.user.biography);
     })
   },[]);
@@ -193,12 +193,12 @@ const UserEdit = () => {
           <Form.Group controlId="formFile" className="mb-3" controlId="formImage">
             <Form.Label>アイコン画像</Form.Label>
             <Form.Control type="file" accept="image/*" onChange={processImage} />
-            <Image src={image} className="d-block mx-auto" rounded />
+            <Image src={image} className="d-block mx-auto" rounded fluid />
           </Form.Group>
           <Form.Group controlId="formFile" className="mb-3" controlId="formHeaderImage">
             <Form.Label>ヘッダー画像</Form.Label>
             <Form.Control type="file" accept="image/*" onChange={processHeaderImage} />
-            <Image src={header_image} className="d-block mx-auto" style={{maxWidth: "100%"}} rounded />
+            <Image src={header_image} className="d-block mx-auto" style={{maxWidth: "100%"}} rounded fluid />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBiography">
             <Form.Label>自己紹介</Form.Label>
