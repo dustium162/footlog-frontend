@@ -7,7 +7,6 @@ import Logo from "../logo-copy.png";
 // import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUserPlus, faSignInAlt, faEdit, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import icon from "../icon-sample.jpeg";
 
 // library.add(
 //   faSignOutAlt

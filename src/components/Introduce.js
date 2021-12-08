@@ -44,7 +44,7 @@ const Introduce = () => {
                 <Card.Text style={{textAlign:"center"}}>
                   <u>試合をどう観戦したかを記録します</u>
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_posts.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_posts.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
@@ -57,7 +57,7 @@ const Introduce = () => {
                 <Card.Text>
                   現地観戦数や戦績をカウントします
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_my_page.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_my_page.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
@@ -70,7 +70,7 @@ const Introduce = () => {
                 <Card.Text style={{textAlign:"center"}}>
                   相手別の戦績を見ることもできます
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_club_match_result.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_club_match_result.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
@@ -83,7 +83,7 @@ const Introduce = () => {
                 <Card.Text>
                   ACLや天皇杯にも対応しています
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top_demo_image_titles.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_titles.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
