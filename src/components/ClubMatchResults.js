@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Carousel, Container } from "react-bootstrap"
+import { Carousel } from "react-bootstrap"
 import Opponent from "./Opponent"
 import axios from "axios"
 
@@ -37,7 +37,6 @@ const ClubMatchResults = ({userId}) => {
       interval={null}
       indicators={false}
       >
-        {/* {clubMatchResults.map(club_match_result => ( */}
         {clubMatchResults.map(clubMatchResult => (
           <Carousel.Item key={clubMatchResult.team.club_id}>
             <Opponent clubMatchResult={clubMatchResult} />

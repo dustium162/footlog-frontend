@@ -1,9 +1,5 @@
 import React from "react"
-
-// import axios from 'axios'
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import Logo from "./logo.svg";
 import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css"

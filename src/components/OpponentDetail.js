@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, Row, Col } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap"
 
 const OpponentDetail = ({ clubMatchResultDetail }) => {
   return (

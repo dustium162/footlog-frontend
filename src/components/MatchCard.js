@@ -1,9 +1,8 @@
 import React, {useState} from "react"
 
-import {Image,Row,Col,Card,Modal,Button} from "react-bootstrap"
+import {Row,Col,Card,Modal} from "react-bootstrap"
 import PostButton from "./PostButton";
 import MatchInfo from "./MatchInfo"
-import {ReactComponent as Emblem} from '../emblem.svg';
 import MatchDetailModal from "./MatchDetailModal"
 
 const MatchCard = ({match,onClickPost}) => {

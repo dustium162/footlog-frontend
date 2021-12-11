@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import InfiniteScroll from "react-infinite-scroller"
-import {Row,Col, Spinner} from "react-bootstrap"
+import { Spinner } from "react-bootstrap"
 import axios from "axios"
 import PostCard from "./PostCard";
 import {TransitionMotion,spring} from "react-motion"

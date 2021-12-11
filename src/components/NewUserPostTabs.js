@@ -4,10 +4,6 @@ import {Tab, Nav} from "react-bootstrap"
 import axios from "axios"
 import NewUserPosts from "./NewUserPosts"
 
-// import Follows from "./Follows"
-// import Followers from "./Followers"
-// import Accomplishments from "./Accomplishments"
-
 const NewUserPostTabs = () => {
   const [postType,setPostType] = useState(1);
   const [onsiteSelected, setOnsiteSelected] = useState(true);

@@ -1,4 +1,4 @@
-import {Image,Row,Col,Card,Button, Container} from "react-bootstrap"
+import { Row,Col,Card } from "react-bootstrap"
 import {ReactComponent as Emblem} from '../emblem.svg';
 
 const MatchCard = ({match,handleShow}) => {

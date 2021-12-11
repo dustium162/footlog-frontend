@@ -5,14 +5,12 @@ import Layout from "../components/Layout";
 import axios from "axios"
 
 import UserInfo from '../components/UserInfo'
-// import SupportInfo from "../components/SupportInfo"
 import ClubMatchResults from '../components/ClubMatchResults'
-// import UserPostTabs from '../components/UserPostTabs'
 import NewUserPostTabs from '../components/NewUserPostTabs'
 import MatchResults from '../components/MatchResults'
 import UserStats from '../components/UserStats'
 
-import {Container,Button} from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 const MyPage = () => {
   // const [loading, setLoading] = useState(true);

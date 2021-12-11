@@ -1,6 +1,6 @@
 import {React} from 'react';
 import Layout from "../components/Layout";
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 
 import {useState, useEffect} from "react"

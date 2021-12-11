@@ -1,12 +1,7 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import {Container,Image,Row,Col,Card,Button,CardGroup} from "react-bootstrap"
-
-import HowtoUse from "./HowtoUse"
-import ContentsIntro from "./ContentsIntro"
-
-import topImage from '../shutterstock_3.jpg';
+import { Container,Row,Col,Card } from "react-bootstrap"
 
 const Introduce = () => {
   return (

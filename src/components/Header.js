@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState} from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import axios from 'axios';
 import { useHistory, Link} from 'react-router-dom';
@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // );
 
 const Header = () => {
-  const [icon,setIcon] = useState("")
   const history = useHistory();
   const [pointerEvents, setPointerEvents] = useState('auto');
   const [signOutButtonLabel, setSignOutButtonLabel] = useState('ログアウト');
@@ -110,8 +109,6 @@ const Header = () => {
                 <LinkContainer to="/my_page" className="ms-3">
                   <Nav.Link>
                     <img
-                      // src={`${process.env.PUBLIC_URL}/default-user-image.png`}
-                      // src={`${process.env.PUBLIC_URL}/IMG_1064.JPG`}
                       src={JSON.parse(localStorage.getItem('currentUser')).image}
                       width="40"
                       height="40"
