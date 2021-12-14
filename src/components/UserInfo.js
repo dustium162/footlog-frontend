@@ -45,7 +45,7 @@ const UserInfo = () => {
       </div>
       <Container style={{marginTop: "-2.5rem"}}>
         <div className="text-center" style={{marginTop: "2.5rem"}}>
-          <div class="h4">{name}</div>
+          <div className="h4">{name}</div>
         </div>
         <div className="text-end pe-2" style={{marginTop: "-2.75rem", marginBottom: "2.75rem"}}>
           <Link to="/user/edit" className="btn btn-secondary rounded-pill py-2 px-2">

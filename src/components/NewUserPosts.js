@@ -25,7 +25,7 @@ const NewUserPosts = ({postType, isSelected}) => {
     setPosts([...posts,...data])
   }
 
-  const loader =  <Spinner animation="border" variant="danger" />
+  const loader =  <Spinner key={0} animation="border" variant="danger" />
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/posts/index/${postType}`, {
       headers: {
@@ -68,13 +68,13 @@ const NewUserPosts = ({postType, isSelected}) => {
           {interpolatingStyles =>
             <>
               {interpolatingStyles.length !== 0 ?
-                interpolatingStyles.map(interpolatingStyle => {
+                interpolatingStyles.map((interpolatingStyle, index) => {
                   return (
-                    <PostCard post={interpolatingStyle} onClickEdit={onClickEdit}/>
-                  )
-                })
-                :
-                <div className="my-2 text-center bg-light rounded border py-3">
+                    <PostCard key={index} post={interpolatingStyle} onClickEdit={onClickEdit}/>
+                    )
+                  })
+                  :
+                  <div className="my-2 text-center bg-light rounded border py-3">
                   この区分の観戦記録はありません
                 </div>
               }
