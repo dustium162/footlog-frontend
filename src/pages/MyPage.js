@@ -11,6 +11,7 @@ import MatchResults from '../components/MatchResults'
 import UserStats from '../components/UserStats'
 
 import { Container } from 'react-bootstrap'
+import FormUserPosts from '../components/FormUserPosts';
 
 const MyPage = () => {
   // const [loading, setLoading] = useState(true);
@@ -73,7 +74,8 @@ const MyPage = () => {
       <Container>
         <UserStats userId={userId}/>
         <div className="mt-5">
-          <NewUserPostTabs/>
+          <FormUserPosts />
+          {/* <NewUserPostTabs/> */}
         </div>
       </Container>
     </Layout>

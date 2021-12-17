@@ -68,9 +68,9 @@ const NewUserPosts = ({postType, isSelected}) => {
           {interpolatingStyles =>
             <>
               {interpolatingStyles.length !== 0 ?
-                interpolatingStyles.map((interpolatingStyle, index) => {
+                interpolatingStyles.map(interpolatingStyle => {
                   return (
-                    <PostCard key={index} post={interpolatingStyle} onClickEdit={onClickEdit}/>
+                    <PostCard post={interpolatingStyle} onClickEdit={onClickEdit} />
                     )
                   })
                   :
