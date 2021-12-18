@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from "react";
 import {Form, Button} from "react-bootstrap"
-import InfiniteScroll from "react-infinite-scroller"
 import { Spinner } from "react-bootstrap"
 import axios from "axios"
-import FormUserPostCard from './FormUserPostCard';
+import PostCards from "./PostCards";
 
 const FormUserPosts = () => {
   const [posts,setPosts] = useState([])
@@ -90,21 +89,7 @@ const FormUserPosts = () => {
           </Button>
         </div>
       </Form>
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={0}>
-        {posts.length !== 0 ?
-          posts.map((post) => {
-            return (
-              <div class="my-4">
-                <FormUserPostCard key={post.id} post={post} />
-              </div>
-            )
-          })
-          :
-          <div className="my-2 text-center bg-light rounded border py-3">
-            この区分の観戦記録はありません
-          </div>
-        }
-      </InfiniteScroll>
+      <PostCards posts={posts} loadMore={loadMore} hasMore={hasMore} loader={loader} />
     </>
     );
 }

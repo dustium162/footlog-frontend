@@ -22,7 +22,7 @@ const MatchCard = ({match,handleShow}) => {
       <Card.Header className="text-center" style={headerStyle(match)}>
         <Row>
           <Col xs={3} className="d-flex justify-content-center align-items-center">{match.home_or_away_or_neutral}</Col>
-          <Col xs={6} className="d-flex justify-content-center align-items-center small">{match.date}</Col>
+          <Col xs={6} className="d-flex justify-content-center align-items-center small">{match.date_time}</Col>
           <Col xs={3} className="d-flex justify-content-center align-items-center small">{match.title}</Col>
         </Row>
       </Card.Header>
