@@ -2,7 +2,6 @@ import React,{useState} from "react"
 import {Row,Col,Card,Button,Image,Modal} from "react-bootstrap"
 import PostEditButton from "./PostEditButton"
 import MatchInfo from "./MatchInfo"
-import MatchDetaliModal from "./MatchDetailModal"
 
 const PostCard = ({post}) => {
   const [show,setShow] = useState(false);
@@ -24,9 +23,6 @@ const PostCard = ({post}) => {
           </Button>
         </Row>
       </Card.Footer>
-      <Modal show={show} onHide={handleClose}>
-        <MatchDetaliModal match={post.match} show={show} onHide={handleClose}/>
-      </Modal>
       <Modal show={editShow} onHide={handleEditClose}>
         <Modal.Header>
           <Modal.Title>投稿の編集</Modal.Title>
