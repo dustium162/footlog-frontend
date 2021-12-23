@@ -6,11 +6,10 @@ import Layout from "../components/Layout";
 import axios from "axios"
 import {Container, Spinner} from "react-bootstrap"
 import MatchCard from "../components/MatchCard"
-import PostGuideModal from "../components/PostGuideModal"
 
 import {TransitionMotion,spring} from "react-motion"
 
-const Posts = () => {
+const Matches = () => {
   const [matches,setMatches] = useState([])
   const [hasMore,setHasMore] = useState(true)
 
@@ -88,10 +87,9 @@ const Posts = () => {
               }
             </TransitionMotion>
           </InfiniteScroll>
-          <PostGuideModal show={modalShow} onHide={() => setModalShow(false)} />
         </div>
       </Container>
     </Layout>
   )
 }
-export default Posts;
+export default Matches;

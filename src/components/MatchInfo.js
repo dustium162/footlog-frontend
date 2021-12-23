@@ -1,5 +1,5 @@
 import { Row,Col,Card } from "react-bootstrap"
-import {ReactComponent as Emblem} from '../emblem.svg';
+import {ReactComponent as Emblem} from '../images/emblem.svg';
 
 const MatchCard = ({match,handleShow}) => {
   const headerStyle = (match) => {

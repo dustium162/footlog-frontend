@@ -29,7 +29,7 @@ const MatchResults = ({userId}) => {
         <div className="my-4 text-center bg-light rounded border py-3">
           まだ現地観戦記録がありません。<br />
           下のボタンから観戦記録を作成しましょう！<br />
-          <Link to="/posts" className="btn btn-secondary mt-3">観戦記録を作る</Link>
+          <Link to="/matches" className="btn btn-secondary mt-3">観戦記録を作る</Link>
         </div>
         :
         <>

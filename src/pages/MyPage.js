@@ -6,12 +6,11 @@ import axios from "axios"
 
 import UserInfo from '../components/UserInfo'
 import ClubMatchResults from '../components/ClubMatchResults'
-import NewUserPostTabs from '../components/NewUserPostTabs'
 import MatchResults from '../components/MatchResults'
 import UserStats from '../components/UserStats'
 
 import { Container } from 'react-bootstrap'
-import FormUserPosts from '../components/FormUserPosts';
+import PostsForm from '../components/PostsForm';
 
 const MyPage = () => {
   // const [loading, setLoading] = useState(true);
@@ -48,7 +47,7 @@ const MyPage = () => {
         <div className="my-4 text-center bg-light rounded border py-3">
           まだ現地観戦記録がありません。<br />
           下のボタンから観戦記録を作成しましょう！<br />
-          <Link to="/posts" className="btn btn-secondary mt-3">観戦記録を作る</Link>
+          <Link to="/matches" className="btn btn-secondary mt-3">観戦記録を作る</Link>
         </div>
       );      
     }
@@ -74,8 +73,7 @@ const MyPage = () => {
       <Container>
         <UserStats userId={userId}/>
         <div className="mt-5">
-          <FormUserPosts />
-          {/* <NewUserPostTabs/> */}
+          <PostsForm />
         </div>
       </Container>
     </Layout>

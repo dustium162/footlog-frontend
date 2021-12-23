@@ -117,7 +117,7 @@ const Header = () => {
                     />
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/posts" className="ms-3">
+                <LinkContainer to="/matches" className="ms-3">
                   <Nav.Link>
                     <div className="btn btn-secondary rounded-pill py-2 px-2">
                       <span style={{marginLeft:"2px", marginRight:"2px"}}>

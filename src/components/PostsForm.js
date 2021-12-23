@@ -2,17 +2,16 @@ import React,{useState,useEffect} from "react";
 import {Form, Button} from "react-bootstrap"
 import { Spinner } from "react-bootstrap"
 import axios from "axios"
-import PostCards from "./PostCards";
 import InfiniteScroll from "react-infinite-scroller"
-import FormUserPostCard from './FormUserPostCard';
+import PostCard from './PostCard';
 
-const FormUserPosts = () => {
+const PostsForm = () => {
   const [posts,setPosts] = useState([])
   const [hasMore,setHasMore] = useState(true)
   const [onsiteSelected, setOnsiteSelected] = useState(true);
-  const [onlineSelected, setOnlineSelected] = useState(true);
-  const [notWatchingSelected, setNotWatchingSelected] = useState(true);
-  const [forgetSelected, setForgetSelected] = useState(true);
+  const [onlineSelected, setOnlineSelected] = useState(false);
+  const [notWatchingSelected, setNotWatchingSelected] = useState(false);
+  const [forgetSelected, setForgetSelected] = useState(false);
   const [selectPage, setSelectPage] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
@@ -100,7 +99,7 @@ const FormUserPosts = () => {
 
   return (
     <>
-      <h3 className="h5">投稿</h3>
+      <h3 className="h5">観戦記録</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formCheckboxOnsite">
           <Form.Check type="checkbox" label="現地観戦" onChange={() => setOnsiteSelected(!onsiteSelected)} checked={onsiteSelected} />
@@ -109,7 +108,7 @@ const FormUserPosts = () => {
           <Form.Check type="checkbox" label="オンライン観戦" onChange={() => setOnlineSelected(!onlineSelected)} checked={onlineSelected} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formCheckboxNotWatching">
-          <Form.Check type="checkbox" label="見てない" onChange={() => setNotWatchingSelected(!notWatchingSelected)} checked={notWatchingSelected} />
+          <Form.Check type="checkbox" label="観ていない" onChange={() => setNotWatchingSelected(!notWatchingSelected)} checked={notWatchingSelected} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formCheckboxForget">
           <Form.Check type="checkbox" label="忘れた" onChange={() => setForgetSelected(!forgetSelected)} checked={forgetSelected} />
@@ -125,7 +124,7 @@ const FormUserPosts = () => {
         posts.map((post) => {
           return (
             <div class="my-4">
-              <FormUserPostCard key={post.id} post={post} />
+              <PostCard key={post.id} post={post} />
             </div>
           )
         })
@@ -139,4 +138,4 @@ const FormUserPosts = () => {
     </>
     );
 }
-export default FormUserPosts;
+export default PostsForm;

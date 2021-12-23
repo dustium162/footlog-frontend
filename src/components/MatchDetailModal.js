@@ -1,5 +1,5 @@
 import {Modal,Row,Col} from "react-bootstrap"
-import {ReactComponent as Emblem} from '../emblem.svg';
+import {ReactComponent as Emblem} from '../images/emblem.svg';
 
 const MatchDetaliModal = ({match,onHide}) => {
   return (

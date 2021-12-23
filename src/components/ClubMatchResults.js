@@ -48,5 +48,4 @@ const ClubMatchResults = ({userId}) => {
     </>
     );
   }
-  
   export default ClubMatchResults;
