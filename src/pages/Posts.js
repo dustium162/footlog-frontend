@@ -33,7 +33,7 @@ const Posts = () => {
     setMatches([...matches,...data])
   }
 
-  const loader =  <Spinner key={0} animation="border" variant="secondary" />
+  const loader = <Spinner key={0} animation="border" variant="secondary" />
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`, {
       headers: {
