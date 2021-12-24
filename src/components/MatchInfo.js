@@ -1,7 +1,12 @@
 import { Row,Col,Card } from "react-bootstrap"
 import {ReactComponent as Emblem} from '../images/emblem.svg';
 
-const MatchCard = ({match,handleShow}) => {
+import {ReactComponent as Onsite} from '../images/onsite.svg';
+import {ReactComponent as Online} from '../images/online.svg';
+import {ReactComponent as NotWatching} from '../images/notwatching.svg';
+import {ReactComponent as Forget} from '../images/forget.svg';
+
+const MatchCard = ({match,postType}) => {
   const headerStyle = (match) => {
     let backgroundColor;
     let textColor;
@@ -16,6 +21,38 @@ const MatchCard = ({match,handleShow}) => {
       textColor = 'black';
     }
     return {backgroundColor: backgroundColor, color: textColor}
+  }
+
+  const postTypeIcon = (postType) => {
+    if (postType === 1) {
+      return (
+        <>
+          <Onsite style={{width: "40",height: "40"}}/>
+          <br/>現地観戦
+        </>
+      )
+    } else if (postType === 2) {
+      return (
+        <>
+          <Online style={{width: "40",height: "40"}}/>
+          <br />オンライン
+        </>
+      )
+    } else if (postType === 3) {
+      return (
+        <>
+          <NotWatching style={{width: "40",height: "40"}}/>
+          <br />観ていない
+        </>
+      )
+    } else if (postType === 4) {
+      return (
+        <>
+          <Forget style={{width: "40",height: "40"}}/>
+          <br />忘れた
+        </>
+      )
+    }
   }
   return (
     <>
@@ -37,7 +74,7 @@ const MatchCard = ({match,handleShow}) => {
           </Row>
         </Card.Title>
       <Row>
-        <Col xs={3} />
+        <Col xs={3} >{postType && postTypeIcon(postType)}</Col>
         <Col xs={6} className="h1">
           <Row>
             <Col xs={5} className="d-flex justify-content-end align-items-center" style={{fontSize: match.is_home ? "3rem": "1.8rem", verticalAlign: "middle"}}>{String(match.home_score)}</Col>
@@ -45,7 +82,7 @@ const MatchCard = ({match,handleShow}) => {
             <Col xs={5} className="d-flex justify-content-start align-items-center" style={{fontSize: match.is_home ? "1.8rem" : "3rem", verticalAlign: "middle"}}>{String(match.away_score)}</Col>
           </Row>
         </Col>
-        <Col xs={3} />
+        <Col xs={3} >{postType}</Col>
       </Row>
       {(match.home_team.goal_players.length > 0 || match.away_team.goal_players.length > 0) && (
         <>
@@ -60,14 +97,12 @@ const MatchCard = ({match,handleShow}) => {
               {match.home_team.goal_players && match.home_team.goal_players.map((player) => (
                 <div>
                   <span>{player.name} ({player.time}')</span>
-                  {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
                 </div>
               ))}
             </Col>
             <Col className="text-start ps-1" style={{height: "70px", overflow:"auto"}}>
               {match.away_team.goal_players && match.away_team.goal_players.map((player) => (
                 <div>
-                  {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
                   <span>{player.name} ({player.time}')</span>
                 </div>
               ))}
@@ -88,8 +123,6 @@ const MatchCard = ({match,handleShow}) => {
               {match.home_team.red_players && match.home_team.red_players.map((player) => (
                 <div>
                   <span>{player.name} ({player.time}')</span>
-                  {/* <span>{player.name}</span>
-                  <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span> */}
                 </div>
               ))}
             </Col>
@@ -97,8 +130,6 @@ const MatchCard = ({match,handleShow}) => {
               {match.away_team.red_players && match.away_team.red_players.map((player) => (
                 <div>
                   <span>{player.name} ({player.time}')</span>
-                  {/* <span className="d-inline-block" style={{width: "3rem"}}>{player.time}'</span>
-                  <span>{player.name}</span> */}
                 </div>
               ))}
             </Col>
@@ -116,33 +147,6 @@ const MatchCard = ({match,handleShow}) => {
           <span className="text-muted small">観客数：{match.mobilization}人</span>
         </Col>
       </Row>
-        {/* <Row>
-          </Col>
-        </Row>
-        <Row className="text-secondary" style={{fontSize: "0.75rem", height: "7rem"}}>
-          <Col className="text-end ps-1" style={{height: "100px", overflow:"auto"}}>
-            {match.home_team.goal_players && match.home_team.goal_players.map((player,id) => (
-              <div>
-                <span>{player.name} ({player.time}')</span>
-              </div>
-            ))}
-          </Col>
-          <Col className="text-start pe-1" style={{height: "100px", overflow:"auto"}}>
-            {match.away_team.goal_players && match.away_team.goal_players.map((player,id) => (
-              <div>
-                <span>{player.name} ({player.time}')</span>
-              </div>
-            ))}
-          </Col>
-        </Row>
-        <Row className="text-end">
-          <Col xs={12}>
-            <span className="text-muted small">＠ {match.stadium_name}</span>
-          </Col>
-          <Col xs={12}>
-            <span className="text-muted small">観客数：{match.mobilization}人</span>
-          </Col>
-        </Row> */}
       </Card.Body>
     </>
   )

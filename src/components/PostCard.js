@@ -4,17 +4,18 @@ import PostEditButton from "./PostEditButton"
 import MatchInfo from "./MatchInfo"
 
 const PostCard = ({post}) => {
-  const [show,setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [editShow,setEditShow] = useState(false);
   const handleEditShow = () => setEditShow(true);
-  const handleEditClose = () => setEditShow(false);
+  const [postType,setPostType] = useState(post.post_type)
+  const handleModalClose = () => setEditShow(false)
+  const handleEditClose = (postType) => {
+    setPostType(postType);
+    setEditShow(false);
+  }
 
   return (
     <Card>
-      <MatchInfo match={post.match} handleShow={handleShow} />
+      <MatchInfo match={post.match} postType={postType}/>
       <Card.Footer>
         <Row>
           <Button variant="link text-secondary button_link" type="submit" onClick={handleEditShow}>
@@ -23,17 +24,17 @@ const PostCard = ({post}) => {
           </Button>
         </Row>
       </Card.Footer>
-      <Modal show={editShow} onHide={handleEditClose}>
+      <Modal show={editShow} onHide={handleModalClose}>
         <Modal.Header>
           <Modal.Title>投稿の編集</Modal.Title>
-          <button type="button" class="btn-close" aria-label="Close" onClick={handleEditClose}></button>
+          <button type="button" class="btn-close" aria-label="Close" onClick={handleModalClose}></button>
         </Modal.Header>
         <Modal.Body>
         <Row className="text-center">
-          {post.post_type !== 1 && <Col><PostEditButton post_id ={post.id} img_src="stadium" msg="現地観戦" post_type="1" handleEditClose={handleEditClose}/></Col>}
-          {post.post_type !== 2 && <Col><PostEditButton post_id ={post.id} img_src="monitor" msg="オンライン" post_type="2" handleEditClose={handleEditClose}/></Col>}
-          {post.post_type !== 3 && <Col><PostEditButton post_id ={post.id} img_src="pass" msg="観ていない" post_type="3" handleEditClose={handleEditClose}/></Col>}
-          {post.post_type !== 4 && <Col><PostEditButton post_id ={post.id} img_src="forget" msg="忘れた" post_type="4" handleEditClose={handleEditClose}/></Col>}
+          <Col><PostEditButton post_id ={post.id} msg="現地観戦" postType={1} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 1 ? "true" : "false"}/></Col>
+          <Col><PostEditButton post_id ={post.id} msg="オンライン" postType={2} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 2 ? "true" : "false"}/></Col>
+          <Col><PostEditButton post_id ={post.id} msg="観ていない" postType={3} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 3 ? "true" : "false"}/></Col>
+          <Col><PostEditButton post_id ={post.id} msg="忘れた" postType={4} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 4 ? "true" : "false"}/></Col>
         </Row>
         </Modal.Body>
       </Modal>

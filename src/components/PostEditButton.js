@@ -3,11 +3,27 @@ import React from "react"
 import {Button,Image} from "react-bootstrap"
 import axios from "axios"
 
-const PostEditButton = ({post_id,img_src,msg,post_type,onClickEdit,handleEditClose}) => {
+import {ReactComponent as Onsite} from '../images/onsite.svg';
+import {ReactComponent as Online} from '../images/online.svg';
+import {ReactComponent as NotWatching} from '../images/notwatching.svg';
+import {ReactComponent as Forget} from '../images/forget.svg';
+
+const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected}) => {
+  const postTypeIcon = (postType,is_selected) => {
+    if (postType === 1) {
+      return <Onsite style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+    } else if (postType === 2) {
+      return <Online style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+    } else if (postType === 3) {
+      return <NotWatching style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+    } else {
+      return <Forget style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+    }
+  } 
   const editPost = () => {
     axios.patch(`http://localhost:3000/v1/posts/${post_id}`,
     {
-      post_type: post_type,
+      post_type: postType,
     },
     {
       headers: {
@@ -16,13 +32,12 @@ const PostEditButton = ({post_id,img_src,msg,post_type,onClickEdit,handleEditClo
         client: localStorage.getItem('client')
       },
     })
-    .then(() => onClickEdit(post_id))
-    .then(() => handleEditClose())
+    .then(() => handleEditClose(postType))
     .catch(error => console.log(error))
   }
   return (
     <Button variant="link text-secondary button_link" type="submit" onClick={editPost}>
-      <Image className="emblem" src={`${process.env.PUBLIC_URL}/${img_src}.png`} roundedCircle />
+      {postTypeIcon(postType,is_selected)}
       <p>{msg}</p>
     </Button>
   )
