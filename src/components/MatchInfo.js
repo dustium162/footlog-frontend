@@ -27,28 +27,28 @@ const MatchCard = ({match,postType}) => {
     if (postType === 1) {
       return (
         <>
-          <Onsite style={{width: "40",height: "40"}}/>
+          <Onsite style={{width: "30",height: "30"}}/>
           <br/>現地観戦
         </>
       )
     } else if (postType === 2) {
       return (
         <>
-          <Online style={{width: "40",height: "40"}}/>
+          <Online style={{width: "30",height: "30"}}/>
           <br />オンライン
         </>
       )
     } else if (postType === 3) {
       return (
         <>
-          <NotWatching style={{width: "40",height: "40"}}/>
+          <NotWatching style={{width: "30",height: "30"}}/>
           <br />観ていない
         </>
       )
     } else if (postType === 4) {
       return (
         <>
-          <Forget style={{width: "40",height: "40"}}/>
+          <Forget style={{width: "30",height: "30"}}/>
           <br />忘れた
         </>
       )
@@ -82,7 +82,7 @@ const MatchCard = ({match,postType}) => {
             <Col xs={5} className="d-flex justify-content-start align-items-center" style={{fontSize: match.is_home ? "1.8rem" : "3rem", verticalAlign: "middle"}}>{String(match.away_score)}</Col>
           </Row>
         </Col>
-        <Col xs={3} >{postType}</Col>
+        <Col xs={3}/>
       </Row>
       {(match.home_team.goal_players.length > 0 || match.away_team.goal_players.length > 0) && (
         <>
