@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import {Row,Col,Card,Button,Image,Modal} from "react-bootstrap"
 import PostEditButton from "./PostEditButton"
 import MatchInfo from "./MatchInfo"
+import {ReactComponent as PostEdit} from '../images/post_edit.svg';
 
 const PostCard = ({post}) => {
   const [editShow,setEditShow] = useState(false);
@@ -19,7 +20,7 @@ const PostCard = ({post}) => {
       <Card.Footer>
         <Row>
           <Button variant="link text-secondary button_link" type="submit" onClick={handleEditShow}>
-            <Image className="emblem" src={`${process.env.PUBLIC_URL}/post_edit.png`} />
+            <PostEdit style={{width: "30",height: "30"}}/>
             <div>投稿の編集</div>
           </Button>
         </Row>
