@@ -67,7 +67,7 @@ const MatchInfo = ({match,postType}) => {
         <Card.Title>
           <Row className="justify-content-center">
             <Col className="align-items-end">
-              <Emblem className="me-1" height="25" width="25" fill={`${match.opponent_color_code}`} style={{verticalAlign: "middle"}}/>
+              <Emblem className="me-1" height="25" width="25" fill={`${match.opponent_color_code}`} style={{verticalAlign: "middle"}} stroke={match.is_opponent_text_black && "black"}/>
               <span style={{verticalAlign: "middle"}}>{match.opponent_name}</span>
               <span className="ms-1" style={{verticalAlign: "middle"}}>戦</span>
             </Col>
