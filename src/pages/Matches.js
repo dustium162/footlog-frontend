@@ -61,20 +61,42 @@ const Matches = () => {
     setMatches(arr)
   }
 
+  const getStyles = () => {
+    // const {todos, value, selected} = this.state;
+    // return todos.filter(({data: {isDone, text}}) => {
+    //   return text.toUpperCase().indexOf(value.toUpperCase()) >= 0 &&
+    //     (selected === 'completed' && isDone ||
+    //     selected === 'active' && !isDone ||
+    //     selected === 'all');
+    // })
+    // .map((todo, i) => {
+    //   return {
+    //     ...todo,
+    //     style: {
+    //       height: spring(60, presets.gentle),
+    //       opacity: spring(1, presets.gentle),
+    //     }
+    //   };
+    // });
+  }
+
   return (
     <Layout>
       <Container>
         <div className="mt-4">
           <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} className="text-center">
             <TransitionMotion
+              willLeave={willLeave}
               styles={
                 matches.map((match,id) => (
-                  {key: match.match_id, data:{...match,id},style:{height: match.height}}
-                  // {key: match.match_id, data:{...match,id},style:{height: 430}} //styleを指定する必要あり。
-                  ))
-                }
-                willLeave={willLeave}
-                >
+                  {
+                    key: match.match_id,
+                    data:{...match,id},
+                    style:{height: match.height}
+                  }
+                ))
+              }
+            >
               {interpolatingStyles =>
                 <>
                 {interpolatingStyles.map(interpolatingStyle => {

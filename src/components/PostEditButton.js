@@ -8,16 +8,16 @@ import {ReactComponent as Online} from '../images/online.svg';
 import {ReactComponent as NotWatching} from '../images/notwatching.svg';
 import {ReactComponent as Forget} from '../images/forget.svg';
 
-const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected}) => {
+const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected,color}) => {
   const postTypeIcon = (postType,is_selected) => {
     if (postType === 1) {
-      return <Onsite style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+      return <Onsite style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"}/>
     } else if (postType === 2) {
-      return <Online style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+      return <Online style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"}/>
     } else if (postType === 3) {
-      return <NotWatching style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+      return <NotWatching style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"}/>
     } else {
-      return <Forget style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? "red" : "green"}/>
+      return <Forget style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"}/>
     }
   } 
   const editPost = () => {
