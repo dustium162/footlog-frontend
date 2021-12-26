@@ -79,8 +79,7 @@ const Matches = () => {
                 <>
                 {interpolatingStyles.map(interpolatingStyle => {
                   return (
-                    <MatchCard match={interpolatingStyle} onClickPost={onClickPost}/>
-                    // console.log(interpolatingStyle)
+                    <MatchCard key={interpolatingStyle.key} match={interpolatingStyle} onClickPost={onClickPost}/>
                   )
                 })}
                 </>

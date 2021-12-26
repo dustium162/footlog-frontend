@@ -24,7 +24,6 @@ const PostsForm = () => {
     try {
       setIsFetching(true);
       {
-        console.log(isFetching)
         const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}&page=${selectPage}`, {
           headers: {
             uid: localStorage.getItem('uid'),
@@ -34,23 +33,19 @@ const PostsForm = () => {
         });
         const data = response.data
         if (data.length < 1) {
-          console.log('falseをセットしたよ！')
           setHasMore(false);
           return;
         }
         if(selectPage == 1) {
-          console.log(data)
           setPosts(data);
           setHasMore(true);
         } else {
-          console.log(data)
           setPosts([...posts,...data])
         }
         setSelectPage(selectPage+1);
       }
     } finally {
       setIsFetching(false);
-      console.log(posts)
     }
   }
 
@@ -77,7 +72,6 @@ const PostsForm = () => {
     setSearchButtonLabel('絞り込み中...');
     setSelectPage(1);
     setHasMore(true);
-    console.log(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}&page=${selectPage}`)
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}`, {
       headers: {
         uid: localStorage.getItem('uid'),
@@ -88,12 +82,9 @@ const PostsForm = () => {
     // apiのJsonの形式を検討する必要あり(2021-07-19 浦郷)
     .then(response => response.data)
     .then(data => {
-      console.log(data);
       setPosts(data);
       setIsSubmitDisable(false);
       setSearchButtonLabel('絞り込む');
-      // console.log(posts)
-      // setSelectPage(selectPage+1);
     })
   };
 
@@ -123,8 +114,8 @@ const PostsForm = () => {
       {posts.length !== 0 ?
         posts.map((post) => {
           return (
-            <div className="my-4">
-              <PostCard key={post.id} post={post} />
+            <div key={post.id} className="my-4">
+              <PostCard post={post} />
             </div>
           )
         })

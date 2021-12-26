@@ -11,7 +11,7 @@ const Opponent = ({ clubMatchResult }) => {
 
   return (
     <>
-      <Card variant="link text-secondary button_link" onClick={handleShow} show={show}>
+      <Card variant="link text-secondary button_link" onClick={handleShow}>
         <Card.Header className="align-items-end text-start">
           <Emblem className="me-1" height="25" width="25" fill={`${clubMatchResult.team.color_code}`} style={{verticalAlign: "middle"}} />
           <span style={{fontSize: "1.3rem"}} style={{verticalAlign: "middle"}}>{clubMatchResult.team.name} 戦</span>

@@ -9,7 +9,7 @@ const MatchCard = ({match,onClickPost}) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <div key={String(match.key)} style={{height: `${match.style.height}px`,overflow:'hidden'}}>
+    <div style={{height: `${match.style.height}px`,overflow:'hidden'}}>
       <Card>
         <MatchInfo match={match.data} handleShow={handleShow}/>
         <Card.Footer>

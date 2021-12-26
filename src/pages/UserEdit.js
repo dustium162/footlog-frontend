@@ -206,7 +206,7 @@ const UserEdit = () => {
           </Form.Group>
           <Form.Group className="text-end">
             <Button variant="dark" type="submit" className="mx-1" onClick={updateUser} disabled={!name || !email}>
-              更新する
+              {updateButtonLabel}
             </Button>
             <Link className="btn btn-outline-secondary mx-1" to="/my_page">キャンセル</Link>
           </Form.Group>

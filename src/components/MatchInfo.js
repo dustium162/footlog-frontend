@@ -6,7 +6,7 @@ import {ReactComponent as Online} from '../images/online.svg';
 import {ReactComponent as NotWatching} from '../images/notwatching.svg';
 import {ReactComponent as Forget} from '../images/forget.svg';
 
-const MatchCard = ({match,postType}) => {
+const MatchInfo = ({match,postType}) => {
   const headerStyle = (match) => {
     let backgroundColor;
     let textColor;
@@ -94,15 +94,15 @@ const MatchCard = ({match,postType}) => {
           </div>
           <Row className="text-secondary" style={{fontSize: "0.75rem"}}>
             <Col className="text-start px-3" style={{height: "70px", overflow:"auto"}}>
-              {match.home_team.goal_players && match.home_team.goal_players.map((player) => (
-                <div>
+              {match.home_team.goal_players && match.home_team.goal_players.map((player, index) => (
+                <div key={index}>
                   <span>{player.name} ({player.time}')</span>
                 </div>
               ))}
             </Col>
             <Col className="text-start ps-1" style={{height: "70px", overflow:"auto"}}>
-              {match.away_team.goal_players && match.away_team.goal_players.map((player) => (
-                <div>
+              {match.away_team.goal_players && match.away_team.goal_players.map((player, index) => (
+                <div key={index}>
                   <span>{player.name} ({player.time}')</span>
                 </div>
               ))}
@@ -120,15 +120,15 @@ const MatchCard = ({match,postType}) => {
           </div>
           <Row className="text-secondary" style={{fontSize: "0.75rem"}}>
             <Col className="text-end px-3" style={{height: "30px", overflow:"auto"}}>
-              {match.home_team.red_players && match.home_team.red_players.map((player) => (
-                <div>
+              {match.home_team.red_players && match.home_team.red_players.map((player, index) => (
+                <div key={index}>
                   <span>{player.name} ({player.time}')</span>
                 </div>
               ))}
             </Col>
             <Col className="text-start pe-1" style={{height: "30px", overflow:"auto"}}>
-              {match.away_team.red_players && match.away_team.red_players.map((player) => (
-                <div>
+              {match.away_team.red_players && match.away_team.red_players.map((player, index) => (
+                <div key={index}>
                   <span>{player.name} ({player.time}')</span>
                 </div>
               ))}
@@ -152,4 +152,4 @@ const MatchCard = ({match,postType}) => {
   )
 }
 
-export default MatchCard;
+export default MatchInfo;
