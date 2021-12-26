@@ -123,7 +123,7 @@ const PostsForm = () => {
       {posts.length !== 0 ?
         posts.map((post) => {
           return (
-            <div class="my-4">
+            <div className="my-4">
               <PostCard key={post.id} post={post} />
             </div>
           )
