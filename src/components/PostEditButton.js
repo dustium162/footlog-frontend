@@ -11,13 +11,13 @@ import {ReactComponent as Forget} from '../images/forget.svg';
 const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected,color,is_opponent_text_black}) => {
   const postTypeIcon = (postType,is_selected) => {
     if (postType === 1) {
-      return <Onsite style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && is_opponent_text_black && "black"}/>
+      return <Onsite style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && (is_opponent_text_black ? "black" : "none")}/>
     } else if (postType === 2) {
-      return <Online style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && is_opponent_text_black && "black"}/>
+      return <Online style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && is_opponent_text_black ? "black" : "none"}/>
     } else if (postType === 3) {
-      return <NotWatching style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && is_opponent_text_black && "black"}/>
+      return <NotWatching style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && is_opponent_text_black ? "black" : "none"}/>
     } else {
-      return <Forget style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && is_opponent_text_black && "black"}/>
+      return <Forget style={{width: "30px", height: "30px"}} fill={is_selected === "true" ? color : "gray"} stroke={is_selected === "true" && is_opponent_text_black ? "black" : "none"}/>
     }
   } 
   const editPost = () => {

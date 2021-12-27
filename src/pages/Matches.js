@@ -60,26 +60,6 @@ const Matches = () => {
     })
     setMatches(arr)
   }
-
-  const getStyles = () => {
-    // const {todos, value, selected} = this.state;
-    // return todos.filter(({data: {isDone, text}}) => {
-    //   return text.toUpperCase().indexOf(value.toUpperCase()) >= 0 &&
-    //     (selected === 'completed' && isDone ||
-    //     selected === 'active' && !isDone ||
-    //     selected === 'all');
-    // })
-    // .map((todo, i) => {
-    //   return {
-    //     ...todo,
-    //     style: {
-    //       height: spring(60, presets.gentle),
-    //       opacity: spring(1, presets.gentle),
-    //     }
-    //   };
-    // });
-  }
-
   return (
     <Layout>
       <Container>
@@ -90,7 +70,7 @@ const Matches = () => {
               styles={
                 matches.map((match,id) => (
                   {
-                    key: match.match_id,
+                    key: String(match.match_id),
                     data:{...match,id},
                     style:{height: match.height}
                   }
