@@ -29,12 +29,8 @@ const SignUp = () => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/division_seasons/${league}`)
     .then(response => response.data)
     .then(res => {
-      const aryLeagueList = [];
-      res.map(data => {
-        aryLeagueList.push(data);
-      });
-      setLeagueList(aryLeagueList);
-      setClubId(aryLeagueList[0].club_id);
+      setLeagueList(res)
+      setClubId(res[0].club_id);
     });
   }, [league])
 

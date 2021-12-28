@@ -13,8 +13,6 @@ const Matches = () => {
   const [matches,setMatches] = useState([])
   const [hasMore,setHasMore] = useState(true)
 
-  const [modalShow, setModalShow] = useState(false)
-
   const loadMore = async (page) => {
 
     const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/matches?page=${page}`, {
@@ -48,17 +46,11 @@ const Matches = () => {
   ,[])
 
   const willLeave = () => {
-    return {height: spring(0)}
+    return {height: spring(0,{stiffness:240,dumping:30})}
   }
 
   const onClickPost = (match_id) => {
-    const arr = []
-    matches.map(match => {
-      if (match.match_id !== match_id) {
-        arr.push(match)
-      }
-    })
-    setMatches(arr)
+    setMatches(matches.filter(match => match.match_id !== match_id))
   }
   return (
     <Layout>

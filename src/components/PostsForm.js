@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import {Form, Button} from "react-bootstrap"
 import { Spinner } from "react-bootstrap"
 import axios from "axios"
@@ -36,7 +36,7 @@ const PostsForm = () => {
           setHasMore(false);
           return;
         }
-        if(selectPage == 1) {
+        if(selectPage === 1) {
           setPosts(data);
           setHasMore(true);
         } else {

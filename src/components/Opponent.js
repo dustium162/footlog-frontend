@@ -14,7 +14,7 @@ const Opponent = ({ clubMatchResult }) => {
       <Card variant="link text-secondary button_link" onClick={handleShow}>
         <Card.Header className="align-items-end text-start">
           <Emblem className="me-1" height="25" width="25" fill={`${clubMatchResult.team.color_code}`} style={{verticalAlign: "middle"}} />
-          <span style={{fontSize: "1.3rem"}} style={{verticalAlign: "middle"}}>{clubMatchResult.team.name} 戦</span>
+          <span style={{fontSize: "1.3rem",verticalAlign: "middle"}}>{clubMatchResult.team.name} 戦</span>
         </Card.Header>
         <Card.Body className="py-2">
           <Row>

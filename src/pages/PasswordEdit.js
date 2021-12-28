@@ -8,7 +8,6 @@ import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
 
 const PasswordEdit = () => {
 
-  const userId = JSON.parse(localStorage.getItem('currentUser')).id;
   const history = useHistory();
 
   const [password,setPassword] = useState("");
