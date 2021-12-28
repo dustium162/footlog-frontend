@@ -8,7 +8,7 @@ import {ReactComponent as Online} from '../images/online.svg';
 import {ReactComponent as NotWatching} from '../images/notwatching.svg';
 import {ReactComponent as Forget} from '../images/forget.svg';
 
-const PostButton = ({match_team_property_id, match_id, msg, postType,onClickPost,handleClose}) => {
+const PostButton = ({match_team_property_id, match_id, msg, postType,onClickPost}) => {
   const postTypeIcon = (postType) => {
     if (postType === 1) {
       return <Onsite style={{width: "30px", height: "30px"}}/>
@@ -37,7 +37,6 @@ const PostButton = ({match_team_property_id, match_id, msg, postType,onClickPost
       )
       .then(response => response.data)
       .then(() => { onClickPost(match_id) })
-      .then(() => handleClose())
       .catch(error => console.log(error))
   }
   return (

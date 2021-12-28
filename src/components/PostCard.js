@@ -28,7 +28,7 @@ const PostCard = ({post}) => {
       <Modal show={editShow} onHide={handleModalClose}>
         <Modal.Header>
           <Modal.Title>投稿の編集</Modal.Title>
-          <button type="button" class="btn-close" aria-label="Close" onClick={handleModalClose}></button>
+          <button type="button" className="btn-close" aria-label="Close" onClick={handleModalClose}></button>
         </Modal.Header>
         <Modal.Body>
         <Row className="text-center">
