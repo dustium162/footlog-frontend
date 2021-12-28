@@ -19,7 +19,7 @@ const Terms = () => {
             <React.Fragment key={index}>{str}<br /></React.Fragment>
           ))
         }
-        </Container>
+      </Container>
     </Layout>
   )
 }

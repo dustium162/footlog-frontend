@@ -190,12 +190,12 @@ const UserEdit = () => {
             <Form.Control value="●●●●●●●●●●●" disabled="disabled" />
             <Link to="/user/password/edit">パスワードを変更する</Link>
           </Form.Group>
-          <Form.Group controlId="formFile" className="mb-3" controlId="formImage">
+          <Form.Group className="mb-3" controlId="formImage">
             <Form.Label>アイコン画像</Form.Label>
             <Form.Control type="file" accept="image/*" onChange={processImage} />
             <Image src={image} className="d-block mx-auto" rounded fluid />
           </Form.Group>
-          <Form.Group controlId="formFile" className="mb-3" controlId="formHeaderImage">
+          <Form.Group className="mb-3" controlId="formHeaderImage">
             <Form.Label>ヘッダー画像</Form.Label>
             <Form.Control type="file" accept="image/*" onChange={processHeaderImage} />
             <Image src={header_image} className="d-block mx-auto" style={{maxWidth: "100%"}} rounded fluid />
