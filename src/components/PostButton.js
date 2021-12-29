@@ -11,13 +11,13 @@ import {ReactComponent as Forget} from '../images/forget.svg';
 const PostButton = ({match_team_property_id, match_id, msg, postType,onClickPost}) => {
   const postTypeIcon = (postType) => {
     if (postType === 1) {
-      return <Onsite style={{width: "30px", height: "30px"}}/>
+      return <Onsite fill="#505050" style={{width: "30px", height: "30px"}}/>
     } else if (postType === 2) {
-      return <Online style={{width: "30px", height: "30px"}}/>
+      return <Online fill="#505050" style={{width: "30px", height: "30px"}}/>
     } else if (postType === 3) {
-      return <NotWatching style={{width: "30px", height: "30px"}}/>
+      return <NotWatching fill="#505050" style={{width: "30px", height: "30px"}}/>
     } else {
-      return <Forget style={{width: "30px", height: "30px"}}/>
+      return <Forget fill="#505050" style={{width: "30px", height: "30px"}}/>
     }
   } 
   const createPost = () => {

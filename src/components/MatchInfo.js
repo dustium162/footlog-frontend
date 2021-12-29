@@ -27,29 +27,29 @@ const MatchInfo = ({match,postType}) => {
     if (postType === 1) {
       return (
         <>
-          <Onsite style={{width: "30",height: "30"}}/>
-          <br/>現地観戦
+          <Onsite fill="#696969" style={{width: "40",height: "40"}}/>
+          <span className="d-block" style={{fontSize: "0.8rem"}}>現地観戦</span>
         </>
       )
     } else if (postType === 2) {
       return (
         <>
-          <Online style={{width: "30",height: "30"}}/>
-          <br />オンライン
+          <Online fill="#696969" style={{width: "40",height: "40"}}/>
+          <span className="d-block" style={{fontSize: "0.7rem"}}>オンライン</span>
         </>
       )
     } else if (postType === 3) {
       return (
         <>
-          <NotWatching style={{width: "30",height: "30"}}/>
-          <br />観ていない
+          <NotWatching fill="#696969" style={{width: "40",height: "40"}}/>
+          <span className="d-block" style={{fontSize: "0.7rem"}}>観ていない</span>
         </>
       )
     } else if (postType === 4) {
       return (
         <>
-          <Forget style={{width: "30",height: "30"}}/>
-          <br />忘れた
+          <Forget fill="#696969" style={{width: "40",height: "40"}}/>
+          <span className="d-block" style={{fontSize: "0.8rem"}}>忘れた</span>
         </>
       )
     }
@@ -119,7 +119,7 @@ const MatchInfo = ({match,postType}) => {
             退場者
           </div>
           <Row className="text-secondary" style={{fontSize: "0.75rem"}}>
-            <Col className="text-end px-3" style={{height: "30px", overflow:"auto"}}>
+            <Col className="text-start px-3" style={{height: "30px", overflow:"auto"}}>
               {match.home_team.red_players && match.home_team.red_players.map((player, index) => (
                 <div key={index}>
                   <span>{player.name} ({player.time}')</span>

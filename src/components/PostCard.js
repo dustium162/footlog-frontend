@@ -20,7 +20,7 @@ const PostCard = ({post}) => {
       <Card.Footer>
         <Row>
           <Button variant="link text-secondary button_link" type="submit" onClick={handleEditShow}>
-            <PostEdit style={{width: "30",height: "30"}}/>
+            <PostEdit fill="#505050" style={{width: "30",height: "30"}}/>
             <div>投稿の編集</div>
           </Button>
         </Row>
@@ -32,10 +32,10 @@ const PostCard = ({post}) => {
         </Modal.Header>
         <Modal.Body>
         <Row className="text-center">
-          <Col><PostEditButton post_id ={post.id} msg="現地観戦" postType={1} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 1 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
-          <Col><PostEditButton post_id ={post.id} msg="オンライン" postType={2} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 2 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
-          <Col><PostEditButton post_id ={post.id} msg="観ていない" postType={3} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 3 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
-          <Col><PostEditButton post_id ={post.id} msg="忘れた" postType={4} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 4 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
+          <Col className="px-0"><PostEditButton post_id ={post.id} msg="現地観戦" postType={1} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 1 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
+          <Col className="px-0"><PostEditButton post_id ={post.id} msg="オンライン" postType={2} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 2 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
+          <Col className="px-0"><PostEditButton post_id ={post.id} msg="観ていない" postType={3} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 3 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
+          <Col className="px-0"><PostEditButton post_id ={post.id} msg="忘れた" postType={4} setPostType={setPostType} handleEditClose={handleEditClose} is_selected={postType === 4 ? "true" : "false"} color={post.match.color_code} is_opponent_text_black={post.match.is_opponent_text_black}/></Col>
         </Row>
         </Modal.Body>
       </Modal>
