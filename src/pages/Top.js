@@ -2,11 +2,16 @@ import React from 'react';
 import Layout from "../components/Layout";
 import { Link } from 'react-router-dom';
 import { Container,Row,Col,Card } from "react-bootstrap"
+import TopImage from '../images/top-images/shutterstock_3.jpg';
+import TopDemoImageClubMatchResult from '../images/top-images/top_demo_image_club_match_result.png';
+import TopDemoImageMyPage from '../images/top-images/top_demo_image_my_page.png';
+import TopDemoImagePosts from '../images/top-images/top_demo_image_posts.png';
+import TopDemoImageTitles from '../images/top-images/top_demo_image_titles.png';
 
 const Top = () => {
   return (
     <Layout>
-      <div style={{backgroundImage: `url(${process.env.PUBLIC_URL}/top-images/shutterstock_3.jpg)`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
+      <div style={{backgroundImage: `url(${TopImage})`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
         <div style={{background: "rgba(255, 255, 255, 0.17)", display: "flex", justifyContent:"center", alignItems: "center"}}>
           <div style={{paddingTop: "calc(450 / 1000 * 50%)",paddingBottom: "calc(450 / 1000 * 50%)"}} />
           <div className="text-center py-2" style={{height: "100%", width:"100%", background: "rgba(255,255,255,0.5)"}}>
@@ -31,14 +36,14 @@ const Top = () => {
         <Row style={{display: "flex", flexWrap: "wrap"}}>
           <Col xs={12} md={3} className="mb-3">
             <Card className="mx-1 h-100">
-              <Card.Header className="h5 bg-dark text-white">
+              <Card.Header className="h5 bg-dark text-white">
                 ① 観戦記録の作成
               </Card.Header>
               <Card.Body>
-                <Card.Text style={{textAlign:"center"}}>
-                  <u>試合をどう観戦したかを記録します</u>
+                <Card.Text>
+                  試合をどう観戦したかを記録します
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_posts.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${TopDemoImagePosts}`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
@@ -51,7 +56,7 @@ const Top = () => {
                 <Card.Text>
                   現地観戦数や戦績をカウントします
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_my_page.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${TopDemoImageMyPage}`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
@@ -61,10 +66,10 @@ const Top = () => {
                 ③ クラブ別対戦成績
               </Card.Header>
               <Card.Body>
-                <Card.Text style={{textAlign:"center"}}>
+                <Card.Text>
                   相手別の戦績を見ることもできます
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_club_match_result.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${TopDemoImageClubMatchResult}`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
@@ -77,7 +82,7 @@ const Top = () => {
                 <Card.Text>
                   ACLや天皇杯にも対応しています
                 </Card.Text>
-                <Card.Img variant="top" src={`${process.env.PUBLIC_URL}/top-images/top_demo_image_titles.png`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
+                <Card.Img variant="top" src={`${TopDemoImageTitles}`} className="border rounded border-4" style={{borderColor: "#dee2e6"}} />
               </Card.Body>
             </Card>
           </Col>
