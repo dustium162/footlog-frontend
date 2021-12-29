@@ -11,7 +11,7 @@ const UnpublishedPosts = () => {
   const [matches,setMatches] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/matches/publish")
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/publish`)
       .then( response => {
         setMatches(response.data)
       })

@@ -44,7 +44,7 @@ const MatchEdit = ({match}) => {
   }
 
   const publishMatch = () => {
-    axios.patch(`http://localhost:3000/v1/matches/${match.id}`,{
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,{
       home_score: home_score,
       away_score: away_score,
       home_score_players: home_score_players,

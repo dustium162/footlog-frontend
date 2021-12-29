@@ -9,7 +9,7 @@ import {Form,Button,Row,Col} from "react-bootstrap"
 const AddTitle = () => {
   const [titles,setTitles] = useState({})
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/titles/")
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/titles/`)
       .then( response => {
         setTitles(response.data)
       })

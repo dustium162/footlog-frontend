@@ -8,7 +8,7 @@ import {Form,Button,Row,Col} from "react-bootstrap"
 const AddStadium = () => {
   const [stadia,setStadia] = useState({})
   useEffect(() => {
-    axios.get("http://localhost:3000/v1/stadia/")
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/stadia/`)
       .then( response => {
         setStadia(response.data)
       })

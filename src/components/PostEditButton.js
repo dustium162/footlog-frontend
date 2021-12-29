@@ -21,7 +21,7 @@ const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected,color,
     }
   } 
   const editPost = () => {
-    axios.patch(`http://localhost:3000/v1/posts/${post_id}`,
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/posts/${post_id}`,
     {
       post_type: postType,
     },
