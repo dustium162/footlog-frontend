@@ -25,7 +25,8 @@ const PostCard = ({post}) => {
           </Button>
         </Row>
       </Card.Footer>
-      <Modal show={editShow} onHide={handleModalClose}>
+      {/* <Modal show={editShow} onHide={handleModalClose}> */}
+      <Modal show={editShow} onHide={handleModalClose} animation={false}>
         <Modal.Header>
           <Modal.Title>投稿の編集</Modal.Title>
           <button type="button" className="btn-close" aria-label="Close" onClick={handleModalClose}></button>
