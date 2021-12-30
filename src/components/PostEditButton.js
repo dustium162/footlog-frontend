@@ -8,16 +8,16 @@ import {ReactComponent as Online} from '../images/online.svg';
 import {ReactComponent as NotWatching} from '../images/notwatching.svg';
 import {ReactComponent as Forget} from '../images/forget.svg';
 
-const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected,color,is_opponent_text_black}) => {
+const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected,color,is_text_black}) => {
   const postTypeIcon = (postType,is_selected) => {
     if (postType === 1) {
-      return <Onsite style={{width: "30px", height: "30px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_opponent_text_black) ? "black" : "none"}/>
+      return <Onsite style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
     } else if (postType === 2) {
-      return <Online style={{width: "30px", height: "30px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_opponent_text_black) ? "black" : "none"}/>
+      return <Online style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
     } else if (postType === 3) {
-      return <NotWatching style={{width: "30px", height: "30px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_opponent_text_black) ? "black" : "none"}/>
+      return <NotWatching style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
     } else {
-      return <Forget style={{width: "30px", height: "30px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_opponent_text_black) ? "black" : "none"}/>
+      return <Forget style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
     }
   } 
   const editPost = () => {
