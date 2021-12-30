@@ -21,7 +21,7 @@ const MatchResults = ({userId}) => {
     .then(data => {
       setMatchResults(data);
     })
-  },[])
+  },[userId])
 
   return (
     <>

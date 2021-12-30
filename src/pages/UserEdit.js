@@ -92,6 +92,16 @@ const UserEdit = () => {
     setHeaderImage(s3Url);
   }
 
+  const handleName = (e) => {
+    setName(e.target.value);
+    name && email ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
+  }
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    name && email ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
+  }
+
   const updateUser = () => {
     setIsSubmitDisable(true);
     setUpdateButtonLabel('更新中...');
@@ -162,7 +172,7 @@ const UserEdit = () => {
       setHeaderImage(data.user.header_image);
       setBiography(data.user.biography);
     })
-  },[]);
+  },[userId]);
 
   useEffect(() => {
     name && email ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
@@ -175,7 +185,7 @@ const UserEdit = () => {
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formName">
             <Form.Label>ユーザー名</Form.Label>
-            <Form.Control value={name} onChange={(e) => setName(e.target.value)} />
+            <Form.Control value={name} onChange={handleName} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formClub">
             <Form.Label>応援しているチーム（変更不可）</Form.Label>
@@ -183,7 +193,7 @@ const UserEdit = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formMail">
             <Form.Label>メールアドレス</Form.Label>
-            <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Form.Control value={email} onChange={handleEmail} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formPassword">
             <Form.Label>パスワード</Form.Label>
@@ -205,7 +215,7 @@ const UserEdit = () => {
             <Form.Control as="textarea" value={biography} onChange={(e) => setBiography(e.target.value)} style={{ height: '100px' }} />
           </Form.Group>
           <Form.Group className="text-end">
-            <Button variant="dark" type="submit" className="mx-1" onClick={updateUser} disabled={!name || !email}>
+            <Button variant="dark" type="submit" className="mx-1" onClick={updateUser} disabled={isSubmitDisable}>
               {updateButtonLabel}
             </Button>
             <Link className="btn btn-outline-secondary mx-1" to="/my_page">キャンセル</Link>

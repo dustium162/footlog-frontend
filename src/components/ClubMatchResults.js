@@ -22,7 +22,7 @@ const ClubMatchResults = ({userId}) => {
     .then(data => {
       setClubMatchResults(data);
     })
-  },[])
+  },[userId])
   return (
     <>
       {clubMatchResults.length === 0 ? 

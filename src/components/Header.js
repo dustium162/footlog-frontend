@@ -127,14 +127,14 @@ const Header = () => {
                     </div>
                   </Nav.Link>
                 </LinkContainer>
-                <a onClick={handleSignOut} className="nav-link ms-3" style={{pointerEvents: pointerEvents}}>
-                  <div className="btn btn-secondary rounded-pill py-2 px-2">
+                <div className="nav-link ms-3" style={{pointerEvents: pointerEvents}} onClick={handleSignOut}>
+                  <button className="btn btn-secondary rounded-pill py-2 px-2">
                     <span style={{marginLeft:"2px", marginRight:"2px"}}>
                       <FontAwesomeIcon className="fa-fw text-white" icon={faSignOutAlt}></FontAwesomeIcon>
                     </span>
                     <span className="d-none d-md-inline small">{signOutButtonLabel}</span>
-                  </div>
-                </a>
+                  </button>
+                </div>
               </>
             ) }
           </Nav>

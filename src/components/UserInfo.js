@@ -30,7 +30,7 @@ const UserInfo = () => {
       setBiography(data.user.biography)
       setTeam(data.team)
     })
-  },[])
+  },[userId])
   return (
     <>
       <div style={{backgroundImage: `url(${headerImage}`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
