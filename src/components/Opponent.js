@@ -52,29 +52,3 @@ const Opponent = ({ clubMatchResult }) => {
 }
 
 export default Opponent;
-
-// [
-//   {
-//     club_id: 1,
-//     opponent_name: "鹿島アントラーズ",
-//
-//   },
-//   {
-//     type: "",
-//     win: 5,
-//     lose: 0,
-//     draw: 1,
-//   },
-//   {
-//     type: "ホーム",
-//     win: 5,
-//     lose: 0,
-//     draw: 1,
-//   },
-//   {
-//     type: "アウェイ",
-//     win: 5,
-//     lose: 0,
-//     draw: 1,
-//   },
-// ]

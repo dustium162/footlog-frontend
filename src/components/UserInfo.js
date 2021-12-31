@@ -71,12 +71,6 @@ const UserInfo = () => {
           </div>
         </div>
         }
-        {/* {support_info.first_match &&
-          <>
-            <h6>{`初観戦:${support_info.first_match}`}</h6>
-            <h6>{`最近の観戦:${support_info.latest_match}`}</h6>
-          </>
-        } */}
       </Container>
     </>
   );

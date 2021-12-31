@@ -8,20 +8,20 @@ import {ReactComponent as Online} from '../images/online.svg';
 import {ReactComponent as NotWatching} from '../images/notwatching.svg';
 import {ReactComponent as Forget} from '../images/forget.svg';
 
-const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected,color,is_text_black}) => {
-  const postTypeIcon = (postType,is_selected) => {
+const PostEditButton = ({postId,msg,postType,handleEditClose,isSelected,color,isTextBlack}) => {
+  const postTypeIcon = (postType,isSelected) => {
     if (postType === 1) {
-      return <Onsite style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
+      return <Onsite style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     } else if (postType === 2) {
-      return <Online style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
+      return <Online style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     } else if (postType === 3) {
-      return <NotWatching style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
+      return <NotWatching style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     } else {
-      return <Forget style={{width: "40px", height: "40px"}} fill={is_selected ? color : "gray"} stroke={(is_selected && is_text_black) ? "gray" : "none"} strokeWidth="10"/>
+      return <Forget style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     }
   } 
   const editPost = () => {
-    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/posts/${post_id}`,
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/posts/${postId}`,
     {
       post_type: postType,
     },
@@ -37,7 +37,7 @@ const PostEditButton = ({post_id,msg,postType,handleEditClose,is_selected,color,
   }
   return (
     <Button variant="link text-secondary button_link" type="submit" onClick={editPost}>
-      {postTypeIcon(postType,is_selected)}
+      {postTypeIcon(postType,isSelected)}
       <span className="d-block small">{msg}</span>
     </Button>
   )

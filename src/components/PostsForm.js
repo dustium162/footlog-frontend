@@ -125,7 +125,6 @@ const PostsForm = () => {
         </div>
       }
       </InfiniteScroll>
-      {/* <PostCards posts={posts} loadMore={loadMore} hasMore={hasMore} loader={loader} /> */}
     </>
     );
 }

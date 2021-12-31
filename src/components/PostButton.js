@@ -8,7 +8,7 @@ import {ReactComponent as Online} from '../images/online.svg';
 import {ReactComponent as NotWatching} from '../images/notwatching.svg';
 import {ReactComponent as Forget} from '../images/forget.svg';
 
-const PostButton = ({match_team_property_id, match_id, msg, postType,onClickPost}) => {
+const PostButton = ({matchTeamPropertyId, matchId, msg, postType,onClickPost}) => {
   const postTypeIcon = (postType) => {
     if (postType === 1) {
       return <Onsite fill="#505050" style={{width: "30px", height: "30px"}}/>
@@ -23,7 +23,7 @@ const PostButton = ({match_team_property_id, match_id, msg, postType,onClickPost
   const createPost = () => {
       axios.post(`${process.env.REACT_APP_API_ENDPOINT}/posts`,
       {
-        match_team_property_id: match_team_property_id,
+        match_team_property_id: matchTeamPropertyId,
         user_id: JSON.parse(localStorage.currentUser).id,
         post_type: postType,
       },
@@ -36,7 +36,7 @@ const PostButton = ({match_team_property_id, match_id, msg, postType,onClickPost
       },
       )
       .then(response => response.data)
-      .then(() => { onClickPost(match_id) })
+      .then(() => { onClickPost(matchId) })
       .catch(error => console.log(error))
   }
   return (
