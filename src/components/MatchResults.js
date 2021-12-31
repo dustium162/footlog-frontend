@@ -44,7 +44,7 @@ const MatchResults = ({userId}) => {
               <Carousel.Item key={type}>
                 <Row className="align-items-end ms-1">
                   <Col xs={12} className="text-center" style={{paddingRight: "9rem",marginBottom: "-2rem"}}>
-                    <span style={{fontSize: "1.3rem"}}>{matchResults.type}通算</span>
+                    <span style={{fontSize: "1.3rem"}}>{matchResults[type]["type"]}通算</span>
                   </Col>
                   <Col xs={7} className="text-end">
                     <div>
