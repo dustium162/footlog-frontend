@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react'
 
-import {Row,Col,Card} from "react-bootstrap"
-import PostButton from "./PostButton";
-import MatchInfo from "./MatchInfo"
+import {Row,Col,Card} from 'react-bootstrap'
+import PostButton from './PostButton';
+import MatchInfo from './MatchInfo'
 
 const MatchCard = ({match,onClickPost}) => {
   return (

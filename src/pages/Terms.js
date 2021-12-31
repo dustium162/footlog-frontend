@@ -1,10 +1,10 @@
 import React,{useState, useEffect} from 'react';
 import {Container} from 'react-bootstrap';
-import Layout from "../components/Layout";
-import axios from "axios"
+import Layout from '../components/Layout';
+import axios from 'axios'
 
 const Terms = () => {
-  const [term,setTerm] = useState("")
+  const [term,setTerm] = useState('')
   useEffect( () => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/terms`)
     .then(response => response.data)

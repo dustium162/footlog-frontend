@@ -1,4 +1,4 @@
-import { Row,Col,Card } from "react-bootstrap"
+import { Row,Col,Card } from 'react-bootstrap'
 import {ReactComponent as Emblem} from '../images/emblem.svg';
 
 import {ReactComponent as Onsite} from '../images/onsite.svg';

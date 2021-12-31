@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
-import { Carousel, Row, Col} from "react-bootstrap"
-import axios from "axios"
+import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
+import { Carousel, Row, Col} from 'react-bootstrap'
+import axios from 'axios'
 const MatchResults = ({userId}) => {
   const [matchResults,setMatchResults] = useState([])
   const [index, setIndex] = useState(0);
@@ -22,7 +22,6 @@ const MatchResults = ({userId}) => {
       setMatchResults(data);
     })
   },[userId])
-
   return (
     <>
       {matchResults.total && (matchResults.total.win + matchResults.total.lose + matchResults.total.draw === 0 ? 

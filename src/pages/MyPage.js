@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 
 import UserInfo from '../components/UserInfo'
 import UserStats from '../components/UserStats'

@@ -1,16 +1,16 @@
 import React from 'react';
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
-import axios from "axios"
-import { useState, useEffect } from "react";
-import {Container,Button,Form} from "react-bootstrap"
+import axios from 'axios'
+import { useState, useEffect } from 'react';
+import {Container,Button,Form} from 'react-bootstrap'
 
 const Contact = () => {
   const history = useHistory();
 
-  const [message,setMessage] = useState("")
-  const [name,setName] = useState("")
-  const [email,setEmail] = useState("")
+  const [message,setMessage] = useState('')
+  const [name,setName] = useState('')
+  const [email,setEmail] = useState('')
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [sendButtonLabel, setSendButtonLabel] = useState('送信する');
 

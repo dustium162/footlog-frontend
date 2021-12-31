@@ -1,15 +1,15 @@
 import {React} from 'react';
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios'
 
-import {useState, useEffect} from "react"
+import {useState, useEffect} from 'react'
 
-import {Form,Button,Container} from "react-bootstrap"
+import {Form,Button,Container} from 'react-bootstrap'
 
 const SignIn = () => {
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [signInButtonLabel, setSignInButtonLabel] = useState('ログイン')

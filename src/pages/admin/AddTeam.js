@@ -1,18 +1,18 @@
-import React,{useState,useEffect} from "react"
-import Layout from "../../components/Layout";
+import React,{useState,useEffect} from 'react'
+import Layout from '../../components/Layout';
 
-import axios from "axios"
+import axios from 'axios'
 
-import {Form,Button,Row,Col} from "react-bootstrap"
+import {Form,Button,Row,Col} from 'react-bootstrap'
 
-import TeamLabel from "../../components/TeamLabel"
+import TeamLabel from '../../components/TeamLabel'
 
 const AddTeam = () => {
 
-  const [name,setName] = useState("")
+  const [name,setName] = useState('')
   const [clubId,setClubId] = useState(0)
-  const [abbreviation,setAbbreviation] = useState("")
-  const [colorCode,setColorCode] = useState("")
+  const [abbreviation,setAbbreviation] = useState('')
+  const [colorCode,setColorCode] = useState('')
   const [isTextBlack,setIsTextBlack] = useState(false)
 
   const handleNameChange = (e) => {
@@ -53,7 +53,6 @@ const AddTeam = () => {
     },
     )
     .catch(error => console.log(error))
-
   }
 
   const [teams,setTeams] = useState({})

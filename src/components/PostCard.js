@@ -1,7 +1,7 @@
-import React,{useState} from "react"
-import {Row,Col,Card,Button,Modal} from "react-bootstrap"
-import PostEditButton from "./PostEditButton"
-import MatchInfo from "./MatchInfo"
+import React,{useState} from 'react'
+import {Row,Col,Card,Button,Modal} from 'react-bootstrap'
+import PostEditButton from './PostEditButton'
+import MatchInfo from './MatchInfo'
 import {ReactComponent as PostEdit} from '../images/post_edit.svg';
 
 const PostCard = ({post}) => {

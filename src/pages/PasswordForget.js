@@ -1,14 +1,14 @@
 import {React} from 'react';
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 
-import {useState, useEffect} from "react"
+import {useState, useEffect} from 'react'
 
-import {Form,Button,Container} from "react-bootstrap"
+import {Form,Button,Container} from 'react-bootstrap'
 
 const PasswordForget = () => {
-  const [email,setEmail] = useState("")
+  const [email,setEmail] = useState('')
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [sendButtonLabel, setSendButtonLabel] = useState('再設定用リンクの送付');

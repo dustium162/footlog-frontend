@@ -1,5 +1,5 @@
-import MatchResults from "./MatchResults";
-import ClubMatchResults from "./ClubMatchResults";
+import MatchResults from './MatchResults';
+import ClubMatchResults from './ClubMatchResults';
 
 const UserStats = ({userId}) => {
   return (

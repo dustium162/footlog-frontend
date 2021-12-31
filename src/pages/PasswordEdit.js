@@ -1,16 +1,16 @@
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
-import axios from "axios"
-import { useState, useEffect } from "react";
-import {Button,Form, Container} from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from 'axios'
+import { useState, useEffect } from 'react';
+import {Button,Form, Container} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
 
 const PasswordEdit = () => {
 
   const history = useHistory();
 
-  const [password,setPassword] = useState("");
+  const [password,setPassword] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [updateButtonLabel, setUpdateButtonLabel] = useState('更新する');
   const [isRevealPassword,setIsRevealPassword] = useState(false);
@@ -63,28 +63,8 @@ const PasswordEdit = () => {
     })
   }
 
-  // useEffect(() => {
-  //   axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}` ,{
-  //     headers: {
-  //       uid: localStorage.getItem('uid'),
-  //       'access-token': localStorage.getItem('access-token'),
-  //       client: localStorage.getItem('client')
-  //     }
-  //   })
-  //   .then(response => response.data)
-  //   .then(data => {
-  //     setInfo(data);
-  //     setName(data.user.name);
-  //     setEmail(data.user.email);
-  //     // setImage(data.user.image);
-  //     // setHeaderImage(data.user.header_image);
-  //     setBiography(data.user.biography);
-  //   })
-  // },[])
-
   return (
     <Layout>
-      {/* {JSON.stringify(info.user)} */}
       <Container>
         <Form onSubmit={handleSubmit}　className="my-3">
           <Form.Group className="mb-3" controlId="formBasicPassword">

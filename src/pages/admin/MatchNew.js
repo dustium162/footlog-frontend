@@ -1,7 +1,7 @@
-import React, {useState,useEffect} from "react"
-import Layout from "../../components/Layout";
-import axios from "axios"
-import {Form,Button, Container} from "react-bootstrap"
+import React, {useState,useEffect} from 'react'
+import Layout from '../../components/Layout';
+import axios from 'axios'
+import {Form,Button, Container} from 'react-bootstrap'
 import Select from 'react-select';
 
 const MatchNew = () => {
@@ -12,7 +12,7 @@ const MatchNew = () => {
   const [home_team_id,setHomeTeamId] = useState(0)
   const [away_team_id,setAwayTeamId] = useState(0)
   const [stadium_id,setStadiumId] = useState(0)
-  const [date_time,setDateTime] = useState("")
+  const [date_time,setDateTime] = useState('')
   const [title_id,setTitleId] = useState(0)
   const [is_neutral,setNeutral] = useState(false)
 

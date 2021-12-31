@@ -1,8 +1,8 @@
-import React,{useState} from "react";
-import {Form, Button} from "react-bootstrap"
-import { Spinner } from "react-bootstrap"
-import axios from "axios"
-import InfiniteScroll from "react-infinite-scroller"
+import React,{useState} from 'react';
+import {Form, Button} from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
+import axios from 'axios'
+import InfiniteScroll from 'react-infinite-scroller'
 import PostCard from './PostCard';
 
 const PostsForm = () => {

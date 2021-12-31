@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from "../../components/Layout";
-// import {Row} from "react-bootstrap"
+import Layout from '../../components/Layout';
+// import {Row} from 'react-bootstrap'
 
-import {Container,Nav} from "react-bootstrap"
+import {Container,Nav} from 'react-bootstrap'
 
 import { LinkContainer } from 'react-router-bootstrap';
 

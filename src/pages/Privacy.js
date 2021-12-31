@@ -1,10 +1,10 @@
 import React,{useState, useEffect} from 'react';
 import {Container} from 'react-bootstrap';
-import Layout from "../components/Layout";
-import axios from "axios"
+import Layout from '../components/Layout';
+import axios from 'axios'
 
 const Privacy = () => {
-  const [privacy,setPrivacy] = useState("")
+  const [privacy,setPrivacy] = useState('')
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies`)
     .then(response => response.data)

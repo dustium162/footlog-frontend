@@ -1,11 +1,11 @@
-import React,{useState, useEffect} from "react"
-import Layout from "../../components/Layout";
-import axios from "axios"
+import React,{useState, useEffect} from 'react'
+import Layout from '../../components/Layout';
+import axios from 'axios'
 
-import {InputGroup,FormControl,Button} from "react-bootstrap"
+import {InputGroup,FormControl,Button} from 'react-bootstrap'
 
 const AddTerm = () => {
-  const [terms,setTerms] = useState("")
+  const [terms,setTerms] = useState('')
 
   const handleTerm = (e) => {
     setTerms(e.target.value)

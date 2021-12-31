@@ -1,12 +1,12 @@
-import React,{useState} from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import React,{useState} from 'react';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 import axios from 'axios';
 import { useHistory, Link} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
-import Logo from "../logo-copy.png";
+import Logo from '../logo-copy.png';
 // import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserPlus, faSignInAlt, faEdit, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus, faSignInAlt, faEdit, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // library.add(
 //   faSignOutAlt

@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from "react";
-import { Carousel } from "react-bootstrap"
-import Opponent from "./Opponent"
-import axios from "axios"
+import React, { useState,useEffect } from 'react';
+import { Carousel } from 'react-bootstrap'
+import Opponent from './Opponent'
+import axios from 'axios'
 
 const ClubMatchResults = ({userId}) => {
   const [clubMatchResults,setClubMatchResults] = useState([])

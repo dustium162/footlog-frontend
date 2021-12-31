@@ -1,8 +1,8 @@
-import React,{useState, useEffect} from "react"
-import Layout from "../../components/Layout";
-import axios from "axios"
+import React,{useState, useEffect} from 'react'
+import Layout from '../../components/Layout';
+import axios from 'axios'
 
-import {Row,Col} from "react-bootstrap"
+import {Row,Col} from 'react-bootstrap'
 
 const ContactIndex = () => {
   const [messages,setMessages] = useState([])

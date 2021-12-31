@@ -1,18 +1,18 @@
-import React, {useState} from "react"
+import React, {useState} from 'react'
 
-import axios from "axios"
+import axios from 'axios'
 
-import {Row,Col,Form,Button,Card} from "react-bootstrap"
+import {Row,Col,Form,Button,Card} from 'react-bootstrap'
 
 
 const MatchEdit = ({match}) => {
 
   const [home_score,setHomeScore] = useState(0)
   const [away_score,setAwayScore] = useState(0)
-  const [home_score_players,setHomeScorePlayers] = useState("")
-  const [home_red_players,setHomeRedPlayers] = useState("")
-  const [away_score_players,setAwayScorePlayers] = useState("")
-  const [away_red_players,setAwayRedPlayers] = useState("")
+  const [home_score_players,setHomeScorePlayers] = useState('')
+  const [home_red_players,setHomeRedPlayers] = useState('')
+  const [away_score_players,setAwayScorePlayers] = useState('')
+  const [away_red_players,setAwayRedPlayers] = useState('')
   const [mobilization,setMobilization] = useState(0)
 
   const handleHomeScore = (e) => {

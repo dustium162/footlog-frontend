@@ -1,17 +1,17 @@
-import React,{useState,useEffect} from "react"
-import Layout from "../../components/Layout";
+import React,{useState,useEffect} from 'react'
+import Layout from '../../components/Layout';
 
-import axios from "axios"
+import axios from 'axios'
 
-import {Form,Button,Row,Col} from "react-bootstrap"
+import {Form,Button,Row,Col} from 'react-bootstrap'
 
-import TeamLabel from "../../components/TeamLabel"
+import TeamLabel from '../../components/TeamLabel'
 
 const AddClub = () => {
 
-  const [name,setName] = useState("")
-  const [abbreviation,setAbbreviation] = useState("")
-  const [colorCode,setColorCode] = useState("")
+  const [name,setName] = useState('')
+  const [abbreviation,setAbbreviation] = useState('')
+  const [colorCode,setColorCode] = useState('')
   const [isTextBlack,setIsTextBlack] = useState(false)
 
   const [prefCode,setPrefCode] = useState(0)

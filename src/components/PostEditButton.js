@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
-import {Button} from "react-bootstrap"
-import axios from "axios"
+import {Button} from 'react-bootstrap'
+import axios from 'axios'
 
 import {ReactComponent as Onsite} from '../images/onsite.svg';
 import {ReactComponent as Online} from '../images/online.svg';

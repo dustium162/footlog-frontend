@@ -1,10 +1,10 @@
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import axios from "axios"
-import { useEffect, useState } from "react";
-import {Button, Form, Container, Image} from "react-bootstrap";
-import Resizer from "react-image-file-resizer";
+import axios from 'axios'
+import { useEffect, useState } from 'react';
+import {Button, Form, Container, Image} from 'react-bootstrap';
+import Resizer from 'react-image-file-resizer';
 
 const resizeFile = (file, height, width) =>
 new Promise((resolve) => {
@@ -12,13 +12,13 @@ new Promise((resolve) => {
     file,
     height,
     width,
-    "JPEG",
+    'JPEG',
     80,
     0,
     (uri) => {
       resolve(uri);
     },
-    "file"
+    'file'
   );
 });
 
@@ -28,11 +28,11 @@ const UserEdit = () => {
   const history = useHistory();
 
   const [info,setInfo] = useState({})
-  const [name,setName] = useState("")
-  const [email,setEmail] = useState("")
-  const [image,setImage] = useState("")
-  const [header_image,setHeaderImage] = useState("")
-  const [biography,setBiography] = useState("")
+  const [name,setName] = useState('')
+  const [email,setEmail] = useState('')
+  const [image,setImage] = useState('')
+  const [header_image,setHeaderImage] = useState('')
+  const [biography,setBiography] = useState('')
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [updateButtonLabel, setUpdateButtonLabel] = useState('更新する');
 

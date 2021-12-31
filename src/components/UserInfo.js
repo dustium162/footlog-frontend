@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
-import React,{useState,useEffect} from "react";
-import {Container,Image} from "react-bootstrap";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TeamLabel from "./TeamLabel"
-import axios from "axios"
+import React,{useState,useEffect} from 'react';
+import {Container,Image} from 'react-bootstrap';
+import { faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TeamLabel from './TeamLabel'
+import axios from 'axios'
 
 const UserInfo = () => {
   const userId = JSON.parse(localStorage.getItem('currentUser')).id
-  const [image,setImage] = useState("")
-  const [name,setName] = useState("")
-  const [headerImage,setHeaderImage] = useState("")
+  const [image,setImage] = useState('')
+  const [name,setName] = useState('')
+  const [headerImage,setHeaderImage] = useState('')
   const [team,setTeam] = useState({})
-  const [biography,setBiography] = useState("")
+  const [biography,setBiography] = useState('')
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}` ,{

@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
-import { Container,Row,Col,Card } from "react-bootstrap"
+import { Container,Row,Col,Card } from 'react-bootstrap'
 import TopImage from '../images/top-images/shutterstock_3.jpg';
 import TopDemoImageClubMatchResult from '../images/top-images/top_demo_image_club_match_result.png';
 import TopDemoImageMyPage from '../images/top-images/top_demo_image_my_page.png';

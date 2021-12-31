@@ -1,10 +1,10 @@
 import {React} from 'react';
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import {useState, useEffect} from "react"
-import {Form,Button,Container} from "react-bootstrap"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {useState, useEffect} from 'react'
+import {Form,Button,Container} from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
 
 
@@ -13,7 +13,7 @@ const PasswordReset = () => {
   const search = useLocation().search;
   const query = new URLSearchParams(search);
 
-  const [password,setPassword] = useState("")
+  const [password,setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [isRevealPassword,setIsRevealPassword] = useState(false);

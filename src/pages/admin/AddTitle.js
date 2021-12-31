@@ -1,9 +1,9 @@
-import React, {useState,useEffect} from "react"
-import Layout from "../../components/Layout";
+import React, {useState,useEffect} from 'react'
+import Layout from '../../components/Layout';
 
-import axios from "axios"
+import axios from 'axios'
 
-import {Form,Button,Row,Col} from "react-bootstrap"
+import {Form,Button,Row,Col} from 'react-bootstrap'
 
 
 const AddTitle = () => {
@@ -16,7 +16,7 @@ const AddTitle = () => {
       .catch(error => console.log(error))
   },[])
   
-  const [name,setName] = useState("")
+  const [name,setName] = useState('')
   const [titleTypeId, setTitleTypeId] = useState(0)
   const [isNewTitleType,setIsNewTitleType] = useState(false)
 

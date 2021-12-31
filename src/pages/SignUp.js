@@ -1,23 +1,23 @@
 import React,{useState,useEffect} from 'react';
-import Layout from "../components/Layout";
+import Layout from '../components/Layout';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 
-import {Form,Button, Container} from "react-bootstrap"
+import {Form,Button, Container} from 'react-bootstrap'
 
 // import {config, dom, library} from '@fortawesome/fontawesome-svg-core';
 
 // library.add(faEye, faEyeSlash);
 // dom.i2svg();
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
 
 const SignUp = () => {
-  const [name, setName] = useState("")
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
+  const [name, setName] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
   const [isRevealPassword,setIsRevealPassword] = useState(false)
-  const [league, setLeague] = useState("1")
+  const [league, setLeague] = useState('1')
   const [leagueList, setLeagueList] = useState([])
   const [clubId,setClubId] = useState(0)
   const [agree, setAgree] = useState(false)

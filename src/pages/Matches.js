@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from 'react';
 
-import InfiniteScroll from "react-infinite-scroller"
+import InfiniteScroll from 'react-infinite-scroller'
 
-import Layout from "../components/Layout";
-import axios from "axios"
-import {Container, Spinner} from "react-bootstrap"
-import MatchCard from "../components/MatchCard"
+import Layout from '../components/Layout';
+import axios from 'axios'
+import {Container, Spinner} from 'react-bootstrap'
+import MatchCard from '../components/MatchCard'
 
-import {TransitionMotion,spring} from "react-motion"
+import {TransitionMotion,spring} from 'react-motion'
 
 const Matches = () => {
   const [matches,setMatches] = useState([])
