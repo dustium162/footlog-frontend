@@ -120,10 +120,12 @@ const SignUp = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label className="mb-0">パスワード</Form.Label>
-            <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
-            <span onClick={togglePassword} role="presentation" className="PasswordReveal">
-            {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
-            </span>
+            <div className="input-wrap">
+              <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
+              <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
+              {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
+              </span>
+            </div>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formClub">
             <Form.Label className="d-block mb-0">応援しているクラブ</Form.Label>

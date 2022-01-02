@@ -79,9 +79,11 @@ const PasswordReset = () => {
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>パスワード</Form.Label>
-            <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="新しいパスワードを入力してください" onChange={handlePasswordChange} />
-            <span onClick={togglePassword} role="presentation" className="PasswordReveal">
-            {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}</span>
+            <div className="input-wrap">
+              <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="新しいパスワードを入力してください" onChange={handlePasswordChange} />
+              <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
+              {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}</span>
+            </div>
           </Form.Group>
           <Form.Group className="text-end">
             <Button variant="dark" type="submit" onClick={resetPassword} disabled={isSubmitDisable}>

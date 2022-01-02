@@ -34,6 +34,17 @@ footer {
   height: 130px;
 }
 
+.input-wrap{
+  position: relative;
+}
+   
+.toggle-pass{
+  position:absolute;
+  top:50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
 /* -------------------------------------------------------- */
 
 /* .App {
