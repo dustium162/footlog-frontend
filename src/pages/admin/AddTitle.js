@@ -9,11 +9,15 @@ import {Form,Button,Row,Col} from 'react-bootstrap'
 const AddTitle = () => {
   const [titles,setTitles] = useState({})
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/titles/`)
-      .then( response => {
-        setTitles(response.data)
-      })
-      .catch(error => console.log(error))
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/titles/`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    }).then( response => {
+      setTitles(response.data)
+    }).catch(error => console.log(error))
   },[])
   
   const [name,setName] = useState('')

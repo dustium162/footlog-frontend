@@ -8,11 +8,15 @@ const UnpublishedPosts = () => {
   const [matches,setMatches] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/publish`)
-      .then( response => {
-        setMatches(response.data)
-      })
-      .catch(error => console.log(error))
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/publish`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    }).then( response => {
+      setMatches(response.data)
+    }).catch(error => console.log(error))
   },[])
 
   return (

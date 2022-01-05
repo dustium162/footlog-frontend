@@ -58,18 +58,22 @@ const MatchNew = () => {
   }
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/new`)
-      .then( response => {
-        console.log(response.data)
-        setTitles(response.data.titles)
-        setTeams(response.data.teams)
-        setStadia(response.data.stadia)
-        setHomeTeamsList(response.data.teams['j1'])
-        setAwayTeamsList(response.data.teams['j1'])
-        document.getElementById('home_j1').checked = true;
-        document.getElementById('away_j1').checked = true;
-      })
-      .catch(error => console.log(error))
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/new`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    }).then( response => {
+      console.log(response.data)
+      setTitles(response.data.titles)
+      setTeams(response.data.teams)
+      setStadia(response.data.stadia)
+      setHomeTeamsList(response.data.teams['j1'])
+      setAwayTeamsList(response.data.teams['j1'])
+      document.getElementById('home_j1').checked = true;
+      document.getElementById('away_j1').checked = true;
+    }).catch(error => console.log(error))
   },[])
 
   const createNewMatch = () => {
@@ -80,8 +84,14 @@ const MatchNew = () => {
       date_time: date_time,
       stadium_id: stadium_id,
       is_neutral: is_neutral
-    })
-    .catch(error => console.log(error))
+    },
+    {
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      },
+    }).catch(error => console.log(error))
   }
 
   return (

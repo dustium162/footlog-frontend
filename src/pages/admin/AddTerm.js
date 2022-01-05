@@ -12,12 +12,24 @@ const AddTerm = () => {
   } 
 
   useEffect( () => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/terms`)
-    .then(response => response.data)
-    .then(data => setTerms(data))
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/terms`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    }).then(response => response.data).then(data => setTerms(data))
   },[])
   const updateTerms = () => {
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/terms`,{content: terms})
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/terms`,{
+      content: terms
+    },{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    })
   }
   return (
     <Layout>

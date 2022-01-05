@@ -12,12 +12,28 @@ const AddPrivacy = () => {
   }
 
   useEffect( () => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies`)
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    })
     .then(response => response.data)
     .then(data => setPrivacies(data))
   },[])
   const updatePrivacies = () => {
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/privacies`,{content: privacies})
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/privacies`,
+    {
+      content: privacies
+    },
+    {
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    })
   }
   return (
     <Layout>

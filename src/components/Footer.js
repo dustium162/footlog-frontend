@@ -10,10 +10,10 @@ const Footer = () => {
             <div className="col-12 px-4 mb-3">
               <div className="text-start">
                 <div className="row">
-                  <Link to="/terms" className="col-lg-3 col-6 px-1 footer-text">利用規約</Link>
-                  <Link to="/privacy" className="col-lg-3 col-6 px-1 footer-text">プライバシーポリシー</Link>
-                  <Link to="/contact" className="col-lg-3 col-6 px-1 footer-text">お問い合わせ</Link>
-                  <a href="https://www.footlog-blog.net/" className="col-lg-3 col-6 px-1 footer-text">開発者ブログ</a>
+                  <Link to="/terms" className="col-lg-3 col-6 py-1 px-1 footer-text">利用規約</Link>
+                  <Link to="/privacy" className="col-lg-3 col-6 py-1 px-1 footer-text">プライバシーポリシー</Link>
+                  <Link to="/contact" className="col-lg-3 col-6 py-1 px-1 footer-text">お問い合わせ</Link>
+                  <a href="https://www.footlog-blog.net/" className="col-lg-3 col-6 py-1 px-1 footer-text">開発者ブログ</a>
                 </div>
               </div>
             </div>

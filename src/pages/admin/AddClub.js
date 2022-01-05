@@ -58,8 +58,7 @@ const AddClub = () => {
         client: localStorage.getItem('client')
       }
     },
-    )
-    .catch(error => console.log(error))
+    ).catch(error => console.log(error))
 
   }
 
