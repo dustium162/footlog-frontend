@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
-import {Form, Button} from 'react-bootstrap'
-import { Spinner } from 'react-bootstrap'
+import {Form, Button, Spinner, Card} from 'react-bootstrap'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroller'
 import PostCard from './PostCard';
@@ -13,7 +12,6 @@ const PostsForm = () => {
   const [notWatchingSelected, setNotWatchingSelected] = useState(false);
   const [forgetSelected, setForgetSelected] = useState(false);
   const [selectPage, setSelectPage] = useState(1);
-  const [isFetching, setIsFetching] = useState(false);
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [searchButtonLabel, setSearchButtonLabel] = useState('絞り込む')
 
@@ -21,32 +19,27 @@ const PostsForm = () => {
   const loadMore = async () => {
     // React-infinite-scrollerのデフォルトのページ番号は使用せず、ステートselectPageを使う。
     // 理由は、検索時にページ番号を初期化する必要があるが、引数としてページ番号を渡しているわけではなく、InfiniteScrollコンポーネントの中で計算しており、初期化することができないため。
-    try {
-      setIsFetching(true);
-      {
-        const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}&page=${selectPage}`, {
-          headers: {
-            uid: localStorage.getItem('uid'),
-            'access-token': localStorage.getItem('access-token'),
-            client: localStorage.getItem('client')
-          }
-        });
-        const data = response.data
-        if (data.length < 1) {
-          setHasMore(false);
-          return;
+    
+      const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}&page=${selectPage}`, {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
         }
-        if(selectPage === 1) {
-          setPosts(data);
-          setHasMore(true);
-        } else {
-          setPosts([...posts,...data])
-        }
-        setSelectPage(selectPage+1);
+      });
+      const data = response.data
+      if (data.length < 1) {
+        setHasMore(false);
+        return;
       }
-    } finally {
-      setIsFetching(false);
-    }
+      if(selectPage === 1) {
+        setPosts(data);
+        setHasMore(true);
+      } else {
+        setPosts([...posts,...data])
+      }
+      setSelectPage(selectPage => selectPage+1);
+    
   }
 
   // useEffect(() => {
@@ -89,8 +82,10 @@ const PostsForm = () => {
   };
 
   return (
-    <>
+    <Card>
       <h3 className="h5">観戦記録</h3>
+      {/* <Card.Header className="h5">観戦記録</Card.Header> */}
+      <Card.Body>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formCheckboxOnsite">
           <Form.Check type="checkbox" label="現地観戦" onChange={() => setOnsiteSelected(!onsiteSelected)} checked={onsiteSelected} />
@@ -110,7 +105,7 @@ const PostsForm = () => {
           </Button>
         </div>
       </Form>
-      <InfiniteScroll loadMore={loadMore} hasMore={!isFetching && hasMore} loader={loader} pageStart={0} className="text-center">
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={0} className="text-center">
       {posts.length !== 0 ?
         posts.map((post) => {
           return (
@@ -125,7 +120,9 @@ const PostsForm = () => {
         </div>
       }
       </InfiniteScroll>
-    </>
+      </Card.Body>
+
+    </Card>
     );
 }
 export default PostsForm;
