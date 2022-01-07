@@ -12,7 +12,7 @@ const SignIn = () => {
   const [password,setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
-  const [signInButtonLabel, setSignInButtonLabel] = useState('ログイン')
+  const [signInButtonLabel, setSignInButtonLabel] = useState('ログイン');
   const history = useHistory();
 
   const handleEmailChange = (e) => {
@@ -27,7 +27,7 @@ const SignIn = () => {
   }
 
   useEffect(() => {
-    email && password ? setIsSubmitDisable(false) : setIsSubmitDisable(true)
+    email && password ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
   }, [email, password])
 
   const login = () => {
@@ -40,12 +40,12 @@ const SignIn = () => {
     //レスポンスの一部をローカルストレージに保存するコードが必要
     .then(res => {
       if (res.status === 200) {
-        localStorage.setItem('uid', res.headers.uid)
-        localStorage.setItem('access-token', res.headers['access-token'])
-        localStorage.setItem('client', res.headers.client)
-        localStorage.setItem('currentUser', JSON.stringify(res.data.data))
+        localStorage.setItem('uid', res.headers.uid);
+        localStorage.setItem('access-token', res.headers['access-token']);
+        localStorage.setItem('client', res.headers.client);
+        localStorage.setItem('currentUser', JSON.stringify(res.data.data));
         console.log('200');
-        history.push('/my_page')
+        history.push('/my_page');
       }
       // } else {
       //   console.log(res.status);

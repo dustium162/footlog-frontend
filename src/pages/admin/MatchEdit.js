@@ -1,19 +1,20 @@
-import React, {useState} from 'react'
-
-import axios from 'axios'
-
-import {Row,Col,Form,Button,Card} from 'react-bootstrap'
+import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import {Row,Col,Form,Button,Card} from 'react-bootstrap';
 
 
 const MatchEdit = ({match}) => {
 
-  const [home_score,setHomeScore] = useState(0)
-  const [away_score,setAwayScore] = useState(0)
-  const [home_score_players,setHomeScorePlayers] = useState('')
-  const [home_red_players,setHomeRedPlayers] = useState('')
-  const [away_score_players,setAwayScorePlayers] = useState('')
-  const [away_red_players,setAwayRedPlayers] = useState('')
-  const [mobilization,setMobilization] = useState(0)
+  const [home_score,setHomeScore] = useState(0);
+  const [away_score,setAwayScore] = useState(0);
+  const [home_score_players,setHomeScorePlayers] = useState('');
+  const [home_red_players,setHomeRedPlayers] = useState('');
+  const [away_score_players,setAwayScorePlayers] = useState('');
+  const [away_red_players,setAwayRedPlayers] = useState('');
+  const [mobilization,setMobilization] = useState(0);
+
+  const history = useHistory();
 
   const handleHomeScore = (e) => {
     setHomeScore(e.target.value)
@@ -44,23 +45,34 @@ const MatchEdit = ({match}) => {
   }
 
   const publishMatch = () => {
-    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,{
-      home_score: home_score,
-      away_score: away_score,
-      home_score_players: home_score_players,
-      home_red_players: home_red_players,
-      away_score_players: away_score_players,
-      away_red_players: away_red_players,
-      mobilization: mobilization
-    },
-    {
-    headers: {
-      uid: localStorage.getItem('uid'),
-      'access-token': localStorage.getItem('access-token'),
-      client: localStorage.getItem('client')
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
+      {
+        home_score: home_score,
+        away_score: away_score,
+        home_score_players: home_score_players,
+        home_red_players: home_red_players,
+        away_score_players: away_score_players,
+        away_red_players: away_red_players,
+        mobilization: mobilization
+      },
+      {
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
       }
+    }).then((response) => {
+      if(response.status === 204){
+        history.push('/admin/main');
+      } else if(response.status === 401) {
+        history.push('/sign_in');
+      } else {
+        console.log(response);
+      }
+    }).catch((error) => {
+      console.log(error);
+      // history.push('/sign_in');
     })
-    .catch(error => console.log(error))
   }
 
   return (

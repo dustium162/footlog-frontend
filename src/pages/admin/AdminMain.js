@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../../components/Layout';
+import { useHistory } from 'react-router-dom';
 // import {Row} from 'react-bootstrap'
 
 import {Container,Nav} from 'react-bootstrap'
@@ -7,6 +8,11 @@ import {Container,Nav} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 
 const AdminMain = () => {
+  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('currentUser'));
+  if(!(user && user.is_admin)) {
+    history.push('/sign_in')
+  }
   return (
     <Layout>
       <Container>
