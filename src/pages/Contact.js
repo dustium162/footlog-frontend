@@ -18,7 +18,11 @@ const Contact = () => {
     name && email && message ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
   }, [name, email, message])
 
-  const postContact = () => {
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+  }
+
+  const postContact = async () => {
     setIsSubmitDisable(true);
     setSendButtonLabel('送信中...');
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/contacts`,{
@@ -44,7 +48,7 @@ const Contact = () => {
   return (
     <Layout>
       <Container>
-        <Form className="my-3">
+        <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group>
             <Form.Label>お名前</Form.Label>
             <Form.Control value={name} onChange={(e) => setName(e.target.value)} />
