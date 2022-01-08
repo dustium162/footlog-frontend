@@ -49,8 +49,8 @@ const Matches = () => {
     return {height: spring(0,{stiffness:240,dumping:30})}
   }
 
-  const onClickPost = (match_id) => {
-    setMatches(matches.filter(match => match.match_id !== match_id))
+  const onClickPost = (matchId) => {
+    setMatches(matches.filter(match => match.match_id !== matchId))
   }
   return (
     <Layout>

@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {Row,Col,Form,Button,Card} from 'react-bootstrap';
+import {ReactComponent as Emblem} from "../../images/emblem.svg"
 
-
-const MatchEdit = ({match}) => {
-
+const MatchEdit = ({match,filterMatches,height}) => {
   const [home_score,setHomeScore] = useState(0);
   const [away_score,setAwayScore] = useState(0);
   const [home_score_players,setHomeScorePlayers] = useState('');
@@ -46,6 +45,7 @@ const MatchEdit = ({match}) => {
   }
 
   const publishMatch = () => {
+    filterMatches(match.id);
     axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
       {
         home_score: home_score,
@@ -77,23 +77,32 @@ const MatchEdit = ({match}) => {
   }
 
   return (
-    <Card>
+    <Card style={{height: `${height}px`}}>
+      <Card.Header style={{backgroundColor: match.is_neutral ? "#4db56a" : "#cccccc"}}>
+        <Row>
+          <Col xs={3} className="d-flex justify-content-center align-items-center">matchId: {match.id}</Col>
+          <Col xs={6} className="d-flex justify-content-center align-items-center small">{match.date_time}</Col>
+          <Col xs={3} className="d-flex justify-content-center align-items-center small">{match.title}{match.is_neutral && <span style={{color: "yellow"}}>(中立地)</span>}</Col>
+        </Row>
+      </Card.Header>
+      <Card.Body className="text-center">
+        <Card.Title>
+          <Row className="justify-content-center">
+            <Col>
+              <Emblem className="me-1" height="25" width="25" fill={`${match.home_team.color_code}`} style={{verticalAlign: "middle"}} stroke="gray" strokeWidth="10"/>
+              <span style={{verticalAlign: "middle"}}>{match.home_team.name}</span>
+            </Col>
+            <Col className="align-items-end">
+              <span className="ms-1" style={{verticalAlign: "middle"}}>VS</span>
+            </Col>
+            <Col>
+              <Emblem className="me-1" height="25" width="25" fill={`${match.away_team.color_code}`} style={{verticalAlign: "middle"}} stroke="gray" strokeWidth="10"/>
+              <span style={{verticalAlign: "middle"}}>{match.away_team.name}</span>
+            </Col>
+          </Row>
+        </Card.Title>
+      </Card.Body>
       <Form>
-        <Row>
-          <h5>{match.title}</h5>
-          <h5>match_id: {match.id}</h5>
-          <h6>{match.date_time}</h6>
-          <h6>{match.home_team} (Home) VS {match.away_team} (Away)</h6>
-          <h6>@{match.stadium}</h6>
-          {match.is_neutral && <h6>中立地</h6>}
-        </Row>
-        <Row>
-          <Col>入力形式：選手名,時間;選手名,時間;選手名,時間;</Col>
-        </Row>
-        <Row><Col>選手名と時間のペアをセミコロンで区切る</Col></Row>
-        <Row><Col>選手名と時間はカンマで区切る</Col></Row>
-        <Row><Col>オウンゴールの場合ははオウンゴールと入力すること</Col></Row>
-        <Row><Col>ロスタイムは例えば93分の得点の場合は90+3とする</Col></Row>
         <Row>
           <Form.Group as={Col}>
             <Form.Label>ホーム得点</Form.Label>
@@ -125,11 +134,23 @@ const MatchEdit = ({match}) => {
           </Form.Group>
         </Row>
         <Row>
-          <Form.Label>動員数</Form.Label>
-          <Form.Control type="integer" value={mobilization} onChange={handleMobilization} />
+          <Col>
+            <Form.Label>動員数</Form.Label>
+            <Form.Control type="integer" value={mobilization} onChange={handleMobilization} />
+          </Col>
         </Row>
       </Form>
-      <Button onClick={publishMatch}>試合情報投稿</Button>
+      <Row className="text-end">
+        <Col className="mx-5">
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <span className="text-muted">＠ {match.stadium}</span>
+        </Col>
+      </Row>
+      <Card.Footer>
+        <Button onClick={publishMatch}>試合情報投稿</Button>
+      </Card.Footer>
     </Card>
   )
 }

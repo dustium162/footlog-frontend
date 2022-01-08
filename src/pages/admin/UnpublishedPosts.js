@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Container, Row, Col} from 'react-bootstrap'
 import MatchEdit from './MatchEdit';
 import Layout from '../../components/Layout';
+import {TransitionMotion,spring} from 'react-motion'
 
 const UnpublishedPosts = () => {
 
@@ -26,17 +27,45 @@ const UnpublishedPosts = () => {
     })
   },[history])
 
+  const willLeave = () => {
+    return {height: spring(0,{stiffness:240,dumping:30})}
+  }
+
+  const filterMatches = (matchId) => {
+    setMatches((matches.filter(match => match.id !== matchId)))
+  }
+
   return (
     <Layout>
       <Container>
-        <Row xs={1} md={2} className="g-2">
-          {matches.map((match, index) => {
-            return (
-              <Col key={index}>
-                <MatchEdit match={match}/>
-              </Col>
-              )
-            })}
+        <Row><Col>入力形式：選手名,時間;選手名,時間;選手名,時間;</Col></Row>
+        <Row><Col>オウンゴールの場合はオウンゴールと入力すること</Col></Row>
+        <Row><Col>ロスタイムは例えば93分の得点の場合は90+3とする</Col></Row>
+        <Row xs={1} md={1} className="g-2">
+          <TransitionMotion
+            willLeave={willLeave}
+            styles={
+              matches.map((match,id) => (
+                {
+                  key: String(match.id),
+                  data: match,
+                  style: {height: 500}
+                }
+              ))
+            }
+          >
+            {interpolatingStyles =>
+              <>
+              {interpolatingStyles.map(interpolatingStyle => {
+                return (
+                  <Col key={interpolatingStyle.key}>
+                    <MatchEdit match={interpolatingStyle.data} filterMatches={filterMatches} height={interpolatingStyle.style.height}/>
+                  </Col>
+                )
+              })}
+              </>
+            }
+          </TransitionMotion>
         </Row>
       </Container>
   </Layout>

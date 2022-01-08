@@ -84,7 +84,7 @@ const MatchInfo = ({match,postType}) => {
         </Col>
         <Col xs={3}/>
       </Row>
-      {(match.home_team.goal_players.length > 0 || match.away_team.goal_players.length > 0) && (
+      { (match.home_team.goal_players) && (match.home_team.goal_players.length > 0 || match.away_team.goal_players.length > 0) && (
         <>
           <div className="mx-5">
             <hr />
@@ -110,7 +110,7 @@ const MatchInfo = ({match,postType}) => {
           </Row>
         </>
       )}
-      {(match.home_team.red_players.length > 0 || match.away_team.red_players.length > 0) && (
+      {(match.home_team.goal_players) && (match.home_team.red_players.length > 0 || match.away_team.red_players.length > 0) && (
         <>
           <div className="mx-5">
             <hr />
