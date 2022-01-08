@@ -14,7 +14,9 @@ const MyPage = () => {
     <Layout>
       <UserInfo />
       <Container>
-        <UserStats userId={userId}/>
+        <div className="mt-5">
+          <UserStats userId={userId}/>
+        </div>
         <div className="mt-5">
           <PostsForm />
         </div>

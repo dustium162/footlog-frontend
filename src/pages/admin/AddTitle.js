@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {Container, Form, Button, Row, Col } from 'react-bootstrap';
@@ -6,42 +6,52 @@ import Layout from '../../components/Layout';
 
 
 const AddTitle = () => {
+
   const [titles,setTitles] = useState({});
   const [name,setName] = useState('');
   const [titleTypeId, setTitleTypeId] = useState(0);
   const [isNewTitleType,setIsNewTitleType] = useState(false);
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [submitButtonLabel, setSubmitButtonLabel] = useState('タイトル作成');
-
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/titles/`,{
-      headers: {
-        uid: localStorage.getItem('uid'),
-        'access-token': localStorage.getItem('access-token'),
-        client: localStorage.getItem('client')
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/titles/`,
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
       }
-    }).then((response) => {
-      setTitles(response.data)
+    ).then((response) => {
+      if(response.status === 200){
+        setTitles(response.data);
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
     }).catch((error) => {
-      console.log(error);
-      history.push('/sign_in');
+      if(error.response && error.response.status === 401){
+        history.push('/sign_in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
     })
   },[history])
 
   const handleTitleTypeIdChange = (e) => {
-    setTitleTypeId(e.target.value);
+    setTitleTypeId(e && e.target ? e.target.value : '');
     setIsSubmitDisable(!((titleTypeId && name) || (name && isNewTitleType)));
   }
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    setName(e && e.target ? e.target.value : '');
     setIsSubmitDisable(!((titleTypeId && name) || (name && isNewTitleType)));
   }
 
   const handleIsNewTitleTypeChange = (e) => {
-    setIsNewTitleType(e.target.value);
+    setIsNewTitleType(e && e.target ? e.target.value : '');
     setIsSubmitDisable(!((titleTypeId && name) || (name && isNewTitleType)));
   }
 
@@ -68,21 +78,27 @@ const AddTitle = () => {
     ).then((response) => {
       if(response.status === 204){
         history.push('/admin/main');
-      } else if(response.status === 401) {
-        history.push('/sign_in');
       } else {
-        console.log(response);
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('タイトル作成');
       }
     }).catch((error) => {
       console.log(error);
-      history.push('/sign_in');
+      if(error.response && error.response.status === 401) {
+        history.push('/sign_in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('タイトル作成');
+      }
     })
-
   }
 
   return (
     <Layout>
       <Container>
+        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formSerialCode">
             <Form.Label>titleTypeID</Form.Label>

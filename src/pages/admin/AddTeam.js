@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
@@ -15,38 +15,8 @@ const AddTeam = () => {
   const [teams,setTeams] = useState({});
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [submitButtonLabel, setSubmitButtonLabel] = useState('チーム作成');
-
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
-
-  const handleClubIdChange = (e) => {
-    // バグあり。数字一桁だと、disableになってしまう
-    setClubId(e.target.value);
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
-  }
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
-  }
-
-  const handleAbbreviationChange = (e) => {
-    setAbbreviation(e.target.value);
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
-  }
-
-  const handleColorCodeChange = (e) => {
-    setColorCode(e.target.value);
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
-  }
-
-  const handleIsTextBlackChange = (e) => {
-    setIsTextBlack(e.target.value);
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
-  }
-
-  const handleSubmit = (e) =>{
-    e.preventDefault();
-  }
 
   useEffect(() => {
     axios.get(
@@ -59,12 +29,49 @@ const AddTeam = () => {
         }
       }
     ).then((response) => {
-      setTeams(response.data);
+      if(response.status === 200){
+        setTeams(response.data);
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
     }).catch((error) => {
-      console.log(error);
-      history.push('/sign_in');
+      if(error.response && error.response.status === 401){
+        history.push('/sign_in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
     })
-  },[history]);
+  },[history])
+
+  const handleClubIdChange = (e) => {
+    // バグあり。数字一桁だと、disableになってしまう
+    setClubId(e && e.target ? e.target.value : '');
+    setIsSubmitDisable(() => !(clubId && name && abbreviation && colorCode));
+  }
+
+  const handleNameChange = (e) => {
+    setName(e && e.target ? e.target.value : '');
+    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
+  }
+
+  const handleAbbreviationChange = (e) => {
+    setAbbreviation(e && e.target ? e.target.value : '');
+    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
+  }
+
+  const handleColorCodeChange = (e) => {
+    setColorCode(e && e.target ? e.target.value : '');
+    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
+  }
+
+  const handleIsTextBlackChange = (e) => {
+    setIsTextBlack(e && e.target ? e.target.value : '');
+    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+  }
 
   const createTeam = () => {
     setIsSubmitDisable(true);
@@ -88,20 +95,27 @@ const AddTeam = () => {
     ).then((response) => {
       if(response.status === 204){
         history.push('/admin/main');
-      } else if(response.status === 401) {
-        history.push('/sign_in');
       } else {
-        console.log(response);
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('チーム作成');
       }
     }).catch((error) => {
       console.log(error);
-      history.push('/sign_in');
+      if(error.response && error.response.status === 401) {
+        history.push('/sign_in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('チーム作成');
+      }
     })
   }
 
   return (
     <Layout>
       <Container>
+        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formClubId">
             <Form.Label>clubId</Form.Label>

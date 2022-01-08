@@ -1,21 +1,35 @@
-import React from 'react';
-import Layout from '../../components/Layout';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import {Row} from 'react-bootstrap'
-
-import {Container,Nav} from 'react-bootstrap'
-
+import axios from 'axios';
+import Layout from '../../components/Layout';
+import {Container,Nav} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const AdminMain = () => {
+  
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('currentUser'));
-  if(!(user && user.is_admin)) {
-    history.push('/sign_in')
-  }
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/new`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    }).catch((error) => {
+      if(error.response && error.response.status === 401){
+        history.push('/sign_in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
+    })
+  },[history])
+
   return (
     <Layout>
       <Container>
+        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <LinkContainer to="/admin/match/new">
           <Nav.Link>試合情報の新規作成</Nav.Link>
         </LinkContainer>
@@ -33,9 +47,6 @@ const AdminMain = () => {
         </LinkContainer>
         <LinkContainer to="/admin/add_stadium">
           <Nav.Link>スタジアム情報の追加</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to="/admin/add_information">
-          <Nav.Link>お知らせの追加</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/admin/add_term">
           <Nav.Link>規約情報の追加</Nav.Link>

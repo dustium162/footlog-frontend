@@ -13,35 +13,36 @@ const MatchEdit = ({match}) => {
   const [away_score_players,setAwayScorePlayers] = useState('');
   const [away_red_players,setAwayRedPlayers] = useState('');
   const [mobilization,setMobilization] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const history = useHistory();
 
   const handleHomeScore = (e) => {
-    setHomeScore(e.target.value)
+    setHomeScore(e && e.target ? e.target.value : '')
   }
 
   const handleAwayScore = (e) => {
-    setAwayScore(e.target.value)
+    setAwayScore(e && e.target ? e.target.value : '')
   }
 
   const handleHomeScorePlayers = (e) => {
-    setHomeScorePlayers(e.target.value)
+    setHomeScorePlayers(e && e.target ? e.target.value : '')
   }
 
   const handleAwayScorePlayers = (e) => {
-    setAwayScorePlayers(e.target.value)
+    setAwayScorePlayers(e && e.target ? e.target.value : '')
   }
 
   const handleHomeRedPlayers = (e) => {
-    setHomeRedPlayers(e.target.value)
+    setHomeRedPlayers(e && e.target ? e.target.value : '')
   }
 
   const handleAwayRedPlayers = (e) => {
-    setAwayRedPlayers(e.target.value)
+    setAwayRedPlayers(e && e.target ? e.target.value : '')
   }
 
   const handleMobilization = (e) => {
-    setMobilization(e.target.value)
+    setMobilization(e && e.target ? e.target.value : '')
   }
 
   const publishMatch = () => {

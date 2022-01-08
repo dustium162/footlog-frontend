@@ -57,7 +57,7 @@ const SignIn = () => {
     .catch(error => {
       console.log(error);
       // 401はthenで受け取るように修正予定（2021ｰ09-12 浦郷）
-      if(error.response.status === 401) {
+      if(error.response && error.response.status === 401) {
         setErrorMessage('メールアドレスもしくはパスワードが異なります。');
       } else {
         setErrorMessage('サーバーエラーが発生しました。')

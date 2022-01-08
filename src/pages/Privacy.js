@@ -6,9 +6,15 @@ import axios from 'axios'
 const Privacy = () => {
   const [privacy,setPrivacy] = useState('')
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies`)
-    .then(response => response.data)
-    .then(data => setPrivacy(data.text))
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies/edit`,
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
+      }
+    ).then(response => response.data).then(data => setPrivacy(data.text))
   },[])
   return (
     <Layout>

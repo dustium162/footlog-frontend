@@ -1,17 +1,18 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import Layout from '../../components/Layout';
 
 const AddStadium = () => {
+
   const [stadia,setStadia] = useState({});
   const [name,setName] = useState('');
   const [stadiumTypeId,setStadiumTypeId] = useState(0);
   const [isNewStadiumType,setIsNewStadiumType] = useState(false);
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [submitButtonLabel, setSubmitButtonLabel] = useState('スタジアム作成');
-
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -24,13 +25,19 @@ const AddStadium = () => {
         }
       }
     ).then((response) => {
+      if(response.status === 200){
         setStadia(response.data);
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
     }).catch((error) => {
-      console.log(error);
-      history.push('/sign_in');
+      if(error.response && error.response.status === 401){
+        history.push('/sign_in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
     })
   },[history])
-
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -67,23 +74,31 @@ const AddStadium = () => {
           client: localStorage.getItem('client')
         }
       },
-    ).then((response) => {
-      if(response.status === 204){
-        history.push('/admin/main');
-      } else if(response.status === 401) {
-        history.push('/sign_in');
-      } else {
-        console.log(response);
-      }
-    }).catch((error) => {
-      console.log(error);
-      history.push('/sign_in');
-    })
+      ).then((response) => {
+        if(response.status === 204){
+          history.push('/admin/main');
+        } else {
+          setErrorMessage('サーバーエラーが発生しました。');
+          setIsSubmitDisable(false);
+          setSubmitButtonLabel('スタジアム作成');
+        }
+      }).catch((error) => {
+        console.log(error);
+        if(error.response && error.response.status === 401) {
+          history.push('/sign_in');
+        } else {
+          setErrorMessage('サーバーエラーが発生しました。');
+          setIsSubmitDisable(false);
+          setSubmitButtonLabel('スタジアム作成');
+        }
+      })
   }
 
   return (
     <Layout>
       <Container>
+      {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+  
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formSerialCode">
             <Form.Label>stadiumTypeID</Form.Label>

@@ -6,9 +6,16 @@ import axios from 'axios'
 const Terms = () => {
   const [term,setTerm] = useState('')
   useEffect( () => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/terms`)
-    .then(response => response.data)
-    .then(data => setTerm(data.text))
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/terms/edit`,
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
+      }
+    )
+    .then(response => response.data).then((data) => setTerm(data.text))
   },[])
   return (
     <Layout>

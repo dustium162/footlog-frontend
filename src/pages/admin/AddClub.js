@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
@@ -16,36 +16,60 @@ const AddClub = () => {
   const [teams,setTeams] = useState({});
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [submitButtonLabel, setSubmitButtonLabel] = useState('クラブ作成');
-
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
 
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/teams/`,
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
+      }
+    ).then((response) => {
+      if(response.status === 200){
+        setTeams(response.data);
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
+    }).catch((error) => {
+      if(error.response && error.response.status === 401){
+        history.push('/sign_in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+      }
+    })
+  },[history])
+
   const handlePrefCodeChange = (e) => {
-    setPrefCode(e.target.value);
+    setPrefCode(e && e.target ? e.target.value : 0);
     setIsSubmitDisable(!(prefCode && serialCode && name && abbreviation && colorCode));
   }
 
   const handleSerialCodeChange = (e) => {
-    setSerialCode(e.target.value);
+    setSerialCode(e && e.target ? e.target.value : 0);
     setIsSubmitDisable(!(prefCode && serialCode && name && abbreviation && colorCode));
   }
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    setName(e && e.target ? e.target.value : '');
     setIsSubmitDisable(!(prefCode && serialCode && name && abbreviation && colorCode));
   }
 
   const handleAbbreviationChange = (e) => {
-    setAbbreviation(e.target.value);
+    setAbbreviation(e && e.target ? e.target.value : '');
     setIsSubmitDisable(!(prefCode && serialCode && name && abbreviation && colorCode));
   }
 
   const handleColorCodeChange = (e) => {
-    setColorCode(e.target.value);
+    setColorCode(e && e.target ? e.target.value : '');
     setIsSubmitDisable(!(prefCode && serialCode && name && abbreviation && colorCode));
   }
 
   const handleIsTextBlackChange = (e) => {
-    setIsTextBlack(e.target.value)
+    setIsTextBlack(e && e.target ? e.target.value : false)
   }
 
   const handleSubmit = (e) =>{
@@ -74,37 +98,27 @@ const AddClub = () => {
     ).then((response) => {
       if(response.status === 204){
         history.push('/admin/main');
-      } else if(response.status === 401) {
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('クラブ作成');
+      }
+    }).catch((error) => {
+      console.log(error);
+      if(error.response && error.response.status === 401) {
         history.push('/sign_in');
       } else {
-        console.log(response);
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('クラブ作成');
       }
-    }).catch((error) => {
-      console.log(error);
-      history.push('/sign_in');
     })
   }
-
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/teams/`,
-      {
-        headers: {
-          uid: localStorage.getItem('uid'),
-          'access-token': localStorage.getItem('access-token'),
-          client: localStorage.getItem('client')
-        }
-      }
-    ).then((response) => {
-      setTeams(response.data);
-    }).catch((error) => {
-      console.log(error);
-      history.push('/sign_in');
-    })
-  },[history])
 
   return (
     <Layout>
       <Container>
+        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formPrefCode">
             <Form.Label>PrefCode</Form.Label>
@@ -126,7 +140,7 @@ const AddClub = () => {
             <Form.Label>カラーコード</Form.Label>
             <Form.Control value={colorCode} placeholder="カラーコードを入力してください" onChange={handleColorCodeChange}/>
           </Form.Group>
-          <div key={`custom-checkbox`} className="mb-3">
+            <div key={`custom-checkbox`} className="mb-3">
               <Form.Check
                 custom
                 type={"checkbox"}

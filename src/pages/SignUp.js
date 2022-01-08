@@ -95,7 +95,7 @@ const SignUp = () => {
     .catch(error => {
       console.log(error);
       // メールアドレスが既に登録されている場合に返される422なのか要確認（2021ｰ09-12 浦郷）
-      if(error.response.status === 422) {
+      if(error.response && error.response.status === 422) {
         setErrorMessage('入力されたメールアドレスは既に登録されている可能性があります。メールアドスを変更して、再度、登録してください。');
       } else {
         setErrorMessage('サーバーエラーが発生しました。')
