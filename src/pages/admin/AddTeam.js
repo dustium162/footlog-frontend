@@ -13,7 +13,7 @@ const AddTeam = () => {
   const [colorCode,setColorCode] = useState('');
   const [isTextBlack,setIsTextBlack] = useState(false);
   const [teams,setTeams] = useState({});
-  const [isSubmitDisable, setIsSubmitDisable] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitButtonLabel, setSubmitButtonLabel] = useState('チーム作成');
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
@@ -46,27 +46,22 @@ const AddTeam = () => {
   const handleClubIdChange = (e) => {
     // バグあり。数字一桁だと、disableになってしまう
     setClubId(e && e.target ? e.target.value : '');
-    setIsSubmitDisable(() => !(clubId && name && abbreviation && colorCode));
   }
 
   const handleNameChange = (e) => {
     setName(e && e.target ? e.target.value : '');
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
   }
 
   const handleAbbreviationChange = (e) => {
     setAbbreviation(e && e.target ? e.target.value : '');
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
   }
 
   const handleColorCodeChange = (e) => {
     setColorCode(e && e.target ? e.target.value : '');
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
   }
 
   const handleIsTextBlackChange = (e) => {
     setIsTextBlack(e && e.target ? e.target.value : '');
-    setIsSubmitDisable(!(clubId && name && abbreviation && colorCode));
   }
 
   const handleSubmit = (e) =>{
@@ -74,7 +69,7 @@ const AddTeam = () => {
   }
 
   const createTeam = () => {
-    setIsSubmitDisable(true);
+    setIsSubmitting(true);
     setSubmitButtonLabel('チーム作成中...');
     console.log(clubId);
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/teams`,
@@ -97,7 +92,7 @@ const AddTeam = () => {
         history.push('/admin/main');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
-        setIsSubmitDisable(false);
+        setIsSubmitting(false);
         setSubmitButtonLabel('チーム作成');
       }
     }).catch((error) => {
@@ -106,7 +101,7 @@ const AddTeam = () => {
         history.push('/sign_in');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
-        setIsSubmitDisable(false);
+        setIsSubmitting(false);
         setSubmitButtonLabel('チーム作成');
       }
     })
@@ -142,7 +137,7 @@ const AddTeam = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3 text-end">
-            <Button variant="dark" type="submit" onClick={createTeam} disabled={isSubmitDisable}>
+            <Button variant="dark" type="submit" onClick={createTeam} disabled={!(name && abbreviation && colorCode) || isSubmitting}>
               {submitButtonLabel}
             </Button>
           </Form.Group>
