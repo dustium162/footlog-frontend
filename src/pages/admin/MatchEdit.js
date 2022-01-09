@@ -12,7 +12,6 @@ const MatchEdit = ({match,filterMatches,height}) => {
   const [away_score_players,setAwayScorePlayers] = useState('');
   const [away_red_players,setAwayRedPlayers] = useState('');
   const [mobilization,setMobilization] = useState(0);
-  const [errorMessage, setErrorMessage] = useState('');
 
   const history = useHistory();
 
