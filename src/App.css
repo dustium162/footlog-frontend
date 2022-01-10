@@ -45,6 +45,10 @@ footer {
   transform: translateY(-50%);
 }
 
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 /* -------------------------------------------------------- */
 
 /* .App {

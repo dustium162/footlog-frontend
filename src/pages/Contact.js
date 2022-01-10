@@ -75,11 +75,16 @@ const Contact = () => {
             <Form.Label>お問い合わせフォーム</Form.Label>
             <Form.Control as="textarea" value={message} onChange={(e) => setMessage(e.target.value)} style={{ height: '100px' }} />
           </Form.Group>
-          <div className="text-end">
+          <div className="mb-3 text-muted">
+            This site is protected by reCAPTCHA and the Google
+            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+          </div>
+          <Form.Group className="mb-3 text-end">
             <Button variant="dark" type="submit" onClick={postContact} disabled={isSubmitDisable}>
               {sendButtonLabel}
             </Button>
-          </div>
+          </Form.Group>
         </Form>
       </Container>
     </Layout>
