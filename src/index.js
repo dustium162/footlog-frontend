@@ -4,13 +4,13 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY} language="ja"> */}
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY} language="ja">
       <App />
-    {/* </GoogleReCaptchaProvider> */}
+    </GoogleReCaptchaProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

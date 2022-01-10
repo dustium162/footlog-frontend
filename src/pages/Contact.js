@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import { Container, Button, Form } from 'react-bootstrap';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const Contact = () => {
-  const history = useHistory();
 
-  const [message,setMessage] = useState('')
-  const [name,setName] = useState('')
-  const [email,setEmail] = useState('')
+  const [message,setMessage] = useState('');
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [token, setToken] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [sendButtonLabel, setSendButtonLabel] = useState('送信する');
+  const history = useHistory();
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   useEffect(() => {
     name && email && message ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
@@ -23,12 +27,22 @@ const Contact = () => {
   }
 
   const postContact = async () => {
+    if (!executeRecaptcha) {
+      console.log('Execute recaptcha not yet available');
+      return;
+    }
+
+    const reCaptchaToken = await executeRecaptcha('contact');
+    setToken(reCaptchaToken);
+    console.log(token);
+
     setIsSubmitDisable(true);
     setSendButtonLabel('送信中...');
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/contacts`,{
       name: name,
       email: email,
-      message: message
+      message: message,
+      recaptcha_token: token
     }).then(res => {
       if(res.status === 204){
         history.push('/top');

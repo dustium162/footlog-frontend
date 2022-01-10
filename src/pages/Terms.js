@@ -20,12 +20,14 @@ const Terms = () => {
   return (
     <Layout>
       <Container>
-        <h2 className="h3">利用規約</h2>
-        {
-          term.split('\n').map((str, index) => (
-            <React.Fragment key={index}>{str}<br /></React.Fragment>
-          ))
-        }
+        <div className="my-3">
+          <h2 className="h3">利用規約</h2>
+          {
+            term.split('\n').map((str, index) => (
+              <React.Fragment key={index}>{str}<br /></React.Fragment>
+            ))
+          }
+        </div>
       </Container>
     </Layout>
   )

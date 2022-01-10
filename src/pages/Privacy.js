@@ -19,12 +19,14 @@ const Privacy = () => {
   return (
     <Layout>
       <Container>
-      <h2 className="h3">プライバシーポリシー</h2>
-        {
-          privacy.split('\n').map((str, index) => (
-            <React.Fragment key={index}>{str}<br /></React.Fragment>
-          ))
-        }
+        <div className="my-3">
+          <h2 className="h3">プライバシーポリシー</h2>
+          {
+            privacy.split('\n').map((str, index) => (
+              <React.Fragment key={index}>{str}<br /></React.Fragment>
+            ))
+          }
+        </div>
       </Container>
     </Layout>
   )
