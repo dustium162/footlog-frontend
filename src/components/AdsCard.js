@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const AdsCard = () => {
+const AdsCard = ({className}) => {
   useEffect(() => {
     if (window.adsbygoogle && process.env.NODE_ENV !== "development") {
         window.adsbygoogle.push({});
@@ -8,7 +8,7 @@ const AdsCard = () => {
   }, [])
 
   return (
-    <ins className="adsbygoogle"
+    <ins className={`adsbygoogle ${className}`}
       style={{ "display": "block" }}
       data-ad-client={process.env.REACT_APP_GOOGLE_AD_CLIENT}
       data-ad-slot={process.env.REACT_APP_GOOGLE_AD_SLOT}
