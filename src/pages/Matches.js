@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 
 import InfiniteScroll from 'react-infinite-scroller'
-
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import axios from 'axios'
 import {Container, Spinner} from 'react-bootstrap'
@@ -54,6 +54,7 @@ const Matches = () => {
   }
   return (
     <Layout>
+      <Head title="観戦記録の作成" />
       <Container>
         <div className="mt-4">
           <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} className="text-center">

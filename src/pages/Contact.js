@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
@@ -61,6 +62,7 @@ const Contact = () => {
   }
   return (
     <Layout>
+      <Head title="お問合せ" />
       <Container>
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group>

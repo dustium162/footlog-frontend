@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {Container} from 'react-bootstrap';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import axios from 'axios'
 
@@ -19,6 +20,7 @@ const Terms = () => {
   },[])
   return (
     <Layout>
+      <Head title="利用規約" />
       <Container>
         <div className="my-3">
           <h2 className="h3">利用規約</h2>

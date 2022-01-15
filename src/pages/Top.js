@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import { Container,Row,Col,Card } from 'react-bootstrap'
@@ -13,6 +14,7 @@ const Top = () => {
 
   return (
     <Layout>
+      <Head title="footlog" />
       <Container>
         <div style={{backgroundImage: `url(${TopImage})`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black", borderRadius: "0 0 30px 30px"}}>
           <div style={{background: "rgba(255, 255, 255, 0.17)", display: "flex", justifyContent:"center", alignItems: "center"}}>

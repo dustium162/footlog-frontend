@@ -1,4 +1,5 @@
 import {React} from 'react';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios'
@@ -68,6 +69,7 @@ const SignIn = () => {
   }
   return (
     <Layout>
+      <Head title="ログイン" />
       <Container>
         {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">

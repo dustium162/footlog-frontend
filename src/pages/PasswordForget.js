@@ -1,4 +1,6 @@
 import {React} from 'react';
+import Head from '../components/Head';
+
 import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
@@ -64,6 +66,7 @@ const PasswordForget = () => {
   }
   return (
     <Layout>
+      <Head title="パスワードのリセット" />
       <Container>
         {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">

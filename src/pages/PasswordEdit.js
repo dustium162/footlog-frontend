@@ -1,3 +1,4 @@
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
@@ -65,6 +66,7 @@ const PasswordEdit = () => {
 
   return (
     <Layout>
+      <Head title="パスワードの変更" />
       <Container>
         <Form onSubmit={handleSubmit}　className="my-3">
           <Form.Group className="mb-3" controlId="formBasicPassword">

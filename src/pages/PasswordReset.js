@@ -1,4 +1,5 @@
 import {React} from 'react';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -74,6 +75,7 @@ const PasswordReset = () => {
   }
   return (
     <Layout>
+      <Head title="新しいパスワードの設定" />
       <Container>
         {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">

@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
-
 import {Form,Button, Container} from 'react-bootstrap'
 
 // import {config, dom, library} from '@fortawesome/fontawesome-svg-core';
@@ -107,6 +107,7 @@ const SignUp = () => {
 
   return (
     <Layout>
+      <Head title="新規ユーザー登録" />
       <Container>
         {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
         <Form onSubmit={handleSubmit} className="my-3">

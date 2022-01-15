@@ -1,7 +1,6 @@
-import * as React from "react"
-// react-helmetをimportするのはこのコンポーネントだけになります
-import { Helmet } from "react-helmet"
-import '../css/index.css'
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
+// import '../css/index.css'
 
 // ページコンポーネントから、titleをpropしています
 const Head = (props) => {

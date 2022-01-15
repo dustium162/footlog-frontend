@@ -1,8 +1,8 @@
-import Layout from '../components/Layout';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios'
 import { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios'
+import Head from '../components/Head';
+import Layout from '../components/Layout';
 import {Button, Form, Container, Image} from 'react-bootstrap';
 import Resizer from 'react-image-file-resizer';
 
@@ -207,7 +207,7 @@ const UserEdit = () => {
 
   return (
     <Layout>
-      {/* {JSON.stringify(info.user)} */}
+      <Head title="ユーザー情報の編集" />
       <Container>
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formName">
