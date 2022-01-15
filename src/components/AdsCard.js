@@ -9,7 +9,7 @@ const AdsCard = ({className}) => {
 
   return (
     <ins className={`adsbygoogle ${className}`}
-      style={{ "display": "block" }}
+      style={{ "display": "block", "maxWidth": "100%" }}
       data-ad-client={process.env.REACT_APP_GOOGLE_AD_CLIENT}
       data-ad-slot={process.env.REACT_APP_GOOGLE_AD_SLOT}
       data-ad-format="auto"
