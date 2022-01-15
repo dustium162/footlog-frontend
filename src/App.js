@@ -32,7 +32,10 @@ import PasswordReset from './pages/PasswordReset';
 import InformRenewal from './pages/InformRenewal'
 
 const App = () => {
+
   const router = useRef(null);
+
+  const isAdmin = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')).is_admin : false;
 
   useEffect(() => {
     router.current.history.listen((location) => {
@@ -61,16 +64,20 @@ const App = () => {
           <Route path="/user/password/reset" component={PasswordReset} />
 
           {/* 管理者用 書く場所が正しいかは不明なので要相談(20210626浅) */}
-          <Route path="/admin/main" component={AdminMain}/>
-          <Route path="/admin/match/new" component={MatchNew}/>
-          <Route path="/admin/match/edit" component={UnpublishedPosts}/>
-          <Route path="/admin/add_team" component={AddTeam}/>
-          <Route path="/admin/add_club" component={AddClub}/>
-          <Route path="/admin/add_title" component={AddTitle}/>
-          <Route path="/admin/add_stadium" component={AddStadium}/>
-          <Route path="/admin/add_term" component={AddTerm}/>
-          <Route path="/admin/add_privacy" component={AddPrivacy}/>
-          <Route path="/admin/contacts" component={ContactIndex}/>
+          {isAdmin && 
+            <>
+              <Route path="/admin/main" component={AdminMain}/>
+              <Route path="/admin/match/new" component={MatchNew}/>
+              <Route path="/admin/match/edit" component={UnpublishedPosts}/>
+              <Route path="/admin/add_team" component={AddTeam}/>
+              <Route path="/admin/add_club" component={AddClub}/>
+              <Route path="/admin/add_title" component={AddTitle}/>
+              <Route path="/admin/add_stadium" component={AddStadium}/>
+              <Route path="/admin/add_term" component={AddTerm}/>
+              <Route path="/admin/add_privacy" component={AddPrivacy}/>
+              <Route path="/admin/contacts" component={ContactIndex}/>
+            </>
+          }
         </Switch>
       </Router>
     </div>
