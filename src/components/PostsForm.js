@@ -113,7 +113,7 @@ const PostsForm = () => {
             return (
               <div key={post.id} className="my-4">
                 <PostCard post={post} />
-                {(index+1) % 5 === 0 && <AdsCard key={index} className="mt-4" />}
+                {(index+1) % 5 === 0 && <AdsCard key={index} className="mt-4 w-100" />}
               </div>
             )
           })

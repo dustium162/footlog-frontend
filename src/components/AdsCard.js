@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Card } from 'react-bootstrap';
 
 const AdsCard = ({className}) => {
   useEffect(() => {
@@ -8,13 +9,15 @@ const AdsCard = ({className}) => {
   }, [])
 
   return (
-    <ins className={`adsbygoogle ${className}`}
-      style={{ "display": "block", "maxWidth": "100%" }}
-      data-ad-client={process.env.REACT_APP_GOOGLE_AD_CLIENT}
-      data-ad-slot={process.env.REACT_APP_GOOGLE_AD_SLOT}
-      data-ad-format="auto"
-      data-full-width-responsive="true">
-    </ins>
+    <Card>
+      <ins className={`adsbygoogle ${className}`}
+        style={{ "display": "block" }}
+        data-ad-client={process.env.REACT_APP_GOOGLE_AD_CLIENT}
+        data-ad-slot={process.env.REACT_APP_GOOGLE_AD_SLOT}
+        data-ad-format="auto"
+        data-full-width-responsive="true">
+      </ins>
+    </Card>
   );
 }
 
