@@ -142,12 +142,39 @@ const UserEdit = () => {
   }
 
   const deleteUser = () => {
-    axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/auth`,{
-      headers: {
-        uid: localStorage.getItem('uid'),
-        'access-token': localStorage.getItem('access-token'),
-        client: localStorage.getItem('client')
+    axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/auth`,
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
       }
+    ).then(res => {
+      if (res.status === 200) {
+        localStorage.removeItem('uid');
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('client');
+        localStorage.removeItem('currentUser');
+        console.log('200');
+        history.push('/top')
+      } else {
+        localStorage.removeItem('uid');
+        localStorage.removeItem('access-token');
+        localStorage.removeItem('client');
+        localStorage.removeItem('currentUser');
+        history.push('/sign_in');
+      }
+    }).catch(error => {
+      console.log(error);
+      localStorage.removeItem('uid');
+      localStorage.removeItem('access-token');
+      localStorage.removeItem('client');
+      localStorage.removeItem('currentUser');
+      history.push('/sign_in');
+
+      // setPointerEvents('auto');
+      // setSignOutButtonLabel('ログアウト');
     })
   }
 
