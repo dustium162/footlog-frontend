@@ -3,6 +3,7 @@ import {Form, Button, Spinner, Card} from 'react-bootstrap'
 import axios from 'axios'
 import InfiniteScroll from 'react-infinite-scroller'
 import PostCard from './PostCard';
+import AdsCard from './AdsCard';
 
 const PostsForm = () => {
   const [posts,setPosts] = useState([])
@@ -108,10 +109,11 @@ const PostsForm = () => {
         </Form>
         <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={0} className="text-center">
         {posts.length !== 0 ?
-          posts.map((post) => {
+          posts.map((post, index) => {
             return (
               <div key={post.id} className="my-4">
                 <PostCard post={post} />
+                {(index+1) % 5 === 0 && <AdsCard key={index} />}
               </div>
             )
           })
