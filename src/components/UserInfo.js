@@ -33,13 +33,15 @@ const UserInfo = () => {
   },[userId])
   return (
     <>
-      <div style={{backgroundImage: `url(${headerImage}`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
-        <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
-          <div style={{paddingTop: "calc(450 / 1000 * 50%)",paddingBottom: "calc(450 / 1000 * 50%)"}}>
-          </div>
+      <Container>
+        <div style={{backgroundImage: `url(${headerImage}`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black", borderRadius: "0 0 30px 30px"}}>
+          <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}>
+            <div style={{paddingTop: "calc(450 / 1000 * 50%)",paddingBottom: "calc(450 / 1000 * 50%)"}}>
+            </div>
 
+          </div>
         </div>
-      </div>
+      </Container>
       <div className="text-center">
         <Image className="user-icon border border-white border-2" src={image} style={{marginTop: "-5.5rem"}} roundedCircle />
       </div>

@@ -13,7 +13,7 @@ const MyPage = () => {
   return (
     <Layout>
       <UserInfo />
-      <Container>
+      <Container className="mb-5">
         <div className="mt-5">
           <UserStats userId={userId}/>
         </div>

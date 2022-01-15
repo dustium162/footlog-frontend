@@ -9,29 +9,35 @@ import TopDemoImagePosts from '../images/top-images/top_demo_image_posts.png';
 import TopDemoImageTitles from '../images/top-images/top_demo_image_titles.png';
 
 const Top = () => {
+  const userId = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')).id : '';
+
   return (
     <Layout>
-      <div style={{backgroundImage: `url(${TopImage})`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black"}}>
-        <div style={{background: "rgba(255, 255, 255, 0.17)", display: "flex", justifyContent:"center", alignItems: "center"}}>
-          <div style={{paddingTop: "calc(450 / 1000 * 50%)",paddingBottom: "calc(450 / 1000 * 50%)"}} />
-          <div className="text-center py-2" style={{height: "100%", width:"100%", background: "rgba(255,255,255,0.5)"}}>
-            <span className="h1 fw-bold text-dark" style={{textShadow:"1px 1px 0 white,-1px 1px 0 white,1px -1px 0 white,-1px -1px 0 white"}}>観戦記録を積み重ねよう！</span>
+      <Container>
+        <div style={{backgroundImage: `url(${TopImage})`, width: "100%", backgroundSize: "cover", backgroundPosition: "center", objectFit: "cover", color:"black", borderRadius: "0 0 30px 30px"}}>
+          <div style={{background: "rgba(255, 255, 255, 0.17)", display: "flex", justifyContent:"center", alignItems: "center"}}>
+            <div style={{paddingTop: "calc(450 / 1000 * 50%)",paddingBottom: "calc(450 / 1000 * 50%)"}} />
+            <div className="text-center py-2" style={{height: "100%", width:"100%", background: "rgba(255,255,255,0.5)"}}>
+              <span className="h1 fw-bold text-dark" style={{textShadow:"1px 1px 0 white,-1px 1px 0 white,1px -1px 0 white,-1px -1px 0 white"}}>観戦記録を積み重ねよう！</span>
+            </div>
           </div>
         </div>
-      </div>
-      <Container className="my-2">
-        <Row className="text-center mb-3">
-          <Col>
-          <Link to="sign_up" className="btn btn-danger rounded-pill py-2 px-2">
-            <span className="mx-2">新規登録</span>
-          </Link>
-          </Col>
-          <Col>
-            <Link to="/sign_in" className="btn btn-secondary rounded-pill py-2 px-2">
-              <span className="mx-2">ログイン</span>
-            </Link>
-          </Col>
-        </Row>
+      </Container>
+      <Container className="my-5">
+        {!userId &&
+          <Row className="text-center mb-3">
+            <Col>
+              <Link to="sign_up" className="btn btn-danger rounded-pill py-2 px-2">
+                <span className="mx-2">新規登録</span>
+              </Link>
+            </Col>
+            <Col>
+              <Link to="/sign_in" className="btn btn-secondary rounded-pill py-2 px-2">
+                <span className="mx-2">ログイン</span>
+              </Link>
+            </Col>
+          </Row>
+        }
         <h1 style={{textAlign:"center"}} className="mb-3">footlogでできること</h1>
         <Row style={{display: "flex", flexWrap: "wrap"}}>
           <Col xs={12} md={3} className="mb-3">
@@ -87,13 +93,17 @@ const Top = () => {
             </Card>
           </Col>
         </Row>
-        <hr />
-        <div className="text-center my-3">
-          <div className="h4 mb-3">新規ユーザー登録はこちらから！</div>
-          <Link to="sign_up" className="btn btn-danger btn-lg rounded-pill py-2 px-2">
-            <span className="h1 px-4">新規登録</span>
-          </Link>
-        </div>
+        {!userId &&
+          <>
+            <hr />
+            <div className="text-center my-3">
+              <div className="h4 mb-3">新規ユーザー登録はこちらから！</div>
+              <Link to="sign_up" className="btn btn-danger btn-lg rounded-pill py-2 px-2">
+                <span className="h1 px-4">新規登録</span>
+              </Link>
+            </div>
+          </>
+        }
       </Container>
     </Layout>
   );
