@@ -18,6 +18,9 @@ const Opponent = ({ clubMatchResult }) => {
         </Card.Header>
         <Card.Body className="py-2">
           <Row>
+            <Col xs={12} className="text-center" style={{paddingRight: "9rem",marginBottom: "-2rem"}}>
+              <span style={{fontSize: "1.3rem"}}>通算</span>
+            </Col>
             <Col xs={7} className="text-end">
               <div>
                 <span style={{fontSize: "5rem"}}>{clubMatchResult.total.win + clubMatchResult.total.lose + clubMatchResult.total.draw}</span><span>戦</span>
