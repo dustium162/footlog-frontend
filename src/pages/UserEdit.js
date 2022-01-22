@@ -216,7 +216,7 @@ const UserEdit = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formClub">
             <Form.Label>応援しているチーム（変更不可）</Form.Label>
-            <Form.Control value={info.support_info ? info.support_info.team_name : "応援しているチーム"} disabled="disabled" />
+            <Form.Control value={info.team ? info.team.name : "応援しているチーム"} disabled="disabled" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formMail">
             <Form.Label>メールアドレス</Form.Label>
