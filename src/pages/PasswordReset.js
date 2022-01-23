@@ -1,4 +1,5 @@
-import {React} from 'react';
+import { React } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -74,27 +75,29 @@ const PasswordReset = () => {
     })
   }
   return (
-    <Layout>
-      <Head title="新しいパスワードの設定" />
-      <Container>
-        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
-        <Form onSubmit={handleSubmit} className="my-3">
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>パスワード</Form.Label>
-            <div className="input-wrap">
-              <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="新しいパスワードを入力してください" onChange={handlePasswordChange} />
-              <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
-              {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}</span>
-            </div>
-          </Form.Group>
-          <Form.Group className="text-end">
-            <Button variant="dark" type="submit" onClick={resetPassword} disabled={isSubmitDisable}>
-              更新する
-            </Button>
-          </Form.Group>
-        </Form>
-      </Container>
-    </Layout>
+    <HelmetProvider>
+      <Layout>
+        <Head title="新しいパスワードの設定" />
+        <Container>
+          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+          <Form onSubmit={handleSubmit} className="my-3">
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>パスワード</Form.Label>
+              <div className="input-wrap">
+                <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="新しいパスワードを入力してください" onChange={handlePasswordChange} />
+                <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
+                {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}</span>
+              </div>
+            </Form.Group>
+            <Form.Group className="text-end">
+              <Button variant="dark" type="submit" onClick={resetPassword} disabled={isSubmitDisable}>
+                更新する
+              </Button>
+            </Form.Group>
+          </Form>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   );
 }
 export default PasswordReset;

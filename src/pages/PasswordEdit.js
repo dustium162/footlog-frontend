@@ -1,3 +1,4 @@
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
@@ -65,27 +66,29 @@ const PasswordEdit = () => {
   }
 
   return (
-    <Layout>
-      <Head title="パスワードの変更" />
-      <Container>
-        <Form onSubmit={handleSubmit}　className="my-3">
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>パスワード</Form.Label>
-            <div className="input-wrap">
-              <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
-              <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
-              {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
-              </span>
+    <HelmetProvider>
+      <Layout>
+        <Head title="パスワードの変更" />
+        <Container>
+          <Form onSubmit={handleSubmit}　className="my-3">
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>パスワード</Form.Label>
+              <div className="input-wrap">
+                <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
+                <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
+                {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
+                </span>
+              </div>
+            </Form.Group>
+            <div className="text-end">
+              <Button variant="dark" type="submit" onClick={updatePassword} disabled={isSubmitDisable}>
+                {updateButtonLabel}
+              </Button>
             </div>
-          </Form.Group>
-          <div className="text-end">
-            <Button variant="dark" type="submit" onClick={updatePassword} disabled={isSubmitDisable}>
-              {updateButtonLabel}
-            </Button>
-          </div>
-        </Form>
-      </Container>
-    </Layout>
+          </Form>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   )
 }
 export default PasswordEdit;

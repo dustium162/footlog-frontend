@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import axios from 'axios'
@@ -106,78 +107,80 @@ const SignUp = () => {
   }
 
   return (
-    <Layout>
-      <Head title="新規ユーザー登録" />
-      <Container>
-        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
-        <Form onSubmit={handleSubmit} className="my-3">
-          <Form.Group className="mb-3" controlId="formName">
-            <Form.Label className="mb-0">ユーザー名</Form.Label>
-            <Form.Control value={name} placeholder="ユーザー名を入力してください" onChange={handleNameChange}/>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label className="mb-0">メールアドレス</Form.Label>
-            <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label className="mb-0">パスワード</Form.Label>
-            <div className="input-wrap">
-              <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
-              <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
-              {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
-              </span>
-            </div>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formClub">
-            <Form.Label className="d-block mb-0">応援しているクラブ</Form.Label>
-            <Form.Check
-              inline
-              label="Ｊ１"
-              name="group1"
-              type="radio"
-              id="inline-radio-J1"
-              value="1"
-              onChange={handleLeague}
-              checked={league === "1"}
-            />
-            <Form.Check
-              inline
-              label="Ｊ２"
-              name="group1"
-              type="radio"
-              id="inline-radio-J2"
-              value="2"
-              onChange={handleLeague}
-              checked={league === "2"}
-            />
-            <Form.Check
-              inline
-              label="Ｊ３"
-              name="group1"
-              type="radio"
-              id="inline-radio-J3"
-              value="3"
-              onChange={handleLeague}
-              checked={league === "3"}
-            />
-            <Form.Control as="select" onChange={handleClubId}>
-              {leagueList.map(d => {
-                return <option key={d.club_id} value={d.club_id}>{d.name}</option>
-              })
-              }
-            </Form.Control>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="利用規約に同意する" onChange={handleAgree} />
-          </Form.Group>
-          <Form.Group className="text-end">
-            <Button variant="dark" type="submit" onClick={createNewUser} disabled={isSubmitDisable}>
-              {signUpButtonLabel}
-            </Button>
-          </Form.Group>
-        </Form>
-      </Container>
-    </Layout>
+    <HelmetProvider>
+      <Layout>
+        <Head title="新規ユーザー登録" />
+        <Container>
+          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+          <Form onSubmit={handleSubmit} className="my-3">
+            <Form.Group className="mb-3" controlId="formName">
+              <Form.Label className="mb-0">ユーザー名</Form.Label>
+              <Form.Control value={name} placeholder="ユーザー名を入力してください" onChange={handleNameChange}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label className="mb-0">メールアドレス</Form.Label>
+              <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label className="mb-0">パスワード</Form.Label>
+              <div className="input-wrap">
+                <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
+                <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
+                {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
+                </span>
+              </div>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formClub">
+              <Form.Label className="d-block mb-0">応援しているクラブ</Form.Label>
+              <Form.Check
+                inline
+                label="Ｊ１"
+                name="group1"
+                type="radio"
+                id="inline-radio-J1"
+                value="1"
+                onChange={handleLeague}
+                checked={league === "1"}
+              />
+              <Form.Check
+                inline
+                label="Ｊ２"
+                name="group1"
+                type="radio"
+                id="inline-radio-J2"
+                value="2"
+                onChange={handleLeague}
+                checked={league === "2"}
+              />
+              <Form.Check
+                inline
+                label="Ｊ３"
+                name="group1"
+                type="radio"
+                id="inline-radio-J3"
+                value="3"
+                onChange={handleLeague}
+                checked={league === "3"}
+              />
+              <Form.Control as="select" onChange={handleClubId}>
+                {leagueList.map(d => {
+                  return <option key={d.club_id} value={d.club_id}>{d.name}</option>
+                })
+                }
+              </Form.Control>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="利用規約に同意する" onChange={handleAgree} />
+            </Form.Group>
+            <Form.Group className="text-end">
+              <Button variant="dark" type="submit" onClick={createNewUser} disabled={isSubmitDisable}>
+                {signUpButtonLabel}
+              </Button>
+            </Form.Group>
+          </Form>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   );
 }
 export default SignUp;

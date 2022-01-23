@@ -20,7 +20,7 @@ const PostsForm = () => {
   const loadMore = async () => {
     // React-infinite-scrollerのデフォルトのページ番号は使用せず、ステートselectPageを使う。
     // 理由は、検索時にページ番号を初期化する必要があるが、引数としてページ番号を渡しているわけではなく、InfiniteScrollコンポーネントの中で計算しており、初期化することができないため。
-    
+
       const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}&page=${selectPage}`, {
         headers: {
           uid: localStorage.getItem('uid'),
@@ -42,20 +42,6 @@ const PostsForm = () => {
       setSelectPage(selectPage => selectPage+1);
     
   }
-
-  // useEffect(() => {
-  //   axios.get(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}`, {
-  //     headers: {
-  //       uid: localStorage.getItem('uid'),
-  //       'access-token': localStorage.getItem('access-token'),
-  //       client: localStorage.getItem('client')
-  //     }
-  //   })
-  //   // apiのJsonの形式を検討する必要あり(2021-07-19 浦郷)
-  //   .then(response => response.data)
-  //   .then(data => setPosts(data))
-  //   }
-  // ,[])
 
   const handleSubmit = (e) =>{
     e.preventDefault();

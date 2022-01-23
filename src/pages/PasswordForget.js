@@ -1,13 +1,11 @@
 import {React} from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
-
 import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
-
-import {useState, useEffect} from 'react'
-
-import {Form,Button,Container} from 'react-bootstrap'
+import { useState, useEffect } from 'react'
+import { Form,Button,Container } from 'react-bootstrap'
 
 const PasswordForget = () => {
   const [email,setEmail] = useState('')
@@ -65,23 +63,25 @@ const PasswordForget = () => {
     })
   }
   return (
-    <Layout>
-      <Head title="パスワードのリセット" />
-      <Container>
-        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
-        <Form onSubmit={handleSubmit} className="my-3">
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>メールアドレス</Form.Label>
-            <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
-          </Form.Group>
-          <Form.Group className="text-end">
-            <Button variant="dark" type="submit" onClick={resetPassword} disabled={isSubmitDisable}>
-              {sendButtonLabel}
-            </Button>
-          </Form.Group>
-        </Form>
-      </Container>
-    </Layout>
+    <HelmetProvider>
+      <Layout>
+        <Head title="パスワードのリセット" />
+        <Container>
+          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+          <Form onSubmit={handleSubmit} className="my-3">
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>メールアドレス</Form.Label>
+              <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
+            </Form.Group>
+            <Form.Group className="text-end">
+              <Button variant="dark" type="submit" onClick={resetPassword} disabled={isSubmitDisable}>
+                {sendButtonLabel}
+              </Button>
+            </Form.Group>
+          </Form>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   );
 }
 export default PasswordForget;

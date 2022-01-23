@@ -6,7 +6,7 @@ import MatchInfo from './MatchInfo'
 
 const MatchCard = ({match,onClickPost}) => {
   return (
-    <div style={{height: `${match.style.height}px`,overflow:'hidden'}}>
+    <div id={`${match.data.match_id}`} style={{height: `${match.style.height}px`,overflow:'hidden'}}>
       <Card>
         <MatchInfo match={match.data}/>
         <Card.Footer>

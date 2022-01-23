@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import {Button, Form, Container, Image} from 'react-bootstrap';
@@ -206,55 +207,57 @@ const UserEdit = () => {
   }, [name, email]);
 
   return (
-    <Layout>
-      <Head title="ユーザー情報の編集" />
-      <Container>
-        <Form onSubmit={handleSubmit} className="my-3">
-          <Form.Group className="mb-3" controlId="formName">
-            <Form.Label>ユーザー名</Form.Label>
-            <Form.Control value={name} onChange={handleName} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formClub">
-            <Form.Label>応援しているチーム（変更不可）</Form.Label>
-            <Form.Control value={info.team ? info.team.name : "応援しているチーム"} disabled="disabled" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formMail">
-            <Form.Label>メールアドレス</Form.Label>
-            <Form.Control value={email} onChange={handleEmail} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formPassword">
-            <Form.Label>パスワード</Form.Label>
-            <Form.Control value="●●●●●●●●●●●" disabled="disabled" />
-            <Link to="/user/password/edit">パスワードを変更する</Link>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formImage">
-            <Form.Label>アイコン画像</Form.Label>
-            <Form.Control type="file" accept="image/*" onChange={processImage} />
-            <Image src={image} className="d-block mx-auto" rounded fluid />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formHeaderImage">
-            <Form.Label>ヘッダー画像</Form.Label>
-            <Form.Control type="file" accept="image/*" onChange={processHeaderImage} />
-            <Image src={header_image} className="d-block mx-auto" style={{maxWidth: "100%"}} rounded fluid />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBiography">
-            <Form.Label>自己紹介</Form.Label>
-            <Form.Control as="textarea" value={biography} onChange={(e) => setBiography(e.target.value)} style={{ height: '100px' }} />
-          </Form.Group>
-          <Form.Group className="text-end">
-            <Button variant="dark" type="submit" className="mx-1" onClick={updateUser} disabled={isSubmitDisable}>
-              {updateButtonLabel}
+    <HelmetProvider>
+      <Layout>
+        <Head title="ユーザー情報の編集" />
+        <Container>
+          <Form onSubmit={handleSubmit} className="my-3">
+            <Form.Group className="mb-3" controlId="formName">
+              <Form.Label>ユーザー名</Form.Label>
+              <Form.Control value={name} onChange={handleName} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formClub">
+              <Form.Label>応援しているチーム（変更不可）</Form.Label>
+              <Form.Control value={info.team ? info.team.name : "応援しているチーム"} disabled="disabled" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formMail">
+              <Form.Label>メールアドレス</Form.Label>
+              <Form.Control value={email} onChange={handleEmail} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>パスワード</Form.Label>
+              <Form.Control value="●●●●●●●●●●●" disabled="disabled" />
+              <Link to="/user/password/edit">パスワードを変更する</Link>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formImage">
+              <Form.Label>アイコン画像</Form.Label>
+              <Form.Control type="file" accept="image/*" onChange={processImage} />
+              <Image src={image} className="d-block mx-auto" rounded fluid />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formHeaderImage">
+              <Form.Label>ヘッダー画像</Form.Label>
+              <Form.Control type="file" accept="image/*" onChange={processHeaderImage} />
+              <Image src={header_image} className="d-block mx-auto" style={{maxWidth: "100%"}} rounded fluid />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBiography">
+              <Form.Label>自己紹介</Form.Label>
+              <Form.Control as="textarea" value={biography} onChange={(e) => setBiography(e.target.value)} style={{ height: '100px' }} />
+            </Form.Group>
+            <Form.Group className="text-end">
+              <Button variant="dark" type="submit" className="mx-1" onClick={updateUser} disabled={isSubmitDisable}>
+                {updateButtonLabel}
+              </Button>
+              <Link className="btn btn-outline-secondary mx-1" to="/my_page">キャンセル</Link>
+            </Form.Group>
+          </Form>
+          <Form.Group className="text-start my-3">
+            <Button variant="link" onClick={deleteUser}>
+              footlogを退会する方はこちら
             </Button>
-            <Link className="btn btn-outline-secondary mx-1" to="/my_page">キャンセル</Link>
           </Form.Group>
-        </Form>
-        <Form.Group className="text-start my-3">
-          <Button variant="link" onClick={deleteUser}>
-            footlogを退会する方はこちら
-          </Button>
-        </Form.Group>
-      </Container>
-    </Layout>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   )
 }
 export default UserEdit;

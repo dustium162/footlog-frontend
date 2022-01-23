@@ -1,4 +1,5 @@
 import {React} from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory, Link } from 'react-router-dom';
@@ -68,28 +69,30 @@ const SignIn = () => {
     })
   }
   return (
-    <Layout>
-      <Head title="ログイン" />
-      <Container>
-        {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
-        <Form onSubmit={handleSubmit} className="my-3">
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>メールアドレス</Form.Label>
-            <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>パスワード</Form.Label>
-            <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
-          </Form.Group>
-          <Link to="/user/password/forget">パスワードを忘れた方はこちら</Link>
-          <Form.Group className="text-end">
-            <Button variant="dark" type="submit" onClick={login} disabled={isSubmitDisable}>
-              {signInButtonLabel}
-            </Button>
-          </Form.Group>
-        </Form>
-      </Container>
-    </Layout>
+    <HelmetProvider>
+      <Layout>
+        <Head title="ログイン" />
+        <Container>
+          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+          <Form onSubmit={handleSubmit} className="my-3">
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>メールアドレス</Form.Label>
+              <Form.Control value={email} placeholder="メールアドレスを入力してください" onChange={handleEmailChange} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>パスワード</Form.Label>
+              <Form.Control value={password} type="password" placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
+            </Form.Group>
+            <Link to="/user/password/forget">パスワードを忘れた方はこちら</Link>
+            <Form.Group className="text-end">
+              <Button variant="dark" type="submit" onClick={login} disabled={isSubmitDisable}>
+                {signInButtonLabel}
+              </Button>
+            </Form.Group>
+          </Form>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   );
 }
 export default SignIn;

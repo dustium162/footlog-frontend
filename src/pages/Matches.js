@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import InfiniteScroll from 'react-infinite-scroller'
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import axios from 'axios';
@@ -12,23 +13,25 @@ const Matches = () => {
   const [matchIds, setMatchIds] = useState([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [isFetching, setIsFetcing] = useState(false);
 
   const loadMore = async () => {
-    console.log(matchIds)
-    if(matchIds.length !== 0){
-      const data = await getMatches();
-      console.log(data);
-      console.log(matchIds);
-      console.log(matches);
-      if (data.length < 10) {
-        setHasMore(false);
-        return;
+    setIsFetcing(true);
+    try {
+      if(matchIds.length !== 0){
+        const data = await getMatches();
+        if (data.length < 10) {
+          setHasMore(false);
+          return;
+        }
+        if(matches.length !== 0){
+          setMatches([...matches,...data]);
+        } else {
+          setMatches(data);
+        }
       }
-      if(matches.length !== 0){
-        setMatches([...matches,...data])
-      } else {
-        setMatches(data);
-      }
+    } finally {
+      setIsFetcing(false);
     }
   }
 
@@ -45,12 +48,10 @@ const Matches = () => {
     .then(response => response.data)
     .then(data => {
       setMatchIds(data);
-      return matchIds;
     })
-  },[])
+  },[]);
 
   const getMatches = async () => {
-    console.log(matchIds[3]);
     const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/matches/add?match_ids=${matchIds[page]}`, {
       headers: {
         uid: localStorage.getItem('uid'),
@@ -58,9 +59,7 @@ const Matches = () => {
         client: localStorage.getItem('client')
       }
     });
-    console.log(response.data);
     setPage(() => page+1);
-    // console.log(response.data);
     return response.data
   }
 
@@ -71,38 +70,41 @@ const Matches = () => {
   const onClickPost = (matchId) => {
     setMatches(matches.filter(match => match.match_id !== matchId))
   }
+
   return (
-    <Layout>
-      <Head title="観戦記録の作成" />
-      <Container>
-        <div className="mt-4">
-          <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} className="text-center">
-            <TransitionMotion
-              willLeave={willLeave}
-              styles={
-                matches.map((match) => (
-                  {
-                    key: String(match.match_id),
-                    data: match,
-                    style:{height: match.height}
-                  }
-                ))
-              }
-            >
-              {interpolatingStyles =>
-                <>
-                {interpolatingStyles.map(interpolatingStyle => {
-                  return (
-                    <MatchCard key={interpolatingStyle.key} match={interpolatingStyle} onClickPost={onClickPost}/>
-                  )
-                })}
-                </>
-              }
-            </TransitionMotion>
-          </InfiniteScroll>
-        </div>
-      </Container>
-    </Layout>
+    <HelmetProvider>
+      <Layout>
+        <Head title="観戦記録の作成" />
+        <Container>
+          <div className="mt-4">
+            <InfiniteScroll loadMore={loadMore} hasMore={!isFetching && hasMore} loader={loader} className="text-center">
+              <TransitionMotion
+                willLeave={willLeave}
+                styles={
+                  matches.map((match) => (
+                    {
+                      key: String(match.match_id),
+                      data: match,
+                      style:{height: match.height}
+                    }
+                  ))
+                }
+              >
+                {interpolatingStyles =>
+                  <>
+                  {interpolatingStyles.map((interpolatingStyle) => {
+                    return (
+                      <MatchCard key={interpolatingStyle.key} match={interpolatingStyle} onClickPost={onClickPost}/>
+                    )
+                  })}
+                  </>
+                }
+              </TransitionMotion>
+            </InfiniteScroll>
+          </div>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   )
 }
 export default Matches;

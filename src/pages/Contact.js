@@ -1,4 +1,5 @@
 import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import { useHistory } from 'react-router-dom';
@@ -61,35 +62,37 @@ const Contact = () => {
     })
   }
   return (
-    <Layout>
-      <Head title="お問合せ" />
-      <Container>
-        <Form onSubmit={handleSubmit} className="my-3">
-          <Form.Group>
-            <Form.Label>お名前</Form.Label>
-            <Form.Control value={name} onChange={(e) => setName(e.target.value)} />
-            </Form.Group>
+    <HelmetProvider>
+      <Layout>
+        <Head title="お問合せ" />
+        <Container>
+          <Form onSubmit={handleSubmit} className="my-3">
             <Form.Group>
-            <Form.Label>メールアドレス</Form.Label>
-            <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBiography">
-            <Form.Label>お問い合わせフォーム</Form.Label>
-            <Form.Control as="textarea" value={message} onChange={(e) => setMessage(e.target.value)} style={{ height: '100px' }} />
-          </Form.Group>
-          <div className="mb-3 text-muted">
-            This site is protected by reCAPTCHA and the Google
-            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-          </div>
-          <Form.Group className="mb-3 text-end">
-            <Button variant="dark" type="submit" onClick={postContact} disabled={isSubmitDisable}>
-              {sendButtonLabel}
-            </Button>
-          </Form.Group>
-        </Form>
-      </Container>
-    </Layout>
+              <Form.Label>お名前</Form.Label>
+              <Form.Control value={name} onChange={(e) => setName(e.target.value)} />
+              </Form.Group>
+              <Form.Group>
+              <Form.Label>メールアドレス</Form.Label>
+              <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBiography">
+              <Form.Label>お問い合わせフォーム</Form.Label>
+              <Form.Control as="textarea" value={message} onChange={(e) => setMessage(e.target.value)} style={{ height: '100px' }} />
+            </Form.Group>
+            <div className="mb-3 text-muted">
+              This site is protected by reCAPTCHA and the Google
+              <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+              <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+            </div>
+            <Form.Group className="mb-3 text-end">
+              <Button variant="dark" type="submit" onClick={postContact} disabled={isSubmitDisable}>
+                {sendButtonLabel}
+              </Button>
+            </Form.Group>
+          </Form>
+        </Container>
+      </Layout>
+    </HelmetProvider>
   )
 }
 export default Contact;
