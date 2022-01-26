@@ -1,33 +1,33 @@
-import { useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import axios from 'axios';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import {Button, Form, Container, Image} from 'react-bootstrap';
+import axios from 'axios';
+import { Button, Form, Container, Image } from 'react-bootstrap';
 import Resizer from 'react-image-file-resizer';
 
-const resizeFile = (file, height, width) =>
-new Promise((resolve) => {
-  Resizer.imageFileResizer(
-    file,
-    height,
-    width,
-    'JPEG',
-    80,
-    0,
-    (uri) => {
-      resolve(uri);
-    },
-    'file'
-  );
-});
+const resizeFile = (file, height, width) => {
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      height,
+      width,
+      'JPEG',
+      80,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      'file'
+    );
+  });
+};
 
 const UserEdit = () => {
 
   const userId = JSON.parse(localStorage.getItem('currentUser')).id;
-  const history = useHistory();
-
+  
   const [info,setInfo] = useState({})
   const [name,setName] = useState('')
   const [email,setEmail] = useState('')
@@ -36,9 +36,10 @@ const UserEdit = () => {
   const [biography,setBiography] = useState('')
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [updateButtonLabel, setUpdateButtonLabel] = useState('更新する');
-
+  const history = useHistory();
+  
   const processImage = async (e) => {
-    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/1`, {params: {filename: e.target.files[0].name}});
+    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/1`,{params: {filename: e.target.files[0].name}});
     const s3DirectPost = await res.data;
     const imageFile = await resizeFile(e.target.files[0], 100, 100);
     const fields = s3DirectPost.fields;
@@ -173,9 +174,6 @@ const UserEdit = () => {
       localStorage.removeItem('client');
       localStorage.removeItem('currentUser');
       history.push('/sign_in');
-
-      // setPointerEvents('auto');
-      // setSignOutButtonLabel('ログアウト');
     })
   }
 
@@ -190,9 +188,9 @@ const UserEdit = () => {
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
       }
-    })
-    .then(response => response.data)
-    .then(data => {
+    }).then((response) => {
+      return response.data;
+    }).then((data) => {
       setInfo(data);
       setName(data.user.name);
       setEmail(data.user.email);
@@ -258,6 +256,7 @@ const UserEdit = () => {
         </Container>
       </Layout>
     </HelmetProvider>
-  )
+  );
 }
+
 export default UserEdit;

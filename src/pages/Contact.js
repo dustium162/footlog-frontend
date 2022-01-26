@@ -1,9 +1,9 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Container, Button, Form } from 'react-bootstrap';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
@@ -24,7 +24,7 @@ const Contact = () => {
     name && email && message ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
   }, [name, email, message])
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
   }
 
@@ -36,7 +36,6 @@ const Contact = () => {
 
     const reCaptchaToken = await executeRecaptcha('contact');
     setToken(reCaptchaToken);
-    console.log(token);
 
     setIsSubmitDisable(true);
     setSendButtonLabel('送信中...');
@@ -95,4 +94,5 @@ const Contact = () => {
     </HelmetProvider>
   )
 }
+
 export default Contact;

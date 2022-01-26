@@ -1,8 +1,8 @@
-import {React} from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Form,Button,Container } from 'react-bootstrap'

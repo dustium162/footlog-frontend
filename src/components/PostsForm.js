@@ -12,16 +12,18 @@ const PostsForm = () => {
   const [onlineSelected, setOnlineSelected] = useState(false);
   const [notWatchingSelected, setNotWatchingSelected] = useState(false);
   const [forgetSelected, setForgetSelected] = useState(false);
-  const [selectPage, setSelectPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [searchButtonLabel, setSearchButtonLabel] = useState('絞り込む')
+  const [isFetching, setIsFetcing] = useState(false);
 
   const loader = <Spinner key={0} animation="border" variant="secondary" />;
   const loadMore = async () => {
     // React-infinite-scrollerのデフォルトのページ番号は使用せず、ステートselectPageを使う。
     // 理由は、検索時にページ番号を初期化する必要があるが、引数としてページ番号を渡しているわけではなく、InfiniteScrollコンポーネントの中で計算しており、初期化することができないため。
-
-      const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}&page=${selectPage}`, {
+    setIsFetcing(true);
+    try {
+      const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}&page=${page}`, {
         headers: {
           uid: localStorage.getItem('uid'),
           'access-token': localStorage.getItem('access-token'),
@@ -33,14 +35,16 @@ const PostsForm = () => {
         setHasMore(false);
         return;
       }
-      if(selectPage === 1) {
+      if(page === 1) {
         setPosts(data);
         setHasMore(true);
       } else {
         setPosts([...posts,...data])
       }
-      setSelectPage(selectPage => selectPage+1);
-    
+      setPage(page => page+1);
+    } finally {
+      setIsFetcing(false);
+    }
   }
 
   const handleSubmit = (e) =>{
@@ -50,7 +54,7 @@ const PostsForm = () => {
   const search = () => {
     setIsSubmitDisable(true);
     setSearchButtonLabel('絞り込み中...');
-    setSelectPage(1);
+    setPage(1);
     setHasMore(true);
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/posts?onsite=${onsiteSelected}&online=${onlineSelected}&notWatching=${notWatchingSelected}&forget=${forgetSelected}`, {
       headers: {
@@ -93,7 +97,7 @@ const PostsForm = () => {
             </Button>
           </div>
         </Form>
-        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={loader} pageStart={0} className="text-center">
+        <InfiniteScroll loadMore={loadMore} hasMore={!isFetching && hasMore} loader={loader} pageStart={0} className="text-center">
         {posts.length !== 0 ?
           posts.map((post, index) => {
             return (

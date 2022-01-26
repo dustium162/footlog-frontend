@@ -1,15 +1,13 @@
-import {React} from 'react';
+import { React, useState, useEffect } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { useHistory, Link } from 'react-router-dom';
-import axios from 'axios'
-
-import {useState, useEffect} from 'react'
-
+import axios from 'axios';
 import {Form,Button,Container} from 'react-bootstrap'
 
 const SignIn = () => {
+
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,6 +18,7 @@ const SignIn = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
   }
@@ -35,12 +34,12 @@ const SignIn = () => {
   const login = () => {
     setIsSubmitDisable(true);
     setSignInButtonLabel('ログイン中...')
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_in`,{
-      email: email,
-      password: password,
-    })
-    //レスポンスの一部をローカルストレージに保存するコードが必要
-    .then(res => {
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth/sign_in`,
+      {
+        email: email,
+        password: password,
+      }
+    ).then((res) => {
       if (res.status === 200) {
         localStorage.setItem('uid', res.headers.uid);
         localStorage.setItem('access-token', res.headers['access-token']);
@@ -55,8 +54,7 @@ const SignIn = () => {
       //     setErrorMessage('メールアドレスもしくはパスワードが異なります。');
       //   }
       // }
-    })
-    .catch(error => {
+    }).catch(error => {
       console.log(error);
       // 401はthenで受け取るように修正予定（2021ｰ09-12 浦郷）
       if(error.response && error.response.status === 401) {
@@ -68,12 +66,13 @@ const SignIn = () => {
       setSignInButtonLabel('ログイン');
     })
   }
+
   return (
     <HelmetProvider>
       <Layout>
         <Head title="ログイン" />
         <Container>
-          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : ''}
           <Form onSubmit={handleSubmit} className="my-3">
             <Form.Group className="mb-3" controlId="formEmail">
               <Form.Label>メールアドレス</Form.Label>
@@ -95,4 +94,5 @@ const SignIn = () => {
     </HelmetProvider>
   );
 }
+
 export default SignIn;

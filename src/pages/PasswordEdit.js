@@ -1,21 +1,20 @@
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios'
-import { useState, useEffect } from 'react';
 import {Button,Form, Container} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
 
 const PasswordEdit = () => {
 
-  const history = useHistory();
-
   const [password,setPassword] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [updateButtonLabel, setUpdateButtonLabel] = useState('更新する');
   const [isRevealPassword,setIsRevealPassword] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     password ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
@@ -24,16 +23,16 @@ const PasswordEdit = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
+
   const togglePassword = () => {
     setIsRevealPassword(state => !state);
   }
+
   const handleSubmit = (e) =>{
     e.preventDefault();
   }
+
   const updatePassword = () => {
-    // const data = new FormData();
-    // data.append('password', password);
-    // data.append('passowrd_confirmation', password);
     setIsSubmitDisable(true);
     setUpdateButtonLabel('更新中...');
     axios.put(`${process.env.REACT_APP_API_ENDPOINT}/auth/password`,
@@ -49,7 +48,7 @@ const PasswordEdit = () => {
           client: localStorage.getItem('client')
         },
       }
-    ).then(res => {
+    ).then((res) => {
       if(res.status === 200){
         history.push('/my_page');
         console.log('200');
@@ -58,7 +57,7 @@ const PasswordEdit = () => {
         setIsSubmitDisable(false);
         setUpdateButtonLabel('更新する');
       }
-    }).catch(error => {
+    }).catch((error) => {
       console.log(error);
       setIsSubmitDisable(false);
       setUpdateButtonLabel('更新する');
@@ -74,9 +73,9 @@ const PasswordEdit = () => {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>パスワード</Form.Label>
               <div className="input-wrap">
-                <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange}/>
+                <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="パスワードを入力してください" onChange={handlePasswordChange} />
                 <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
-                {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}
+                {isRevealPassword ? (<FontAwesomeIcon icon={faEye} />) : (<FontAwesomeIcon icon={faEyeSlash} />)}
                 </span>
               </div>
             </Form.Group>

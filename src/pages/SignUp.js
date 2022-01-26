@@ -1,37 +1,35 @@
 import React,{useState,useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import axios from 'axios'
-import { useHistory } from 'react-router-dom';
-import {Form,Button, Container} from 'react-bootstrap'
-
-// import {config, dom, library} from '@fortawesome/fontawesome-svg-core';
-
-// library.add(faEye, faEyeSlash);
-// dom.i2svg();
+import axios from 'axios';
+import { Form, Button, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 const SignUp = () => {
-  const [name, setName] = useState('')
-  const [email,setEmail] = useState('')
-  const [password,setPassword] = useState('')
-  const [isRevealPassword,setIsRevealPassword] = useState(false)
-  const [league, setLeague] = useState('1')
-  const [leagueList, setLeagueList] = useState([])
-  const [clubId,setClubId] = useState(0)
-  const [agree, setAgree] = useState(false)
+
+  const [name, setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const [isRevealPassword,setIsRevealPassword] = useState(false);
+  const [league, setLeague] = useState('1');
+  const [leagueList, setLeagueList] = useState([]);
+  const [clubId,setClubId] = useState(0);
+  const [agree, setAgree] = useState(false);
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
-  const [signUpButtonLabel, setSignUpButtonLabel] = useState('登録する')
+  const [signUpButtonLabel, setSignUpButtonLabel] = useState('登録する');
   const [errorMessage, setErrorMessage] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/division_seasons/${league}`)
-    .then(response => response.data)
-    .then(res => {
-      setLeagueList(res)
-      setClubId(res[0].club_id);
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/division_seasons/${league}`
+    ).then((response) => {
+      return response.data;
+    }).then((data) => {
+      setLeagueList(data)
+      setClubId(data[0].club_id);
     });
   }, [league])
 
@@ -42,15 +40,19 @@ const SignUp = () => {
   const handleNameChange = (e) => {
     setName(e.target.value);
   }
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
   }
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
+
   const handleLeague = (e) => {
     setLeague(e.target.value);
   }
+
   const handleClubId = (e) => {
     setClubId(e.target.value);
   }
@@ -63,27 +65,23 @@ const SignUp = () => {
     setIsRevealPassword(state => !state);
   }
 
-  //確認用パスワードとの一致はフロントでやってしまう？(20210722浅見)
-  // const handlePasswordConfirmationChange = (e) => {
-  //   setPassword(e.target.value)
-  // }
-  const history = useHistory();
-
   const handleSubmit = (e) =>{
     e.preventDefault();
   }
 
   const createNewUser = () => {
     setIsSubmitDisable(true);
-    setSignUpButtonLabel('登録中...')
-    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth`,{
-      name: name,
-      email: email,
-      password: password,
-      password_confirmation: password,
-      // password_confirmation: password_confirmation,
-      club_id: clubId
-    }).then(res => {
+    setSignUpButtonLabel('登録中...');
+    axios.post(`${process.env.REACT_APP_API_ENDPOINT}/auth`,
+      {
+        name: name,
+        email: email,
+        password: password,
+        password_confirmation: password,
+        // password_confirmation: password_confirmation,
+        club_id: clubId
+      }
+    ).then((res) => {
       if(res.status === 200){
         history.push('/top');
         console.log('200');
@@ -92,8 +90,7 @@ const SignUp = () => {
         setIsSubmitDisable(false);
         setSignUpButtonLabel('登録する');
       }
-    })
-    .catch(error => {
+    }).catch((error) => {
       console.log(error);
       // メールアドレスが既に登録されている場合に返される422なのか要確認（2021ｰ09-12 浦郷）
       if(error.response && error.response.status === 422) {
@@ -183,4 +180,5 @@ const SignUp = () => {
     </HelmetProvider>
   );
 }
+
 export default SignUp;

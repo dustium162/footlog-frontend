@@ -1,14 +1,15 @@
-import React,{useState,useEffect} from 'react';
-import InfiniteScroll from 'react-infinite-scroller'
+import React, { useState, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 import axios from 'axios';
-import {Container, Spinner} from 'react-bootstrap';
+import InfiniteScroll from 'react-infinite-scroller'
+import { Container, Spinner } from 'react-bootstrap';
 import MatchCard from '../components/MatchCard';
-import {TransitionMotion,spring} from 'react-motion';
+import { TransitionMotion, spring } from 'react-motion';
 
 const Matches = () => {
+
   const [matches, setMatches] = useState([]);
   const [matchIds, setMatchIds] = useState([]);
   const [page, setPage] = useState(0);
@@ -36,6 +37,7 @@ const Matches = () => {
   }
 
   const loader = <Spinner key={0} animation="border" variant="secondary" />
+
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`, {
       headers: {
@@ -43,32 +45,34 @@ const Matches = () => {
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
       }
-    })
-    // apiのJsonの形式を検討する必要あり（2021-07-19 浦郷）
-    .then(response => response.data)
-    .then(data => {
+    }).then((response) => {
+      return response.data;
+    }).then((data) => {
       setMatchIds(data);
     })
   },[]);
 
   const getMatches = async () => {
-    const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/matches/add?match_ids=${matchIds[page]}`, {
-      headers: {
-        uid: localStorage.getItem('uid'),
-        'access-token': localStorage.getItem('access-token'),
-        client: localStorage.getItem('client')
+    const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/matches/add?match_ids=${matchIds[page]}`,
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
       }
-    });
+    );
     setPage(() => page+1);
+
     return response.data
   }
 
   const willLeave = () => { 
-    return {height: spring(0,{stiffness:240,dumping:30})}
+    return {height: spring(0, {stiffness:240, dumping:30})}
   }
 
   const onClickPost = (matchId) => {
-    setMatches(matches.filter(match => match.match_id !== matchId))
+    setMatches(matches.filter((match) => match.match_id !== matchId))
   }
 
   return (
@@ -85,18 +89,18 @@ const Matches = () => {
                     {
                       key: String(match.match_id),
                       data: match,
-                      style:{height: match.height}
+                      style: {height: match.height}
                     }
                   ))
                 }
               >
                 {interpolatingStyles =>
                   <>
-                  {interpolatingStyles.map((interpolatingStyle) => {
-                    return (
-                      <MatchCard key={interpolatingStyle.key} match={interpolatingStyle} onClickPost={onClickPost}/>
-                    )
-                  })}
+                    {interpolatingStyles.map((interpolatingStyle) => {
+                      return (
+                        <MatchCard key={interpolatingStyle.key} match={interpolatingStyle} onClickPost={onClickPost} />
+                      );
+                    })}
                   </>
                 }
               </TransitionMotion>
@@ -107,4 +111,5 @@ const Matches = () => {
     </HelmetProvider>
   )
 }
+
 export default Matches;

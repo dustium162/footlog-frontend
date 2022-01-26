@@ -1,25 +1,23 @@
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import {useState, useEffect} from 'react'
-import {Form,Button,Container} from 'react-bootstrap'
+import { Form, Button, Container } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 
 const PasswordReset = () => {
-
-  const search = useLocation().search;
-  const query = new URLSearchParams(search);
 
   const [password,setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitDisable, setIsSubmitDisable] = useState(false);
   const [isRevealPassword,setIsRevealPassword] = useState(false);
   const history = useHistory();
+  const search = useLocation().search;
+  const query = new URLSearchParams(search);
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
@@ -38,20 +36,19 @@ const PasswordReset = () => {
   }, [password])
 
   const resetPassword = () => {
-    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/auth/password`,{
-      password: password,
-      password_confirmation: password
-    },
-    {
-      headers: {
-        //ここに正しく値を入れれば完了しそう(浅見)
-        uid: query.get('uid'),
-        'access-token': query.get('access-token'),
-        client: query.get('client')
+    axios.put(`${process.env.REACT_APP_API_ENDPOINT}/auth/password`,
+      {
+        password: password,
+        password_confirmation: password
       },
-    })
-    //レスポンスの一部をローカルストレージに保存するコードが必要
-    .then(res => {
+      {
+        headers: {
+          uid: query.get('uid'),
+          'access-token': query.get('access-token'),
+          client: query.get('client')
+        },
+      }
+    ).then((res) => {
       if (res.status === 200) {
         console.log('200');
         console.log(res);
@@ -63,8 +60,7 @@ const PasswordReset = () => {
       //     setErrorMessage('メールアドレスもしくはパスワードが異なります。');
       //   }
       // }
-    })
-    .catch(error => {
+    }).catch(error => {
       console.log(error);
       // 401はthenで受け取るように修正予定（2021ｰ09-12 浦郷）
       if(error.response.status === 401) {
@@ -74,19 +70,20 @@ const PasswordReset = () => {
       }
     })
   }
+
   return (
     <HelmetProvider>
       <Layout>
         <Head title="新しいパスワードの設定" />
         <Container>
-          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : <div></div>}
+          {errorMessage ? <div className="my-3 text-danger">{errorMessage}</div> : ''}
           <Form onSubmit={handleSubmit} className="my-3">
             <Form.Group className="mb-3" controlId="formEmail">
               <Form.Label>パスワード</Form.Label>
               <div className="input-wrap">
                 <Form.Control value={password} type={isRevealPassword ? "text" : "password"} placeholder="新しいパスワードを入力してください" onChange={handlePasswordChange} />
                 <span onClick={togglePassword} role="presentation" className="PasswordReveal toggle-pass">
-                {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash}/>)}</span>
+                {isRevealPassword ? (<FontAwesomeIcon icon={faEye}/>) : (<FontAwesomeIcon icon={faEyeSlash} />)}</span>
               </div>
             </Form.Group>
             <Form.Group className="text-end">
@@ -100,4 +97,5 @@ const PasswordReset = () => {
     </HelmetProvider>
   );
 }
+
 export default PasswordReset;

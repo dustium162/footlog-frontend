@@ -1,23 +1,22 @@
-import React,{useState, useEffect} from 'react';
-import { Container } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import Head from '../components/Head';
 import Layout from '../components/Layout';
-import axios from 'axios'
+import { Container } from 'react-bootstrap';
+import axios from 'axios';
 
 const Privacy = () => {
-  const [privacy,setPrivacy] = useState('')
+
+  const [privacy,setPrivacy] = useState('');
+
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies/edit`,
-      {
-        headers: {
-          uid: localStorage.getItem('uid'),
-          'access-token': localStorage.getItem('access-token'),
-          client: localStorage.getItem('client')
-        }
-      }
-    ).then(response => response.data).then(data => setPrivacy(data.text))
-  },[])
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/privacies`).then((response) => {
+      return response.data;
+    }).then((data) => {
+      setPrivacy(data.text)
+    })
+  },[]);
+
   return (
     <HelmetProvider>
       <Layout>
@@ -36,4 +35,5 @@ const Privacy = () => {
     </HelmetProvider>
   )
 }
+
 export default Privacy;
