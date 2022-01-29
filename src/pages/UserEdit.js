@@ -7,7 +7,7 @@ import axios from 'axios';
 import { Button, Form, Container, Image } from 'react-bootstrap';
 import Resizer from 'react-image-file-resizer';
 
-const resizeFile = (file, height, width) => {
+const resizeFile = (file, height, width) =>
   new Promise((resolve) => {
     Resizer.imageFileResizer(
       file,
@@ -21,8 +21,8 @@ const resizeFile = (file, height, width) => {
       },
       'file'
     );
-  });
-};
+  }
+);
 
 const UserEdit = () => {
 
@@ -39,17 +39,21 @@ const UserEdit = () => {
   const history = useHistory();
   
   const processImage = async (e) => {
+    console.log(e.target.files[0])
+    if (typeof e.target.files[0] === "undefined") {
+      console.error("none, fileObject");
+      return;
+    }
     const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/1`,{params: {filename: e.target.files[0].name}});
     const s3DirectPost = await res.data;
-    const imageFile = await resizeFile(e.target.files[0], 100, 100);
+    const imageFile = await resizeFile(e.target.files[0], 200, 200);
+    console.log(imageFile);
     const fields = s3DirectPost.fields;
     const formData = new FormData()
     for (let key in fields) {
       formData.append(key, fields[key])
     }
     formData.append('file', imageFile);
-    console.log(s3DirectPost);
-    console.log(...formData.entries());
     const ret = await axios.post(
       s3DirectPost.url,
       formData,
@@ -65,11 +69,15 @@ const UserEdit = () => {
   }
 
   const processHeaderImage = async (e) => {
+    if (typeof e.target.files[0] === "undefined") {
+      console.error("none, fileObject");
+      return;
+    }
     const file = e.target.files[0].name;
     const fileType = file.split('.').pop();
     const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/2`, {params: {filename: `${userId}_header_image.${fileType}`}});
     const s3DirectPost = await res.data;
-    const headerImageFile = await resizeFile(e.target.files[0], 400, 400);
+    const headerImageFile = await resizeFile(e.target.files[0], 1920, 1280);
     const fields = s3DirectPost.fields;
     const formData = new FormData()
     for (let key in fields) {
@@ -159,7 +167,7 @@ const UserEdit = () => {
         localStorage.removeItem('client');
         localStorage.removeItem('currentUser');
         console.log('200');
-        history.push('/top')
+        history.push('/')
       } else {
         localStorage.removeItem('uid');
         localStorage.removeItem('access-token');

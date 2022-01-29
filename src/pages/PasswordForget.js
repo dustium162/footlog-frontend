@@ -38,7 +38,7 @@ const PasswordForget = () => {
     .then(res => {
       if (res.status === 200) {
         console.log('200');
-        history.push('/top')
+        history.push('/')
         console.log(res);
       }
       // } else {

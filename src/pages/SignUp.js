@@ -83,7 +83,7 @@ const SignUp = () => {
       }
     ).then((res) => {
       if(res.status === 200){
-        history.push('/top');
+        history.push('/');
         console.log('200');
       } else if(res.status === 500){
         console.log('500');

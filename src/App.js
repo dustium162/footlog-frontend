@@ -31,7 +31,7 @@ import PasswordReset from './pages/PasswordReset';
 
 import NotFound from './pages/NotFound';
 
-import InformRenewal from './pages/InformRenewal'
+// import InformRenewal from './pages/InformRenewal'
 
 const App = () => {
 
@@ -51,8 +51,7 @@ const App = () => {
     <div className="App footer-fixed">
       <Router ref={router}>
         <Switch>
-          <Route exact path="/" component={InformRenewal} />
-          <Route exact path="/top" component={Top}/>
+          <Route exact path="/" component={Top}/>
           <Route path="/sign-in" component={SignIn}/>
           <Route path="/sign-up" component={SignUp}/>
           <Route path="/my-page" component={MyPage}/>

@@ -70,7 +70,7 @@ const Header = () => {
       <Navbar bg="white" variant="light" className="border-bottom p-0">
         <Container>
           <Navbar.Brand>
-            <Link to="/top" className="text-decoration-none text-dark">
+            <Link to="/" className="text-decoration-none text-dark">
               <img
                 src={Logo}
                 width="35"
