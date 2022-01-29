@@ -65,13 +65,13 @@ const MatchEdit = ({match,filterMatches,height}) => {
       if(response.status === 204){
         history.push('/admin/main');
       } else if(response.status === 401) {
-        history.push('/sign_in');
+        history.push('/sign-in');
       } else {
         console.log(response);
       }
     }).catch((error) => {
       console.log(error);
-      // history.push('/sign_in');
+      // history.push('/sign-in');
     })
   }
 

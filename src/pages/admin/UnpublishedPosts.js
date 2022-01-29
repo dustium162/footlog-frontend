@@ -22,7 +22,7 @@ const UnpublishedPosts = () => {
     }).then( response => {
       setMatches(response.data);
     }).catch((error) => {
-      history.push('/sign_in');
+      history.push('/sign-in');
       console.log(error);
     })
   },[history])

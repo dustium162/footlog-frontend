@@ -36,7 +36,7 @@ const AddClub = () => {
       }
     }).catch((error) => {
       if(error.response && error.response.status === 401){
-        history.push('/sign_in');
+        history.push('/sign-in');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
       }
@@ -106,7 +106,7 @@ const AddClub = () => {
     }).catch((error) => {
       console.log(error);
       if(error.response && error.response.status === 401) {
-        history.push('/sign_in');
+        history.push('/sign-in');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
         setIsSubmitDisable(false);

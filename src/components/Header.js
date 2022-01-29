@@ -1,9 +1,9 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import axios from 'axios';
 import { useHistory, Link} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
-import Logo from '../logo-copy.png';
+import Logo from '../logo.png';
 // import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUserPlus, faSignInAlt, faEdit, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,7 +36,7 @@ const Header = () => {
         localStorage.removeItem('client');
         localStorage.removeItem('currentUser');
         console.log('200');
-        history.push('/sign_in')
+        history.push('/sign-in')
       } else {
         console.log('500');
 
@@ -44,7 +44,7 @@ const Header = () => {
         localStorage.removeItem('access-token');
         localStorage.removeItem('client');
         localStorage.removeItem('currentUser');
-        history.push('/sign_in');
+        history.push('/sign-in');
 
         setPointerEvents('auto');
         setSignOutButtonLabel('ログアウト');
@@ -57,7 +57,7 @@ const Header = () => {
       localStorage.removeItem('access-token');
       localStorage.removeItem('client');
       localStorage.removeItem('currentUser');
-      history.push('/sign_in');
+      history.push('/sign-in');
 
       setPointerEvents('auto');
       setSignOutButtonLabel('ログアウト');
@@ -75,7 +75,7 @@ const Header = () => {
                 src={Logo}
                 width="35"
                 height="35"
-                alt="React Bootstrap logo"
+                alt="footlog logo"
               />
               <h1 className="h3 d-inline ms-1">footlog</h1>
             </Link>
@@ -83,7 +83,7 @@ const Header = () => {
           <Nav className="mr-auto">
             { localStorage.getItem('access-token') == null ? (
               <>
-                <LinkContainer to="/sign_up" className="ms-3">
+                <LinkContainer to="/sign-up" className="ms-3">
                   <Nav.Link>
                     <div className="btn btn-dark rounded-pill py-2 px-2">
                       <span style={{marginLeft:"2px", marginRight:"2px"}}>
@@ -93,7 +93,7 @@ const Header = () => {
                     </div>
                   </Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/sign_in" className="ms-3">
+                <LinkContainer to="/sign-in" className="ms-3">
                   <Nav.Link>
                     <div className="btn btn-secondary rounded-pill py-2 px-2">
                       <span style={{marginLeft:"2px", marginRight:"2px"}}>
@@ -106,7 +106,7 @@ const Header = () => {
               </>
             ) : (
               <>
-                <LinkContainer to="/my_page" className="ms-3">
+                <LinkContainer to="/my-page" className="ms-3">
                   <Nav.Link>
                     <img
                       src={JSON.parse(localStorage.getItem('currentUser')).image}

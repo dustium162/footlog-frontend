@@ -36,7 +36,7 @@ const AddTeam = () => {
       }
     }).catch((error) => {
       if(error.response && error.response.status === 401){
-        history.push('/sign_in');
+        history.push('/sign-in');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
       }
@@ -98,7 +98,7 @@ const AddTeam = () => {
     }).catch((error) => {
       console.log(error);
       if(error.response && error.response.status === 401) {
-        history.push('/sign_in');
+        history.push('/sign-in');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
         setIsSubmitting(false);

@@ -41,7 +41,7 @@ const MatchNew = () => {
       setIsSubmitDisable(!(titleId && homeTeamId && awayTeamId && dateTime && stadiumId));
       // titleId && homeTeamId && awayTeamId && dateTime && stadiumId ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
     }).catch((error) => {
-      history.push('/sign_in');
+      history.push('/sign-in');
       console.log(error);
     })
   },[titleId, homeTeamId, awayTeamId, dateTime, stadiumId, history])
@@ -116,7 +116,7 @@ const MatchNew = () => {
     }).catch((error) => {
       console.log(error);
       if(error.response && error.response.status === 401) {
-        history.push('/sign_in');
+        history.push('/sign-in');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
         setIsSubmitDisable(false);

@@ -29,6 +29,8 @@ import PasswordEdit from './pages/PasswordEdit';
 import PasswordForget from './pages/PasswordForget';
 import PasswordReset from './pages/PasswordReset';
 
+import NotFound from './pages/NotFound';
+
 import InformRenewal from './pages/InformRenewal'
 
 const App = () => {
@@ -51,9 +53,9 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={InformRenewal} />
           <Route exact path="/top" component={Top}/>
-          <Route path="/sign_in" component={SignIn}/>
-          <Route path="/sign_up" component={SignUp}/>
-          <Route path="/my_page" component={MyPage}/>
+          <Route path="/sign-in" component={SignIn}/>
+          <Route path="/sign-up" component={SignUp}/>
+          <Route path="/my-page" component={MyPage}/>
           <Route path="/matches" component={Matches}/>
           <Route path="/terms" component={Terms}/>
           <Route path="/privacy" component={Privacy}/>
@@ -78,6 +80,8 @@ const App = () => {
               <Route path="/admin/contacts" component={ContactIndex}/>
             </>
           }
+
+          <Route component={() => <NotFound />} />
         </Switch>
       </Router>
     </div>

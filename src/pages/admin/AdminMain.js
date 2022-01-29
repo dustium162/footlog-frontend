@@ -19,7 +19,7 @@ const AdminMain = () => {
       }
     }).catch((error) => {
       if(error.response && error.response.status === 401){
-        history.push('/sign_in');
+        history.push('/sign-in');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
       }

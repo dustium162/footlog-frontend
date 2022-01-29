@@ -50,7 +50,7 @@ const PasswordEdit = () => {
       }
     ).then((res) => {
       if(res.status === 200){
-        history.push('/my_page');
+        history.push('/my-page');
         console.log('200');
       } else if(res.status === 500){
         console.log('500');

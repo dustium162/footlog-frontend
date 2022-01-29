@@ -52,7 +52,7 @@ const PasswordReset = () => {
       if (res.status === 200) {
         console.log('200');
         console.log(res);
-        history.push('/sign_in')
+        history.push('/sign-in')
       }
       // } else {
       //   console.log(res.status);

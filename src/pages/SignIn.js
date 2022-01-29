@@ -46,7 +46,7 @@ const SignIn = () => {
         localStorage.setItem('client', res.headers.client);
         localStorage.setItem('currentUser', JSON.stringify(res.data.data));
         console.log('200');
-        history.push('/my_page');
+        history.push('/my-page');
       }
       // } else {
       //   console.log(res.status);

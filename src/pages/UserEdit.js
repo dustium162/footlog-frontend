@@ -129,7 +129,7 @@ const UserEdit = () => {
         localStorage.setItem('access-token', res.headers['access-token']);
         localStorage.setItem('client', res.headers.client);
         localStorage.setItem('currentUser', JSON.stringify(res.data.data));
-        history.push('/my_page');
+        history.push('/my-page');
         console.log('200');
       } else if(res.status === 500){
         console.log('500');
@@ -165,7 +165,7 @@ const UserEdit = () => {
         localStorage.removeItem('access-token');
         localStorage.removeItem('client');
         localStorage.removeItem('currentUser');
-        history.push('/sign_in');
+        history.push('/sign-in');
       }
     }).catch(error => {
       console.log(error);
@@ -173,7 +173,7 @@ const UserEdit = () => {
       localStorage.removeItem('access-token');
       localStorage.removeItem('client');
       localStorage.removeItem('currentUser');
-      history.push('/sign_in');
+      history.push('/sign-in');
     })
   }
 
@@ -245,7 +245,7 @@ const UserEdit = () => {
               <Button variant="dark" type="submit" className="mx-1" onClick={updateUser} disabled={isSubmitDisable}>
                 {updateButtonLabel}
               </Button>
-              <Link className="btn btn-outline-secondary mx-1" to="/my_page">キャンセル</Link>
+              <Link className="btn btn-outline-secondary mx-1" to="/my-page">キャンセル</Link>
             </Form.Group>
           </Form>
           <Form.Group className="text-start my-3">

@@ -60,12 +60,12 @@ const Top = () => {
           {!userId &&
             <Row className="text-center mb-3">
               <Col>
-                <Link to="sign_up" className="btn btn-danger rounded-pill py-2 px-2">
+                <Link to="sign-up" className="btn btn-danger rounded-pill py-2 px-2">
                   <span className="mx-2">新規登録</span>
                 </Link>
               </Col>
               <Col>
-                <Link to="/sign_in" className="btn btn-secondary rounded-pill py-2 px-2">
+                <Link to="/sign-in" className="btn btn-secondary rounded-pill py-2 px-2">
                   <span className="mx-2">ログイン</span>
                 </Link>
               </Col>
@@ -136,7 +136,7 @@ const Top = () => {
               <hr />
               <div className="text-center my-3">
                 <div className="h4 mb-3">新規ユーザー登録はこちらから！</div>
-                <Link to="sign_up" className="btn btn-danger btn-lg rounded-pill py-2 px-2">
+                <Link to="sign-up" className="btn btn-danger btn-lg rounded-pill py-2 px-2">
                   <span className="h1 px-4">新規登録</span>
                 </Link>
               </div>
