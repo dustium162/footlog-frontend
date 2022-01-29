@@ -53,7 +53,7 @@ const Matches = () => {
   },[]);
 
   const getMatches = async () => {
-    const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/matches/add?match_ids=${matchIds[page]}`,
+    const response = await axios(`${process.env.REACT_APP_API_ENDPOINT}/matches/add?match_ids=${matchIds[page].join(',')}`,
       {
         headers: {
           uid: localStorage.getItem('uid'),
