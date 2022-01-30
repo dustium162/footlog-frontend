@@ -7,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { Container, Spinner } from 'react-bootstrap';
 import MatchCard from '../components/MatchCard';
 import { TransitionMotion, spring } from 'react-motion';
+import ReturnTopButton from '../components/ReturnTopButton';
 
 const Matches = () => {
 
@@ -108,6 +109,7 @@ const Matches = () => {
           </div>
         </Container>
       </Layout>
+      <ReturnTopButton />
     </HelmetProvider>
   )
 }

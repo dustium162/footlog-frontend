@@ -75,7 +75,7 @@ const Header = () => {
                 src={Logo}
                 width="35"
                 height="35"
-                alt="footlog logo"
+                alt="user-icon"
               />
               <h1 className="h3 d-inline ms-1">footlog</h1>
             </Link>

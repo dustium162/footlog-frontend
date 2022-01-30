@@ -5,7 +5,8 @@ import Layout from '../components/Layout';
 import UserInfo from '../components/UserInfo'
 import UserStats from '../components/UserStats'
 import PostsForm from '../components/PostsForm';
-import { Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap';
+import ReturnTopButton from '../components/ReturnTopButton';
 
 const MyPage = () => {
 
@@ -26,6 +27,7 @@ const MyPage = () => {
           </div>
         </Container>
       </Layout>
+      <ReturnTopButton />
     </HelmetProvider>
   )
 }

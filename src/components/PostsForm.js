@@ -78,43 +78,42 @@ const PostsForm = () => {
       <Card>
         {/* <Card.Header className="h5">観戦記録</Card.Header> */}
         <Card.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formCheckboxOnsite">
-            <Form.Check type="checkbox" label="現地観戦" onChange={() => setOnsiteSelected(!onsiteSelected)} checked={onsiteSelected} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formCheckboxOnline">
-            <Form.Check type="checkbox" label="オンライン観戦" onChange={() => setOnlineSelected(!onlineSelected)} checked={onlineSelected} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formCheckboxNotWatching">
-            <Form.Check type="checkbox" label="観ていない" onChange={() => setNotWatchingSelected(!notWatchingSelected)} checked={notWatchingSelected} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formCheckboxForget">
-            <Form.Check type="checkbox" label="忘れた" onChange={() => setForgetSelected(!forgetSelected)} checked={forgetSelected} />
-          </Form.Group>
-          <div className="d-grid gap-2">
-            <Button variant="dark" type="submit" onClick={search} disabled={isSubmitDisable}>
-              {searchButtonLabel}
-            </Button>
-          </div>
-        </Form>
-        <InfiniteScroll loadMore={loadMore} hasMore={!isFetching && hasMore} loader={loader} pageStart={0} className="text-center">
-        {posts.length !== 0 ?
-          posts.map((post, index) => {
-            return (
-              <div key={post.id} className="my-4">
-                <PostCard post={post} />
-                {(index+1) % 5 === 0 && <AdsCard key={index} className="mt-4 w-100" />}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formCheckboxOnsite">
+              <Form.Check type="checkbox" label="現地観戦" onChange={() => setOnsiteSelected(!onsiteSelected)} checked={onsiteSelected} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formCheckboxOnline">
+              <Form.Check type="checkbox" label="オンライン観戦" onChange={() => setOnlineSelected(!onlineSelected)} checked={onlineSelected} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formCheckboxNotWatching">
+              <Form.Check type="checkbox" label="観ていない" onChange={() => setNotWatchingSelected(!notWatchingSelected)} checked={notWatchingSelected} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formCheckboxForget">
+              <Form.Check type="checkbox" label="忘れた" onChange={() => setForgetSelected(!forgetSelected)} checked={forgetSelected} />
+            </Form.Group>
+            <div className="d-grid gap-2">
+              <Button variant="dark" type="submit" onClick={search} disabled={isSubmitDisable}>
+                {searchButtonLabel}
+              </Button>
+            </div>
+          </Form>
+          <InfiniteScroll loadMore={loadMore} hasMore={!isFetching && hasMore} loader={loader} pageStart={0} className="text-center">
+            {posts.length !== 0 ?
+              posts.map((post, index) => {
+                return (
+                  <div key={post.id} className="my-4">
+                    <PostCard post={post} />
+                    {(index+1) % 5 === 0 && <AdsCard key={index} className="mt-4 w-100" />}
+                  </div>
+                )
+              })
+              :
+              <div className="my-2 text-center bg-light rounded border py-3">
+                対象の観戦記録はありません
               </div>
-            )
-          })
-          :
-          <div className="my-2 text-center bg-light rounded border py-3">
-            対象の観戦記録はありません
-          </div>
-        }
-        </InfiniteScroll>
+            }
+          </InfiniteScroll>
         </Card.Body>
-
       </Card>
     </>
     );
