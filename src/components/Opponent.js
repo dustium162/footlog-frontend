@@ -44,7 +44,7 @@ const Opponent = ({ clubMatchResult }) => {
         <Modal.Header className="bg-light">
           <Emblem className="me-1" height="25" width="25" fill={`${clubMatchResult.team.color_code}`} style={{verticalAlign: "middle"}} />
           <span style={{verticalAlign: "middle"}}>{clubMatchResult.team.name} 戦</span>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleClose}></button>
+          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleClose}></button>
         </Modal.Header>
         <Modal.Body>
           <OpponentDetail clubMatchResultDetail={clubMatchResult} />

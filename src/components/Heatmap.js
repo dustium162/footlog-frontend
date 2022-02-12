@@ -9,12 +9,34 @@ const Heatmap = () => {
   const thisYear = now.getFullYear();
   const [season, setSeason] = useState(thisYear);
   const [postTypes, setPostTypes] = useState([]);
+  const [seasonList, setSeasonList] = useState([]);
   const history = useHistory();
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}/first_post_season`,
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
+      }
+    ).then((res) => {
+      if (res.status === 200) {
+        setSeasonList(convertList(res.data));
+      }
+    }).catch(error => {
+      console.log(error);
+      history.push('/sign-in');
+    })
+  })
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}/posts-heatmap`,
       {
-        season: season
+        params: {
+          season: season
+        }
       },
       {
         headers: {
@@ -24,9 +46,7 @@ const Heatmap = () => {
         }
       }
     ).then((res) => {
-      console.log(res)
       if (res.status === 200) {
-        console.log(res.data);
         setPostTypes(formatPostTypes(res.data));
       }
     }).catch(error => {
@@ -36,7 +56,6 @@ const Heatmap = () => {
   },[season]);
 
   const handleSeason = (e) => {
-    console.log(e.target.value);
     setSeason(e.target.value);
   }
 
@@ -69,6 +88,15 @@ const Heatmap = () => {
     }
   }
 
+  const convertList = (firstSeason) => {
+    const thisYear = now.getFullYear();
+    const result = [];
+    for(let i = thisYear; i >= firstSeason; i--) {
+      result.push(i);
+    }
+    return result;
+  }
+
   // // 0からmax-1までの整数を返す
   // function getRandomInt(max) {
   //   // ランダムな配列
@@ -93,13 +121,14 @@ const Heatmap = () => {
       <h3 className="h5">ヒートマップ</h3>
       <Form.Group className="mb-3" controlId="formClub">
         <Form.Control as="select" onChange={handleSeason}>
-          {[2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015].map((year, index) => {
+          {seasonList.map((year, index) => {
             return <option key={index} value={year}>{year}</option>
           })
           }
         </Form.Control>
       </Form.Group>
-      <div className="d-flex">
+      <div className="d-flex" style={{justifyContent: 'center'}}>
+      {/* <div className="d-flex"> */}
         {
           postTypes.map((postTypes, i) => {
             return (
