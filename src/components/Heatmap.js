@@ -23,22 +23,28 @@ const Heatmap = () => {
       }
     ).then((res) => {
       if (res.status === 200) {
+        const convertList = (firstSeason) => {
+          const thisYear = (new Date()).getFullYear();
+          const result = [];
+          for(let i = thisYear; i >= firstSeason; i--) {
+            result.push(i);
+          }
+          return result;
+        }
         setSeasonList(convertList(res.data));
       }
     }).catch(error => {
       console.log(error);
       history.push('/sign-in');
     })
-  })
+  }, [userId, history])
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}/posts-heatmap`,
       {
         params: {
           season: season
-        }
-      },
-      {
+        },
         headers: {
           uid: localStorage.getItem('uid'),
           'access-token': localStorage.getItem('access-token'),
@@ -53,7 +59,7 @@ const Heatmap = () => {
       console.log(error);
       history.push('/sign-in');
     })
-  },[season]);
+  },[season, userId, history]);
 
   const handleSeason = (e) => {
     setSeason(e.target.value);
@@ -88,15 +94,6 @@ const Heatmap = () => {
     }
   }
 
-  const convertList = (firstSeason) => {
-    const thisYear = now.getFullYear();
-    const result = [];
-    for(let i = thisYear; i >= firstSeason; i--) {
-      result.push(i);
-    }
-    return result;
-  }
-
   // // 0からmax-1までの整数を返す
   // function getRandomInt(max) {
   //   // ランダムな配列
@@ -128,19 +125,23 @@ const Heatmap = () => {
         </Form.Control>
       </Form.Group>
       <div className="d-flex" style={{justifyContent: 'center'}}>
-      {/* <div className="d-flex"> */}
         {
-          postTypes.map((postTypes, i) => {
-            return (
-              <div key={i} className="d-block">
-                {postTypes.map((postType, j) => {
-                  return (
-                    <div key={j} className="border rounded heatmap-cell" style={{background: `${colorStyle(postType)}`}} />
-                  )
-                })}
-              </div>
-            );
-          })
+          postTypes[0] && postTypes[0].length !== 0 ?
+            postTypes.map((postTypes, i) => {
+              return (
+                <div key={i} className="d-block">
+                  {postTypes.map((postType, j) => {
+                    return (
+                      <div key={j} className="border rounded heatmap-cell" style={{background: `${colorStyle(postType)}`}} />
+                    )
+                  })}
+                </div>
+              );
+            })
+          :
+          <div className="my-2 text-center bg-light rounded border py-3 w-100">
+            {season}年はまだ試合情報がありません
+          </div>
         }
       </div>
     </>
