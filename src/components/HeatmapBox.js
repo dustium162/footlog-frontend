@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Modal } from 'react-bootstrap';
 
-const Heatmap = () => {
+const HeatmapBox = () => {
   const userId = JSON.parse(localStorage.getItem('currentUser')).id;
   const now = new Date();
   const thisYear = now.getFullYear();
@@ -91,27 +91,6 @@ const Heatmap = () => {
     return result;
   }
 
-  const colorStyle = (postType, teamColor) => {
-    if(postType === 1 || postType === 2) {
-      return teamColor;
-    // } else if(postType === 2) {
-    //   return '#99FFA0';
-    } else if(postType === 3) {
-      // return '#E6FFF7';
-      return '#CCCCCC';
-    } else {
-      return '#FFFFFF';
-    }
-  }
-
-  const colorOpacity = (postType) => {
-    if(postType === 2) {
-      return '0.3';
-    } else {
-      return '1';
-    }
-  }
-
   return (
     <>
       <h3 className="h5">ヒートマップ</h3>
@@ -157,4 +136,4 @@ const Heatmap = () => {
     </>
   );
 }
-export default Heatmap;
+export default HeatmapBox;
