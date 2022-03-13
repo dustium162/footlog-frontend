@@ -1,7 +1,8 @@
 import React,{ useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Form, Modal } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import HeatmapBox from './HeatmapBox';
 
 const Heatmap = () => {
   const userId = JSON.parse(localStorage.getItem('currentUser')).id;
@@ -11,11 +12,7 @@ const Heatmap = () => {
   const [posts, setPosts] = useState([]);
   const [seasonList, setSeasonList] = useState([]);
   const [teamColor, setTeamColor] = useState('white');
-  const [modalShow,setModalShow] = useState(false);
   const history = useHistory();
-
-  const handleModalShow = () => setModalShow(true);
-  const handleModalClose = () => setModalShow(false)
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}/first_post_season`,
@@ -131,18 +128,7 @@ const Heatmap = () => {
                 <div key={i} className="d-block">
                   {posts.map((post, j) => {
                     return (
-                      <div key={j}>
-                        <div className="border rounded heatmap-cell" style={{background: `${colorStyle(post['post_type'], teamColor)}`, opacity: `${colorOpacity(post['post_type'])}`}} onClick={handleModalShow} />
-                        <Modal show={modalShow} onHide={handleModalClose}>
-                          <Modal.Header>
-                            <Modal.Title>投稿の編集{j}</Modal.Title>
-                            <button type="button" className="btn-close" aria-label="Close" onClick={handleModalClose}></button>
-                          </Modal.Header>
-                          <Modal.Body>
-
-                          </Modal.Body>
-                        </Modal>
-                      </div>
+                      <HeatmapBox key={j} post={post} color={colorStyle(post['post_type'], teamColor)} opacity={colorOpacity(post['post_type'])} />
                     )
                   })}
                 </div>
