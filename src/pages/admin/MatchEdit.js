@@ -62,9 +62,7 @@ const MatchEdit = ({match,filterMatches,height}) => {
         client: localStorage.getItem('client')
       }
     }).then((response) => {
-      if(response.status === 204){
-        history.push('/admin/main');
-      } else if(response.status === 401) {
+      if(response.status === 401) {
         history.push('/sign-in');
       } else {
         console.log(response);
