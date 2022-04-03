@@ -101,7 +101,7 @@ const MatchEdit = ({match,filterMatches,height}) => {
           </Row>
         </Card.Title>
       </Card.Body>
-      <Form>
+      <Form id={'matchId' + match.id}>
         <Row>
           <Form.Group as={Col}>
             <Form.Label>ホーム得点</Form.Label>
