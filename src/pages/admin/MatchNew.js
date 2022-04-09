@@ -34,10 +34,8 @@ const MatchNew = () => {
       setTitles(response.data.titles);
       setTeams(response.data.teams);
       setStadia(response.data.stadia)
-      setHomeTeamsList(response.data.teams['j1']);
-      setAwayTeamsList(response.data.teams['j1']);
-      document.getElementById('home_j1').checked = true;
-      document.getElementById('away_j1').checked = true;
+      setHomeTeamsList(response.data.teams);
+      setAwayTeamsList(response.data.teams);
       setIsSubmitDisable(!(titleId && homeTeamId && awayTeamId && dateTime && stadiumId));
       // titleId && homeTeamId && awayTeamId && dateTime && stadiumId ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
     }).catch((error) => {
@@ -69,19 +67,12 @@ const MatchNew = () => {
     setHomeTeamId(e ? e.value : 0);
     setIsSubmitDisable(!(titleId && dateTime && stadiumId && homeTeamId && awayTeamId));
   }
-  const handleHomeTeamType = (e) => {
-    setHomeTeamsList(e && e.target ? teams[e.target.value] : []);
-  }
 
   const handleAwayTeam = (e) => {
     setAwayTeamId(e  ? e.value : 0);
     setIsSubmitDisable(!(titleId && dateTime && stadiumId && homeTeamId && awayTeamId));
   }
   
-  const handleAwayTeamType = (e) => {
-    setAwayTeamsList(e && e.target ? teams[e.target.value] : []);
-  }
-
   const handleSubmit = (e) =>{
     e.preventDefault();
   }
@@ -140,22 +131,10 @@ const MatchNew = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formHomeTeam">
             <Form.Label>ホームチーム</Form.Label>
-            <div key="home_teams" className="mb-3">
-              <Form.Check inline label="J1" type="radio" name="home_div" id="home_j1" value="j1" onChange={handleHomeTeamType} />
-              <Form.Check inline label="J2" type="radio" name="home_div" id="home_j2" value="j2" onChange={handleHomeTeamType} />
-              <Form.Check inline label="J3" type="radio" name="home_div" id="home_j3" value="j3" onChange={handleHomeTeamType} />
-              <Form.Check inline label="Other" type="radio" name="home_div" id="home_other" value="other" onChange={handleHomeTeamType} />
-            </div>
             <Select options={homeTeamsList} placeholder="ホームチームを選択" onChange={handleHomeTeam} isClearable />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formAwayTeam">
             <Form.Label>アウェイチーム</Form.Label>
-            <div key="away_teams" className="mb-3">
-              <Form.Check inline label="J1" type="radio" name="away_div" id="away_j1" value="j1" onChange={handleAwayTeamType} />
-              <Form.Check inline label="J2" type="radio" name="away_div" id="away_j2" value="j2" onChange={handleAwayTeamType} />
-              <Form.Check inline label="J3" type="radio" name="away_div" id="away_j3" value="j3" onChange={handleAwayTeamType} />
-              <Form.Check inline label="Other" type="radio" name="away_div" id="away_other" value="other" onChange={handleAwayTeamType} />
-            </div>
             <Select options={awayTeamsList} placeholder="アウェイチームを選択" onChange={handleAwayTeam} isClearable />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formStadium">
