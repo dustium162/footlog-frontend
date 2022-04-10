@@ -146,7 +146,7 @@ const MatchEdit = ({match,filterMatches,height}) => {
         </Col>
       </Row>
       <Card.Footer>
-        <Button onClick={publishMatch}>試合情報投稿</Button>
+        <Button onClick={publishMatch}>試合情報更新</Button>
       </Card.Footer>
     </Card>
   )
