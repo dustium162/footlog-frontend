@@ -13,7 +13,7 @@ const PreEditedMatches = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/edit`,{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/edit_unpublished`,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
