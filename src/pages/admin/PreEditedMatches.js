@@ -38,7 +38,7 @@ const PreEditedMatches = () => {
   return (
     <Layout>
       <Container>
-        <Row><Col>入力形式：選手名,時間;選手名,時間;選手名,時間;</Col></Row>
+        <Row><Col>入力形式：選手名,時間;選手名,時間;選手名,時間（※ 末尾にセミコロンは入れないこと）</Col></Row>
         <Row><Col>オウンゴールの場合はオウンゴールと入力すること</Col></Row>
         <Row><Col>ロスタイムは例えば93分の得点の場合は90+3とする</Col></Row>
         <Row xs={1} md={1} className="g-2">
@@ -49,7 +49,7 @@ const PreEditedMatches = () => {
                 {
                   key: String(match.id),
                   data: match,
-                  style: {height: 500}
+                  style: {height: 600}
                 }
               ))
             }
