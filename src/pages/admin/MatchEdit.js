@@ -5,13 +5,14 @@ import {Row,Col,Form,Button,Card} from 'react-bootstrap';
 import {ReactComponent as Emblem} from "../../images/emblem.svg"
 
 const MatchEdit = ({match,filterMatches,height}) => {
-  const [home_score,setHomeScore] = useState(0);
-  const [away_score,setAwayScore] = useState(0);
-  const [home_score_players,setHomeScorePlayers] = useState('');
-  const [home_red_players,setHomeRedPlayers] = useState('');
-  const [away_score_players,setAwayScorePlayers] = useState('');
-  const [away_red_players,setAwayRedPlayers] = useState('');
-  const [mobilization,setMobilization] = useState(0);
+  const [homeScore, setHomeScore] = useState(0);
+  const [awayScore, setAwayScore] = useState(0);
+  const [homeScorePlayers, setHomeScorePlayers] = useState('');
+  const [homeRedPlayers, setHomeRedPlayers] = useState('');
+  const [awayScorePlayers, setAwayScorePlayers] = useState('');
+  const [awayRedPlayers, setAwayRedPlayers] = useState('');
+  const [mobilization, setMobilization] = useState(0);
+  const [matchInfo, setMatchInfo] = useState('');
 
   const history = useHistory();
 
@@ -43,16 +44,28 @@ const MatchEdit = ({match,filterMatches,height}) => {
     setMobilization(e && e.target ? e.target.value : '')
   }
 
+  const handleMatchInfo = (e) => {
+    setMatchInfo(e && e.target ? e.target.value : '');
+    const matchInfoList = e && e.target ? e.target.value.split('@') : '';
+    setHomeScore(matchInfoList[0] ? matchInfoList[0] : homeScore);
+    setAwayScore(matchInfoList[1] ? matchInfoList[1] : awayScore);
+    setHomeScorePlayers(matchInfoList[2] ? matchInfoList[2] : homeScorePlayers);
+    setAwayScorePlayers(matchInfoList[3] ? matchInfoList[3] : awayScorePlayers);
+    setHomeRedPlayers(matchInfoList[4] ? matchInfoList[4] : homeRedPlayers);
+    setAwayRedPlayers(matchInfoList[5] ? matchInfoList[5] : awayRedPlayers);
+    setMobilization(matchInfoList[6] ? matchInfoList[6] : mobilization);
+  }
+
   const publishMatch = () => {
     filterMatches(match.id);
     axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
       {
-        home_score: home_score,
-        away_score: away_score,
-        home_score_players: home_score_players,
-        home_red_players: home_red_players,
-        away_score_players: away_score_players,
-        away_red_players: away_red_players,
+        home_score: homeScore,
+        away_score: awayScore,
+        home_score_players: homeScorePlayers,
+        home_red_players: homeRedPlayers,
+        away_score_players: awayScorePlayers,
+        away_red_players: awayRedPlayers,
         mobilization: mobilization
       },
       {
@@ -103,37 +116,43 @@ const MatchEdit = ({match,filterMatches,height}) => {
         <Row>
           <Form.Group as={Col}>
             <Form.Label>ホーム得点</Form.Label>
-            <Form.Control value={home_score} onChange={handleHomeScore}></Form.Control>
+            <Form.Control value={homeScore} onChange={handleHomeScore}></Form.Control>
           </Form.Group>
           <Form.Group as={Col}>
             <Form.Label>アウェイ得点</Form.Label>
-              <Form.Control value={away_score} onChange={handleAwayScore}></Form.Control>
+              <Form.Control value={awayScore} onChange={handleAwayScore}></Form.Control>
           </Form.Group>
         </Row>
         <Row>
           <Form.Group as={Col}>
             <Form.Label>ホームの得点者</Form.Label>
-            <Form.Control value={home_score_players} onChange={handleHomeScorePlayers}></Form.Control>
+            <Form.Control value={homeScorePlayers} onChange={handleHomeScorePlayers}></Form.Control>
           </Form.Group>
           <Form.Group as={Col}>
             <Form.Label>アウェイの得点者</Form.Label>
-              <Form.Control value={away_score_players} onChange={handleAwayScorePlayers}></Form.Control>
+              <Form.Control value={awayScorePlayers} onChange={handleAwayScorePlayers}></Form.Control>
           </Form.Group>
         </Row>
         <Row>
           <Form.Group as={Col}>
             <Form.Label>ホームの退場者</Form.Label>
-              <Form.Control value={home_red_players} onChange={handleHomeRedPlayers}></Form.Control>
+              <Form.Control value={homeRedPlayers} onChange={handleHomeRedPlayers}></Form.Control>
           </Form.Group>
           <Form.Group as={Col}>
             <Form.Label>アウェイの退場者</Form.Label>
-            <Form.Control value={away_red_players} onChange={handleAwayRedPlayers}></Form.Control>
+            <Form.Control value={awayRedPlayers} onChange={handleAwayRedPlayers}></Form.Control>
           </Form.Group>
         </Row>
         <Row>
           <Col>
             <Form.Label>動員数</Form.Label>
             <Form.Control type="integer" value={mobilization} onChange={handleMobilization} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Label>ブックマークレット用フォーム</Form.Label>
+            <Form.Control type="text" value={matchInfo} onChange={handleMatchInfo} />
           </Col>
         </Row>
       </Form>
