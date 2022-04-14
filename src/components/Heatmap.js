@@ -36,10 +36,10 @@ const Heatmap = () => {
         setSeasonList(convertList(res.data));
       }
     })
-    // .catch(error => {
-    //   console.log(error);
-    //   history.push('/sign-in');
-    // })
+    .catch(error => {
+      // エラーだった場合、画面表示したほうがいい？
+      console.log(error);
+    })
   }, [userId, history])
 
   useEffect(() => {
@@ -61,16 +61,17 @@ const Heatmap = () => {
         setPosts(formatPosts(res.data['posts_data']));
       }
     })
-    // .catch(error => {
-    //   console.log(error);
-    //   history.push('/sign-in');
-    // })
+    .catch(error => {
+      // エラーだった場合、画面表示したほうがいい？
+      console.log(error);
+    })
   },[season, userId, history]);
 
   const handleSeason = (e) => {
     setSeason(e.target.value);
   }
 
+  // 表形式で表示するために、1次元配列のpostsデータを2次元配列に変更するための関数
   const formatPosts = (posts) => {
     const result = [];
     let tempArray = [];
@@ -86,27 +87,6 @@ const Heatmap = () => {
       result.push(tempArray);
     }
     return result;
-  }
-
-  const colorStyle = (postType, teamColor) => {
-    if(postType === 1 || postType === 2) {
-      return teamColor;
-    // } else if(postType === 2) {
-    //   return '#99FFA0';
-    } else if(postType === 3) {
-      // return '#E6FFF7';
-      return '#CCCCCC';
-    } else {
-      return '#FFFFFF';
-    }
-  }
-
-  const colorOpacity = (postType) => {
-    if(postType === 2) {
-      return '0.3';
-    } else {
-      return '1';
-    }
   }
 
   return (
@@ -128,7 +108,7 @@ const Heatmap = () => {
                 <div key={i} className="d-block">
                   {posts.map((post, j) => {
                     return (
-                      <HeatmapBox key={j} post={post} color={colorStyle(post['post_type'], teamColor)} opacity={colorOpacity(post['post_type'])} />
+                      <HeatmapBox key={j} post={post} teamColor={teamColor} />
                     )
                   })}
                 </div>

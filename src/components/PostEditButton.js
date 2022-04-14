@@ -38,7 +38,7 @@ const PostEditButton = ({postId,msg,postType,handleEditClose,isSelected,color,is
   return (
     <Button variant="link text-secondary button_link" type="submit" onClick={editPost}>
       {postTypeIcon(postType,isSelected)}
-      <span className="d-block small">{msg}</span>
+      <div className="small">{msg}</div>
     </Button>
   )
 }

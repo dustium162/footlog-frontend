@@ -1,5 +1,4 @@
-import React,{ useState,useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React,{ useState } from 'react';
 import axios from 'axios';
 import { Modal, Row, Col } from 'react-bootstrap';
 import PostButton from './PostButton';
@@ -10,13 +9,13 @@ import {ReactComponent as Online} from '../images/online.svg';
 import {ReactComponent as NotWatching} from '../images/notwatching.svg';
 import {ReactComponent as Forget} from '../images/forget.svg';
 
-const HeatmapBox = ({post, color, opacity}) => {
+const HeatmapBox = ({post, teamColor}) => {
   const [modalShow,setModalShow] = useState(false);
   const [postDetail, setPostDetail] = useState({});
   const [postType,setPostType] = useState(post.post_type);
 
-  const history = useHistory();
-
+  // ヒートマップの一つの箱の押下時に発火する関数
+  // match_idをキーに試合の詳細情報を取得する
   const handleModalShow = () => {
     axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/${post.match_id}`, {
       headers: {
@@ -31,18 +30,42 @@ const HeatmapBox = ({post, color, opacity}) => {
     })
     setModalShow(true);
   }
+
   const handleModalClose = () => setModalShow(false);
 
+  // postType変更時に発火する関数
   const handleEditClose = (postType) => {
     setPostType(postType);
     setModalShow(false);
   }
 
+  // 新規投稿時に発火する関数
   const onClickPost = () => {
     setModalShow(false);
   }
 
-  const postTypeIcon = (postType) => {
+  // postTypeに応じて、表示するヒートマップの箱の色を設定する関数
+  const colorStyle = (postType, teamColor) => {
+    if(postType === 1 || postType === 2) {
+      return teamColor;
+    } else if(postType === 3) {
+      return '#CCCCCC';
+    } else {
+      return '#FFFFFF';
+    }
+  }
+
+  // postTypeに応じて、表示するヒートマップの箱の透過度を設定する関数
+  const colorOpacity = (postType) => {
+    if(postType === 2) {
+      return '0.3';
+    } else {
+      return '1';
+    }
+  }
+
+  // postTypeに応じて、表示するアイコンを変更するための関数
+    const postTypeIcon = (postType) => {
     if (postType === 1) {
       return (
         <>
@@ -82,7 +105,7 @@ const HeatmapBox = ({post, color, opacity}) => {
 
   return (
     <>
-      <div className="border rounded heatmap-cell" style={{background: `${color}`, opacity: `${opacity}`}} onClick={handleModalShow} />
+      <div className="border rounded heatmap-cell" style={{background: `${colorStyle(postType, teamColor)}`, opacity: `${colorOpacity(postType)}`}} onClick={handleModalShow} />
       <Modal show={modalShow} onHide={handleModalClose}>
         <Modal.Header>
           <Modal.Title>投稿の編集</Modal.Title>
@@ -191,17 +214,17 @@ const HeatmapBox = ({post, color, opacity}) => {
                     </>
                     :
                     <>
-                      <Col className="px-0"><PostEditButton postId ={post.post_id} msg="現地観戦" postType={1} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 1 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
-                      <Col className="px-0"><PostEditButton postId ={post.post_id} msg="オンライン" postType={2} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 2 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
-                      <Col className="px-0"><PostEditButton postId ={post.post_id} msg="観ていない" postType={3} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 3 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
-                      <Col className="px-0"><PostEditButton postId ={post.post_id} msg="忘れた" postType={4} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 4 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
+                      <Col><PostEditButton postId ={post.post_id} msg="現地観戦" postType={1} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 1 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
+                      <Col><PostEditButton postId ={post.post_id} msg="オンライン" postType={2} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 2 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
+                      <Col><PostEditButton postId ={post.post_id} msg="観ていない" postType={3} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 3 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
+                      <Col><PostEditButton postId ={post.post_id} msg="忘れた" postType={4} setPostType={setPostType} handleEditClose={handleEditClose} isSelected={postType === 4 ? true : false} color={postDetail.color_code} isTextBlack={postDetail.is_text_black}/></Col>
                     </>
                   }
                 </Row>
               </div>
             </>
             :
-            ''
+            <></>
           }
         </Modal.Body>
       </Modal>

@@ -40,7 +40,7 @@ const PostButton = ({matchTeamPropertyId, matchId, msg, postType,onClickPost}) =
       .catch(error => console.log(error))
   }
   return (
-    <Button variant="link text-secondary button_link" className="px-0" type="submit" onClick={createPost}>
+    <Button variant="link text-secondary button_link" type="submit" onClick={createPost}>
       {postTypeIcon(postType)}
       <div className="small">{msg}</div>
     </Button>
