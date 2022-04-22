@@ -62,9 +62,7 @@ const MatchEdit = ({match,filterMatches,height}) => {
         client: localStorage.getItem('client')
       }
     }).then((response) => {
-      if(response.status === 204){
-        history.push('/admin/main');
-      } else if(response.status === 401) {
+      if(response.status === 401) {
         history.push('/sign-in');
       } else {
         console.log(response);
@@ -101,7 +99,7 @@ const MatchEdit = ({match,filterMatches,height}) => {
           </Row>
         </Card.Title>
       </Card.Body>
-      <Form>
+      <Form id={'matchId' + match.id}>
         <Row>
           <Form.Group as={Col}>
             <Form.Label>ホーム得点</Form.Label>
@@ -148,7 +146,7 @@ const MatchEdit = ({match,filterMatches,height}) => {
         </Col>
       </Row>
       <Card.Footer>
-        <Button onClick={publishMatch}>試合情報投稿</Button>
+        <Button onClick={publishMatch}>試合情報更新</Button>
       </Card.Footer>
     </Card>
   )

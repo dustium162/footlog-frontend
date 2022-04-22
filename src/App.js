@@ -22,7 +22,8 @@ import AddTitle from './pages/admin/AddTitle'
 import AddStadium from './pages/admin/AddStadium'
 import AddTerm from './pages/admin/AddTerm'
 import AddPrivacy from './pages/admin/AddPrivacy'
-import UnpublishedPosts from './pages/admin/UnpublishedPosts';
+import PreEditedMatches from './pages/admin/PreEditedMatches';
+import UnpublishedMatches from './pages/admin/UnpublishedMatches';
 import ContactIndex from './pages/admin/ContactIndex';
 import UserEdit from './pages/UserEdit';
 import PasswordEdit from './pages/PasswordEdit';
@@ -69,7 +70,8 @@ const App = () => {
             <>
               <Route path="/admin/main" component={AdminMain}/>
               <Route path="/admin/match/new" component={MatchNew}/>
-              <Route path="/admin/match/edit" component={UnpublishedPosts}/>
+              <Route path="/admin/match/edit" component={PreEditedMatches}/>
+              <Route path="/admin/match/publish" component={UnpublishedMatches}/>
               <Route path="/admin/add_team" component={AddTeam}/>
               <Route path="/admin/add_club" component={AddClub}/>
               <Route path="/admin/add_title" component={AddTitle}/>

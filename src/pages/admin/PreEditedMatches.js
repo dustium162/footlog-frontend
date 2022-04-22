@@ -6,14 +6,14 @@ import MatchEdit from './MatchEdit';
 import Layout from '../../components/Layout';
 import {TransitionMotion,spring} from 'react-motion'
 
-const UnpublishedPosts = () => {
+const PreEditedMatches = () => {
 
   const [matches,setMatches] = useState([]);
 
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/publish`,{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/edit_unpublished`,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
@@ -72,4 +72,4 @@ const UnpublishedPosts = () => {
   );
 }
 
-export default UnpublishedPosts;
+export default PreEditedMatches;
