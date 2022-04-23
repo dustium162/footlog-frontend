@@ -35,13 +35,14 @@ const HeatmapBox = ({post, teamColor}) => {
 
   // postType変更時に発火する関数
   const handleEditClose = (postType) => {
-    setPostType(postType);
     setModalShow(false);
+    setPostType(postType);
   }
 
   // 新規投稿時に発火する関数
-  const onClickPost = () => {
+  const onClickPost = (postType) => {
     setModalShow(false);
+    setPostType(postType);
   }
 
   // postTypeに応じて、表示するヒートマップの箱の色を設定する関数
@@ -130,7 +131,7 @@ const HeatmapBox = ({post, teamColor}) => {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={3} >{postType && postTypeIcon(postType)}</Col>
+                  <Col xs={3} >{postTypeIcon(postType)}</Col>
                   <Col xs={6} className="h1">
                     <Row>
                       <Col xs={5} className="d-flex justify-content-end align-items-center" style={{fontSize: postDetail.is_home ? "3rem": "1.8rem", verticalAlign: "middle"}}>{String(postDetail.home_score)}</Col>
@@ -207,10 +208,10 @@ const HeatmapBox = ({post, teamColor}) => {
                 <Row className="text-center bg-light border-top mt-3 py-3">
                   {post.post_type === 0 ?
                     <>
-                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="現地観戦" postType={1} onClickPost={onClickPost}/></Col>
-                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="オンライン" postType={2} onClickPost={onClickPost}/></Col>
-                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="観ていない" postType={3} onClickPost={onClickPost}/></Col>
-                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="忘れた" postType={4} onClickPost={onClickPost}/></Col>
+                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="現地観戦" postType={1} onClickPost={() => onClickPost(1)}/></Col>
+                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="オンライン" postType={2} onClickPost={() => onClickPost(2)}/></Col>
+                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="観ていない" postType={3} onClickPost={() => onClickPost(3)}/></Col>
+                      <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="忘れた" postType={4} onClickPost={() => onClickPost(4)}/></Col>
                     </>
                     :
                     <>
