@@ -11,13 +11,13 @@ import {ReactComponent as Forget} from '../images/forget.svg';
 const PostEditButton = ({postId,msg,postType,handleEditClose,isSelected,color,isTextBlack}) => {
   const postTypeIcon = (postType,isSelected) => {
     if (postType === 1) {
-      return <Onsite style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
+      return <Onsite style={{width: "30px", height: "30px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     } else if (postType === 2) {
-      return <Online style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
+      return <Online style={{width: "30px", height: "30px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     } else if (postType === 3) {
-      return <NotWatching style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
+      return <NotWatching style={{width: "30px", height: "30px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     } else {
-      return <Forget style={{width: "40px", height: "40px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
+      return <Forget style={{width: "30px", height: "30px"}} fill={isSelected ? color : "gray"} stroke={(isSelected && isTextBlack) ? "gray" : "none"} strokeWidth="10"/>
     }
   } 
   const editPost = () => {
