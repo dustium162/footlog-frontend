@@ -102,12 +102,12 @@ const Heatmap = () => {
       <div className="d-flex">
         {
           posts[0] && posts[0].length !== 0 ?
-            posts.map((posts, i) => {
+            posts.map((postsRow, i) => {
               return (
                 <div key={i} className="d-block">
-                  {posts.map((post, j) => {
+                  {postsRow.map((post) => {
                     return (
-                      <HeatmapBox key={j} post={post} teamColor={teamColor} />
+                      <HeatmapBox key={post.match_id} post={post} teamColor={teamColor} />
                     )
                   })}
                 </div>
