@@ -23,7 +23,7 @@ const MatchNew = () => {
   const [submitButtonLabel, setSubmitButtonLabel] = useState('試合情報作成');
   const [errorMessage, setErrorMessage] = useState('');
   // 試合作成後に以下のフォームをリセットするためのステート「submitCount」
-  // 大会、ホームチーム、アウェイチーム、中立地
+  // ホームチーム、アウェイチーム、スタジアム、中立地
   const [submitCount, setSubmitCount] = useState(0);
   const history = useHistory();
 
