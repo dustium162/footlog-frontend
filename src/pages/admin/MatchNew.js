@@ -59,7 +59,6 @@ const MatchNew = () => {
   }
 
   const handleStadium = (e) => {
-    console.log(e ? e.value : 0);
     setStadiumId(e ? e.value : 0);
     setIsSubmitDisable(!(titleId && dateTime && stadiumId && homeTeamId && awayTeamId));
   }
@@ -104,9 +103,9 @@ const MatchNew = () => {
       if(response.status === 204){
 
         // リセットするコンポーネントのステートを初期化
-        setTitleId(0);
         setHomeTeamId(0);
         setAwayTeamId(0);
+        setStadiumId(0);
         setNeutral(false);
 
         setIsSubmitDisable(false);
@@ -136,7 +135,7 @@ const MatchNew = () => {
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formTitle">
             <Form.Label>大会</Form.Label>
-            <Select key={submitCount} options={titles} placeholder="大会を選択" onChange={handleTitle} isClearable />
+            <Select options={titles} placeholder="大会を選択" onChange={handleTitle} isClearable />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formDateTime">
             <Form.Label>試合日程</Form.Label>
@@ -152,7 +151,7 @@ const MatchNew = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formStadium">
             <Form.Label>スタジアム</Form.Label>
-            <Select options={stadia} placeholder="スタジアムを選択" onChange={handleStadium} isClearable />
+            <Select key={submitCount} options={stadia} placeholder="スタジアムを選択" onChange={handleStadium} isClearable />
             <div key={`custom-checkbox`} className="mb-3">
             <Form.Check
               key={submitCount}
