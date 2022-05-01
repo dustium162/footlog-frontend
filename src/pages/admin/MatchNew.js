@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Form,Button, Container } from 'react-bootstrap';
 import Select from 'react-select';
+import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
 
 const MatchNew = () => {
@@ -21,6 +22,9 @@ const MatchNew = () => {
   const [isSubmitDisable, setIsSubmitDisable] = useState(true);
   const [submitButtonLabel, setSubmitButtonLabel] = useState('試合情報作成');
   const [errorMessage, setErrorMessage] = useState('');
+  // 試合作成後に以下のフォームをリセットするためのステート「submitCount」
+  // 大会、ホームチーム、アウェイチーム、中立地
+  const [submitCount, setSubmitCount] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
@@ -47,7 +51,6 @@ const MatchNew = () => {
   const handleTitle = (e) => {
     setTitleId(e ? e.value : '');
     setIsSubmitDisable(!(titleId && dateTime && stadiumId && homeTeamId && awayTeamId));
-    console.log(awayTeamId);
   }
 
   const handleDateTime = (e) => {
@@ -56,6 +59,7 @@ const MatchNew = () => {
   }
 
   const handleStadium = (e) => {
+    console.log(e ? e.value : 0);
     setStadiumId(e ? e.value : 0);
     setIsSubmitDisable(!(titleId && dateTime && stadiumId && homeTeamId && awayTeamId));
   }
@@ -98,7 +102,16 @@ const MatchNew = () => {
       }
     ).then((response) => {
       if(response.status === 204){
-        history.push('/admin/main');
+
+        // リセットするコンポーネントのステートを初期化
+        setTitleId(0);
+        setHomeTeamId(0);
+        setAwayTeamId(0);
+        setNeutral(false);
+
+        setIsSubmitDisable(false);
+        setSubmitCount(submitCount+1);
+        setSubmitButtonLabel('試合情報作成');
       } else {
         setErrorMessage('サーバーエラーが発生しました。');
         setIsSubmitDisable(false);
@@ -123,7 +136,7 @@ const MatchNew = () => {
         <Form onSubmit={handleSubmit} className="my-3">
           <Form.Group className="mb-3" controlId="formTitle">
             <Form.Label>大会</Form.Label>
-            <Select options={titles} placeholder="大会を選択" onChange={handleTitle} isClearable />
+            <Select key={submitCount} options={titles} placeholder="大会を選択" onChange={handleTitle} isClearable />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formDateTime">
             <Form.Label>試合日程</Form.Label>
@@ -131,30 +144,34 @@ const MatchNew = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formHomeTeam">
             <Form.Label>ホームチーム</Form.Label>
-            <Select options={homeTeamsList} placeholder="ホームチームを選択" onChange={handleHomeTeam} isClearable />
+            <Select key={submitCount} options={homeTeamsList} placeholder="ホームチームを選択" onChange={handleHomeTeam} isClearable />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formAwayTeam">
             <Form.Label>アウェイチーム</Form.Label>
-            <Select options={awayTeamsList} placeholder="アウェイチームを選択" onChange={handleAwayTeam} isClearable />
+            <Select key={submitCount} options={awayTeamsList} placeholder="アウェイチームを選択" onChange={handleAwayTeam} isClearable />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formStadium">
             <Form.Label>スタジアム</Form.Label>
             <Select options={stadia} placeholder="スタジアムを選択" onChange={handleStadium} isClearable />
             <div key={`custom-checkbox`} className="mb-3">
-              <Form.Check
-                custom
-                type={"checkbox"}
-                value={isNeutral}
-                id={`custom-checkbox`}
-                label={`中立地開催？`}
-                onChange={handleNeutral}
-                />
+            <Form.Check
+              key={submitCount}
+              custom
+              type={"checkbox"}
+              value={isNeutral}
+              id={`custom-checkbox`}
+              label={`中立地開催？`}
+              onChange={handleNeutral}
+              />
             </div>
           </Form.Group>
           <Form.Group className="mb-3 text-end" controlId="formSubmit">
             <Button variant="dark" type="submit" onClick={createNewMatch} disabled={isSubmitDisable}>{submitButtonLabel}</Button>
           </Form.Group>
         </Form>
+        <div className="text-end">
+          <Link to="/admin/main" className="btn btn-secondary">管理者ページへ戻る</Link>
+        </div>
       </Container>
     </Layout>
   )
