@@ -28,6 +28,27 @@ const MatchPublish = ({match,filterMatches,height}) => {
     })
   }
 
+  const unpublishMatch = () => {
+    filterMatches(match.id);
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/unpublish/${match.id}`,
+      {},
+      {
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    }).then((response) => {
+      if(response.status === 401) {
+        history.push('/sign-in');
+      } else {
+        console.log(response);
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
   return (
     <Card style={{height: `${height}px`}}>
       <Card.Header className="text-center" style={{backgroundColor: '#f8f9fa', color: 'black'}}>
@@ -126,7 +147,14 @@ const MatchPublish = ({match,filterMatches,height}) => {
       </Row>
       </Card.Body>
         <Card.Footer>
-          <Button onClick={publishMatch}>試合情報投稿</Button>
+          <Row>
+            <Col>
+              <Button onClick={publishMatch}>試合情報投稿</Button>
+            </Col>
+            <Col className="text-end">
+              <Button variant="danger" className="text-end" onClick={unpublishMatch}>試合情報差し戻し</Button>
+            </Col>
+          </Row>
         </Card.Footer>
     </Card>
   )
