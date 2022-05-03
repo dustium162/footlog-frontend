@@ -39,6 +39,9 @@ const AdminMain = () => {
         <LinkContainer to="/admin/match/publish">
           <Nav.Link>試合情報の投稿</Nav.Link>
         </LinkContainer>
+        <LinkContainer to="/admin/match/on-published-index">
+          <Nav.Link>発行済み試合情報一覧</Nav.Link>
+        </LinkContainer>
         <LinkContainer to="/admin/add_team">
           <Nav.Link>Teamの追加</Nav.Link>
         </LinkContainer>
