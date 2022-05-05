@@ -1,35 +1,16 @@
 import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import {Row,Col,Form,Button,Card} from 'react-bootstrap';
+import {Row,Col,Button,Card} from 'react-bootstrap';
 import {ReactComponent as Emblem} from "../../images/emblem.svg"
 
-const MatchPublish = ({match,filterMatches,height}) => {
+const OnPublishedMatch = ({match}) => {
+
+  const [isSubmitDisable,setIsSubmitDisable] = useState(false);
+  const [submitButtonLabel, setSubmitButtonLabel] = useState('試合情報差し戻し');
   const history = useHistory();
 
-  const publishMatch = () => {
-    filterMatches(match.id);
-    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/publish/${match.id}`,
-      {},
-      {
-      headers: {
-        uid: localStorage.getItem('uid'),
-        'access-token': localStorage.getItem('access-token'),
-        client: localStorage.getItem('client')
-      }
-    }).then((response) => {
-      if(response.status === 401) {
-        history.push('/sign-in');
-      } else {
-        console.log(response);
-      }
-    }).catch((error) => {
-      console.log(error);
-    })
-  }
-
   const unpublishMatch = () => {
-    filterMatches(match.id);
     axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/unpublish/${match.id}`,
       {},
       {
@@ -42,6 +23,8 @@ const MatchPublish = ({match,filterMatches,height}) => {
       if(response.status === 401) {
         history.push('/sign-in');
       } else {
+        setIsSubmitDisable(true);
+        setSubmitButtonLabel('この試合は差し戻されました。');
         console.log(response);
       }
     }).catch((error) => {
@@ -50,7 +33,7 @@ const MatchPublish = ({match,filterMatches,height}) => {
   }
 
   return (
-    <Card style={{height: `${height}px`}}>
+    <Card style={{height: `${match.height}px`}}>
       <Card.Header className="text-center" style={{backgroundColor: '#f8f9fa', color: 'black'}}>
         <Row>
           <Col xs={3} className="d-flex justify-content-center align-items-center"></Col>
@@ -147,16 +130,11 @@ const MatchPublish = ({match,filterMatches,height}) => {
       </Row>
       </Card.Body>
         <Card.Footer>
-          <Row>
-            <Col>
-              <Button onClick={publishMatch}>試合情報投稿</Button>
-            </Col>
-            <Col className="text-end">
-              <Button variant="danger" className="text-end" onClick={unpublishMatch}>試合情報差し戻し</Button>
-            </Col>
-          </Row>
+          <div className="text-end">
+            <Button variant="danger" className="text-end" onClick={unpublishMatch} disabled={isSubmitDisable}>{submitButtonLabel}</Button>
+          </div>
         </Card.Footer>
     </Card>
   )
 }
-export default MatchPublish;
+export default OnPublishedMatch;

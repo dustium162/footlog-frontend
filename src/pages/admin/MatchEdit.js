@@ -82,7 +82,26 @@ const MatchEdit = ({match,filterMatches,height}) => {
       }
     }).catch((error) => {
       console.log(error);
-      // history.push('/sign-in');
+    })
+  }
+
+  const deleteMatch = () => {
+    filterMatches(match.id);
+    axios.delete(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
+      {
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      }
+    }).then((response) => {
+      if(response.status === 401) {
+        history.push('/sign-in');
+      } else {
+        console.log(response);
+      }
+    }).catch((error) => {
+      console.log(error);
     })
   }
 
@@ -165,7 +184,14 @@ const MatchEdit = ({match,filterMatches,height}) => {
         </Col>
       </Row>
       <Card.Footer>
-        <Button onClick={publishMatch}>試合情報更新</Button>
+        <Row>
+          <Col>
+            <Button onClick={publishMatch}>試合情報更新</Button>
+          </Col>
+          <Col className="text-end">
+            <Button variant="danger" className="text-end" onClick={deleteMatch}>試合情報削除</Button>
+          </Col>
+        </Row>
       </Card.Footer>
     </Card>
   )

@@ -15,6 +15,7 @@ import Contact from './pages/Contact';
 
 // 管理者用 書く場所が正しいかは不明なので要相談(20210626浅)
 import AdminMain from './pages/admin/AdminMain'
+import OnPublishedMatches from './pages/admin/OnPublishedMatches'
 import MatchNew from './pages/admin/MatchNew'
 import AddTeam from './pages/admin/AddTeam'
 import AddClub from './pages/admin/AddClub'
@@ -72,6 +73,7 @@ const App = () => {
               <Route path="/admin/match/new" component={MatchNew}/>
               <Route path="/admin/match/edit" component={PreEditedMatches}/>
               <Route path="/admin/match/publish" component={UnpublishedMatches}/>
+              <Route path="/admin/match/on-published-index" component={OnPublishedMatches}/>
               <Route path="/admin/add_team" component={AddTeam}/>
               <Route path="/admin/add_club" component={AddClub}/>
               <Route path="/admin/add_title" component={AddTitle}/>
