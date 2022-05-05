@@ -36,7 +36,7 @@ const OnPublishedMatch = ({match}) => {
     <Card style={{height: `${match.height}px`}}>
       <Card.Header className="text-center" style={{backgroundColor: '#f8f9fa', color: 'black'}}>
         <Row>
-          <Col xs={3} className="d-flex justify-content-center align-items-center"></Col>
+          <Col xs={3} className="d-flex justify-content-center align-items-center">matchId: {match.id}</Col>
           <Col xs={6} className="d-flex justify-content-center align-items-center small">{match.date_time}</Col>
           <Col xs={3} className="d-flex justify-content-center align-items-center small">{match.title}</Col>
         </Row>
