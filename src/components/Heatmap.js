@@ -15,7 +15,7 @@ const Heatmap = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}/first_post_season`,
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/users/${userId}/first-post-season`,
       {
         headers: {
           uid: localStorage.getItem('uid'),
