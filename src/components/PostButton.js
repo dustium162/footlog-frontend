@@ -11,13 +11,13 @@ import {ReactComponent as Forget} from '../images/forget.svg';
 const PostButton = ({matchTeamPropertyId, matchId, msg, postType,onClickPost}) => {
   const postTypeIcon = (postType) => {
     if (postType === 1) {
-      return <Onsite fill="#505050" style={{width: "30px", height: "30px"}}/>
+      return <Onsite style={{width: "30px", height: "30px"}} fill="gray" strokeWidth="10" />
     } else if (postType === 2) {
-      return <Online fill="#505050" style={{width: "30px", height: "30px"}}/>
+      return <Online style={{width: "30px", height: "30px"}} fill="gray" strokeWidth="10" />
     } else if (postType === 3) {
-      return <NotWatching fill="#505050" style={{width: "30px", height: "30px"}}/>
+      return <NotWatching style={{width: "30px", height: "30px"}} fill="gray" strokeWidth="10" />
     } else {
-      return <Forget fill="#505050" style={{width: "30px", height: "30px"}}/>
+      return <Forget style={{width: "30px", height: "30px"}} fill="gray" strokeWidth="10" />
     }
   } 
   const createPost = () => {
@@ -40,7 +40,7 @@ const PostButton = ({matchTeamPropertyId, matchId, msg, postType,onClickPost}) =
       .catch(error => console.log(error))
   }
   return (
-    <Button variant="link text-secondary button_link" className="px-0" type="submit" onClick={createPost}>
+    <Button variant="link text-secondary button_link" type="submit" onClick={createPost}>
       {postTypeIcon(postType)}
       <div className="small">{msg}</div>
     </Button>
