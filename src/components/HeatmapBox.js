@@ -109,7 +109,13 @@ const HeatmapBox = ({post, teamColor}) => {
       <div className="border rounded heatmap-cell" style={{background: `${colorStyle(postType, teamColor)}`, opacity: `${colorOpacity(postType)}`}} onClick={handleModalShow} />
       <Modal show={modalShow} onHide={handleModalClose}>
         <Modal.Header>
-          <Modal.Title>投稿の編集</Modal.Title>
+          <Modal.Title>
+            {postType === 0 ?
+              "新規投稿"
+              :
+              "投稿の編集"
+            }
+          </Modal.Title>
           <button type="button" className="btn-close" aria-label="Close" onClick={handleModalClose}></button>
         </Modal.Header>
         <Modal.Body className="px-0 py-0">
@@ -206,7 +212,7 @@ const HeatmapBox = ({post, teamColor}) => {
                 </Row>
 
                 <Row className="text-center bg-light border-top mt-3 py-3">
-                  {post.post_type === 0 ?
+                  {postType === 0 ?
                     <>
                       <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="現地観戦" postType={1} onClickPost={() => onClickPost(1)}/></Col>
                       <Col><PostButton matchTeamPropertyId={post.match_team_property_id} matchId={post.match_id} msg="オンライン" postType={2} onClickPost={() => onClickPost(2)}/></Col>
