@@ -10,8 +10,13 @@ const Head = (props) => {
       <title>{title}</title>
       <meta
           name="description"
-          content="ポートフォリオサイトです。"
+          content="footlogは、Jリーグサポーターのための観戦記録サービスです。"
       />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@footlog_j" />
+      <meta name="twitter:title" content="footlog" />
+      <meta name="twitter:description" content="footlogは、Jリーグサポーターのための観戦記録サービスです。" />
+      <meta name="twitter:image" content="https://footlog.net/" />
       <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0"></meta>
     </Helmet>
   )
