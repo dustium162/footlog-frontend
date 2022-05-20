@@ -73,25 +73,25 @@ const AddStadium = () => {
           'access-token': localStorage.getItem('access-token'),
           client: localStorage.getItem('client')
         }
-      },
-      ).then((response) => {
-        if(response.status === 204){
-          history.push('/admin/main');
-        } else {
-          setErrorMessage('サーバーエラーが発生しました。');
-          setIsSubmitDisable(false);
-          setSubmitButtonLabel('スタジアム作成');
-        }
-      }).catch((error) => {
-        console.log(error);
-        if(error.response && error.response.status === 401) {
-          history.push('/sign-in');
-        } else {
-          setErrorMessage('サーバーエラーが発生しました。');
-          setIsSubmitDisable(false);
-          setSubmitButtonLabel('スタジアム作成');
-        }
-      })
+      }
+    ).then((response) => {
+      if(response.status === 204){
+        history.push('/admin/main');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('スタジアム作成');
+      }
+    }).catch((error) => {
+      console.log(error);
+      if(error.response && error.response.status === 401) {
+        history.push('/sign-in');
+      } else {
+        setErrorMessage('サーバーエラーが発生しました。');
+        setIsSubmitDisable(false);
+        setSubmitButtonLabel('スタジアム作成');
+      }
+    })
   }
 
   return (
