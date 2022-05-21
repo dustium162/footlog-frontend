@@ -86,7 +86,7 @@ const AddTeam = () => {
           'access-token': localStorage.getItem('access-token'),
           client: localStorage.getItem('client')
         }
-      },
+      }
     ).then((response) => {
       if(response.status === 204){
         history.push('/admin/main');
