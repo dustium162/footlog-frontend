@@ -51,8 +51,8 @@ const AddTitle = () => {
   }
 
   const handleIsNewTitleTypeChange = (e) => {
-    setIsNewTitleType(e && e.target ? e.target.value : '');
-    setIsSubmitDisable(!((titleTypeId && name) || (name && isNewTitleType)));
+    setIsNewTitleType(!isNewTitleType);
+    setIsSubmitDisable(!((titleTypeId && name) || (name && !isNewTitleType)));
   }
 
   const handleSubmit = (e) =>{

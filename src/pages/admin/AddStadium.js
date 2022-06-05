@@ -50,8 +50,8 @@ const AddStadium = () => {
   }
 
   const handleIsNewStadiumTypeChange = (e) => {
-    setIsNewStadiumType(e.target.value);
-    setIsSubmitDisable(!((stadiumTypeId && name) || (name && isNewStadiumType)));
+    setIsNewStadiumType(!isNewStadiumType);
+    setIsSubmitDisable(!((stadiumTypeId && name) || (name && !isNewStadiumType)));
   }
 
   const handleSubmit = (e) =>{
