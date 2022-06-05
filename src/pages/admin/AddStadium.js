@@ -68,12 +68,12 @@ const AddStadium = () => {
         is_new_stadium_type: isNewStadiumType
       },
       {
-        header: {
+        headers: {
           uid: localStorage.getItem('uid'),
           'access-token': localStorage.getItem('access-token'),
           client: localStorage.getItem('client')
         }
-      }
+      },
     ).then((response) => {
       if(response.status === 204){
         history.push('/admin/main');
