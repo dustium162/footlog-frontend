@@ -14,11 +14,15 @@ const OnPublishedMatches = () => {
   const [hasMore,setHasMore] = useState(true);
 
   const loadMore = async (page) => {
-    const data = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/admin/on-published-index?page=${page}`, {
+    const data = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`, {
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'on_published_index',
+        page: page
       }
     }).then((response) => {
       return response.data;
@@ -33,11 +37,14 @@ const OnPublishedMatches = () => {
   const loader = <Spinner key={0} animation="border" variant="secondary" />
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/admin/on-published-index`, {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`, {
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'on_published_index'
       }
     }).then((response) => {
       return response.data;
