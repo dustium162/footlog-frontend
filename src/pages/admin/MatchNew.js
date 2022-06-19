@@ -123,6 +123,7 @@ const MatchNew = () => {
     setSubmitButtonLabel('試合情報作成中...');
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/matches`,
       {
+        update_type: 'update',
         title_id: titleId,
         home_team_id: homeTeamId,
         away_team_id: awayTeamId,
