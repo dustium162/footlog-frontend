@@ -11,11 +11,18 @@ const AdminMain = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/new`,{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'index',
+      }
+    }).then((response) => {
+      if(response.status === 401) {
+        history.push('/sign-in');
       }
     }).catch((error) => {
       if(error.response && error.response.status === 401){
