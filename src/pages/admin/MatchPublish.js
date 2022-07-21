@@ -9,8 +9,10 @@ const MatchPublish = ({match,filterMatches,height}) => {
 
   const publishMatch = () => {
     filterMatches(match.id);
-    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/publish/${match.id}`,
-      {},
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
+      {
+        update_type: 'publish'
+      },
       {
       headers: {
         uid: localStorage.getItem('uid'),
@@ -30,8 +32,10 @@ const MatchPublish = ({match,filterMatches,height}) => {
 
   const unpublishMatch = () => {
     filterMatches(match.id);
-    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/unpublish/${match.id}`,
-      {},
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
+      {
+        update_type: 'unpublish'
+      },
       {
       headers: {
         uid: localStorage.getItem('uid'),

@@ -13,11 +13,14 @@ const PreEditedMatches = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/publish`,{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches`,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'unpublished_index'
       }
     }).then( response => {
       setMatches(response.data);

@@ -45,6 +45,9 @@ const Matches = () => {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'index'
       }
     }).then((response) => {
       return response.data;

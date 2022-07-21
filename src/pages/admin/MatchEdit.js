@@ -60,6 +60,7 @@ const MatchEdit = ({match,filterMatches,height}) => {
     filterMatches(match.id);
     axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
       {
+        update_type: 'update',
         home_score: homeScore,
         away_score: awayScore,
         home_score_players: homeScorePlayers,

@@ -11,8 +11,10 @@ const OnPublishedMatch = ({match}) => {
   const history = useHistory();
 
   const unpublishMatch = () => {
-    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/unpublish/${match.id}`,
-      {},
+    axios.patch(`${process.env.REACT_APP_API_ENDPOINT}/matches/${match.id}`,
+      {
+        update_type: 'unpublish'
+      },
       {
       headers: {
         uid: localStorage.getItem('uid'),

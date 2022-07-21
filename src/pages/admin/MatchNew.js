@@ -28,26 +28,64 @@ const MatchNew = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/matches/new`,{
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/titles`,{
       headers: {
         uid: localStorage.getItem('uid'),
         'access-token': localStorage.getItem('access-token'),
         client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'match_new_index',
       }
     }).then( response => {
-      setTitles(response.data.titles);
-      setTeams(response.data.teams);
-      setStadia(response.data.stadia)
-      setHomeTeamsList(response.data.teams);
-      setAwayTeamsList(response.data.teams);
+      setTitles(response.data);
       setIsSubmitDisable(!(titleId && homeTeamId && awayTeamId && dateTime && stadiumId));
-      // titleId && homeTeamId && awayTeamId && dateTime && stadiumId ? setIsSubmitDisable(false) : setIsSubmitDisable(true);
     }).catch((error) => {
       history.push('/sign-in');
       console.log(error);
     })
   },[titleId, homeTeamId, awayTeamId, dateTime, stadiumId, history])
 
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/teams`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'match_new_index',
+      }
+    }).then( response => {
+      setTeams(response.data);
+      setHomeTeamsList(response.data);
+      setAwayTeamsList(response.data);
+      setIsSubmitDisable(!(titleId && homeTeamId && awayTeamId && dateTime && stadiumId));
+    }).catch((error) => {
+      history.push('/sign-in');
+      console.log(error);
+    })
+  },[titleId, homeTeamId, awayTeamId, dateTime, stadiumId, history])
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/stadia`,{
+      headers: {
+        uid: localStorage.getItem('uid'),
+        'access-token': localStorage.getItem('access-token'),
+        client: localStorage.getItem('client')
+      },
+      params: {
+        index_type: 'match_new_index',
+      }
+    }).then( response => {
+      setStadia(response.data)
+      setIsSubmitDisable(!(titleId && homeTeamId && awayTeamId && dateTime && stadiumId));
+    }).catch((error) => {
+      history.push('/sign-in');
+      console.log(error);
+    })
+  },[titleId, homeTeamId, awayTeamId, dateTime, stadiumId, history])
+  
   const handleTitle = (e) => {
     setTitleId(e ? e.value : '');
     setIsSubmitDisable(!(titleId && dateTime && stadiumId && homeTeamId && awayTeamId));
@@ -85,6 +123,7 @@ const MatchNew = () => {
     setSubmitButtonLabel('試合情報作成中...');
     axios.post(`${process.env.REACT_APP_API_ENDPOINT}/matches`,
       {
+        update_type: 'update',
         title_id: titleId,
         home_team_id: homeTeamId,
         away_team_id: awayTeamId,
