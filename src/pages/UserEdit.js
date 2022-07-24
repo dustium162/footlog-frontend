@@ -44,7 +44,16 @@ const UserEdit = () => {
       console.error("none, fileObject");
       return;
     }
-    const res = await axios(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/1`,{params: {filename: e.target.files[0].name}});
+    const res = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/s3_direct_post/1`,
+      {params: {filename: e.target.files[0].name}},
+      {
+        headers: {
+          uid: localStorage.getItem('uid'),
+          'access-token': localStorage.getItem('access-token'),
+          client: localStorage.getItem('client')
+        }
+      }
+    );
     const s3DirectPost = await res.data;
     const imageFile = await resizeFile(e.target.files[0], 200, 200);
     console.log(imageFile);
